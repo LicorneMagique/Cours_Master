@@ -1,6 +1,6 @@
 laClasse : LaClasse.o
 	g++ -o laClasse LaClasse.o
-	echo LaClasse > .gitignore
+	echo laClasse > .gitignore
 	echo LaClasse.o >> .gitignore
 LaClasse.o : LaClasse.cpp
 	g++ -c LaClasse.cpp -std=c++11

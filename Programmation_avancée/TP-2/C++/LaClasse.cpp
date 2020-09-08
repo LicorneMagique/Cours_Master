@@ -54,7 +54,7 @@ class Image
                 pixels[i].setX(x);
                 pixels[i].setY(y);
                 pixels[i].setZ(z);
-                std::cout << x << " " << y << " " << z << std::endl;
+                // std::cout << x << " " << y << " " << z << std::endl;
             }
         }
     private:
@@ -70,11 +70,13 @@ class LaClasse
         LaClasse(): l(0) // Constructeur par défaut
         {
             std::cout << "défaut\n";
+            i = new Image(2, 3);
         }
 
         LaClasse(const LaClasse& lc): l(lc.l) // Constructeur par copie
         {
             std::cout << "copie\n";
+            i = new Image(2, 3);
         }
 
         LaClasse(int i): l(i) // Constructeur avec paramètre int
@@ -96,11 +98,39 @@ class LaClasse
         const LaClasse& operator=(const LaClasse& c) // Constructeur par affectation
         {
             l = c.l;
-            std::cout << "affectation\n";
+            std::cout << "LaClasse::operator=(const LaClasse &)\n";
             return *this;
         }
 
-        // Autre fonction membre
+        // const LaClasse& operator=(LaClasse &&x) // Affectation par déplacement
+        // {
+        //     std::cout << "affectation par déplacement\n";
+        //     if (this != &x)
+        //     {
+        //         delete i;
+        //         i = x.i;
+        //         x.i = nullptr;
+        //     }
+        //     return *this;
+        // }
+
+        // LaClasse(LaClasse&& lc): l(lc.l) // Constructeur par déplacement
+        // {
+        //     std::cout << "constructeur par déplacement" << std::endl;
+        //     i = lc.i;
+        //     lc.i = nullptr;
+
+        //     std::cout << "constructeur par déplacement\n";
+        //     if (this != &x)
+        //     {
+        //         delete i;
+        //         i = x.i;
+        //         x.i = nullptr;
+        //     }
+        //     return *this;
+        // }
+
+        //Autre fonction membre
         LaClasse F(LaClasse);
 
         // Déclaration fonction extérieure amie
@@ -108,6 +138,7 @@ class LaClasse
 
     private :
         int l;
+        Image* i;
 };
 
 LaClasse F(LaClasse vv)
@@ -128,7 +159,7 @@ std::ostream & operator << (std::ostream & os, const LaClasse & lc)
     return os;
 }
 
-// Testez et analysez la s�quence d'appels aux fonctions membres
+// Testez et analysez la séquence d'appels aux fonctions membres
 // de LaClasse dans le programme suivant :
 
 int main()
@@ -138,24 +169,26 @@ int main()
     LaClasse cc1(c1); // copie
     LaClasse cc2 = c1; // copie indiqué explicitement
     LaClasse cc3 = LaClasse(c1); // défaut puis affectation
+    // LaClasse cc4 = F(c1); // test constructeur par déplacement ici
+    // LaClasse* cc5 = &c1; // test affectation par déplacement ici
     LaClasse cv1(5); // int
     LaClasse cv2 = 5; // défaut puis int
     LaClasse cv3 = LaClasse(5); // défaut puis int
     LaClasse cv4 = (LaClasse)5; // défaut puis int
     std::cout << std::endl;
-    c1 = cc1;
+    c1=cc1;
     std::cout << std::endl;
-    c2 = 8;
+    c2=8;
     std::cout << std::endl;
-    if (cv1)
+    if(cv1)
     {
-        cv1 = F(10);
-        cv1 = F(c1);
-        cv1 = c1.F(c2);
+        cv1=F(10);
+        cv1=F(c1);
+        cv1=c1.F(c2);
     }
     std::cout << "Tableaux \n";
     LaClasse tab[3];
-    LaClasse *pc = new LaClasse(tab[0]);
+    LaClasse *pc=new LaClasse(tab[0]);
     delete pc;
     std::cout << "Avant de sortir ... \n";
     Pixel p;

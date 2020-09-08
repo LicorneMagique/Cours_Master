@@ -82,6 +82,14 @@ class LaClasse
         LaClasse(int i): l(i) // Constructeur avec paramètre int
         {
             std::cout << "int\n";
+            this->i = new Image(2, 3);
+        }
+
+        const LaClasse& operator=(const LaClasse& c) // Constructeur par affectation
+        {
+            l = c.l;
+            std::cout << "constructeur par affectation\n";
+            return *this;
         }
 
         operator bool() const // `if (lc)` atteindra le bloc `then` avec lc: LaClasse
@@ -93,42 +101,27 @@ class LaClasse
         ~LaClasse() // Destructeur
         {
             std::cout << "destructeur\n";
+            delete i;
         }
 
-        const LaClasse& operator=(const LaClasse& c) // Constructeur par affectation
+        const LaClasse& operator=(LaClasse &&x) // Affectation par déplacement
         {
-            l = c.l;
-            std::cout << "LaClasse::operator=(const LaClasse &)\n";
+            std::cout << "affectation par déplacement\n";
+            if (this != &x)
+            {
+                delete i;
+                i = x.i;
+                x.i = nullptr;
+            }
             return *this;
         }
 
-        // const LaClasse& operator=(LaClasse &&x) // Affectation par déplacement
-        // {
-        //     std::cout << "affectation par déplacement\n";
-        //     if (this != &x)
-        //     {
-        //         delete i;
-        //         i = x.i;
-        //         x.i = nullptr;
-        //     }
-        //     return *this;
-        // }
-
-        // LaClasse(LaClasse&& lc): l(lc.l) // Constructeur par déplacement
-        // {
-        //     std::cout << "constructeur par déplacement" << std::endl;
-        //     i = lc.i;
-        //     lc.i = nullptr;
-
-        //     std::cout << "constructeur par déplacement\n";
-        //     if (this != &x)
-        //     {
-        //         delete i;
-        //         i = x.i;
-        //         x.i = nullptr;
-        //     }
-        //     return *this;
-        // }
+        LaClasse(LaClasse&& lc): l(lc.l) // Constructeur par déplacement
+        {
+            std::cout << "constructeur par déplacement" << std::endl;
+            i = lc.i;
+            lc.i = nullptr;
+        }
 
         //Autre fonction membre
         LaClasse F(LaClasse);
@@ -169,30 +162,29 @@ int main()
     LaClasse cc1(c1); // copie
     LaClasse cc2 = c1; // copie indiqué explicitement
     LaClasse cc3 = LaClasse(c1); // défaut puis affectation
-    // LaClasse cc4 = F(c1); // test constructeur par déplacement ici
-    // LaClasse* cc5 = &c1; // test affectation par déplacement ici
+    LaClasse cc4 = F(c1);
+    // TODO test constructeur par déplacement
+    // cc4 = F(c2); // test affectation par déplacement
+    // TODO test constructeur par déplacement
     LaClasse cv1(5); // int
     LaClasse cv2 = 5; // défaut puis int
     LaClasse cv3 = LaClasse(5); // défaut puis int
     LaClasse cv4 = (LaClasse)5; // défaut puis int
     std::cout << std::endl;
-    c1=cc1;
+    c1 = cc1;
     std::cout << std::endl;
-    c2=8;
+    c2 = 8;
     std::cout << std::endl;
-    if(cv1)
+    if (cv1)
     {
-        cv1=F(10);
-        cv1=F(c1);
-        cv1=c1.F(c2);
+        cv1 = F(10);
+        cv1 = F(c1);
+        cv1 = c1.F(c2);
     }
     std::cout << "Tableaux \n";
     LaClasse tab[3];
-    LaClasse *pc=new LaClasse(tab[0]);
+    LaClasse* pc = new LaClasse(tab[0]);
     delete pc;
     std::cout << "Avant de sortir ... \n";
-    Pixel p;
-    std::cout << "test " << p.getX() << " " << p.getY() << " " << p.getZ() << std::endl;
-    Image img = Image(2, 3);
     return 0;
 }

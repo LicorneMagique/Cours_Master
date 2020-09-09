@@ -203,12 +203,16 @@ class String
             string[0] = c;
         }
 
-        char* getValue()
+        String(const String& s)
         {
-            return string;
+            string = new char[strlen(s.string)];
+            for (int i = 0; i < strlen(s.string); i++)
+            {
+                string[i] = s.string[i];
+            }
         }
 
-        String operator+ (const String& s)
+        String operator+(const String& s)
         {
             std::cout << "je dois renvoyer : '" << string << s.string << "'" << std::endl;
             int size = strlen(string) + strlen(s.string);
@@ -224,14 +228,48 @@ class String
                     newString[i] = s.string[i - strlen(string)];
                 }
             }
-            // delete string;
             return newString;
+        }
+
+        const bool operator==(const String& s)
+        {
+            return strcmp(string, s.string) == 0;
+        }
+
+        const bool operator!=(const String& s)
+        {
+            return strcmp(string, s.string) != 0;
+        }
+
+        const bool operator<(const String& s)
+        {
+            return strcmp(string, s.string) < 0;
+        }
+
+        const bool operator>(const String& s)
+        {
+            return strcmp(string, s.string) > 0;
+        }
+
+        const bool operator<=(const String& s)
+        {
+            return strcmp(string, s.string) <= 0;
+        }
+
+        const bool operator>=(const String& s)
+        {
+            return strcmp(string, s.string) >= 0;
         }
 
         ~String()
         {
             std::cout << "Destructeur" << std::endl;
             delete string;
+        }
+
+        char* getValue()
+        {
+            return string;
         }
     private:
         char* string;
@@ -273,15 +311,42 @@ int main()
     // LaClasseSpecialisee lcs;
     // LaClasseSpecialisee lcs3(std::move(lcs));
     // LaClasseSpecialisee lcs2 = LaClasseSpecialisee();
-    String s;
     char* test = "ceci est un test";
-    String s2 = test;
     char test2 = 'a';
+    String s;
+    String s2 = test;
     String s3 = test2;
     String s4 = s2 + s3;
+    String s5 = s2;
+    String a = 'a';
+    String b = 'b';
+
     std::cout << "s : " << s.getValue() << std::endl;
     std::cout << "s2 : " << s2.getValue() << std::endl;
     std::cout << "s3 : " << s3.getValue() << std::endl;
     std::cout << "s4 : " << s4.getValue() << std::endl;
+    std::cout << "s5 : " << s5.getValue() << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "a == b : " << (a == b) << std::endl;
+    std::cout << "a == a : " << (a == a) << std::endl;
+    std::cout << "a != b : " << (a != b) << std::endl;
+    std::cout << "a != a : " << (a != a) << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "a < b : " << (a < b) << std::endl;
+    std::cout << "b < a : " << (b < a) << std::endl;
+    std::cout << "a > b : " << (a > b) << std::endl;
+    std::cout << "b > a : " << (b > a) << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "a <= a : " << (a <= a) << std::endl;
+    std::cout << "a <= b : " << (a <= b) << std::endl;
+    std::cout << "b <= a : " << (b <= a) << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "a >= a : " << (a >= a) << std::endl;
+    std::cout << "a >= b : " << (a >= b) << std::endl;
+    std::cout << "b >= a : " << (b >= a) << std::endl;
     return 0;
 }

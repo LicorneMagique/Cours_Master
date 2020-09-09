@@ -208,9 +208,24 @@ class String
             return string;
         }
 
-        String operator+(const String& s)
+        String operator+ (const String& s)
         {
-            char* stringBis = new char[strlen(string) + strlen(s)]
+            std::cout << "je dois renvoyer : '" << string << s.string << "'" << std::endl;
+            int size = strlen(string) + strlen(s.string);
+            char* newString = new char[size];
+            for (int i = 0; i < size; i++)
+            {
+                if (i < strlen(string))
+                {
+                    newString[i] = string[i];
+                }
+                else
+                {
+                    newString[i] = s.string[i - strlen(string)];
+                }
+            }
+            // delete string;
+            return newString;
         }
 
         ~String()
@@ -263,8 +278,10 @@ int main()
     String s2 = test;
     char test2 = 'a';
     String s3 = test2;
+    String s4 = s2 + s3;
     std::cout << "s : " << s.getValue() << std::endl;
     std::cout << "s2 : " << s2.getValue() << std::endl;
     std::cout << "s3 : " << s3.getValue() << std::endl;
+    std::cout << "s4 : " << s4.getValue() << std::endl;
     return 0;
 }

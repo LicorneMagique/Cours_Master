@@ -163,9 +163,8 @@ int main()
     LaClasse cc2 = c1; // copie indiqué explicitement
     LaClasse cc3 = LaClasse(c1); // défaut puis affectation
     LaClasse cc4 = F(c1);
-    // TODO test constructeur par déplacement
-    // cc4 = F(c2); // test affectation par déplacement
-    // TODO test constructeur par déplacement
+    cc4 = F(c2); // test affectation par déplacement
+    LaClasse cc5(std::move(c1)); // TODO test constructeur par affectation
     LaClasse cv1(5); // int
     LaClasse cv2 = 5; // défaut puis int
     LaClasse cv3 = LaClasse(5); // défaut puis int

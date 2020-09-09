@@ -1,4 +1,6 @@
 #include <iostream>
+#include <stdio.h>
+#include <string.h>
 
 class Pixel
 {
@@ -134,6 +136,31 @@ class LaClasse
         Image* i;
 };
 
+class LaClasseSpecialisee: LaClasse
+{
+    public:
+        LaClasseSpecialisee() // Constructeur par défaut
+        {
+            std::cout << "Constructeur défaut LaClasseSpecialisee\n";
+        }
+
+        LaClasseSpecialisee(const LaClasseSpecialisee& lc) // Constructeur par copie
+        {
+            std::cout << "Constructeur copie LaClasseSpecialisee\n";
+        }
+
+        const LaClasseSpecialisee& operator=(const LaClasseSpecialisee& c) // Constructeur par affectation
+        {
+            std::cout << "Constructeur affectation LaClasseSpecialisee\n";
+            return *this;
+        }
+
+        ~LaClasseSpecialisee() // Destructeur
+        {
+            std::cout << "Destructeur LaClasseSpecialisee\n";
+        }
+};
+
 LaClasse F(LaClasse vv)
 {
     std::cout << " in F \n";
@@ -152,38 +179,92 @@ std::ostream & operator << (std::ostream & os, const LaClasse & lc)
     return os;
 }
 
+class String
+{
+    public:
+        String() // Constructeur par défaut
+        {
+            std::cout << "Constructeur par défaut" << std::endl;
+            string = new char[0];
+        }
+
+        String(char* chars)
+        {
+            std::cout << "Constructeur par valeur" << std::endl;
+            string = new char[strlen(chars)];
+            for (int i = 0; i < strlen(chars); i++) {
+                string[i] = chars[i];
+            }
+        }
+
+        String(char c)
+        {
+            string = new char[1];
+            string[0] = c;
+        }
+
+        char* getValue()
+        {
+            return string;
+        }
+
+        String operator+(const String& s)
+        {
+            char* stringBis = new char[strlen(string) + strlen(s)]
+        }
+
+        ~String()
+        {
+            std::cout << "Destructeur" << std::endl;
+            delete string;
+        }
+    private:
+        char* string;
+};
+
 // Testez et analysez la séquence d'appels aux fonctions membres
 // de LaClasse dans le programme suivant :
 
 int main()
 {
-    LaClasse c1; // défaut
-    LaClasse c2 = LaClasse(); // défaut indiqué explicitement
-    LaClasse cc1(c1); // copie
-    LaClasse cc2 = c1; // copie indiqué explicitement
-    LaClasse cc3 = LaClasse(c1); // défaut puis affectation
-    LaClasse cc4 = F(c1);
-    cc4 = F(c2); // test affectation par déplacement
-    LaClasse cc5(std::move(c1)); // TODO test constructeur par affectation
-    LaClasse cv1(5); // int
-    LaClasse cv2 = 5; // défaut puis int
-    LaClasse cv3 = LaClasse(5); // défaut puis int
-    LaClasse cv4 = (LaClasse)5; // défaut puis int
-    std::cout << std::endl;
-    c1 = cc1;
-    std::cout << std::endl;
-    c2 = 8;
-    std::cout << std::endl;
-    if (cv1)
-    {
-        cv1 = F(10);
-        cv1 = F(c1);
-        cv1 = c1.F(c2);
-    }
-    std::cout << "Tableaux \n";
-    LaClasse tab[3];
-    LaClasse* pc = new LaClasse(tab[0]);
-    delete pc;
-    std::cout << "Avant de sortir ... \n";
+    // LaClasse c1; // défaut
+    // LaClasse c2 = LaClasse(); // défaut indiqué explicitement
+    // LaClasse cc1(c1); // copie
+    // LaClasse cc2 = c1; // copie indiqué explicitement
+    // LaClasse cc3 = LaClasse(c1); // défaut puis affectation
+    // LaClasse cc4 = F(c1);
+    // cc4 = F(c2); // test affectation par déplacement
+    // LaClasse cc5(std::move(c1)); // test constructeur par affectation
+    // LaClasse cv1(5); // int
+    // LaClasse cv2 = 5; // défaut puis int
+    // LaClasse cv3 = LaClasse(5); // défaut puis int
+    // LaClasse cv4 = (LaClasse)5; // défaut puis int
+    // std::cout << std::endl;
+    // c1 = cc1;
+    // std::cout << std::endl;
+    // c2 = 8;
+    // std::cout << std::endl;
+    // if (cv1)
+    // {
+    //     cv1 = F(10);
+    //     cv1 = F(c1);
+    //     cv1 = c1.F(c2);
+    // }
+    // std::cout << "Tableaux \n";
+    // LaClasse tab[3];
+    // LaClasse* pc = new LaClasse(tab[0]);
+    // delete pc;
+    // std::cout << "Avant de sortir ... \n";
+    // LaClasseSpecialisee lcs;
+    // LaClasseSpecialisee lcs3(std::move(lcs));
+    // LaClasseSpecialisee lcs2 = LaClasseSpecialisee();
+    String s;
+    char* test = "ceci est un test";
+    String s2 = test;
+    char test2 = 'a';
+    String s3 = test2;
+    std::cout << "s : " << s.getValue() << std::endl;
+    std::cout << "s2 : " << s2.getValue() << std::endl;
+    std::cout << "s3 : " << s3.getValue() << std::endl;
     return 0;
 }

@@ -17,45 +17,42 @@ class Constante: public Expression
     private:
         int nombre;
     public:
-        Constante(int n) : Expression(), nombre(n) {}
+        Constante(int n): Expression(), nombre(n) {}
         int eval() const;
         Expression* clone() const;
 };
 
-class Plus
+class Plus: public Expression
 {
-    friend class Expression;
     private:
         Expression* e1;
         Expression* e2;
     public:
-        Plus(const Expression& a, const Expression& b): e1(a.clone()), e2(b.clone()){}
-        int eval(){ return e1->eval() + e2->eval(); }
-        Expression* clone();
+        Plus(const Expression& a, const Expression& b): Expression(), e1(a.clone()), e2(b.clone()) {}
+        int eval() const;
+        Expression* clone() const;
 };
 
-class Moins
+class Moins: public Expression
 {
-    friend class Expression;
     private:
         Expression* e1;
         Expression* e2;
     public:
-        Moins(const Expression& _e1, const Expression& _e2): e1(_e1.clone()), e2(_e2.clone()){}
-        int eval(){ return e1->eval() - e2->eval(); }
-        Expression* clone();
+        Moins(const Expression& _e1, const Expression& _e2): Expression(), e1(_e1.clone()), e2(_e2.clone()){}
+        int eval() const;
+        Expression* clone() const;
 };
 
-class Mult
+class Mult: public Expression
 {
-    friend class Expression;
     private:
         Expression* e1;
         Expression* e2;
     public:
-    Mult(const Expression& _e1, const Expression& _e2): e1(_e1.clone()), e2(_e2.clone()){}
-        int eval(){ return e1->eval() * e2->eval(); }
-        Expression* clone();
+    Mult(const Expression& _e1, const Expression& _e2): Expression(), e1(_e1.clone()), e2(_e2.clone()){}
+        int eval() const;
+        Expression* clone() const;
 };
 
 #endif // EXPRESSION_INCLUDED

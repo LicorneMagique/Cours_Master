@@ -11,20 +11,20 @@ int main()
 
     int a = 5;
     Constante c(a);
-    // const Expression& test = Constante(4);
-    // Plus p(c, c);
-    // cout << c.eval() << endl;
-    // cout << c.eval() << endl;
-    // const Expression& e = Mult(
-    //     Plus(
-    //         Constante(a),
-    //         Constante(-2)
-    //     ),
-    //     Plus(
-    //         Constante(1),
-    //         Constante(3)
-    //     )
-    // );
-    // std::cout << e.eval() << std::endl;
+    const Expression& test = Constante(4);
+    Plus p(c, c);
+    cout << c.eval() << endl;
+    cout << p.eval() << endl;
+    const Expression& e = Mult( // 12
+        Plus( // 3
+            Constante(a), // 5
+            Constante(-2) // -2
+        ),
+        Plus( // 4
+            Constante(1), // 1
+            Constante(3) // 3
+        )
+    );
+    std::cout << e.eval() << std::endl;
     return 0;
 }

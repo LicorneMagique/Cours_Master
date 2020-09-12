@@ -15,18 +15,12 @@ void mySwap(T& a, T& b)
 template<typename T>
 const T myMin(T const & a, T const & b)
 {
-    if (T == char)
-    {
-        if (strcmp(a, b) <= 0) return a;
-        return b;
-    }
-
     if (a < b) return a;
     return b;
 }
 
 template<>
-const myMin(char* const & a, char* const & b)
+char* const myMin(char* const & a, char* const & b)
 {
     if (strcmp(a, b) <= 0) return a;
         return b;
@@ -36,28 +30,19 @@ int main()
 {
     cout << "Hello World" << endl;
 
-    int a = 5;
-    int b = 6;
-    cout << a << " " << b << endl;
-    mySwap<int>(a, b);
-    cout << a << " " << b << endl;
-    cout << "Swap validé" << endl << endl;
-
-    cout << "min entre " << a << " et " << b << " : " << myMin<int>(a, b) << endl;
     cout << "min entre a et b : " << myMin<char>('a', 'b') << endl;
-    cout << "myMin validé" << endl << endl;
 
-    // std::cout << min(5, 6) << std::endl;
-    // std::cout << min(6, 5) << std::endl;
-    // std::cout << min("lili", "lala") <<std::endl;
-    // std::cout << min("li","lala") << std::endl; // 2 arguments de types différents
-    // const char* cc = "mumu";
-    // const char* dd = "ma";
-    // std::cout << min(cc, dd) << std::endl;
-    // char ee[5] = "toto";
-    // char ff[5] = "ta"; // tableau de même taille que le précédent
-    // std::cout << min(ee,ff) << std::endl;
-    // std::cout << min("zut",ff) << std::endl;
+    cout << "min entre 5 et 6 : " << myMin<int>(5, 6) << endl;
+    cout << "min entre 6 et 5 : " << myMin<int>(6, 5) << endl;
+    cout << "min entre lili et lala : " << myMin<char*>((char*) "lili", (char*) "lala") << endl;
+    cout << "min entre li et lala : " << myMin<char*>((char*) "li", (char*) "lala") << endl; // 2 arguments de types différents
+    const char* cc = "mumu";
+    const char* dd = "ma";
+    cout << "min entre cc=mumu et dd=ma : " << myMin<const char*>(cc, dd) << endl;
+    char ee[5] = "toto";
+    char ff[5] = "ta"; // tableau de même taille que le précédent
+    cout << "min entre ee=toto et ff=ta : " << myMin<char*>(ee, ff) << endl;
+    cout << "min entre zut et ff=ta : " << myMin<char*>((char*) "zut", ff) << endl;
 
     return 0;
 }

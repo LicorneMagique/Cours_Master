@@ -212,6 +212,11 @@ class String
             }
         }
 
+        int size()
+        {
+            return strlen(string);
+        }
+
         String operator+(const String& s)
         {
             std::cout << "je dois renvoyer : '" << string << s.string << "'" << std::endl;
@@ -259,6 +264,11 @@ class String
         const bool operator>=(const String& s)
         {
             return strcmp(string, s.string) >= 0;
+        }
+
+        const char operator[](const int i)
+        {
+            return string[i];
         }
 
         ~String()
@@ -348,5 +358,10 @@ int main()
     std::cout << "a >= a : " << (a >= a) << std::endl;
     std::cout << "a >= b : " << (a >= b) << std::endl;
     std::cout << "b >= a : " << (b >= a) << std::endl;
+
+    std::cout << "test size de s2='" << s2.getValue() << "' : " << s2.size() << std::endl;
+
+    std::cout << "test s2[3] : " << s2[3] << std::endl;
+
     return 0;
 }

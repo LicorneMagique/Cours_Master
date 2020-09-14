@@ -1,46 +1,23 @@
-#include <iostream>
-#include <stdio.h>
-#include <string.h>
 #include "Tableau.h"
 
-using namespace std;
-
-int Constante::eval() const
+template <class T, int AGRANDISSEMENT>
+T* Tableau<T, AGRANDISSEMENT>::getTab()
 {
-    return nombre;
+    return tab;
 }
 
-Tableau* Constante::clone() const
-{
-    return new Constante(nombre);
-}
-
-int Plus::eval() const
-{
-    return e1->eval() + e2->eval();
-}
-
-Tableau* Plus::clone() const
-{
-    return new Plus(*e1->clone(), *e2->clone());
-}
-
-int Moins::eval() const
-{
-    return e1->eval() - e2->eval();
-}
-
-Tableau* Moins::clone() const
-{
-    return new Moins(*e1->clone(), *e2->clone());
-}
-
-int Mult::eval() const
-{
-    return e1->eval() * e2->eval();
-}
-
-Tableau* Mult::clone() const
-{
-    return new Mult(*e1->clone(), *e2->clone());
-}
+//template <class T, int AGRANDISSEMENT>
+//void Tableau<T, AGRANDISSEMENT>::add(T elem)
+//{
+    // tab[size++] = elem;
+    // if (size == capacite)
+    // {
+    //     capacite += AGRANDISSEMENT;
+    //     T* newTab(capacite);
+    //     for (int i = 0; i < size; i++)
+    //     {
+    //         newTab[i] = tab[i];
+    //     }
+    //     tab = newTab;
+    // }
+//}

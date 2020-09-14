@@ -44,5 +44,19 @@ int main()
     cout << "min entre ee=toto et ff=ta : " << myMin<char*>(ee, ff) << endl;
     cout << "min entre zut et ff=ta : " << myMin<char*>((char*) "zut", ff) << endl;
 
+    Tableau<int, 2> lalalala = Tableau<int, 2>(4);
+    cout << "size : " << lalalala.getSize() << endl;
+    cout << "capacité : " << lalalala.getCapacite() << endl;
+    for (int i = 0; i < 7; i++)
+    {
+        lalalala.add(i);
+    }
+    cout << "size : " << lalalala.getSize() << endl;
+    cout << "size : " << lalalala.getCapacite() << endl;
+    for (int i = 0; i < 7; i++)
+    {
+        cout << "val : " << lalalala.get(i) << endl;
+    }
+
     return 0;
 }

@@ -14,7 +14,7 @@ Tableau.o : Tableau.cpp
 	echo main.o >> .gitignore
 	echo Tableau.o >> .gitignore
 run :
-	./main
+	./main && make clean
 
 clean :
 	rm main main.o Tableau.o

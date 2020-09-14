@@ -10,8 +10,18 @@ class Tableau
         int capacite;
     public:
         Tableau(int size): tab(new T[(size/AGRANDISSEMENT + 1)*AGRANDISSEMENT]),
-                            size(0),
-                            capacite((size/AGRANDISSEMENT + 1)*AGRANDISSEMENT){}
+                           size(0),
+                           capacite((size/AGRANDISSEMENT + 1)*AGRANDISSEMENT){}
+        Tableau(T* mytab, int size): tab(new T[(size/AGRANDISSEMENT + 1)*AGRANDISSEMENT]),
+                                     size(0),
+                                     capacite((size/AGRANDISSEMENT + 1)*AGRANDISSEMENT)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                //tab[i] = mytab[i];
+                1;
+            }
+        }
         ~Tableau(){ delete tab; }
         T* getTab();
         int getSize(){ return size; }
@@ -32,7 +42,7 @@ class Tableau
         }
         T get(int i)
         {
-            return tab[i];;
+            return tab[i];
         }
 };
 

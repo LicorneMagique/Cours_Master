@@ -44,7 +44,7 @@ int main()
     cout << "min entre ee=toto et ff=ta : " << myMin<char*>(ee, ff) << endl;
     cout << "min entre zut et ff=ta : " << myMin<char*>((char*) "zut", ff) << endl;
 
-    Tableau<int, 2> lalalala = Tableau<int, 2>(4);
+    Tableau<int, 2> lalalala(4);
     cout << "size : " << lalalala.getSize() << endl;
     cout << "capacité : " << lalalala.getCapacite() << endl;
     for (int i = 0; i < 7; i++)
@@ -57,6 +57,13 @@ int main()
     {
         cout << "val : " << lalalala.get(i) << endl;
     }
+
+    string* mytab = new string[3];
+    mytab[0] = "premier";
+    mytab[1] = "celui du milieu";
+    mytab[2] = "fin";
+
+    Tableau<string, 1> myvect(mytab, 1);
 
     return 0;
 }

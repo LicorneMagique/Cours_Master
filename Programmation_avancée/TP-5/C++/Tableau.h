@@ -9,18 +9,21 @@ class Tableau
         int size;
         int capacite;
     public:
-        Tableau(int size): tab(new T[(size/AGRANDISSEMENT + 1)*AGRANDISSEMENT]),
+        /*Tableau(int size): tab(new T[(size/AGRANDISSEMENT + 1)*AGRANDISSEMENT]),
                            size(0),
-                           capacite((size/AGRANDISSEMENT + 1)*AGRANDISSEMENT){}
-        Tableau(T* mytab, int size): tab(new T[(size/AGRANDISSEMENT + 1)*AGRANDISSEMENT]),
+                           capacite((size/AGRANDISSEMENT + 1)*AGRANDISSEMENT){}*/
+        Tableau(int size): tab(new T[size]),
+                           size(0),
+                           capacite(size){}
+        Tableau(const T* mytab, int size): tab(new T[(size/AGRANDISSEMENT + 1)*AGRANDISSEMENT]),
                                      size(0),
                                      capacite((size/AGRANDISSEMENT + 1)*AGRANDISSEMENT)
         {
-            for (int i = 0; i < size; i++)
+            /*for (int i = 0; i < size; i++)
             {
                 //tab[i] = mytab[i];
                 1;
-            }
+            }*/
         }
         ~Tableau(){ delete tab; }
         T* getTab();

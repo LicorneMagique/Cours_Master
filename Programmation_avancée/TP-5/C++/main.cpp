@@ -2,7 +2,7 @@
 #include <cstring>
 #include "Tableau.h"
 
-using namespace std;
+//using namespace std;
 
 template<typename T>
 void mySwap(T& a, T& b)
@@ -27,7 +27,7 @@ char* const myMin(char* const & a, char* const & b)
 }
 
 int main()
-{
+{/*
     cout << "Hello World" << endl;
 
     cout << "min entre a et b : " << myMin<char>('a', 'b') << endl;
@@ -57,13 +57,18 @@ int main()
     {
         cout << "val : " << lalalala.get(i) << endl;
     }
-
-    string* mytab = new string[3];
+*/
+    std::string* mytab = new std::string[3];
     mytab[0] = "premier";
     mytab[1] = "celui du milieu";
     mytab[2] = "fin";
 
-    Tableau<string, 1> myvect(mytab, 1);
+
+
+  //  Tableau<std::string, 4> myvect(2);
+    //Tableau<int, 4> myvect(2);
+
+    delete mytab;
 
     return 0;
 }

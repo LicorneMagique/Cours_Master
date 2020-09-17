@@ -6,43 +6,63 @@
 
 class Image
 {
-private :
-    Pixel * im;
+private:
+    Pixel *im;
     unsigned int width, height;
-public :
+
+public:
     Image() : im(nullptr), width(0), height(0) {}
     Image(int w, int h) : width(w), height(h)
     {
-        try{im=new Pixel[w*h];}
-            catch(std::bad_alloc& ba){std::cout << "bad_alloc caught: " << ba.what() << '\n';}
+        try
+        {
+            im = new Pixel[w * h];
+        }
+        catch (std::bad_alloc &ba)
+        {
+            std::cout << "bad_alloc caught: " << ba.what() << '\n';
+        }
     }
-    const Pixel & get(unsigned int row, unsigned int col) const {return im[row*width+col];}
-    Pixel & get(unsigned int row, unsigned int col){return im[row*width+col];}
-    ~Image() {delete im;}
+    const Pixel &get(unsigned int row, unsigned int col) const { return im[row * width + col]; }
+    Pixel &get(unsigned int row, unsigned int col) { return im[row * width + col]; }
+    ~Image() { delete im; }
 };
 
 class Image2
 {
-private :
-    Pixel ** im;
+private:
+    Pixel **im;
     unsigned int width, height;
-public :
+
+public:
     Image2() : im(nullptr), width(0), height(0) {}
-    Image2(unsigned int w,unsigned int h) : width(w), height(h)
+    Image2(unsigned int w, unsigned int h) : width(w), height(h)
     {
-        try {im=new Pixel*[w*h]; for(unsigned int i=0; i<w*h ; i++) im[i]= new Pixel();}
-        catch(std::bad_alloc& ba){std::cout << "bad_alloc caught: " << ba.what() << '\n';}
+        try
+        {
+            im = new Pixel *[w * h];
+            for (unsigned int i = 0; i < w * h; i++)
+                im[i] = new Pixel();
+        }
+        catch (std::bad_alloc &ba)
+        {
+            std::cout << "bad_alloc caught: " << ba.what() << '\n';
+        }
     }
-    const Pixel & get(unsigned int row, unsigned int col) const {return *im[row*width+col];}
-    Pixel & get(unsigned int row, unsigned int col){return *im[row*width+col];}
+    const Pixel &get(unsigned int row, unsigned int col) const { return *im[row * width + col]; }
+    Pixel &get(unsigned int row, unsigned int col) { return *im[row * width + col]; }
     ~Image2()
     {
-        if(im!=nullptr)
+        if (im != nullptr)
         {
-            for(unsigned int i=0; i<width*height ; i++) delete im[i];
-            delete [] im;
+            for (unsigned int i = 0; i < width * height; i++)
+                delete im[i];
+            delete[] im;
         }
-        else{std::cout << "Bip" << std::endl;}
+        else
+        {
+            std::cout << "Bip" << std::endl;
+        }
     }
 };
 

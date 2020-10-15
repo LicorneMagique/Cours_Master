@@ -1,0 +1,32 @@
+# je crois que c'est l'exo 2
+
+main:
+    addi t1, zero, 5
+    la t3, mydata
+
+    ld t4, 0(t3)
+    add a0, t1, t4
+
+    call print_int
+    call newline
+
+
+
+
+# t0 = x
+# t1 = const 12
+# t2 = y
+main:
+    li t0, 5
+    li t1, 12
+    bgt t0, t1, then
+    j else
+
+then:
+    li t2, 70
+    j endif
+
+else:
+    addi t2, t0, 12 # OR addi t2, t0, t1
+
+endif:

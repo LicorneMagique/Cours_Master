@@ -69,5 +69,7 @@ ticulier sur toygraph et toygraph2. Y a-t-il des différences entre le fichier d
 
     Indication. Si besoin (pour les gros fichiers), vous pouvez comparez le contenu des deux fichiers de manière automatique grâce à la commande diff fic1 fic2 du système d’exploitaion.
 
+    pas 2 lignes pareil
+
 8. Avant de continuer, dans le main, gardez la partie du code qui charge le
 graphe en mémoire et retirez celle qui l’écrit dans le fichier de sortie (dans la suite, on va s’occuper d’y écrire le résultat de l’algorithme).

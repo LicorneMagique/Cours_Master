@@ -95,19 +95,17 @@ void inserer_en_queue (int u, nodl* l) {
 // SUPPRIMER UNE CELLULE D'UNE LISTE
 // precondition: l est non null et pointe sur une liste non vide, p (non null) pointe sur une cellule de la liste pointee par l
 // postcondition: la cellule pointee par p est retiree de la liste pointee par l et detruite
-void supprimer (cell* p, nodl* l){
+void supprimer(cell* p, nodl* l){
 
-  if (p->prec==NULL) {
-    l->prem=p->suiv;
+  if (p->prec == NULL) {
+    l->prem = p->suiv;
+  } else {
+    p->prec->suiv = p->suiv;
   }
-  else {
-    p->prec->suiv=p->suiv;
-  }
-  if (p->suiv==NULL) {
-    l->dern=p->prec;
-  }
-  else {
-    p->suiv->prec=p->prec;
+  if (p->suiv == NULL) {
+    l->dern = p->prec;
+  } else {
+    p->suiv->prec = p->prec;
   }
 
   free(p);
@@ -126,7 +124,7 @@ void supprimer (cell* p, nodl* l){
 
 void free_nodl(nodl* l) {
   while (l->prem != NULL) {
-    supprimer(l->prem, l);
+    supprimer(l->dern, l);
   }
   free(l);
   l = NULL;
@@ -250,10 +248,9 @@ void write_graph(FILE *f, graph* g){
 
 
 void free_graph(graph* g) {
-  fprintf(stderr, "free_graph");
   free(g->degrees);
   g->degrees = NULL;
-  for (int i = 0; i < g-> m; i++) {
+  for (int i = 0; i < g->n; i++) {
     free_nodl(g->links[i]);
   }
   free(g);

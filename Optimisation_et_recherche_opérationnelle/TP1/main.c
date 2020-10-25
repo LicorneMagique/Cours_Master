@@ -164,9 +164,9 @@ int main(int argc, char **argv){
 ///////////////////////////////////////////////////////////
 
 
-  fprintf(stderr,"Outputing results.\n");
-  fflush(stderr);
-  write_graph(fout, g);
+  // fprintf(stderr,"Outputing results.\n");
+  // fflush(stderr);
+  // write_graph(fout, g);
 
 
 

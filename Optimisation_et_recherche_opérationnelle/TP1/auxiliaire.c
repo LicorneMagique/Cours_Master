@@ -35,7 +35,7 @@ typedef struct nodl {
 void inserer_apres(int u, nodl* l, cell* p) {
 
   cell* q;
-  if ((q = (cell *)malloc(sizeof(cell))) == NULL )
+  if ((q = (cell *)malloc(sizeof(cell))) == NULL)
     report_error("graph_from_file: malloc() error 1");
   q->node = u;
 
@@ -58,7 +58,7 @@ void inserer_apres(int u, nodl* l, cell* p) {
 void inserer_en_tete(int u, nodl* l) {
 
   cell* q;
-  if ((q = (cell *)malloc(sizeof(cell))) == NULL ) {
+  if ((q = (cell *)malloc(sizeof(cell))) == NULL) {
     report_error("graph_from_file: malloc() error 1");
   }
   q->node = u;
@@ -154,7 +154,7 @@ graph* graph_from_file(FILE *f) {
   if (fgets(line, MAX_LINE_LENGTH, f) == NULL) {
     report_error("graph_from_file: read error (fgets) 1");
   }
-  if (sscanf(line, "%d\n", &(g->n)) != 1 ) {
+  if (sscanf(line, "%d\n", &(g->n)) != 1) {
     report_error("graph_from_file: read error (sscanf) 2");
   }
 
@@ -164,18 +164,18 @@ graph* graph_from_file(FILE *f) {
     g->degrees = NULL;
   } else {
 
-    if ((g->degrees = (int*)malloc(g->n*sizeof(int))) == NULL ) {
+    if ((g->degrees = (int*)malloc(g->n*sizeof(int))) == NULL) {
       report_error("graph_from_file: malloc() error 3");
     }
-    for (i = 0; i<g->n; i++) {
+    for (i = 0; i < g->n; i++) {
       g->degrees[i] = 0;
     }
 
-    if ((g->links = (nodl**)malloc(g->n*sizeof(nodl*))) == NULL ) {
+    if ((g->links = (nodl**)malloc(g->n*sizeof(nodl*))) == NULL) {
       report_error("graph_from_file: malloc() error 3");
     }
     for(i = 0;i<g->n;i++) {
-      if ((g->links[i] = (nodl*)malloc(sizeof(nodl))) == NULL ) {
+      if ((g->links[i] = (nodl*)malloc(sizeof(nodl))) == NULL) {
         report_error("graph_from_file: malloc() error 3");
       }
       g->links[i]->prem = NULL;
@@ -185,12 +185,12 @@ graph* graph_from_file(FILE *f) {
   }
 
   /* read the links */
-  while (fgets(line, MAX_LINE_LENGTH, f) != NULL ) {
-    if (sscanf(line, "%d %d\n", &u, &v) != 2 ) {
+  while (fgets(line, MAX_LINE_LENGTH, f) != NULL) {
+    if (sscanf(line, "%d %d\n", &u, &v) != 2) {
       fprintf(stderr, "Attempt to scan link #%d failed. Line read:%s\n", i, line);
       report_error("graph_from_file; read error (sscanf) 3");
     }
-    if ((u >= g->n) || (v >= g->n) || (u < 0) || (v < 0) ) {
+    if ((u >= g->n) || (v >= g->n) || (u < 0) || (v < 0)) {
       fprintf(stderr, "Line just read: %s", line);
       report_error("graph_from_file: bad node number");
     }
@@ -318,7 +318,7 @@ void init_random() {
   n1 = (((int) clock())%100);
   n2 = ((int) aux.tv_usec)%1000;
 
-  srand((((((n2%10)*10+(n1%10))*10+(n2%10)%10)*10+(n1/10))*10+(n2/100))*10000+n1*100+n2 );
+  srand((((((n2%10)*10+(n1%10))*10+(n2%10)%10)*10+(n1/10))*10+(n2/100))*10000+n1*100+n2);
 }
 
 /////////////////////////////////////

@@ -120,11 +120,32 @@ int main(int argc, char **argv) {
   //////////////////   DATA STRUCTURE   /////////////////////
   ///////////////////////////////////////////////////////////
 
-  // un tableau de taille n qui a chaque sommet associe l’identifiant de son groupe et
-  // — un tableau de taille n qui a chaque identifiant de groupe associe la liste des sommets
-  // qu’il contient et
-  // — un tableau de taille n qui a chaque identifiant de groupe associe le nombre de
-  // sommets dans le groupe.
+  // Declaration
+  int* sommetToId; // tableau de taille n, associe à chaque sommet l’identifiant de son groupe
+  nodl* idToNodl; // tableau de taille n, associe à chaque identifiant de groupe la liste des sommets qu’il contient
+  int* idToNodlSize; // tableau de taille n, associe à chaque identifiant de groupe associe le nombre de sommets dans le groupe
+
+  // Allocation
+  if ((sommetToId = (int*)malloc(g->n*sizeof(int))) == NULL) { // sommetToId
+    report_error("main: malloc() error 3");
+  }
+  if ((idToNodl = (nodl*)malloc(g->n*sizeof(nodl))) == NULL) { // idToNodl
+    report_error("main: malloc() error 3");
+  }
+  if ((idToNodlSize = (int*)malloc(g->n*sizeof(int))) == NULL) { // idToNodlSize
+    report_error("main: malloc() error 3");
+  }
+
+  // Initialisation
+  for (i = 0; i < g->n; i++) { // sommetToId
+    sommetToId[i] = i;
+  }
+  for (i = 0; i < g->n; i++) { // idToNodl
+    idToNodl[i] = *g->links[i];
+  }
+  for (i = 0; i < g->n; i++) { // idToNodlSize
+    idToNodlSize[i] = g->degrees[i];
+  }
 
   ///////////////////////////////////////////////////////////
   /////////////////   COMPUTE MIN CUT   /////////////////////
@@ -158,6 +179,10 @@ int main(int argc, char **argv) {
   fflush(stderr);
 
   free_graph(g);
+
+  free(sommetToId);
+  free(idToNodl);
+  free(idToNodlSize);
 
   return 0;
 }

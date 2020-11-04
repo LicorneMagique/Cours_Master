@@ -1,0 +1,5 @@
+(1 + 1
+
+// EXPECTED
+// line 6:0 mismatched input '<EOF>' expecting ')'
+// (1+1 = None

@@ -1,0 +1,6 @@
+*~
+Parentheses*.py
+Parentheses*.pyc
+*.interp
+*.tokens
+__pycache*

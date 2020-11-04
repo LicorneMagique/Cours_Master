@@ -1,6 +1,6 @@
 *~
-Example1*.py
-Example1*.pyc
+Example2*.py
+Example2*.pyc
 *.interp
 *.tokens
 __pycache*

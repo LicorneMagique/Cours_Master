@@ -1,0 +1,6 @@
+*~
+Ex5*.py
+Ex5*.pyc
+*.interp
+*.tokens
+__pycache*

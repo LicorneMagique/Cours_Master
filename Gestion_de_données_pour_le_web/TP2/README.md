@@ -85,22 +85,19 @@ select xmlelement(name espece,
 from documentation
 where donnee = 'ESPAR';
 
+
 -- Pour chaque parcelle dont l’identifiant (IDP) est inférieur ou égal à 600200,
-select *
+-- donner l’identifiant de la parcelle
+-- et la liste (sans doublons) des espèces présentes dans cette parcelle
+-- (son code ESPAR sous forme d’attribut XML
+-- et pour celles dont on le connait, leur nom sous forme de texte).
+select distinct idp, count(espar), array_agg(espar), array_agg(libelle)
 from arbres a
     left outer join documentation
     on espar = code
     and donnee = 'ESPAR'
-where idp <= 600200;
--- Pour chaque parcelle dont l’identifiant (IDP) est inférieur ou égal à 600200, donner l’identifiant de la parcelle
-select distinct idp
-from arbres a
-    left outer join documentation
-    on espar = code
-    and donnee = 'ESPAR'
-where idp <= 600200;
--- Pour chaque parcelle dont l’identifiant (IDP) est inférieur ou égal à 600200, donner l’identifiant de la parcelle,
--- le nombre d’arbres de cette parcelle et la liste //sans doublons// des espèces présentes dans cette parcelle
+where idp <= 600200
+group by idp;
 select idp, count(a), xmlelement(name especes,
     (select xmlelement(name espece, (select libelle
     from arbres a2

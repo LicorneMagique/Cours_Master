@@ -1,4 +1,4 @@
 +*;
 
 // EXPECTED
-// line 1:0 mismatched input '+' expecting {'(', INT}
+// line 1:0 mismatched input '+' expecting {'(', '-', INT}

@@ -1,0 +1,5 @@
+1(;
+
+// EXPECTED
+// line 1:1 extraneous input '(' expecting ';'
+// 1 = 1

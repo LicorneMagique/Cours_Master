@@ -1,0 +1,5 @@
+(1 * 1;
+
+// EXPECTED
+// line 1:6 missing ')' at ';'
+// (1*1 = 1

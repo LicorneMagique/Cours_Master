@@ -1,0 +1,5 @@
+();
+
+// EXPECTED
+// line 1:1 mismatched input ')' expecting {'(', INT}
+// () = None

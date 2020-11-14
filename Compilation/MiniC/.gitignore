@@ -1,0 +1,7 @@
+htmlcov
+.coverage
+*interp
+*.tokens
+MiniCLexer.py
+MiniCParser.py
+MiniCVisitor.py

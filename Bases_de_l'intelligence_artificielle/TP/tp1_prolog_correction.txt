@@ -1,0 +1,240 @@
+/* les hommes */
+homme(alphonse).
+homme(bernard).
+homme(cedric).
+homme(david).
+homme(fabien).
+homme(gerard).
+homme(hubert).
+homme(jules).
+homme(kevin).
+homme(lucien).
+
+/* les femmes */
+femme(charlotte).
+femme(daniela).
+femme(eloise).
+femme(marie).
+femme(nathalie).
+femme(ophelie).
+femme(stephanie).
+femme(violette).
+femme(zoe).
+
+/* les relations de parenté */
+/* où enfant(X,Y) signifie que X est enfant de Y */
+enfant(alphonse,bernard).
+enfant(alphonse,eloise).
+enfant(cedric,fabien).
+enfant(cedric,nathalie).
+enfant(daniela,kevin).
+enfant(daniela,charlotte).
+enfant(fabien,lucien).
+enfant(fabien,marie).
+enfant(gerard,lucien).
+enfant(gerard,marie).
+enfant(nathalie,david).
+enfant(nathalie,zoe).
+enfant(ophelie,hubert).
+enfant(ophelie,marie).
+enfant(stephanie,alphonse).
+enfant(stephanie,violette).
+enfant(violette,zoe).
+enfant(violette,jules).
+enfant(charlotte,zoe).
+enfant(charlotte,jules).
+
+
+/* Questions fermées : « Cédric est-il un homme ? », « Cédric est-il un enfant de Charlotte ? ».
+
+?- homme(cedric).
+true.
+
+?- enfant(cedric,charlotte).
+false. */
+
+/* Question à une variable : « Qui sont les enfants de Zoé ? »
+
+?- trace, enfant(X,zoe).
+Call: (9) enfant(_2524, zoe) ? creep
+Exit: (9) enfant(nathalie, zoe) ? creep
+X = nathalie ;
+Redo: (9) enfant(_2524, zoe) ? creep
+Exit: (9) enfant(violette, zoe) ? creep
+X = violette ;
+Redo: (9) enfant(_2524, zoe) ? creep
+Exit: (9) enfant(charlotte, zoe) ? creep
+X = charlotte.
+
+[trace]  ?- notrace.
+true.
+
+[debug]  ?- nodebug.
+true. */
+
+/* Questions ouvertes à plusieurs variables
+
+« Qui est parent de qui ? »
+?- enfant(X,Y).
+X = alphonse,
+Y = bernard ;
+X = alphonse,
+Y = eloise ;
+X = cedric,
+Y = fabien ;
+X = cedric,
+Y = nathalie ;
+X = daniela,
+Y = kevin ;
+...
+
+« Quels couples homme/femme ont eu un enfant ensemble ? »
+?- homme(P), femme(M), enfant(E,P), enfant(E,M).
+P = alphonse,
+M = violette,
+E = stephanie ;
+P = bernard,
+M = eloise,
+E = alphonse ;
+P = david,
+M = zoe,
+E = nathalie ;
+P = fabien,
+M = nathalie,
+E = cedric ;
+...
+*/
+
+/* les règles */
+
+parent(X,Y) :- enfant(Y,X).
+
+pere(X,Y) :- parent(X,Y),homme(X).
+mere(X,Y) :- parent(X,Y),femme(X).
+
+fils(X,Y) :- enfant(X,Y),homme(X).
+fille(X,Y) :- enfant(X,Y),femme(X).
+
+grand_parent(X,Y) :- parent(X,Z),parent(Z,Y).
+grand_pere(X,Y) :- grand_parent(X,Y),homme(X).
+grand_mere(X,Y) :- grand_parent(X,Y),femme(X).
+
+petit_enfant(X,Y) :- grand_parent(Y,X).
+petit_fils(X,Y) :-  petit_enfant(X,Y),homme(X).
+petite_fille(X,Y) :-  petit_enfant(X,Y),femme(X).
+
+frere_ou_soeur(X,Y) :- pere(P,X),pere(P,Y),mere(M,X),mere(M,Y),X\==Y.
+frere(X,Y) :- frere_ou_soeur(X,Y),homme(X).
+soeur(X,Y) :- frere_ou_soeur(X,Y),femme(X).
+
+oncle_ou_tante(X,Y) :- parent(Z,Y),frere_ou_soeur(X,Z).
+oncle(X,Y) :- oncle_ou_tante(X,Y),homme(X).
+tante(X,Y) :- oncle_ou_tante(X,Y),femme(X).
+
+cousin_ou_cousine(X,Y) :- oncle_ou_tante(Z,X),enfant(Y,Z).
+cousin(X,Y) :- cousin_ou_cousine(X,Y),homme(X).
+cousine(X,Y) :- cousin_ou_cousine(X,Y),femme(X).
+
+ancetre(X,Y) :- parent(X,Y).
+ancetre(X,Y) :- parent(X,Z),ancetre(Z,Y).
+
+/*?- ancetre(X,cedric).
+X = fabien ;
+X = nathalie ;
+X = lucien ;
+X = marie ;
+X = david ;
+X = zoe ;
+false.
+*/
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+/* Dire si un nombre est pair.*/
+
+pair(0).
+pair(X) :- X>0, X2 is X-2, pair(X2).
+
+pair2(0) :-!.
+pair2(X) :- X2 is X-2, pair2(X2).
+
+
+/* Trouver la factorielle d'un nombre. (Ou : fact(N,X) est vrai si X vaut N!.) */
+
+fact(0,1).
+fact(N,X) :- N>0, N1 is N-1, fact(N1,X1), X is N*X1.
+
+fact2(0,1) :-!.
+fact2(N,X) :- N1 is N-1, fact2(N1,X1), X is N*X1.
+
+
+/* fibo(N,X) est vrai si X est la valeur de la suite de Fibonacci au rang N. */
+
+fibo(0,0).
+fibo(1,1).
+fibo(N,X) :- N>1, U is N-1, V is N-2, fibo(U,U1), fibo(V,V1), X is U1+V1.
+
+fibo2(0,0):-!.
+fibo2(1,1):-!.
+fibo2(N,X) :- U is N-1, V is N-2, fibo2(U,U1), fibo2(V,V1), X is U1+V1.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+/* affiche(L) est vrai si tous les éléments de la liste L sont écrits.*/
+affiche([]).
+affiche([X|R]) :- write(X), nl, affiche(R).
+
+/* afficheInv(L) est vrai si tous les éléments de la liste L sont écrits en ordre inverse.*/
+afficheInv([]).
+afficheInv([X|R]) :- afficheInv(R), write(X), nl.
+
+/*Afficher le premier élément d'une liste (bis) : premier(L) est vrai si le premier élément de la liste L est affiché (et aucun autre).*/
+premier([X|_]) :- write(X),nl.
+
+/* Retrouver le premier élément d'une liste : premier(L,X) est vrai si X est le premier élement de L.*/
+premier([X|_],X).
+
+/*Afficher le dernier élément d'une liste (bis) : dernier(L) est vrai si le dernier élément de la liste L est affiché (et aucun autre).*/
+dernier([X]) :- write(X),nl,!.
+dernier([_|L]) :- dernier(L).
+
+dernier2(L) :- append(_,[X],L), write(X),nl.
+
+/*Retrouver le dernier élément d'une liste : dernier(L,X) est vrai si X est le dernier élement de L.*/
+dernier([X],X):-!.
+dernier([_|L],X) :- dernier(L,X).
+
+dernier2(L,X) :- append(_,[X],L).
+
+/* compte(L,N) est vrai si N est le nombre d'éléments dans la liste L. */
+compte([],0).
+compte([_|R],N) :- compte(R,N1), N is N1+1.
+
+/* somme(L,N) est vrai si N est la somme des éléments de la liste d'entiers L. */
+somme([],0).
+somme([X|R],N) :- somme(R,N1), N is N1+X.
+
+/* nieme(N,L,X) est vrai si X est le N-ème élément de la liste L.*/
+nieme(1,[X|_],X) :- !.
+nieme(N,[_|R],X) :- N1 is N-1, nieme(N1,R,X).
+
+/* occurrence(L,X,N) est vrai si N est le nombre de fois où X est présent dans la liste L.*/
+occurrence([],_,0).
+occurrence([X|L],X,N) :- occurrence(L,X,N1),N is N1+1.
+occurrence([Y|L],X,N) :- X\==Y,occurrence(L,X,N).
+
+/* occurrence(L,X,N) - version avec CUT */
+occurrence([],_,0).
+occurrence([X|L],X,N) :- !, occurrence(L,X,N1),N is N1+1.
+occurrence([_|L],X,N) :- occurrence(L,X,N).
+
+/* substitue(X,Y,L1,L2) est vrai si L2 est le résultat du remplacement de X par Y dans L1.*/
+substitue(_,_,[],[]).
+substitue(X,Y,[X|R],[Y|R1]) :- substitue(X,Y,R,R1).
+substitue(X,Y,[Z|R],[Z|R1]) :- X\==Z, substitue(X,Y,R,R1).
+
+
+
+

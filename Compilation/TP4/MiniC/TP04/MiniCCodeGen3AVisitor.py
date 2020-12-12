@@ -72,7 +72,10 @@ class MiniCCodeGen3AVisitor(MiniCVisitor):
 
     def visitBooleanAtom(self, ctx):
         # true is 1 false is 0
-        raise NotImplementedError()
+        val = 1 if ctx.getText() == "true" else 0 # C'est bien ma ligne de code la plus moche xD
+        dest_temp = self._current_function.new_tmp()
+        self._current_function.addInstructionLI(dest_temp, val)
+        return dest_temp
 
     def visitIdAtom(self, ctx):
         try:
@@ -93,13 +96,28 @@ class MiniCCodeGen3AVisitor(MiniCVisitor):
         return self.visit(ctx.atom())
 
     def visitAdditiveExpr(self, ctx):
-        raise NotImplementedError()
+        t1 = self.visit(ctx.expr(0))
+        t2 = self.visit(ctx.expr(1))
+        dest = self._current_function.new_tmp()
+        if ctx.myop.type == MiniCParser.PLUS:
+            self._current_function.addInstructionADD(dest, t1, t2)
+        else:
+            self._current_function.addInstructionSUB(dest, t1, t2)
+        return dest
 
     def visitOrExpr(self, ctx):
-        raise NotImplementedError()
+        t1 = self.visit(ctx.expr(0))
+        t2 = self.visit(ctx.expr(1))
+        dest = self._current_function.new_tmp()
+        self._current_function.addInstructionADD(dest, t1, t2)
+        return dest
 
     def visitAndExpr(self, ctx):
-        raise NotImplementedError()
+        t1 = self.visit(ctx.expr(0))
+        t2 = self.visit(ctx.expr(1))
+        dest = self._current_function.new_tmp()
+        self._current_function.addInstructionMUL(dest, t1, t2)
+        return dest
 
     def visitEqualityExpr(self, ctx):
         return self.visitRelationalExpr(ctx)
@@ -110,17 +128,54 @@ class MiniCCodeGen3AVisitor(MiniCVisitor):
             print("relational expression:")
             print(Trees.toStringTree(ctx, None, self._parser))
             print("Condition:", c)
-        raise NotImplementedError()
 
+        dest = self._current_function.new_tmp()
+        t1 = self.visit(ctx.expr(0))
+        t2 = self.visit(ctx.expr(1))
+        endrel = self._current_function.new_label("endrel")
+        self._current_function.addInstructionLI(dest, 0)
+
+        self._current_function.addInstructionCondJUMP(endrel, t1, c.negate(), t2)
+
+        self._current_function.addInstructionLI(dest, 1)
+        self._current_function.addLabel(endrel)
+        return dest
+
+    # expr myop=(MULT|DIV|MOD) expr
     def visitMultiplicativeExpr(self, ctx):
         div_by_zero_lbl = self._current_function.get_label_div_by_zero()
-        raise NotImplementedError()
+        dest = self._current_function.new_tmp()
+        t1 = self.visit(ctx.expr(0))
+        t2 = self.visit(ctx.expr(1))
+        if ctx.myop.type == MiniCParser.MULT:
+            self._current_function.addInstructionMUL(dest, t1, t2)
+        else:
+            self._current_function.addInstructionCondJUMP(div_by_zero_lbl, t2, Condition(MiniCParser.EQ), 0)
+            if ctx.myop.type == MiniCParser.DIV:
+                self._current_function.addInstructionDIV(dest, t1, t2)
+            else: # modulo -> a%b = b - b * (a / b)
+                tmp_mod = self._current_function.new_tmp()
+                self._current_function.addInstructionDIV(tmp_mod, t1, t2) # a / b
+                self._current_function.addInstructionMUL(tmp_mod, tmp_mod, t2) # b * (a / b)
+                self._current_function.addInstructionSUB(dest, t1, tmp_mod) # b - (b * (a / b))
+
+        return dest
 
     def visitNotExpr(self, ctx):
-        raise NotImplementedError()
+        dest = self._current_function.new_tmp()
+        tmp = self._current_function.new_tmp()
+        t1 = self.visit(ctx.expr())
+        self._current_function.addInstructionLI(dest, 1)
+        self._current_function.addInstructionLI(tmp, 2)
+        self._current_function.addInstructionSUB(dest, t1, dest)
+        self._current_function.addInstructionMUL(dest, dest, dest)
+        return dest
 
     def visitUnaryMinusExpr(self, ctx):
-        raise NotImplementedError("unaryminusexpr")
+        dest = self._current_function.new_tmp()
+        t1 = self.visit(ctx.expr())
+        self._current_function.addInstructionSUB(dest, Operands.ZERO, t1)
+        return dest
 
     def visitProgRule(self, ctx):
         self.visitChildren(ctx)
@@ -161,7 +216,19 @@ class MiniCCodeGen3AVisitor(MiniCVisitor):
             print("if statement")
         # invent a new label, then push in the label stack
         end_if_label = self._current_function.new_label("end_if")
-        raise NotImplementedError()
+
+        lelse = self._current_function.new_label("lelse")
+        lendif = self._current_function.new_label("lendif")
+        t1 = self.visit(ctx.expr())
+        #if the condition is false, jump to else
+        self._current_function.addInstructionCondJUMP(lelse, t1, Condition(MiniCParser.EQ), 0) # pas sur de l'ordre
+        self.visit(ctx.then_block) # then
+        self._current_function.addInstructionJUMP(lendif)
+        self._current_function.addLabel(lelse)
+        if ctx.else_block != None:
+            self.visit(ctx.else_block) # else
+        self._current_function.addLabel(lendif)
+
         self._current_function.addLabel(end_if_label)
 
 
@@ -171,7 +238,15 @@ class MiniCCodeGen3AVisitor(MiniCVisitor):
             print(Trees.toStringTree(ctx.expr(), None, self._parser))
             print("and block is:")
             print(Trees.toStringTree(ctx.stat_block(), None, self._parser))
-        raise NotImplementedError()
+
+        ltest = self._current_function.new_label("ltest")
+        lendwhile = self._current_function.new_label("lendwhile")
+        self._current_function.addLabel(ltest)
+        t1 = self.visit(ctx.expr())
+        self._current_function.addInstructionCondJUMP(lendwhile, t1, Condition(MiniCParser.EQ), 0)
+        self.visit(ctx.stat_block()) # execute S
+        self._current_function.addInstructionJUMP(ltest) # and jump to the test
+        self._current_function.addLabel(lendwhile) # else it is done.
     # visit statements
 
     def visitPrintintStat(self, ctx):

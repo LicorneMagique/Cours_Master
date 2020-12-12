@@ -191,18 +191,3 @@ class MiniCCodeGen3AVisitor(MiniCVisitor):
         for stat in ctx.stat():
             self._current_function.addComment(Trees.toStringTree(stat, None, self._parser))
             self.visit(stat)
-
-    def visitForForStat(self, ctx):
-        raise NotImplementedError("fortran for")
-
-    def visitArrayAllocExpr(self, ctx):
-        raise NotImplementedError("array")
-
-    def visitArrayReadExpr(self, ctx):
-        raise NotImplementedError("array")
-
-    def visitArrayWriteStat(self, ctx):
-        raise NotImplementedError("array")
-
-    def visitArrayType(self, ctx):
-        raise NotImplementedError("array")

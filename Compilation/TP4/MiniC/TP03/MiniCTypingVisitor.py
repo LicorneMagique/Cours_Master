@@ -51,7 +51,6 @@ class MiniCTypingVisitor(MiniCVisitor):
                                    "Variable {0} already declared".
                                    format(name))
             self._memorytypes[name] = tt
-        return
 
     def visitBasicType(self, ctx):
         if ctx.mytype.type == MiniCParser.INTTYPE:

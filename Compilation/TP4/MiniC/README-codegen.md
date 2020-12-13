@@ -3,7 +3,7 @@ LAB4 (simple code generation), MIF08 / CAP 2020-21
 
 # Authors
 
-YOUR NAME HERE
+Julien Giraud (P1704709)
 
 # Contents
 

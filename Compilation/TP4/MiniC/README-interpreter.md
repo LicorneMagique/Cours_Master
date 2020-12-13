@@ -1,10 +1,9 @@
 # MiniC interpreter and typer
 LAB3, MIF08 / CAP 2020-21
 
-
 # Authors
 
-YOUR NAME HERE
+Julien Giraud (P1704709)
 
 # Contents
 

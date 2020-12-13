@@ -154,21 +154,22 @@ class MiniCCodeGen3AVisitor(MiniCVisitor):
             if ctx.myop.type == MiniCParser.DIV:
                 self._current_function.addInstructionDIV(dest, t1, t2)
             else: # modulo -> a%b = b - b * (a / b)
-                tmp_mod = self._current_function.new_tmp()
-                self._current_function.addInstructionDIV(tmp_mod, t1, t2) # a / b
-                self._current_function.addInstructionMUL(tmp_mod, tmp_mod, t2) # b * (a / b)
-                self._current_function.addInstructionSUB(dest, t1, tmp_mod) # b - (b * (a / b))
+                tmp_mod_1 = self._current_function.new_tmp()
+                tmp_mod_2 = self._current_function.new_tmp()
+                self._current_function.addInstructionDIV(tmp_mod_1, t1, t2) # a / b
+                self._current_function.addInstructionMUL(tmp_mod_2, tmp_mod_1, t2) # b * (a / b)
+                self._current_function.addInstructionSUB(dest, t1, tmp_mod_2) # b - (b * (a / b))
 
         return dest
 
     def visitNotExpr(self, ctx):
         dest = self._current_function.new_tmp()
-        tmp = self._current_function.new_tmp()
+        tmp_1 = self._current_function.new_tmp()
+        tmp_2 = self._current_function.new_tmp()
         t1 = self.visit(ctx.expr())
-        self._current_function.addInstructionLI(dest, 1)
-        self._current_function.addInstructionLI(tmp, 2)
-        self._current_function.addInstructionSUB(dest, t1, dest)
-        self._current_function.addInstructionMUL(dest, dest, dest)
+        self._current_function.addInstructionLI(tmp_1, 1) # tmp1 = 1
+        self._current_function.addInstructionSUB(tmp_2, t1, tmp_1) # tmp2 = t1 - 1
+        self._current_function.addInstructionMUL(dest, tmp_2, tmp_2) # dest = tmp2²
         return dest
 
     def visitUnaryMinusExpr(self, ctx):

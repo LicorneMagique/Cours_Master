@@ -31,8 +31,18 @@ def replace_mem(old_i):
     after = []
     ins, old_args = old_i.unfold()
     args = []
-    numreg = 1
+    numreg = 8
     # TODO (lab4): compute before,after,args.
+    for arg in old_args:
+        if isinstance(arg, Temporary):
+            reg = GP_REGS[numreg]
+            operand = arg.get_alloced_loc()
+            before.append(Instru3A("ld", reg, operand))
+            args.append(reg)
+            after.append(Instru3A("sd", reg, operand))
+            numreg += 1
+        else:
+            args.append(arg)
     i = Instru3A(ins, args=args)
     return before + [i] + after
 

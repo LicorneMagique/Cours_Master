@@ -1,0 +1,159 @@
+/* Generer et tester */
+
+tousDifferent([]).
+tousDifferent([X|R]) :- not(member(X, R)) , tousDifferent(R).
+
+carre(S) :-
+S = [ A0, A1, A2, B0, B1, B2, C0, C1, C2],
+Domaine = [1, 2, 3, 4, 5, 6, 7, 8, 9],
+/* On genere */
+member(A0, Domaine), member(A1, Domaine), member(A2, Domaine),
+member(B0, Domaine), member(B1, Domaine), member(B2, Domaine),
+member(C0, Domaine), member(C1, Domaine), member(C2, Domaine),
+/* on teste */
+tousDifferent(S),
+LigneA is A0+A1+A2,
+LigneB is B0+B1+B2,
+LigneC is C0+C1+C2,
+Colonne0 is A0+B0+C0,
+Colonne1 is A1+B1+C1,
+Colonne2 is A2+B2+C2,
+Diag0 is A0+B1+C2,
+Diag1 is A2+B1+C0,
+LigneA = LigneB, LigneB = LigneC,
+LigneC = Colonne0,
+Colonne0 = Colonne1, Colonne1 = Colonne2,
+Colonne2 = Diag0,
+Diag0 = Diag1.
+
+
+/* Amélioration */
+
+/* génère des valeurs différentes pour chaque variable */
+valeurs([],_).
+valeurs([X|R], D) :- member(X,D), enleve(X,D, Df), valeurs(R, Df).
+
+enleve(_,[],[]).
+enleve(X,[X|L],L) :- !.
+enleve(X,[Y|L],[Y|L1]) :- enleve(X,L,L1).
+
+carreA(S) :-
+S = [ A0, A1, A2, B0, B1, B2, C0, C1, C2],
+Domaine = [1, 2, 3, 4, 5, 6, 7, 8, 9],
+/* génère des valeurs différentes pour chaque variable */
+valeurs(S,Domaine),
+/* puis teste */
+LigneA is A0+A1+A2,
+LigneB is B0+B1+B2,
+LigneC is C0+C1+C2,
+Colonne0 is A0+B0+C0,
+Colonne1 is A1+B1+C1,
+Colonne2 is A2+B2+C2,
+Diag0 is A0+B1+C2,
+Diag1 is A2+B1+C0,
+LigneA = LigneB, LigneB = LigneC,
+LigneC = Colonne0,
+Colonne0 = Colonne1, Colonne1 = Colonne2,
+Colonne2 = Diag0,
+Diag0 = Diag1.
+
+/* Backtrack */
+
+carreB(S) :-
+S = [ A0, A1, A2, B0, B1, B2, C0, C1, C2],
+Domaine = [1, 2, 3, 4, 5, 6, 7, 8, 9],
+/* On genere partiellement, on teste avec retour arrière si conflit */
+member(A0, Domaine),
+member(A1, Domaine), not(member(A1, [A0])),
+member(A2, Domaine), not(member(A2, [A0, A1])),
+LigneA is A0+A1+A2,
+member(B0, Domaine), not(member(B0, [A0, A1, A2])),
+member(B1, Domaine), not(member(B1, [A0, A1, A2, B0])),
+member(B2, Domaine), not(member(B2, [A0, A1, A2, B0, B1])),
+LigneB is B0+B1+B2,
+LigneA == LigneB,
+member(C0, Domaine), not(member(C0, [A0, A1, A2, B0, B1, B2])),
+member(C1, Domaine), not(member(C1, [A0, A1, A2, B0, B1, B2, C0])),
+member(C2, Domaine), not(member(C2, [A0, A1, A2, B0, B1, B2, C1])),
+LigneC is C0+C1+C2,
+LigneB == LigneC,
+Colonne0 is A0+B0+C0,
+Colonne1 is A1+B1+C1,
+Colonne2 is A2+B2+C2,
+Diag0 is A0+B1+C2,
+Diag1 is A2+B1+C0,
+LigneC == Colonne0,
+Colonne0 == Colonne1,
+Colonne1 == Colonne2,
+Colonne2 == Diag0,
+Diag0 == Diag1.
+
+/* Filtrage sur les valeurs disponibles */
+carreF(S) :-
+S = [ A0, A1, A2, B0, B1, B2, C0, C1, C2],
+Domaine = [1, 2, 3, 4, 5, 6, 7, 8, 9],
+/* On genere partiellement, on teste avec retour arrière si conflit */
+member(A0, Domaine),
+enleve(A0,Domaine,Domaine1),
+member(A1, Domaine1),
+enleve(A1,Domaine1,Domaine2),
+member(A2, Domaine2),
+enleve(A2,Domaine2,Domaine3),
+LigneA is A0+A1+A2,
+member(B0, Domaine3),
+enleve(B0,Domaine3,Domaine4),
+member(B1, Domaine4),
+enleve(B1,Domaine4,Domaine5),
+member(B2, Domaine5),
+enleve(B2,Domaine5,Domaine6),
+LigneB is B0+B1+B2,
+LigneA == LigneB,
+member(C0, Domaine6),
+enleve(C0,Domaine6,Domaine7),
+member(C1, Domaine7), 
+enleve(C1,Domaine7,Domaine8),
+member(C2, Domaine8),
+LigneC is C0+C1+C2,
+LigneB = LigneC,
+Colonne0 is A0+B0+C0,
+Colonne1 is A1+B1+C1,
+Colonne2 is A2+B2+C2,
+Diag0 is A0+B1+C2,
+Diag1 is A2+B1+C0,
+LigneC = Colonne0,
+Colonne0 = Colonne1,
+Colonne1 = Colonne2,
+Colonne2 = Diag0,
+Diag0 = Diag1.
+
+/* ?- carre(S).
+S = [2, 7, 6, 9, 5, 1, 4, 3, 8] ;
+S = [2, 9, 4, 7, 5, 3, 6, 1, 8] ;
+S = [4, 3, 8, 9, 5, 1, 2, 7, 6] ;
+S = [4, 9, 2, 3, 5, 7, 8, 1, 6] ;
+S = [6, 1, 8, 7, 5, 3, 2, 9, 4] ;
+S = [6, 7, 2, 1, 5, 9, 8, 3, 4] ;
+S = [8, 1, 6, 3, 5, 7, 4, 9, 2] ;
+S = [8, 3, 4, 1, 5, 9, 6, 7, 2] ;
+false. */
+
+/* Comparaison des temps 
+?- time(carre(S)).
+% 1,123,556,464 inferences, 60.881 CPU in 61.192 seconds (99% CPU, 18455102 Lips)
+S = [2, 7, 6, 9, 5, 1, 4, 3, 8] .
+
+?- time(carreA(S)).
+% 1,328,464 inferences, 0.139 CPU in 0.140 seconds (99% CPU, 9544592 Lips)
+S = [2, 7, 6, 9, 5, 1, 4, 3, 8] 
+
+?- time(carreB(S)).
+% 613,540 inferences, 0.053 CPU in 0.053 seconds (100% CPU, 11668695 Lips)
+S = [2, 7, 6, 9, 5, 1, 4, 3, 8] .
+
+?- time(carreF(S)).
+% 95,519 inferences, 0.013 CPU in 0.014 seconds (96% CPU, 7238481 Lips)
+S = [2, 7, 6, 9, 5, 1, 4, 3, 8] 
+
+*/
+
+

@@ -1,0 +1,41 @@
+/* Contient la resolution du labyrinthe */
+
+
+:- dynamic interdit/1.
+
+/* recherche dans un graphe d'etats */
+
+/*recherche(EtatCourant,EtatFinal,ListeTaboue,ListeOp) tous donnes sauf ListeOp */
+recherche(Ec,Ec,_,[]):-!.
+recherche(Ec,Ef,Ltaboue,[Op|Lop]) :- 
+	operateur(Ec,Op,Es),
+	not(interdit(Es)),
+	not(member(Es,Ltaboue)),
+	%write(Ec), write(' '), write(Op), write(' '),write(Es),nl,
+	recherche(Es,Ef,[Es|Ltaboue],Lop).
+
+resoudre(Sol) :- etatInitial(Ei),etatFinal(Ef),
+	recherche(Ei,Ef,[Ei],Sol).
+
+				
+/* probleme du labyrinthe */
+
+etatInitial(entree).
+etatFinal(sortie).
+
+interdit(minotaure).
+
+operateur(E1,[E1,E2],E2) :- couloir(E1,E2).
+operateur(E1,[E1,E2],E2) :- couloir(E2,E1).
+
+
+couloir(entree, thesee).
+couloir(entree, ariane).
+couloir(thesee, minotaure).
+couloir(thesee,sombre).
+couloir(claire, sombre).
+couloir(claire, sortie).
+couloir(minotaure, sortie).
+couloir(ariane, claire).
+couloir(sombre,sortie).
+

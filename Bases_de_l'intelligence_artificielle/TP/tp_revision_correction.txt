@@ -1,0 +1,56 @@
+/* BIA 2020 - TP Revision */
+
+/* recherche dans un graphe d'etats */
+
+/*recherche(EtatCourant,EtatFinal,ListeTaboue,ListeOp) tous donnes sauf ListeOp */
+recherche(Ec,Ec,_,[]):-!.
+recherche(Ec,Ef,Ltaboue,[Op|Lop]) :-
+    operateur(Ec,Op,Es),
+    %not(interdit(Es)),
+    not(member(Es,Ltaboue)),
+    %write(Ec), write(' '), write(Op), write(' '),write(Es),nl,
+    recherche(Es,Ef,[Es|Ltaboue],Lop).
+
+resoudre(Sol) :- etatInitial(Ei),etatFinal(Ef),
+    recherche(Ei,Ef,[Ei],Sol).
+
+/* Un etat est defini par [Barque,Pere,Mere,Enfant1,Enfant2] */
+
+etatInitial([g,g,g,g,g]).
+etatFinal([d,d,d,d,d]).
+
+operateur([F1,F1,M,E1,E2],batPere,[F2,F2,M,E1,E2]):-autreRive(F1,F2).
+operateur([F1,P,F1,E1,E2],batMere,[F2,P,F2,E1,E2]):-autreRive(F1,F2).
+operateur([F1,P,M,F1,E2],batEnfant1,[F2,P,M,F2,E2]):-autreRive(F1,F2).
+operateur([F1,P,M,E1,F1],batEnfant2,[F2,P,M,E1,F2]):-autreRive(F1,F2).
+operateur([F1,P,M,F1,F1],batEnfant1et2,[F2,P,M,F2,F2]):-autreRive(F1,F2).
+
+autreRive(g,d).
+autreRive(d,g).
+
+/* ?- findall(S, resoudre(S), L),length(L,N).
+L = [[batEnfant1et2, batEnfant1, batPere, batEnfant2, batMere, batPere, batEnfant1et2, batMere|...], [batEnfant1et2, batEnfant1, batPere, batEnfant2, batMere, batPere, batEnfant1et2|...], [batEnfant1et2, batEnfant1, batPere, batEnfant2, batMere, batPere|...], [batEnfant1et2, batEnfant1, batPere, batEnfant2, batMere|...], [batEnfant1et2, batEnfant1, batPere, batEnfant2|...], [batEnfant1et2, batEnfant1, batPere|...], [batEnfant1et2, batEnfant1|...], [batEnfant1et2|...], [...|...]|...],
+N = 72.*/
+
+*/ ?- findall([S,Taille], (resoudre(S), length(S,Taille), Taille<10), L), write(L).
+[[[batEnfant1et2,batEnfant1,batPere,batEnfant2,batEnfant1et2,batEnfant1,batMere,batEnfant2,batEnfant1et2],9],[[batEnfant1et2,batEnfant1,batPere,batEnfant2,batEnfant1et2,batEnfant2,batMere,batEnfant1,batEnfant1et2],9],[[batEnfant1et2,batEnfant1,batMere,batEnfant2,batEnfant1et2,batEnfant1,batPere,batEnfant2,batEnfant1et2],9],[[batEnfant1et2,batEnfant1,batMere,batEnfant2,batEnfant1et2,batEnfant2,batPere,batEnfant1,batEnfant1et2],9],[[batEnfant1et2,batEnfant2,batPere,batEnfant1,batEnfant1et2,batEnfant1,batMere,batEnfant2,batEnfant1et2],9],[[batEnfant1et2,batEnfant2,batPere,batEnfant1,batEnfant1et2,batEnfant2,batMere,batEnfant1,batEnfant1et2],9],[[batEnfant1et2,batEnfant2,batMere,batEnfant1,batEnfant1et2,batEnfant1,batPere,batEnfant2,batEnfant1et2],9],[[batEnfant1et2,batEnfant2,batMere,batEnfant1,batEnfant1et2,batEnfant2,batPere,batEnfant1,batEnfant1et2],9]]
+L = [[[batEnfant1et2, batEnfant1, batPere, batEnfant2, batEnfant1et2, batEnfant1, batMere|...], 9], [[batEnfant1et2, batEnfant1, batPere, batEnfant2, batEnfant1et2, batEnfant2|...], 9], [[batEnfant1et2, batEnfant1, batMere, batEnfant2, batEnfant1et2|...], 9], [[batEnfant1et2, batEnfant1, batMere, batEnfant2|...], 9], [[batEnfant1et2, batEnfant2, batPere|...], 9], [[batEnfant1et2, batEnfant2|...], 9], [[batEnfant1et2|...], 9], [[...|...]|...]].
+
+*/
+
+/* CSP */
+
+comptable(SalaireTotal) :-
+member(N1,[1,2,3,4,5,6,7,8,9]),
+member(N2,[0,1,2,3,4,5,6,7,8,9]),
+member(N3,[0,1,2,3,4,5,6,7,8,9]),
+(N1 + N2) =:= (N1 * N2),
+(N1 + N2) =:= N3,
+Salaire is N1*1000+N2*100+N3*10, /* N4 vaut forcément 0 */
+Prime is (Salaire/10),
+SalaireTotal is Salaire+Prime.
+
+/* ?- comptable(S).
+S = 2464 ;
+false. */
+

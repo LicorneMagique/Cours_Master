@@ -1,0 +1,112 @@
+/* ------------------------ */
+/* EXO 1 : LE MONDE ANNIMAL */
+/* ------------------------ */
+
+% la chèvre est un animal herbivore
+animal(chevre).
+herbivore(chevre).
+
+% le loup est un animal cruel
+animal(loup).
+cruel(loup).
+
+% un animal cruel est carnivore
+carnivore(X) :- cruel(X).
+
+% un animal carnivore mange de la viande
+mange(X,viande):- animal(X), carnivore(X).
+
+% un animal herbivore mange de l’herbe
+mange(X,herbe):- animal(X), herbivore(X).
+
+% un animal carnivore mange des animaux herbivores
+mange(X,Y):- carnivore(X), herbivore(Y).
+
+%les carnivores et les herbivores boivent de l’eau
+% boit(X,eau):- animal(X), (carnivore(X); herbivore(X)).
+boit(X,eau):- animal(X), carnivore(X).
+boit(X,eau):- animal(X), herbivore(X).
+
+%un animal consomme ce qu’il boit ou ce qu’il mange
+%consomme(X,Y) :- mange(X,Y); boit(X,Y).
+consomme(X,Y) :- mange(X,Y).
+consomme(X,Y) :- boit(X,Y).
+
+/* question à poser 
+?- cruel(X), consomme(X,Y).
+X = loup,
+Y = viande ;
+X = loup,
+Y = chevre ;
+X = loup,
+Y = eau ;
+false. */
+
+/* ----------------------- */
+/* EXO 2 : LE DISTRIBUTEUR */
+/* ----------------------- */
+
+/* Première version : algorithme glouton, ne donne qu'une solution */
+
+/*  ArgentDonne et Prix en centimes
+    ArgentRendu une liste contenant chaque pièce à rendre
+    Les autres sont les stocks de pièces */
+
+monnaie1(ArgentDonne, Prix, ArgentRendu, P2, P1, P50, P20, P10)  :-
+    Arendre is ArgentDonne - Prix,
+    ArgentRendu = [XE2, XE1, XC50, XC20, XC10],
+    XE2 is min(P2, (Arendre // 200)),
+    AR is Arendre - XE2*200,
+    XE1 is min(P1, (AR // 100)),
+    AR2 is AR - XE1*100,
+    XC50 is min(P50, (AR2 // 50)),
+    AR3 is AR2- XC50*50,
+    XC20 is min(P20, (AR3 // 20)),
+    AR4 is AR3- XC20*20,
+    XC10 is min(P10, (AR4 // 10)),
+    0 =:= AR4 - XC10*10.
+
+/* ?- monnaie1(1000, 310, R, 10, 10, 10, 10, 10).
+R = [3, 0, 1, 2, 0].*/
+
+/* Deuxième version : générer et tester, pour avoir toutes les solutions */
+
+nombre(0, [0]) :- !.
+nombre(N, [N|R]) :- N1 is N-1, nombre(N1, R).
+
+/*  ArgentDonne et Prix en centimes
+    ArgentRendu une liste contenant chaque pièce à rendre
+    Les autres sont les stocks de pièces */
+
+monnaie2(ArgentDonne, Prix, ArgentRendu, P2, P1, P50, P20, P10) :-
+    /* les variables */
+    ArgentRendu = [XE2, XE1, XC50, XC20, XC10],
+    /* les domaines */
+    nombre(P2, DPr2),
+    nombre(P1, DPr1),
+    nombre(P50, DPr50),
+    nombre(P20, DPr20),
+    nombre(P10, DPr10),
+    /* on genere */
+    member(XE2,DPr2), member(XE1,DPr1), member(XC50,DPr50), member(XC20,DPr20), member(XC10,DPr10),
+    /* on teste les contraintes */
+    (200*XE2 + 100*XE1 + 50*XC50 + 20*XC20 + 10*XC10) =:= (ArgentDonne-Prix).
+
+/* ?- findall(R, monnaie2(1000, 310, R, 10, 10, 10, 10, 10), L), length(L,N).
+L = [[3, 0, 1, 2, 0], [3, 0, 1, 1, 2], [3, 0, 1, 0, 4], [3, 0, 0, 4, 1], [3, 0, 0, 3|...], [3, 0, 0|...], [3, 0|...], [3|...], [...|...]|...],
+N = 288.
+*/
+
+/* -------------------------- */
+/* EXO 3 : les tours de hanoi */
+/* -------------------------- */
+
+
+hanoi(N) :- deplacer(N,a,c,b).
+
+deplacer(1,X,Y,_) :-    write('Deplacement du disque du socle '),
+                        write(X), write(' vers le socle '), write(Y), nl.
+deplacer(N,X,Y,Z) :-    N>1, M is N-1, deplacer(M,X,Z,Y), deplacer(1,X,Y,_), deplacer(M,Z,Y,X).
+
+
+

@@ -1,0 +1,85 @@
+%%%%%%%% PROBLEME 1 - VERSION 1 %%%%%%%
+
+% les 3 maisons :
+maison(chateau). 
+maison(studio). 
+maison(pavillon).
+
+% les 3 animaux :
+animal(chat). 
+animal(poisson). 
+animal(cheval).
+
+% les phrases de l énonce
+relation(marie,chat,M) :- maison(M).
+relation(remy,A,M) :- maison(M), M\==pavillon, animal(A).
+relation(hugo,A,studio) :- animal(A), A\==cheval.
+
+% le prédicat different est vrai seulement si ses 3 paramètres sont différents :
+different(X,X,_) :- !,fail.
+different(X,_,X) :- !,fail.
+different(_,X,X) :- !,fail.
+different(_,_,_).
+
+resoudre(MM, MR, MH, AM, AR, AH) :-
+	relation(marie, AM, MM),
+	relation(remy, AR, MR),
+	relation(hugo, AH, MH),
+	different(MM, MR, MH),
+	different(AM, AR, AH).
+
+% impossible de poser la question facilement sans ajouter les personnes et les listes...
+
+%%%%%%%% PROBLEME 1 - VERSION 2 %%%%%%%
+
+resoudre2(S) :-
+    S = [[marie, A1, M1], [remy, A2, M2], [hugo, A3, M3]],
+    relation(marie, A1, M1),
+    relation(remy, A2, M2),
+    relation(hugo, A3, M3),
+    different(A1, A2, A3),
+    different(M1, M2, M3).
+
+/* resoudre2(S), member([PChateau,_,chateau], S), member([Ppoisson,poisson,_],S).
+S = [[marie, chat, pavillon], [remy, cheval, chateau], [hugo, poisson, studio]],
+PChateau = remy,
+Ppoisson = hugo
+*/
+
+
+%%%%%%%% PROBLEME 2 %%%%%%%
+
+maison_a_droite(Y,X,[[X,_,_],[Y,_,_]|_]).
+maison_a_droite(Y,X,[_|L]) :- maison_a_droite(Y,X,L).
+ 
+maison_a_gauche(X,Y,[[X,_,_],[Y,_,_]|_]).
+maison_a_gauche(X,Y,[_|L]) :- maison_a_gauche(X,Y,L).
+
+resoudre3(S) :- 
+    S=[Maison1,Maison2,Maison3],
+    % une maison est rouge :
+    member([rouge,_,_],S),
+    % une maison est bleue :
+    member([bleue,_,_],S),
+    % une maison est verte :
+    member([verte,_,_],S),
+    % l’italien vit dans la maison rouge  :
+    member([rouge,italien,_],S),
+    % le caméléon est l'animal de l’anglais  :
+    member([_,anglais,cameleon],S),
+    % l’espagnol vit à droite de la maison où se trouve le perroquet :
+    member([Couleur1,_,perroquet],S),
+    member([Couleur2,espagnol,_],S),
+    maison_a_droite(Couleur2,Couleur1,S),
+    % la personne qui possède le perroquet vit à gauche de la maison verte :
+    member([Couleur1,_,perroquet],S),
+    maison_a_gauche(Couleur1,verte,S),
+    % l’anglais se trouve dans la maison la plus à gauche :
+    Maison1 = [_,anglais,_],
+    % le troisième animal est un poisson combattant :
+    member([_,_,combattant],S).
+    
+/* resoudre3(S), member([_,P,combattant], S).
+S = [[bleue, anglais, cameleon], [rouge, italien, perroquet], [verte, espagnol, combattant]],
+P = espagnol .
+*/

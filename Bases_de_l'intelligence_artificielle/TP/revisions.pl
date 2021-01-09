@@ -50,3 +50,45 @@ dernier([_|R]):-
 dernierBis(L):-
     append(_,[X],L),
     write(X).
+
+% la chèvre est un animal herbivore
+animal(chevre).
+herbivore(chevre).
+
+% le loup est un animal cruel
+animal(loup).
+cruel(loup).
+
+% un animal cruel est carnivore
+carnivore(X) :-
+    cruel(X).
+
+% un animal carnivore mange de la viande
+mange(X, viande) :-
+    carnivore(X).
+
+% un animal herbivore mange de l’herbe
+mange(X, herbe) :-
+    herbivore(X).
+
+% un animal carnivore mange des animaux herbivores
+mange(X, Y) :-
+    carnivore(X),
+    herbivore(Y).
+
+% les carnivores et les herbivores boivent de l’eau
+boit(X, eau) :-
+    carnivore(X);
+    herbivore(X).
+
+% un animal consomme ce qu’il boit ou ce qu’il mange
+consomme(X, Y) :-
+    animal(X),
+    (boit(X, Y);
+    mange(X, Y)).
+
+% Y-a-t-il un animal cruel et que consomme-t-il ?
+test(X, Y) :-
+    animal(X),
+    cruel(X),
+    consomme(X, Y).

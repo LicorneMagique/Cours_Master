@@ -5,15 +5,15 @@ inverse(d,g).
 inverse(g,d).
 
 % en premier ya la barque
-operateur([X,X, Mere, E1, E2], pere, [NX, NX, Mere, E1, E2]) :-
+operateur([X, X, Mere, E1, E2], pere, [NX, NX, Mere, E1, E2]) :-
     inverse(X, NX).
-operateur([X,Pere, X, E1, E2], mere, [NX, Pere, NX, E1, E2]) :-
+operateur([X, Pere, X, E1, E2], mere, [NX, Pere, NX, E1, E2]) :-
     inverse(X, NX).
-operateur([X,X, Mere, E1, E2], e1, [NX, NX, Mere, E1, E2]) :-
+operateur([X, Pere, Mere, X, E2], e1, [NX, Pere, Mere, NX, E2]) :-
     inverse(X, NX).
-operateur([X,X, Mere, E1, E2], e2, [NX, NX, Mere, E1, E2]) :-
+operateur([X, Pere, Mere, E1, X], e2, [NX, Pere, Mere, E1, NX]) :-
     inverse(X, NX).
-operateur([X,X, Mere, E1, E2], e1e2, [NX, NX, Mere, E1, E2]) :-
+operateur([X, Pere, Mere, X, X], e1e2, [NX, Pere, Mere, NX, NX]) :-
     inverse(X, NX).
 
 :- dynamic interdit/1.

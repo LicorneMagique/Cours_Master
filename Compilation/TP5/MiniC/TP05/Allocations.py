@@ -154,8 +154,6 @@ class SmartAllocator(Allocator):
         if self._debug:
             self.print_gen_kill()
 
-        return
-
         self.run_dataflow_analysis()
         if self._debug:
             self.print_map_in_out()
@@ -166,6 +164,8 @@ class SmartAllocator(Allocator):
         if self._debug_graphs:
             print("printing the conflict graph")
             self._igraph.print_dot(self._basename + "_conflicts.dot")
+
+        return
 
         # Smart Alloc via graph coloring
         self.smart_alloc(self._basename + "_colored.dot")
@@ -252,10 +252,28 @@ class SmartAllocator(Allocator):
         for i in self._f.get_instructions():
             i.dataflow_one_step(self._mapin, self._mapout)
 
+    # for each t1, for each t2
     def interfere(self, t1, t2):
         """Interfere function: True if t1 and t2 are in conflit anywhere in
         the function."""
-        raise NotImplementedError("interfere() function (lab5)")
+        # We recall that two temporaries x, y are in conflict if they are simultaneously alive after a given instruction,
+        # which means:
+        # For each control point c, check whether t1 and t2 have a conflict
+        for ins in self._f.get_instructions():
+            for out in self._mapout[ins]:
+                for defined in self._mapdef[ins]:
+                    # There exists a block (an instruction) b and x, y ∈ LV out (b)
+                    if t1 == out and t2 == out:
+                        return True
+                    # OR There exist a block b such that x ∈ LV out (b) and y is defined in the block
+                    elif t1 == out and t2 == defined:
+                        return True
+                    # OR the converse
+                    elif t2 == out and t1 == defined:
+                        return True
+
+        # raise NotImplementedError("interfere() function (lab5)")
+        return False
 
     def build_interference_graph(self):
         """Build the interference graph. Nodes of the graph are temporaries,

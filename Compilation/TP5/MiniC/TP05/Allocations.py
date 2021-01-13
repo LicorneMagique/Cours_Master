@@ -146,13 +146,15 @@ class SmartAllocator(Allocator):
             print("CFG generated in " + self._basename + ".dot.pdf")
         # TODO (lab5): Move the print&return statements below down as you progress
         # TODO (lab5): in the lab. They must be removed from the final version.
-        print("run: stopping here for now")
-        return
+        # print("run: stopping here for now")
+        # return
 
         # dataflow
         self.set_gen_kill()
         if self._debug:
             self.print_gen_kill()
+
+        return
 
         self.run_dataflow_analysis()
         if self._debug:
@@ -183,7 +185,11 @@ class SmartAllocator(Allocator):
                 # (isinstance(..., Temporary)), and if so add it to
                 # _kill or _gen (use ins.is_read_only() to check
                 # whether the first operand is read or written to).
-                raise NotImplementedError("Set _gen and _kill for instruction (lab5)")
+                if isinstance(arg, Temporary):
+                    if not ins.is_read_only() and arg == ins.args[0]:
+                        ins._kill.add(arg)
+                    else:
+                        ins._gen.add(arg)
 
     def smart_alloc(self, outputname):
         """Allocate all temporaries with graph coloring

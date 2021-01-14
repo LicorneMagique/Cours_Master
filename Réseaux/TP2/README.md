@@ -33,3 +33,78 @@ La gigue est une quantité plutôt **positive**
 
 - **8 ->** Je n'ai pa du tout les mêmes résultats ce qui est très bizarre...  
 De 0 à 120 : `-0.00852156` , de 125 à 300 : `8.96e-05`
+
+## Exercice 2
+
+- **2 ->** Partie importante du script `awk` (ex2.awk)
+
+  ```awk
+  if (src == 2 && dest == 3) {
+      if (event == "+") {
+          buffer++;
+      } else if (event == "-" || event == "d") {
+          buffer--;
+      }
+      print time, buffer;
+  }
+  ```
+
+  Ligne de commande pour le lancer
+
+  ```shell
+  awk -f ex2.awk out2.tr > buffer.out
+  ```
+
+- **3 ->** Script `gnuplot` (buffer.gnu)
+
+  ```plot
+  # le fichier "buffer.out" contient les valeurs à tracer
+  # trace la courbe (colonne 2 en fonction de la colonne 1) avec style 1 et titré "courbe 1"
+  plot "buffer.out" using 1:2 title "courbe 1" with lines ls 1
+
+  # ajoute une seconde courbe (colonne 3 fonction de colonne 1) avec style 2 et titré "courbe 2"
+  replot "buffer.out" using 1:3 title "courbe 3" with lines ls 2
+
+  # légendes des axes
+  set xlabel "temps"
+  set ylabel "fenetre de congestion"
+  replot
+
+  # pour sauvegarder le graphe dans un fichier postscript
+  set term png
+  set output "buffer.png"
+  replot
+  ```
+
+- **4 ->** Il y a 3 pics de saturation du buffer, TCP qui régule son trafic ?
+
+  ![buffer](buffer.png)
+
+- **4 ->** Ajouts au script awk
+
+  ```awk
+  # Dans le bloc BEGIN
+  avg_0_5 = 0;
+  avg_2_4 = 0;
+
+  # Dans le bloc du milieu, dans le "if (src == 2 && dest == 3)"
+  steps_0_5++;
+  avg_0_5 += buffer;
+  if (time >= 2 && time <= 4) {
+      steps_2_4++;
+      avg_2_4 += buffer;
+  }
+
+  # Dans le bloc END
+  avg_0_5 /= steps_0_5;
+  avg_2_4 /= steps_2_4;
+  print "Moyenne de 0 à 5 :", avg_0_5;
+  print "Moyenne de 2 à 4 :", avg_2_4;
+  ```
+
+  Résultats
+
+  ```text
+  Moyenne de 0 à 5 : 3.04427
+  Moyenne de 2 à 4 : 4.84046
+  ```

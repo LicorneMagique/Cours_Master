@@ -87,17 +87,21 @@ De 0 à 120 : `-0.00852156` , de 125 à 300 : `8.96e-05`
   avg_0_5 = 0;
   avg_2_4 = 0;
 
-  # Dans le bloc du milieu, dans le "if (src == 2 && dest == 3)"
-  steps_0_5++;
-  avg_0_5 += buffer;
-  if (time >= 2 && time <= 4) {
-      steps_2_4++;
-      avg_2_4 += buffer;
+  # Dans le bloc du milieu
+  if (lastBuffer != "") {
+      avg_0_5 += lastBuffer * (time - lastTime);
   }
+  if (time >= 2 && time <= 4) {
+      if (lastBuffer != "") {
+          avg_2_4 += lastBuffer * (time - lastTime);
+      }
+  }
+  lastBuffer = buffer;
+  lastTime = time;
 
   # Dans le bloc END
-  avg_0_5 /= steps_0_5;
-  avg_2_4 /= steps_2_4;
+  avg_0_5 /= 5;
+  avg_2_4 /= 2;
   print "Moyenne de 0 à 5 :", avg_0_5;
   print "Moyenne de 2 à 4 :", avg_2_4;
   ```
@@ -105,6 +109,6 @@ De 0 à 120 : `-0.00852156` , de 125 à 300 : `8.96e-05`
   Résultats
 
   ```text
-  Moyenne de 0 à 5 : 3.04427
-  Moyenne de 2 à 4 : 4.84046
+  Moyenne de 0 à 5 : 1.79008
+  Moyenne de 2 à 4 : 4.444
   ```

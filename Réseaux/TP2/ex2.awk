@@ -25,18 +25,26 @@ BEGIN {
             buffer--;
         }
         steps_0_5++;
-        avg_0_5 += buffer;
+
+        if (lastBuffer != "") {
+            avg_0_5 += lastBuffer * (time - lastTime);
+        }
+
         if (time >= 2 && time <= 4) {
             steps_2_4++;
-            avg_2_4 += buffer;
+            if (lastBuffer != "") {
+                avg_2_4 += lastBuffer * (time - lastTime);
+            }
         }
+        lastBuffer = buffer;
+        lastTime = time;
         print time, buffer;
     }
 }
 
 END {
-    avg_0_5 /= steps_0_5;
-    avg_2_4 /= steps_2_4;
+    avg_0_5 /= 5;
+    avg_2_4 /= 2;
     print "Moyenne de 0 à 5 :", avg_0_5;
     print "Moyenne de 2 à 4 :", avg_2_4;
 }

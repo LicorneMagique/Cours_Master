@@ -125,6 +125,7 @@ class SmartAllocator(Allocator):
         self._mapout = {}
         self._mapdef = {}  # block : defined = killed vars in the block
         self._igraph = None  # interference graph
+        self._coloring = None
         super().__init__(function, *args)
 
     def run(self):
@@ -165,10 +166,12 @@ class SmartAllocator(Allocator):
             print("printing the conflict graph")
             self._igraph.print_dot(self._basename + "_conflicts.dot")
 
-        return
-
         # Smart Alloc via graph coloring
         self.smart_alloc(self._basename + "_colored.dot")
+
+        if self._debug_graphs:
+            print("printing the conflict graph")
+            self._igraph.print_dot(self._basename + "_conflicts_colored.dot", self._coloring)
 
         # Finally, modify the code to replace temporaries with
         # regs/memory locations
@@ -191,6 +194,15 @@ class SmartAllocator(Allocator):
                     else:
                         ins._gen.add(arg)
 
+    # Aide
+    # - GP_REGS is an array of registers available for the register allocator.
+    # - An element of type Register can be obtained from a given register color with the helper function
+    # GP_REGS[coloringreg[xxx]] , where coloringreg is graph coloring returned by the .color() function,
+    # and for offsets you have a constructor Offset(FP, xxx) (all in Operands.py ).
+    # - the alloc_dict map given to self._pool.set_temp_allocation() must have Temporary objects as keys
+    # - The easiest way to build alloc_dict is probably to iterate over all the temporaries of
+    # the program (available in self._pool._all_temps ), and for each temporary check the corresponding
+    # color to associate it to the right register or memory location in alloc_dict.
     def smart_alloc(self, outputname):
         """Allocate all temporaries with graph coloring
         also prints the colored graph if debug.
@@ -203,16 +215,32 @@ class SmartAllocator(Allocator):
         # Temporary -> Operand (register or offset) dictionary,
         # specifying where a given Temporary should be allocated:
         alloc_dict = {}
-        # TODO (lab5): color the graph and get back the coloring (see
-        # Libgraphes.py). Then, construct a dictionary Temporary ->
+        # TODO (lab5): color the graph and get back the coloring (see Libgraphes.py).
+        (self._coloring, is_total, colored_nodes) = self._igraph.color()
+        if self._debug:
+            print("coloring", self._coloring)
+            print("is_total", is_total)
+            print("colored_nodes", colored_nodes)
+
+        #  Then, construct a dictionary Temporary ->
         # Register or Offset. Our version is less than 15 lines
         # including debug log. Be careful, the temporary names in the
         # graph are now strings, and you need to enter Temporary
         # objects in the dictionary. You can get all temporaries in
         # self._f._pool._all_temps, and get the corresponding vertex name
         # using str(temp) to access the associated color.
+        all_temps_from_string = {str(temp): temp for temp in self._f._pool._all_temps}
+        for k, v in self._coloring.items():
+            if self._debug:
+                print(k, type(k), all_temps_from_string[k], type(all_temps_from_string[k]))
+            alloc_dict[all_temps_from_string[k]] = GP_REGS[v]
+        if self._debug:
+            print("tmp", self._f._pool._all_temps)
+            print("alloc_dict", alloc_dict)
+
         # TODO (lab5) : do not forget to update the stacksize at the end!
         self._f._pool.set_temp_allocation(alloc_dict)
+        self._f._stacksize = self._f.get_offset()
 
     def run_dataflow_analysis(self):
         """Run the dataflow liveness analysis, i.e. compute self._mapin and

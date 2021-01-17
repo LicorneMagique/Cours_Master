@@ -11,29 +11,39 @@ class MiniCInterpretVisitor(MiniCVisitor):
 
     # visitors for variable declarations
 
-    def visitVarDecl(self, ctx):
-        # Initialise all variables in self._memory (toto |-> None)
-        # vardecl: typee id_l SCOL
-        type = ctx.typee().getText()
-        nom = ctx.id_l().getText()
-        if not nom in self._memory:
+    def declVar(self, name, type):
+        if not name in self._memory:
             val = None
             if type == "int":
                 val = 0
             elif type == "float":
-                val = .0
+                val = 0.0
             elif type == "bool":
                 val = False
-            elif val == "string":
+            elif type == "string":
                 val = ""
-            self._memory[nom] = val
+            self._memory[name] = val
         else:
             raise MiniCInternalError(
-                "Identifier '%s' already declared" % nom
+                "Identifier '%s' already declared" % name
             )
 
+    def visitVarDecl(self, ctx):
+        # Initialise all variables in self._memory (toto |-> None)
+        type = ctx.typee().getText()
+        name = ctx.id_l().getText()
+        self.declVar(name, type)
+
+    def visitVarDeclList(self, ctx):
+        if len(ctx.vardecl()) == 0:
+            return
+        type = ctx.vardecl()[0].typee().getText()
+        names = ctx.vardecl()[0].id_l()
+        for name in self.visit(names):
+            self.declVar(name, type)
+
     def visitIdList(self, ctx):
-        raise NotImplementedError()
+        return [ctx.ID().getText()] + self.visit(ctx.id_l())
 
     def visitIdListBase(self, ctx):
         return [ctx.ID().getText()]
@@ -54,12 +64,12 @@ class MiniCInterpretVisitor(MiniCVisitor):
         return ctx.getText() == "true"
 
     def visitIdAtom(self, ctx):
-        nom = ctx.ID().getText()
-        if nom in self._memory:
-            return self._memory[nom]
+        name = ctx.ID().getText()
+        if name in self._memory:
+            return self._memory[name]
         else:
             raise MiniCInternalError(
-                "Unknown identifier '%s' in visitIdAtom" % nom
+                "Unknown identifier '%s' in visitIdAtom" % name
             )
 
     def visitStringAtom(self, ctx):
@@ -163,24 +173,23 @@ class MiniCInterpretVisitor(MiniCVisitor):
 
     def visitAssignStat(self, ctx):
         val = self.visit(ctx.expr())
-        nom = ctx.ID().getText()
-        if nom in self._memory:
-            self._memory[nom] = val
+        name = ctx.ID().getText()
+        if name in self._memory:
+            self._memory[name] = val
         else:
-            raise MiniCInternalError(la
-                "Unknown identifier '%s' in visitAssignStat" % nom
+            raise MiniCInternalError(
+                "Unknown identifier '%s' in visitAssignStat" % name
             )
 
     def visitIfStat(self, ctx):
-        # IF OPAR expr CPAR then_block=stat_block (ELSE else_block=stat_block)?
-        # raise NotImplementedError()
         if self.visit(ctx.expr()):
             self.visit(ctx.then_block)
         elif ctx.else_block is not None:
             self.visit(ctx.else_block)
 
     def visitWhileStat(self, ctx):
-        raise NotImplementedError()
+        while self.visit(ctx.expr()):
+            self.visit(ctx.stat_block())
 
     # TOPLEVEL
     def visitProgRule(self, ctx):

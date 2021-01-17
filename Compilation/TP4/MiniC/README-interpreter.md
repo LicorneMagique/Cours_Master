@@ -1,15 +1,20 @@
 # MiniC interpreter and typer
+
 LAB3, MIF08 / CAP 2020-21
 
-# Authors
+## Authors
 
-Julien Giraud (P1704709)
+Julien GIRAUD
 
-# Contents
+## Contents
 
-TODO for STUDENTS : Say a bit about the code infrastructure ...
+Tout ce qui suit concerne le fichier `MiniCInterpretVisitor.py`
 
-# Howto
+- J'ai rajouté la fonction `declVar` pour éviter la redondance de code des fonctions `visitVarDecl` et `visitVaDeclList`
+
+- J'ai traité des cas d'erreur qui ne devraient jamais arriver
+
+## Howto
 
 `make run-interpreter TESTFILE=TP03/tests/provided/examples/test00.c` for a single run
 it should print 42
@@ -19,14 +24,14 @@ it should print 42
 You can select the files you want to test by using `make TEST_FILES='TP03/**/*bad*.c'` (`**` means
 "any number of possibly nested directories").
 
-# Test design 
+## Test design
 
-TODO : explain your tests. Do not repeat what test files already contain, just give the main objectives of the tests.
+Mes tests ont pour objectif de tester tout ce que j'ai implémenté qui n'était pas déjà testé
 
-# Design choices
+## Design choices
 
-TODO : explain your choices - explain the limitations of your implementation.
+J'ai fait le choix de suivre le code existant :-)
 
-# Known bugs
+## Known bugs
 
-TODO : document any known bug and limitations. Did you do everything asked for?
+Pas à ma connaissance, je n'ai donc probablement pas assez testé

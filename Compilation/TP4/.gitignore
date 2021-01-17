@@ -1,1 +1,6 @@
 *.tgz
+*.interp
+*.tokens
+MiniCLexer*
+MiniCParser*
+MiniCVisitor*

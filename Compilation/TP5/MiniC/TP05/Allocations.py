@@ -56,8 +56,24 @@ def replace_smart(old_i):
     args = []
     # TODO (lab5): compute before,after,args. This is a superset of what
     # TODO (lab5): replace_mem does.
+    numreg = 8
+    for arg in old_args:
+        if isinstance(arg, Temporary):
+            if arg.get_alloced_loc() in GP_REGS:
+                args.append(arg.get_alloced_loc())
+            else:
+                reg = GP_REGS[numreg]
+                operand = arg.get_alloced_loc()
+                before.append(Instru3A("ld", reg, operand))
+                args.append(reg)
+                after.append(Instru3A("sd", reg, operand))
+                numreg += 1
+        else:
+            args.append(arg)
+
     # and now return the new list!
     i = Instru3A(ins, args=args)  # change argument list into args
+    # print(old_i, "->", [str(x) for x in before], str(i), [str(x) for x in after])
     return before + [i] + after
 
 

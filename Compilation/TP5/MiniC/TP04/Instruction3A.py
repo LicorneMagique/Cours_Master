@@ -77,6 +77,7 @@ class Instru3A(Instruction):
         and others are source.
         """
         return (self.get_name().startswith("b")
+                or self.get_name() == "jump_cond"  # meta-instruction
                 or self.get_name() == "j"
                 or self.get_name() == "ld"
                 or self.get_name() == "lw"

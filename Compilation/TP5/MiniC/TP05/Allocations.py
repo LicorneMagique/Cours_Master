@@ -147,8 +147,6 @@ class SmartAllocator(Allocator):
             print("CFG generated in " + self._basename + ".dot.pdf")
         # TODO (lab5): Move the print&return statements below down as you progress
         # TODO (lab5): in the lab. They must be removed from the final version.
-        # print("run: stopping here for now")
-        # return
 
         # dataflow
         self.set_gen_kill()
@@ -219,6 +217,7 @@ class SmartAllocator(Allocator):
         (self._coloring, is_total, colored_nodes) = self._igraph.color()
         if self._debug:
             print("coloring", self._coloring)
+            print("coloringlist", set(c for c in self._coloring.values()))
             print("is_total", is_total)
             print("colored_nodes", colored_nodes)
 
@@ -230,12 +229,16 @@ class SmartAllocator(Allocator):
         # self._f._pool._all_temps, and get the corresponding vertex name
         # using str(temp) to access the associated color.
         all_temps_from_string = {str(temp): temp for temp in self._f._pool._all_temps}
+        regs_fp = [self._f.new_offset(FP) for x in range(len(set(x for x in self._coloring.values())) -3)]
+        if self._debug:
+            print("all_temps_from_string", all_temps_from_string)
+            print("regs_fp", regs_fp)
+            print("_all_temps", self._f._pool._all_temps)
         for k, v in self._coloring.items():
             if self._debug:
-                print(k, type(k), all_temps_from_string[k], type(all_temps_from_string[k]))
-            alloc_dict[all_temps_from_string[k]] = GP_REGS[v]
+                print(k, type(k), all_temps_from_string[k], type(all_temps_from_string[k]), v, type(v))
+            alloc_dict[all_temps_from_string[k]] = GP_REGS[v] if v < 3 else regs_fp[v - 3]
         if self._debug:
-            print("tmp", self._f._pool._all_temps)
             print("alloc_dict", alloc_dict)
 
         # TODO (lab5) : do not forget to update the stacksize at the end!

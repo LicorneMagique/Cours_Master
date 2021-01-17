@@ -2,3 +2,4 @@ htmlcov/
 *.s
 *.riscv
 *.coverage*
+*.tgz

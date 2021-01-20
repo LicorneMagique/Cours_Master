@@ -36,18 +36,7 @@ Le financement est le carburant de l'entreprise, libérons le !
 
 À Finalgo la hiérarchie est complètement horizontale, l'organigramme est donc organisé suivant le type du poste.
 
-*image ici*
-
-- Les cofondateurs
-  - Bertrand HELLION (directeur technique)
-  - Arnaud GUILLAUME (directeur général)
-- Les salariés
-  - Jade ABERBOUR (développeur)
-  - Valentin MEREAU (développeur)
-- Les alternants
-  - Célia BERTHELIER (assistante communication)
-  - Julien GIRAUD (développeur)
-  - Paul JUYAUX (développeur)
+![.](./organigramme.svg)
 
 ### Les projets
 
@@ -69,15 +58,9 @@ En terme de code chaque application possède un front Angular et un back Java Sp
 
 ### Organigramme Scrum
 
-À Finalgo nous fonctionnons au maximum suivant la méthode Scrum.
+À Finalgo nous fonctionnons au maximum suivant la méthode Scrum. Étant donné que l'équipe est petite, certains jouent plusieurs rôles.
 
-![.](https://www.mendix.com/wp-content/uploads/scrum-team.png)
-
-- Bertrand HELLION (Product owner | Développeur full stack)
-- Jade ABERBOUR (Scrum master | Développeur front)
-- Valentin MEREAU (Développeur full stack)
-- Julien GIRAUD (Développeur full stack)
-- Paul JUYAUX (Développeur full stack)
+![.](scrum.svg)
 
 ### Notre échelle de difficulté des tâches
 

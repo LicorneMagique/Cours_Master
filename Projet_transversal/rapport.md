@@ -16,11 +16,8 @@
     - [Asana](#Asana)
     - [Google Workspace](#Google\ Workspace)
 - [Travail à distance](#Travail\ à\ distance)
-  - Café
-  - Goûter
-  - Asana
-  - Meet
-  - Slack
+  - [Gestion de projet](#Gestion\ de\ projet)
+  - [Moral de l'équipe](#Moral\ de\ l'équipe)
 
 ## Présentation de Finalgo
 
@@ -50,6 +47,8 @@ En terme de code chaque application possède un front Angular et un back Java Sp
 ## Gestion des projets
 
 À Finalgo nous fonctionnons au maximum suivant la méthode Scrum. Étant donné que l'équipe est petite, certains jouent plusieurs rôles.
+
+Nous faisons le Daily Scum tous les jours entre 9h20 et 9h40, juste après le traditionnel *café*.
 
 Étant donné que chacun a plus ou moins sa spécialité nous essayons de nous former mutuellement, au moins lorsque nous ne sommes pas pressés par le temps. Nous mettons aussi régulièrement à jour un wiki interne (Google Site) sur lequel nous répertorions toutes nos procédures (mises en production) et nous expliquons comment utiliser chaque technologie non standard (librairies, API externes).
 
@@ -121,3 +120,20 @@ Globalement il y a plus de fonctionnalités dans la gestion des tâches que sur 
 Anciennement appelé G Suite, nous utilisons plusieurs outils de la suite de bureautique de Google. Dans le cadre de la gestion des projets nous utilisons surtout Meet pour les réunions (internes ou clients) et Sheets pour le suivi des tâches ou comme outil de ticketing.
 
 ## Travail à distance
+
+Comme dit précédemment, toute notre organisation repose sur le travail à distance. Certaines mesures datent d'avant le premier confinement, d'autres ont été prises à cette période là.
+
+### Gestion de projet
+
+Globalement l'utilisation massive de Meet, Slack et Asana fait partie des mesures spécifiques au travail à distance.  
+En terme de gestion de projet ces outils fonctionnnent redoutablement bien, que nous soyons tous en distanciel ou partiellement (certains membres de l'équipe ne font que du télétravail).
+
+### Moral de l'équipe
+
+Les principales mesures liées au confinement sont la mise en place du **café** et du **goûter**, dont le but est d'apporter de la bonne humeur et de la cohésion dans l'équipe.
+
+Le *café* est une visioconférence avec toute l'équipe les matins de 9h à 9h20. La caméra est volontairement non obligatoire et c'est un moment convivial de transition entre le petit déjeuner et le début de la journée de travail.
+
+Le *goûter* était une tradition d'entreprise qui a été modifiée suite à des propositions de l'équipe. À l'origine (pré-covid) il s'agissait d'un vrai goûter avec l'équipe tous les jours à 16h30. Maintenant il s'agit d'une visioconférence de 16h30 à 17h où nous goûtons tout en jouant les uns contre les autres à des mini jeux comme *L'imposteur*, *BombParty*, *Skribbl* ou *Among Us*. Le vainqueur a le droit de poster une capture d'écran de sa victoire sur Slack et peut s'en vanter pendant quelques minutes.
+
+Ces deux moment quotidiens de détente et d'interraction sociale sont vraiment très bénéfiques pour notre moral. De plus on peut penser que Finalgo perd environ 45 minutes de travail par employé tous les jours, mais en pratique la quantité de travail réalisé par jour est la même qu'avant. Comme dit dans le rapport d'une étude réalisé par l'université d'Oxford en 2019 *« When workers are happier, they work faster. »*

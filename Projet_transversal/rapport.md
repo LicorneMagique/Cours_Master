@@ -4,17 +4,9 @@
 
 ## Table des matières
 
-- Présentation de Finalgo
-  - L'équipe
-  - Les projets
-- Gestion des projets
-  - Organigramme Scrum
-  - Rôles
-  - Outils
-    - Slack
-    - Asana
-    - Meet
-- Travail à distance
+- [Présentation de Finalgo](#Présentation\ de\ Finalgo)
+  - [L'équipe](#L'équipe)
+  - [Les projets](#Les\ projets)
   - Café
   - Goûter
   - Asana
@@ -40,19 +32,11 @@ Le financement est le carburant de l'entreprise, libérons le !
 
 ### Les projets
 
-*Rappeler les projets auxquels vous participez*
-
 Je participe au développement de trois projets, **Main** notre application principale, **crossroads** notre produit dirrigeant (idéalement l'avenir de Finalgo) et **finsearch** une sorte de Main simplifié dont nous gérons le développement et la maintenance pour l'un de nos clients.
 
 En terme de code chaque application possède un front Angular et un back Java Spring qui fonctionne sous forme d'une API REST. Le back est le même pour Main et pour Crossroads, puis Finsearch possède un front et un back ce qui nous fait 5 projets.
 
-*un petit schéma plutôt que ce tableau*
-
-| Front Angular | Back Java Spring |
-| ------------- | ---------------- |
-| Main | Main |
-| Main | Crossroads |
-| Finsearch | Finsearch
+![.](projets.svg)
 
 ## Gestion des projets
 

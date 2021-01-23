@@ -11,6 +11,8 @@
   - [Organigramme Scrum](#Organigramme\ Scrum)
   - [Notre échelle de difficulté des tâches](#Notre\ échelle\ de\ difficulté\ des\ tâches)
   - [Rôles](#Rôles)
+  - [Outils](#Outils)
+    - [Slack](#Slack)
   - Café
   - Goûter
   - Asana
@@ -46,7 +48,7 @@ En terme de code chaque application possède un front Angular et un back Java Sp
 
 À Finalgo nous fonctionnons au maximum suivant la méthode Scrum. Étant donné que l'équipe est petite, certains jouent plusieurs rôles.
 
-Étant donné que chacun a plus ou moins sa spécialité nous essayons de nous former mutuellement, au moins lorsque nous ne sommes pas pressés par une deadline.
+Étant donné que chacun a plus ou moins sa spécialité nous essayons de nous former mutuellement, au moins lorsque nous ne sommes pas pressés par le temps. Nous mettons aussi régulièrement à jour un wiki interne (Google Site) sur lequel nous répertorions toutes nos procédures (mises en production) et nous expliquons comment utiliser chaque technologie non standard (librairies, API externes).
 
 ### Organigramme Scrum
 
@@ -84,7 +86,23 @@ En tant que développeur front et graphiste elle s'occupe de donner les points d
 
 **Arnaud** est notre **SME** du point de vue Scrum, de formation expert comptable il est le seul membre de Finalgo à comprendre toutes les fonctionnalités métier de nos applications. Il nous remonte régulièrement des petits bugs métier ou d'interface et il a nombreuses idées d'amélioration de la plateforme.
 
-Valentin : globalement on fait les mêmes choses sauf qu'il touche trois fois mon salaire, c'est un professionnel d'Angular et il touche son pied sur ce qui est config serveur donc quand je suis bloqué sur ce genre de choses je lui demande. Il s'occupe aussi de mes PR vu que c'est le seul qui comprend ce que je fais ET qui teste mon code
+### Outils
+
+À Finalgo toute l'organisation est basée sur du travail en distanciel. Nous sommes donc équipés en outils de communication, visioconférence, gestion des tâches et suite de bureautique.
+
+#### Slack
+
+![.](slack.png) Slack est notre outil de communication n°1 interne comme externe.
+
+En interne nous avons un espace de travail avec des canaux de discussion pour absolument tout, ce qui permet de parfaitement gérer le type d'information dont on souhaite être notifié. Il y en a un par projet, un par **domaine**, un pour chaque **type de logs** et un pour les blagues (très important en terme de moral).
+
+En externe nous avons un espace de travail pour chaque client, au sens entreprise qui utilise l'application Main et qui a demandé un développement spécifique.
+
+*Domaines : informatique, marketing, communication, design, recrutement, teambuilding...
+
+*Types de logs : une douzaine, il y en a un pour chaque serveur tomcat de production comme de développement (Ti), pour la totalité des logs (Ti,1), pour toutes les **actions utilisateur** (Ti,2) et pour tout ce qui nécessite notre intervention (Ti,3).
+
+*Actions utilisateur : connexion, création d'un projet, upload d'un document...
 
 Paul : il fait à peu près pareil que moi mais sur d'autres projets, on a jamais trop travaillé ensemble mais parfois on se fait des code review
 

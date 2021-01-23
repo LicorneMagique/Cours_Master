@@ -13,7 +13,9 @@
   - [Rôles](#Rôles)
   - [Outils](#Outils)
     - [Slack](#Slack)
+    - [Asana](#Asana)
     - [Google Workspace](#Google\ Workspace)
+- [Travail à distance](#Travail\ à\ distance)
   - Café
   - Goûter
   - Asana
@@ -105,11 +107,17 @@ En externe nous avons un espace de travail pour chaque client, au sens entrepris
 
 *Actions utilisateur : connexion, création d'un projet, upload d'un document...
 
+#### Asana
+
+![.](asana.png)
+
+Asana est une sorte de super Trello que nous utilisons à 5% de ses fonctionnalités. La plateforme permet de créer des *projets* qui fonctionnent comme les tableaux sur Trello, il est ensuite possible d'y créer des colones et d'y ajouter des tâches. Nous utilisons ces tableaux comme **Scrum Boards**.  
+Globalement il y a plus de fonctionnalités dans la gestion des tâches que sur Trello, notament il est plus facile d'assigner des tâches à une personne, de même pour les dates d'échéance, il est aussi possible d'ajouter des sous-tâches et d'indiquer si une tâche est terminée.
+
 #### Google Workspace
 
 ![.](gmail.png) ![.](gdrive.png) ![.](gsheets.png) ![.](gsite.png) ![.](gcalendar.png) ![.](gmeet.png) ![.](gdocs.png)
 
 Anciennement appelé G Suite, nous utilisons plusieurs outils de la suite de bureautique de Google. Dans le cadre de la gestion des projets nous utilisons surtout Meet pour les réunions (internes ou clients) et Sheets pour le suivi des tâches ou comme outil de ticketing.
 
-Arnaud : il joue le rôle d'intermédiaire avec Finsearch (par exemple quand j'ai besoin du mot de passe de leur compte Stripe...), il trouve pleins de bugs sur Main et nous demande de les corriger, il a pleins d'idées d'amélioration de Main et il essaie de nous les faire développer, il a pleins d'idées pour ce qu'on peut faire avec Crossroads (l'avenir de Finalgo, on l'espère) et je me retrouve à les dev
-SME (Subject Matter Expert) en tant qu'ex expert comptable ET Business Owner de main en tant qu'utilisateur de l'application
+## Travail à distance

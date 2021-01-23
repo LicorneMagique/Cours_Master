@@ -7,6 +7,10 @@
 - [Présentation de Finalgo](#Présentation\ de\ Finalgo)
   - [L'équipe](#L'équipe)
   - [Les projets](#Les\ projets)
+- [Gestion des projets](#Gestion\ des\ projets)
+  - [Organigramme Scrum](#Organigramme\ Scrum)
+  - [Notre échelle de difficulté des tâches](#Notre\ échelle\ de\ difficulté\ des\ tâches)
+  - [Rôles](#Rôles)
   - Café
   - Goûter
   - Asana
@@ -40,9 +44,11 @@ En terme de code chaque application possède un front Angular et un back Java Sp
 
 ## Gestion des projets
 
-### Organigramme Scrum
-
 À Finalgo nous fonctionnons au maximum suivant la méthode Scrum. Étant donné que l'équipe est petite, certains jouent plusieurs rôles.
+
+Étant donné que chacun a plus ou moins sa spécialité nous essayons de nous former mutuellement, au moins lorsque nous ne sommes pas pressés par une deadline.
+
+### Organigramme Scrum
 
 ![.](scrum.svg)
 
@@ -60,17 +66,23 @@ En terme de code chaque application possède un front Angular et un back Java Sp
 
 \* Pour un même niveau de difficulté il y a en général beaucoup de lignes sur les tâches purement front et peu sur les tâches d'algorithmie ou de code métier.
 
-### Rôles
+### Rôles Scrum
 
-*Bertrand : il me donne du boulot quand j'ai plus rien à faire, il m'explique le code quand je comprends pas ce qu'il a fait et il review la segfaultativité de mes algos, souvent il m'appelle pour avoir des conseils sur les bonnes pratiques de code ou des suptilités de TypeScript*  
-Bertrand joue à la fois le rôle de Product Owner et de développeur.
+**Bertrand** joue à la fois le rôle de **Product Owner** et de **développeur**.  
 En tant que Product Owner il s'occupe de comprendre et lister les besoins de nos clients (Business Owner) afin de créer une liste tâches. Il essaie également de les rendre indépendantes dans la façon de les écrire pour permettre une bonne répartition au sein de l'équipe.  
-En tant que développeur (et Docteur en recherche opérationnelle) il s'occupe d'assigner les points de difficulté aux tâches en rapport avec le back ou le code métier du front, et il s'occupe de certaines de ces tâches.
+En tant que développeur (et Docteur en recherche opérationnelle) il s'occupe d'assigner les points de difficulté aux tâches en rapport avec le back ou le code métier du front, et il nous aide à réaliser ces tâches.
 
 *Jade : elle anime le goûter, quand j'ai de l'affichage à faire je vois ça avec elle, quand elle craque parce que Bertrand fait des bêtises parfois je l'aide
-Jade occupe le double rôle de Scum Master et de développeur front.*
+
+**Jade** occupe le double rôle de **Scum Master** et de **développeur front**.  
 En tant que Scrum Master elle paticipe aux réunions clients avec Bertrand où elle s'occupe des démonstrations et elle gère les parties UX/UI en tant que graphiste de formation. Elle s'occupe aussi d'animer les réunions quotidiennes et d'organiser des sorties Team Building.  
-En tant que développeur front et graphiste elle s'occupe de donner les points d'effort aux tâches purement front, elle participe activement à leur développement et elle design des maquêtes d'interfaces qui nous permettent de visualiser les User Stories.
+En tant que développeur front et graphiste elle s'occupe de donner les points d'effort aux tâches purement front, elle participe avec nous à leur développement et elle design des maquêtes d'interfaces qui nous permettent de visualiser les User Stories.
+
+**Valentin** est un développeur polyvalent qui a une très bonne connaissance du fonctionnement d'Angular et des approches DevOps. Il s'occupe de la gestion des serveurs, nous travaillons souvent ensemble sur les tâches complexes et il participe activement aux code review / Pull Request (PR).
+
+**Paul** travaille tout comme moi sur le back et le front mais la plupart du temps nous ne travaillons pas ensemble. Il participe également à mes PR.
+
+**Arnaud** est notre **SME** du point de vue Scrum, de formation expert comptable il est le seul membre de Finalgo à comprendre toutes les fonctionnalités métier de nos applications. Il nous remonte régulièrement des petits bugs métier ou d'interface et il a nombreuses idées d'amélioration de la plateforme.
 
 Valentin : globalement on fait les mêmes choses sauf qu'il touche trois fois mon salaire, c'est un professionnel d'Angular et il touche son pied sur ce qui est config serveur donc quand je suis bloqué sur ce genre de choses je lui demande. Il s'occupe aussi de mes PR vu que c'est le seul qui comprend ce que je fais ET qui teste mon code
 

@@ -13,6 +13,7 @@
   - [Rôles](#Rôles)
   - [Outils](#Outils)
     - [Slack](#Slack)
+    - [Google Workspace](#Google\ Workspace)
   - Café
   - Goûter
   - Asana
@@ -104,7 +105,11 @@ En externe nous avons un espace de travail pour chaque client, au sens entrepris
 
 *Actions utilisateur : connexion, création d'un projet, upload d'un document...
 
-Paul : il fait à peu près pareil que moi mais sur d'autres projets, on a jamais trop travaillé ensemble mais parfois on se fait des code review
+#### Google Workspace
+
+![.](gmail.png) ![.](gdrive.png) ![.](gsheets.png) ![.](gsite.png) ![.](gcalendar.png) ![.](gmeet.png) ![.](gdocs.png)
+
+Anciennement appelé G Suite, nous utilisons plusieurs outils de la suite de bureautique de Google. Dans le cadre de la gestion des projets nous utilisons surtout Meet pour les réunions (internes ou clients) et Sheets pour le suivi des tâches ou comme outil de ticketing.
 
 Arnaud : il joue le rôle d'intermédiaire avec Finsearch (par exemple quand j'ai besoin du mot de passe de leur compte Stripe...), il trouve pleins de bugs sur Main et nous demande de les corriger, il a pleins d'idées d'amélioration de Main et il essaie de nous les faire développer, il a pleins d'idées pour ce qu'on peut faire avec Crossroads (l'avenir de Finalgo, on l'espère) et je me retrouve à les dev
 SME (Subject Matter Expert) en tant qu'ex expert comptable ET Business Owner de main en tant qu'utilisateur de l'application

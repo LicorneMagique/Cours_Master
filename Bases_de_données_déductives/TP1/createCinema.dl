@@ -1,0 +1,51 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                 		Datalog
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%          CINEMA DATABASE
+%%
+%%  artist(aID, anom, nationalite)	              key: aID
+%%  films(fID, titre, realisateur, an, langue)	      key: fID
+%%  roles(fID, aID, personnage, cout)         	      key: fID, aID
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Optionally declare types
+
+:-type(artists(aID:int,anom:string,nationalite:string)).
+
+artists(123,'KeanuReeves','americaine').
+artists(415,'MarionCotillard','francaise').
+artists(420,'ArmandVerdure','francaise').
+artists(304,'MatthiasSchoenaerts','belge').
+artists(702,'LauraAntonelli','italienne').
+artists(876,'MarcelloMastroianni','italienne').
+artists(771,'EmmaStone','americaine').
+artists(772,'RyanGosling','canadienne').
+artists(645,'AudreyHepburn','americaine').
+artists(639,'HumphreyBogart','americaine').
+artists(543,'JuliaOrmond','anglaise').
+artists(693,'HarrisonFord','americaine').
+
+:-type(films(fID:int,titre:string,realisateur:int,an:int,langue:string)).
+
+films(1,'De rouilles et des os',867,2011,'francaise').
+films(2,'TheMatrix',876,1999,'anglaise').
+films(3,'TheMatrixReloaded',876,2003,'anglaise').
+films(4,'LaLaLand',945,2016,'anglaise').
+films(5,'Sabrina',756,1995,'anglaise').
+films(6,'Sabrina',657,1954,'anglaise').
+
+:-type(roles(fID:int,aID:int,personnage:string,cout:int)).
+
+roles(1,415,'Stephanie',21000).
+roles(1,420,'Sam',9000).
+roles(2,123,'Neo',10500).
+roles(3,123,'Neo',20000).
+roles(2,702,'FJacques',45000).
+roles(1,304,'Alain',9000).
+roles(4,771,'Mia',100000).
+roles(4,772,'Seb',150000).
+roles(6,645,'Sabrina',34000).
+roles(6,639,'Linus',45000).
+roles(5,543,'Sabrina',67000).
+roles(5,693,'Linus',78000).

@@ -1,0 +1,22 @@
+Quelle est ma plus grande réalisation dans mon dernier job ?
+
+Situation :
+J'ai été choisi pour mettre en place le miroir de l'API aides-entreprises.fr
+- J'ai fait ce miroir en back
+- J'ai refactoré le formulaire du front
+- J'ai mis en place le formulaire subvention fonctionnel en front
+Donc j'ai construit un prototype complet qui fonctionnait puis je suis parti à l'école
+
+Quand je suis revenu toute l'équipe travaillait sur le projet, ils avait utilisé et amélioré la plupart des "briques de base" que j'avais posées
+Peu de temps après on a mis le produit en vente et les patrons m'ont dit qu'ils espéraient que ce produit soit l'avenir de l'entreprise
+
+Pendant plusieurs mois on a travaillé à l'amélioration des différentes parties du produit, j'ai beaucoup travaillé sur la pertinance des questions du formulaire et sur comment améliorer la pertinance / l'ordre des résultats ainsi que sur comment optimiser les appels à l'API aides-entreprises.fr
+- J'ai mis en place un système sur notre serveur pour sauvegarder des informations sur les subventions et automatiquement les mettre à jour de temps en temps, de cette façon on fait moins d'appels à l'API tout en ayant plus de données.
+- J'ai aussi mis en place un système de recherche par mots clés qui a permit de gagner en pertinance d'environ 30 %, je le sais car si une subvention est affichée dans les résultats et qu'elle n'intéresse pas un utilisateur pour le savons, pareil si elle les intéresse donc nous avons les statistiques.
+- Pour finir nous avons décidé d'utiliser des technologies d'intelligence artificielle avec les textes des subventions dans le but de proposer de bien meilleurs résultats, mon travail a concisté à retrouver tous les mots distincts de leur base de données et savoir pour chacun d'entre eux dans quels subventions ils sont présents et combien il y en a.
+Cette tâche était une épreuve, savez-vous combien il existe de façons différentes d'écrire le caractère "è" ? il y en a 4 : "é", "\utrucé", "&htmlé;" et enfin le escape unicode html... Sans parler du code HTML qui se baladait au milieu des textes. Au début j'ai fait comme si tous les mots étaient séparés par des espaces, il y en avait 40 000. Ensuite j'ai uniformisé tous les caractères spéciaux, puis j'ai enlevé tout ce qui n'était pas une lettre à l'exception des tirets utilisés pour écrire des mots composés. À la fin j'ai réussi à obtenir une liste de 12 000 mots, 28 000 mots de moins qu'au départ !
+Enfin j'ai pu donner cette liste à mes collègues qui ont pu continuer le travail
+
+Aujourd'hui nous travaillons encore à l'amélioration de ce produit et nous cherchons toujours le meilleur moyen de comprendre les textes pour améliorer le produit. Je suis très content que le travail que j'ai commencé tout seul à travailller pendant 2 semaines ait prit autant d'importance dans la société et dès que quelqu'un a des questions sur comment sont les données / qu'est-ce qu'on peut faire avec l'API je suis devenu l'expert de la boite pour répondre à ces questions alors que n'importe quel membre de l'équipe aurait pu le devenir.
+
+

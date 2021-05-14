@@ -1,0 +1,137 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                 		Datalog
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%          CINEMA DATABASE
+%%
+%%  artist(aID, anam, nationality)	              	  key: aID
+%%  films(fID, title, director, year, language)	      key: fID
+%%  roles(fID, aID, personage, cost)         	      key: fID, aID
+%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Optionally declare types
+
+:-type(artists(aID:int,anam:string,nationality:string)).
+
+artists(123,'KeanuReeves','american').
+artists(415,'MarionCotillard','french').
+artists(420,'ArmandVerdure','french').
+artists(304,'MatthiasSchoenaerts','belgian').
+artists(702,'LauraAntonelli','italian').
+artists(876,'MarcelloMastroianni','italian').
+artists(771,'EmmaStone','american').
+artists(772,'RyanGosling','canadian').
+artists(645,'AudreyHepburn','american').
+artists(639,'HumphreyBogart','american').
+artists(543,'JuliaOrmond','english').
+artists(693,'HarrisonFord','american').
+
+:-type(films(fID:int,title:string,director:int,year:int,language:string)).
+
+films(1,'De rouilles et des os',867,2011,'french').
+films(2,'TheMatrix',876,1999,'english').
+films(3,'TheMatrixReloaded',876,2003,'english').
+films(4,'LaLaLand',945,2016,'english').
+films(5,'Sabrina',756,1995,'english').
+films(6,'Sabrina',657,1954,'english').
+
+:-type(roles(fID:int,aID:int,personage:string,cost:int)).
+
+roles(1,415,'Stephanie',21000).
+roles(1,420,'Sam',9000).
+roles(2,123,'Neo',10500).
+roles(3,123,'Neo',20000).
+roles(2,702,'FJacques',45000).
+roles(1,304,'Alain',9000).
+roles(4,771,'Mia',100000).
+roles(4,772,'Seb',150000).
+roles(6,645,'Sabrina',34000).
+roles(6,639,'Linus',45000).
+roles(5,543,'Sabrina',67000).
+roles(5,693,'Linus',78000).
+
+% Q1. All the names of the artists and the titles of the films in which they have participated.
+ 
+nametitle(N,T) :- artists(I,N,_), roles(F,I,_,_), films(F,T,_,_,_).
+
+% Q2. All the names of French or Italian artists. 
+
+namartistes(A) :- distinct(namartistes_1_2(A)).
+namartistes_1_2(A) :- artists(_,A,italian).
+namartistes_1_2(A) :- artists(_,A,french).
+
+% Q3. All the titles of the films shot in the same language as at least one artist who participated. 
+
+titlefilm(T) :- artists(B,_,D), roles(E,B,_,_), films(E,T,_,_,D).
+
+% Q4. All the identifiers of the films in which several French artists played.
+
+idfilmfr(A) :- artists(B1,_,french), roles(A,B1,_,_), artists(B2,_,french), roles(A,B2,_,_), B1\=B2.
+
+%idfilmfr2(A) :- count_distinct((artists(B,_,french), roles(A,B,_,_)),C), C > 1.
+
+% Q5. All the identifiers of the films in which a single French artist played. 
+
+fm(A,F,N) :- artists(A,N,french), roles(F,A,_,_).
+mfm(F) :- fm(A,F,_), fm(B,F,_), A\=B.
+idf(F) :- fm(_,F,_), not mfm(F).
+
+% Q6. All the identifiers of the films in which no French artist plays. 
+
+idnfr(M) :- films(M,_,_,_,_), not fm(_,M,_).
+
+% Q7. All the identifiers, titles and directors of films in which only French artists have played. 
+
+nfm(F) :- artists(A,_,L), roles(F,A,_,_), L\='french'.
+idsfilm(F,T,R) :- films(F,T,R,_,_), not nfm(F). 
+
+% Q8. All the identifiers of artists who have acted in several films. 
+
+playsmm(A) :- roles(M1,A,_,_), roles(M2,A,_,_), M1\=M2.
+
+% Q9. All the names of the artists who have always played the character (personage) ‘Neo’ in their careers.
+
+nneo(A) :- roles(_,A,P,_), P\='Neo'.
+artistneo(A) :- roles(_,A,'Neo',_), not nneo(A). 
+
+%artists_neo(A) :- distinct(artists_neo_1_3(A)).
+%artists_neo_1_3(A) :- artists(B,A,_), roles(_,B,_,_), not artists_neo_1_2(B).
+%artists_neo_1_2(A) :- roles(_,A,_,_), roles(_,A,F,_), F\='Neo'.
+
+% Q10. All the names of the films whose actors have the same nationality.
+
+nnationality(F) :- artists(I1,_,N1), roles(F,I1,_,_), artists(I2,_,N2), roles(F,I2,_,_), N1\=N2.
+mnationality(F) :- films(F,_,_,_,_), not nnationality(F).
+%nactors(N) :- films(F,_,_,_,_), roles(F,A,_,_), artists(A,N,_), mnationality(F).
+
+% Q11. All the names of the films with at least two actors, all having different nationalities.
+
+mactors(F) :- films(I,F,_,_,_), roles(I,A1,_,_), roles(I,A2,_,_), A1\=A2.
+nfilms(F) :- mactors(F), not mnationality(F).
+
+% Q12. All the names of all the roles (personage) that have been performed by different actors.
+
+nroles(N) :- roles(_,I1,N,_), roles(_,I2,N,_), I1\=I2.
+
+% Q13. The name of the actor who was paid the most for a film.
+
+more(A1,A2) :- roles(_,A1,_,N1), roles(_,A2,_,N2), A1\=A2, N1>N2.
+less(A1,A2) :- roles(_,A1,_,N1), roles(_,A2,_,N2), A1\=A2, N1<N2.
+max(N):- more(A1,_), not less(A1,_), artists(A1,N,_).
+
+%mcout(M)   :- max(roles(_,_,_,C),C,M).
+%nactor(N) :- artists(I,N,_),roles(_,I,_,M),mcout(M).
+
+% Q14. The name of the film for which the actors cost the most.
+
+sfilm(F, Sum) :- sum(films(I,F,_,_,_), roles(I,_,_,S), S, Sum).
+filmM(M) :- max(sfilm(_,Sum), Sum, M).
+nfilmM(F) :- sfilm(F, M), filmM(M).
+
+% Q15. The name of the film for which the average salary of the actors is minimal.
+
+asfilm(F, AS) :- avg(films(I,F,_,_,_), roles(I,_,_,S), S, AS).
+mfilm(M) :- min(asfilm(_,AS), AS, M).
+nfilmm(F) :- asfilm(F, M), mfilm(M).
+
+cnt(C):- count(roles(A1,_,_,_),A1, C).

@@ -1,0 +1,30 @@
+artists(aid: int, anom: string, nationalite: string)
+films(fid: int, titre: string, realisateur: int, an: int, langue: string)
+roles(fid: int, aid: int, personnage: string, cout: int)
+
+DES> /consult ../../createCinema.dl
+
+1. Trouver tous les noms des artistes et les titres des films auxquels ils sont participé.
+select nom, titre
+from artists, films, roles
+where artists.aid = roles.aid and films.fid = roles.fid;
+r(B,E) :- artists(A,B,C), films(D,E,F,G,H), roles(I,J,K,L), I = D, J = A.
+DES> r(B,E) :- artists(A,B,C), films(D,E,F,G,H), roles(D,A,K,L).
+
+2. Donner les noms des artistes français ou italiens.
+DES> r(C) :- artists(A,B,C).
+select nom
+from artists
+where nationalite = 'francaise' or nationalite = 'italienne';
+r(B) :- artists(A,B,'francaise'); artists(A,B,'italienne').
+DES> r(B) :- artists(A,B,C), (C='francaise') or (C='italienne').
+
+3. Donnez les titres des films tournés dans la même langue qu’au moins un artiste qui y a participé.
+r(E) :- artists(A,B,C), films(D,E,F,G,H), roles(D,A,K,L), (C = H).
+DES > r(E) :- artists(A,B,C), films(D,E,F,G,C), roles(D,A,K,L).
+
+4. Donner les identifiants des films dans lesquels jouent plusieurs artistes français.
+DES> /assert joue(A,D) :- artists(A,B,C), films(D,E,F,G,H), roles(D,A,K,L).
+DES> /assert francais(A) :- artists(A,B,'francaise').
+DES> r(C) :- joue(X,Y), joue(Z,Y), not X=Y, francais(X), francais(Z), films(B,C,D,E,F).
+

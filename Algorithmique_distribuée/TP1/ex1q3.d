@@ -1,5 +1,3 @@
-module ex1q3;
-
 import std.stdio;
 import std.concurrency;
 

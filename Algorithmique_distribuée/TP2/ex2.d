@@ -1,4 +1,4 @@
-// mport std.c.time;
+// import std.c.time;
 import std.stdio;
 import std.concurrency;
 import core.time;
@@ -12,30 +12,28 @@ import std.random;
     • Le nombre de nœuds dans le système est inconnu de chaque nœud
 */
 
-struct CancelMessage {
-}
+struct CancelMessage {}
 
-struct Node {
+struct Noeud {
     Tid tid; // thread_ID
     int lid; // logical_ID
     int state; // état : 1 candidat, 2 perdu, 3 élu
     int leaderId; // logical_ID du leader connu
 }
 
-void receiveAllFinalization(Node [] childTid) {
+void receiveAllFinalization(Noeud [] childTid) {
     for (int i = 0; i < childTid.length; ++i) {
         receiveOnly!CancelMessage();
     }
 }
 
 void spawnedFunc(int myId, int n) {
-
-    Node myself, neighbor;
+    Noeud myself, neighbor;
 
     // waiting for the reception of information sent by the father
-    receive((immutable(Node) myself_, immutable(Node) neighbor_) {
-        myself = cast(Node)myself_;
-        neighbor = cast(Node)neighbor_;
+    receive((immutable(Noeud) myself_, immutable(Noeud) neighbor_) {
+        myself = cast(Noeud)myself_;
+        neighbor = cast(Noeud)neighbor_;
     });
 
     // WORK: print your id and your neighbor id
@@ -44,7 +42,7 @@ void spawnedFunc(int myId, int n) {
     // Phase d'élection
     receive((int one) {
         if (one != 1) {
-            writeln("aie aie aie");
+            writeln("On a un problème");
         }
         writeln("Child process: I am number ", myId, ", je me présente pour les élections");
         myself.state = 1;
@@ -86,7 +84,6 @@ void spawnedFunc(int myId, int n) {
     // send(neighbor, true, receivedNumber);
 
     send(ownerTid, CancelMessage());
-
 }
 
 int[] getRandomIds(int n) {
@@ -105,9 +102,11 @@ int[] getRandomIds(int n) {
 void main() {
     // number of child processes
     int n = 10;
+    // int n = 32678; // core.thread.threadbase.ThreadError@src/core/thread/threadbase.d(1219): Error creating thread
+    // int n = 32677; // Fonctionne
 
     // spawn threads (child processes)
-    Node[] childTid = new Node[n];
+    Noeud[] childTid = new Noeud[n];
     int[] ids = getRandomIds(n);
     for (int i = 0; i < n; ++i) {
         childTid[i].tid = spawn(&spawnedFunc, ids[i], n);
@@ -117,8 +116,8 @@ void main() {
     // create an unidirectional ring
     for (int i = 0; i < n; ++i) {
         const int neighborIndex = (i + 1) % n;
-        immutable(Node) itself = cast(immutable)childTid[i];
-        immutable(Node) neighbor = cast(immutable)childTid[neighborIndex];
+        immutable(Noeud) itself = cast(immutable)childTid[i];
+        immutable(Noeud) neighbor = cast(immutable)childTid[neighborIndex];
         // send nodes to child
         send(childTid[i].tid, itself, neighbor);
     }
@@ -130,5 +129,4 @@ void main() {
 
     // wait for all completions
     receiveAllFinalization(childTid);
-
 }

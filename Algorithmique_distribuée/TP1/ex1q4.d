@@ -1,10 +1,7 @@
-module ex1q4;
-
 import std.stdio;
 import std.concurrency;
 
-void spawnedFunc(Tid parentTid)
-{
+void spawnedFunc(Tid parentTid) {
     writeln("Child process: on vient de me créer avec ", parentTid);
     bool ack = false;
     while (!ack) {
@@ -19,8 +16,7 @@ void spawnedFunc(Tid parentTid)
     }
 }
 
-void main()
-{
+void main() {
     // Start spawnedFunc in a new thread.
     auto childTid = spawn(&spawnedFunc, thisTid);
 

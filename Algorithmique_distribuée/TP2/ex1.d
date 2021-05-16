@@ -1,12 +1,11 @@
-// mport std.c.time;
+// import std.c.time;
 import std.stdio;
 import std.concurrency;
 import core.time;
 import std.algorithm;
 import std.random;
 
-struct CancelMessage {
-}
+struct CancelMessage {}
 
 struct Noeud {
     Tid tid; // thread_ID
@@ -20,7 +19,6 @@ void receiveAllFinalization(Noeud [] childTid) {
 }
 
 void spawnedFunc(int myId, int n) {
-
     Noeud neighbor, localNeighbor;
     int[] vectHorloge = new int[n];
     for (int i = 0; i < n; i++) {
@@ -43,41 +41,34 @@ void spawnedFunc(int myId, int n) {
     // WORK: print your id and your neighbor id
     writeln("Child process: I am number ", myId, ", my neighbor id is ", localNeighbor.lid);
 
-    // comptage
-    receive((int count, int precScalHorloge, shared int[] precVectHorloge) {
-        scalHorloge = max(++scalHorloge, ++precScalHorloge);
-        for (int i = 0; i < precVectHorloge.length; i++) {
-            if (precVectHorloge[i] > vectHorloge[i]) {
-                vectHorloge[i] = precVectHorloge[i];
-            }
+    if (myId == 3) { // Noeud initiateur du comptage
+        send(localNeighbor.tid, 1, scalHorloge, cast(shared) new int[1]); // Le noeud 3 envoie 1 à son voisin
+    }
+    // Comptage
+    for (int t = 0; t < 2; t++) { // 0 -> comptage en cours, 1 -> comptage terminé
+        if (myId == 3 && t == 0) {
+            continue; // Déjà fait avec le send
         }
-        vectHorloge[myId]++;
-        writeln("Child process: I am number ", myId, ", le compte en est à ", count);
-        writeln("Child process: I am number ", myId, ", my scalHorloge is ", scalHorloge);
-        writeln("Child process: I am number ", myId, ", my vectHorloge is ", vectHorloge);
-        send(localNeighbor.tid, ++count, scalHorloge, cast(shared) vectHorloge);
-    });
-
-    // comptage
-    receive((int count, int precScalHorloge, shared int[] precVectHorloge) {
-        scalHorloge = max(++scalHorloge, ++precScalHorloge);
-        for (int i = 0; i < precVectHorloge.length; i++) {
-            if (precVectHorloge[i] > vectHorloge[i]) {
-                vectHorloge[i] = precVectHorloge[i];
+        receive((int count, int precScalHorloge, shared int[] precVectHorloge) {
+            scalHorloge = max(++scalHorloge, ++precScalHorloge);
+            for (int i = 0; i < precVectHorloge.length; i++) {
+                if (precVectHorloge[i] > vectHorloge[i]) {
+                    vectHorloge[i] = precVectHorloge[i];
+                }
             }
-        }
-        vectHorloge[myId]++;
-        writeln("Child process: I am number ", myId, ", le compte final en est à ", count);
-        writeln("Child process: I am number ", myId, ", my scalHorloge is ", scalHorloge);
-        writeln("Child process: I am number ", myId, ", my vectHorloge is ", vectHorloge);
-        send(localNeighbor.tid, count, scalHorloge, cast(shared) vectHorloge);
-    });
+            vectHorloge[myId]++;
+            string compteMsg = t == 0 ? ", le compte en est à " : ", le compte final en est à ";
+            writeln("Child process: I am number ", myId, compteMsg, count);
+            writeln("Child process: I am number ", myId, ", my scalHorloge is ", scalHorloge);
+            writeln("Child process: I am number ", myId, ", my vectHorloge is ", vectHorloge);
+            send(localNeighbor.tid, t == 0 ? ++count : count, scalHorloge, cast(shared) vectHorloge); // Continue de compter OU communique le compte
+        });
+    }
 
     // Avec cette technique il y a 2 * n messages échangés pour compter les noeuds
     // end of your code
 
     send(ownerTid, CancelMessage());
-
 }
 
 int[] getRandomIds(int n) {
@@ -92,10 +83,11 @@ int[] getRandomIds(int n) {
     return ids;
 }
 
-
 void main() {
     // number of child processes
     int n = 10;
+    // int n = 32678; // core.thread.threadbase.ThreadError@src/core/thread/threadbase.d(1219): Error creating thread
+    // int n = 32677; // Fonctionne
 
     // spawn threads (child processes)
     Noeud[] childTid = new Noeud[n];
@@ -109,7 +101,7 @@ void main() {
     for (int i = 0; i < n; ++i) {
         // id of neighbor
         // WORK: correct this part of code
-        const int nextIndex = (i + 1) % n;
+        const int nextIndex = (i + 1) % n; // Question 2
         // const int nextId = ids[nextIndex];
         // end of your code
 
@@ -117,9 +109,6 @@ void main() {
         // send id_suiv to childTid[i].tid
         send(childTid[i].tid, id_suiv);
     }
-
-    // nombre de noeuds
-    send(childTid[3].tid, 0, -1, cast(shared) new int[0]);
 
     // wait for all completions
     receiveAllFinalization(childTid);

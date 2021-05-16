@@ -1,16 +1,14 @@
 import std.stdio;
 import std.concurrency;
 
-void spawnedFunc()
-{
+void spawnedFunc() {
     // Receive a message from the owner thread.
-    receive(
-        (int i) { writeln("Child process: I have received the number ", i);}
-    );
+    receive((int i) {
+        writeln("Child process: I have received the number ", i);
+    });
 }
 
-void main()
-{
+void main() {
     // Start spawnedFunc in a new thread.
     auto childTid = spawn(&spawnedFunc);
 

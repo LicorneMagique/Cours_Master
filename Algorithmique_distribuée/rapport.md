@@ -128,4 +128,90 @@ vectHorloge[myId]++;
 
 ## TP2
 
-### Question 1.1
+### Question 1.2
+
+Soit `n` le nombre de nœud dans l'anneau.  
+Il y a un anneau par permutation possible, on a donc à faire à une factorielle.
+
+Si `n = 1` alors il y a `2` éléments, disons `{a, b}`. Les permutations sont `[ab, ba]`, il y a donc `2` anneaux.
+
+Si `n = 2` alors il y a `3` éléments, disons `{a, b, c}`. Les permutations sont `[abc, acb, bac, bca, cab, cba]`, il y a donc `6` anneaux.
+
+De façon générale il y a `(n-1)!` anneaux.
+
+### Question 2.1 - Hypothèses
+
+- Chaque nœud a un identifiant unique et sait que les identifiants sont uniques.
+- Chaque nœud connaît son voisin.
+- Le nombre de nœuds dans le système est inconnu de chaque nœud.
+
+### Question 2.3
+
+Chaque thread
+
+- compte le nombre de messages envoyé ou reçu,
+- envoie l'information via l'objet `CancelMessage`.
+
+La fonction `receiveAllFinalization`
+
+- effectue un *reduce* des CancelMessage (au sens MapReduce),
+- transmet le résultat du *reduce* de l'exécution au `main`.
+
+La fonction `main` se charge du traitement.
+
+```shell
+filename=ex2; dmd -of=$filename $filename.d; ./$filename
+```
+
+```text
+Meilleur cas (envoyé) : 77 messages, 3.85 message/thread
+Meilleur cas (reçu) : 96 messages, 4.8 message/thread
+Pire cas (envoyé) : 127 messages, 6.35 message/thread
+Pire cas (reçu) : 146 messages, 7.3 message/thread
+Nombre moyen de messages envoyé : 92, 4.629 messages/thread
+Nombre moyen de messages reçu : 111, 5.579 messages/thread
+```
+
+### Question 2.4
+
+Pour obtenir le meilleur cas on suppose que
+
+- les messages sont envoyés et traités à la suite comme en séquentiel,
+- seul le noeud de plus grand identifiant se porte volontaire.
+
+Dans ce cas l'élection de leader nécessite `n` messages soit un message par thread.
+
+Pour obtenir le pire cas on suppose que
+
+- les messages sont envoyés tous en même temps,
+- les messages sont traités à la suite comme en séquentiel dans l'ordre de leur identifiant,
+- tous les noeud se portent volontaires,
+- les nœuds sont voisins dans l'ordre croissant de leur identifiant, par exemple `n = 3` donnerait `1 → 2 → 3 → 1`.
+
+Dans ce cas l'élection de leader nécessite `n²` messages soit `n` messages par thread.
+
+Simulation à l'appui
+
+```text
+1 → 2 → 3 → 1
+
+Étape 1 :
+1 dit à 2 qu'il se présente
+2 dit à 3 qu'il se présente
+3 dit à 1 qu'il se présente
+
+Étape 2 :
+1 reçoit la candidature de 3, il dit à 2 que 3 se présente
+2 reçoit la candidature de 1, il dit à 3 que 2 se présente
+3 reçoit la candidature de 2, il dit à 1 que 3 se présente
+
+Étape 3 :
+1 reçoit la candidature de 3, il dit à 2 que 3 se présente
+2 reçoit la candidature de 3, il dit à 3 que 3 se présente
+3 reçoit la candidature de 2, il dit à 1 que 3 se présente
+
+Étape 4 :
+1 reçoit la candidature de 3, 3 est leader
+2 reçoit la candidature de 3, 3 est leader
+3 reçoit la candidature de 3, 3 est leader
+```

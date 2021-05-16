@@ -114,13 +114,3 @@ void main() {
     receiveAllFinalization(childTid);
 
 }
-
-/*
-  Combien d’anneaux unidirectionnels différents existe-t’il (on notera n le nombre
-  de nœuds dans l’anneau et on supposera, par exemple, que la numérotation 0 (numéro de
-  p1) - 1 (numéro de p2) - 2 (numéro de p3) est différente de 1 (numéro de p1) - 2 (numéro de
-  p2) - 0 (numéro de p3)) ?
-  n = 1 -> 2 éléments -> ab, ba -> 2 anneaux
-  n = 2 -> 3 éléments -> abc, acb, bac, bca, cab, cba -> 6 anneaux
-  Il y a (n-1)! anneaux.
-*/

@@ -4,7 +4,7 @@ import std.concurrency;
 import core.time;
 import std.algorithm;
 import std.random;
-import std.algorithm: canFind;
+import std.typecons: tuple, Tuple;
 
 struct CancelMessage {
     int nbMsg;
@@ -129,7 +129,6 @@ void spawnedFunc(int myId, int n) {
             }
         });
     }
-
     send(ownerTid, CancelMessage(nbMsg, nbCandidat));
 }
 
@@ -169,40 +168,38 @@ Stats doExecution(int n) {
     return receiveAllFinalization(childTid);
 }
 
-void main() {
-    int sentCount = 0,
-        minSent = -1,
-        maxSent = -1,
-        nbCandidat = 0;
-    const int n = 20; // number of child processes
-    const int k = 500; // Nombre de simulations
-    // const int k = 50; // Nombre de simulations
-
+Tuple!(int[][int], int, int, int, int) getValuesFromExections(int n, int k) {
+    int min = -1;
+    int max;
+    int nbMsg = 0;
+    int nbCandidat = 0;
     int[][int] values;
-
     for (int i = 0; i < k; ++i) {
         const Stats stat = doExecution(n);
-        sentCount += stat.nbMsg;
+        nbMsg += stat.nbMsg;
         nbCandidat += stat.nbCandidat;
-        if (minSent == -1) {
-            minSent = stat.nbMsg;
-            maxSent = stat.nbMsg;
+        if (min == -1) {
+            min = stat.nbMsg;
+            max = stat.nbMsg;
         }
-        if (stat.nbMsg < minSent) {
-            minSent = stat.nbMsg;
+        if (stat.nbMsg < min) {
+            min = stat.nbMsg;
         }
-        if (stat.nbMsg > maxSent) {
-            maxSent = stat.nbMsg;
+        if (stat.nbMsg > max) {
+            max = stat.nbMsg;
         }
         values[stat.nbCandidat] = values.require(stat.nbCandidat, []) ~ [stat.nbMsg];
     }
+    return tuple(values, min, max, nbMsg, nbCandidat);
+}
 
+Stats[int] getStatsFromValues(int[][int] values) {
     Stats[int] stats;
     foreach (int valuesKey; values.keys) {
         stats[valuesKey] = stats.require(valuesKey, Stats(-1, -1, -1, -1, -1));
-        int min = -1,
-            max,
-            sum = 0;
+        int min = -1;
+        int max;
+        int sum = 0;
         foreach (int nbMsg; values[valuesKey]) {
             if (min == -1) {
                 min = nbMsg;
@@ -220,6 +217,27 @@ void main() {
         stats[valuesKey].max = max;
         stats[valuesKey].avg = double(sum) / double(values[valuesKey].length);
     }
+    return stats;
+}
+
+void main() {
+    int nbMsg = 0;
+    int minSent = -1;
+    int maxSent = -1;
+    int nbCandidat = 0;
+    const int n = 20; // number of child processes
+    const int k = 500; // Nombre de simulations
+    // const int k = 50; // debug
+
+    auto res = getValuesFromExections(n, k);
+    int[][int] values = res[0];
+    minSent = res[1];
+    maxSent = res[2];
+    nbMsg = res[3];
+    nbCandidat = res[4];
+
+    Stats[int] stats = getStatsFromValues(values);
+
     writeln("Candid.\tAvg\tMin\tMax");
     foreach (int statsKey; stats.keys.sort) {
         writeln(statsKey, "\t", stats[statsKey].avg, "\t", stats[statsKey].min, "\t", stats[statsKey].max);
@@ -228,8 +246,8 @@ void main() {
     writeln("\nMeilleur cas : ", minSent, " messages, ", double(minSent) / double(n) , " message/thread");
     writeln("Pire cas : ", maxSent, " messages, ", double(maxSent) / double(n), " message/thread");
     writeln(
-        "Nombre moyen de messages : ", sentCount / k, ", ",
-        (double(sentCount) / double(k)) / double(n), " messages/thread"
+        "Nombre moyen de messages : ", nbMsg / k, ", ",
+        (double(nbMsg) / double(k)) / double(n), " messages/thread"
     );
     writeln(
         "Nombre moyen de candidats par tour : ", nbCandidat / k, ", ",

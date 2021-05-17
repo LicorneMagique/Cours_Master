@@ -229,27 +229,28 @@ filename=ex2q5_6; dmd -of=$filename $filename.d; ./$filename
 
 ```text
 Candid. Avg     Min     Max
-2       59      59      59
-4       62      62      62
-5       66.8333 49      76
-6       73.36   55      88
-7       72.8857 61      86
-8       75.0167 60      90
-9       79.0886 58      112
-10      80.7253 65      114
-11      82.5395 67      115
-12      86.6833 68      124
-13      82.4884 71      96
-14      85      74      99
-15      86.875  75      116
+3       54      54      54
+4       62      58      65
+5       71.5714 61      78
+6       72.2667 57      85
+7       74.4595 60      91
+8       78.1077 63      120
+9       78.3125 62      116
+10      79.3043 65      101
+11      82.6533 66      106
+12      86.1892 64      108
+13      85.5385 72      112
+14      86.9048 73      132
+15      83.75   78      94
+17      76      76      76
 
-Meilleur cas : 49 messages, 2.45 message/thread
-Pire cas : 124 messages, 6.2 message/thread
-Nombre moyen de messages : 79, 3.9993 messages/thread
-Nombre moyen de candidats par tour : 9, 0.4977 candidat/thread
+Meilleur cas : 54 messages, 2.7 message/thread
+Pire cas : 132 messages, 6.6 message/thread
+Nombre moyen de messages : 79, 3.9944 messages/thread
+Nombre moyen de candidats par tour : 9, 0.4921 candidat/thread
 ```
 
-Le nombre moyen de messages échangés semble croitre de façon linéaire en fonction du nombre de nœuds candidats.
+Le nombre moyen de messages échangés semble croitre de façon parabolique en fonction du nombre de nœuds candidats, le sommet de la parabobe est atteint entre 12 et 14 candidats environ.
 
 ### Question 3.2
 

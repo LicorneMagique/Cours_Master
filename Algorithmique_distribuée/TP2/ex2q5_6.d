@@ -4,10 +4,11 @@ import std.concurrency;
 import core.time;
 import std.algorithm;
 import std.random;
+import std.algorithm: canFind;
 
 struct CancelMessage {
-    int algoSentMsgCount;
-    int algoReceivedMsgCount;
+    int nbMsg;
+    int nbCandidat;
 }
 
 bool isDebug() {
@@ -22,26 +23,53 @@ struct Noeud {
     int leaderId; // logical_ID du leader connu
 }
 
-CancelMessage receiveAllFinalization(Noeud [] childTid) {
-    int algoSentMsgCount = 0;
-    int algoReceivedMsgCount = 0;
+struct Stats {
+    int nbMsg;
+    int nbCandidat;
+    int min;
+    int max;
+    double avg;
+}
+
+Stats receiveAllFinalization(Noeud [] childTid) {
+    int nbMsg = 0;
+    int nbCandidat = 0;
+    int min = -1;
+    int max;
+    double avg;
     for (int i = 0; i < childTid.length; ++i) {
         const CancelMessage msg = receiveOnly!CancelMessage();
-        algoSentMsgCount += msg.algoSentMsgCount;
-        algoReceivedMsgCount += msg.algoReceivedMsgCount;
+        nbMsg += msg.nbMsg;
+        nbCandidat += msg.nbCandidat;
+        if (min == -1) {
+            min = msg.nbMsg;
+            max = msg.nbMsg;
+        }
+        if (msg.nbMsg < min) {
+            min = msg.nbMsg;
+        }
+        if (msg.nbMsg > max) {
+            max = msg.nbMsg;
+        }
     }
+    avg = double(nbMsg) / double(childTid.length);
     if (isDebug()) {
-        writeln("Nombre de messages envoyés ", algoSentMsgCount);
-        writeln("Nombre de messages reçus ", algoReceivedMsgCount);
-        writeln("Différence ", algoReceivedMsgCount - algoSentMsgCount);
+        writeln("Nombre de messages envoyés ", nbMsg);
+        writeln("Nombre de candidats ", nbCandidat);
     }
-    return CancelMessage(algoSentMsgCount, algoReceivedMsgCount);
+    return Stats(nbMsg, nbCandidat, min, max, avg);
+}
+
+bool getRandomBoolean() {
+    Random random = Random(unpredictableSeed);
+    return uniform(0, 2, random) == 1;
 }
 
 void spawnedFunc(int myId, int n) {
     Noeud myself, neighbor;
-    int algoSentMsgCount = 0;
-    int algoReceivedMsgCount = 0;
+    const bool candidat = getRandomBoolean();
+    int nbMsg = 0;
+    int nbCandidat = candidat ? 1 : 0;
 
     // waiting for the reception of information sent by the father
     receive((immutable(Noeud) myself_, immutable(Noeud) neighbor_) {
@@ -54,30 +82,25 @@ void spawnedFunc(int myId, int n) {
     }
 
     // Phase d'élection
-    receive((int one) {
-        algoReceivedMsgCount++;
-        if (one != 1) {
-            writeln("On a un problème");
-        }
+    if (candidat) {
         if (isDebug()) {
             writeln("Child process: I am number ", myId, ", je me présente pour les élections");
         }
         myself.state = 1;
         myself.leaderId = myId;
         send(neighbor.tid, myId, true);
-        algoSentMsgCount++;
-    });
+        nbMsg++;
+    }
 
     bool loop = true;
     while (loop) {
         receive((int precLeaderId, bool elec) {
-            algoReceivedMsgCount++;
             if (elec) {
                 if (myId > precLeaderId) {
                     if (myself.state != 1) {
                         myself.state = 1;
                         send(neighbor.tid, myId, true);
-                        algoSentMsgCount++;
+                        nbMsg++;
                     }
                 } else if (myId < precLeaderId) {
                     myself.state = 2;
@@ -86,14 +109,14 @@ void spawnedFunc(int myId, int n) {
                         writeln("Child process: I am number ", myId, ", j'ai perdu les élections");
                     }
                     send(neighbor.tid, precLeaderId, true);
-                    algoSentMsgCount++;
+                    nbMsg++;
                 } else if (myId == precLeaderId) {
                     myself.state = 3;
                     if (isDebug()) {
                         writeln("Child process: I am number ", myId, ", j'ai gagné les élections");
                     }
                     send(neighbor.tid, myId, false);
-                    algoSentMsgCount++;
+                    nbMsg++;
                 }
             } else {
                 myself.leaderId = precLeaderId;
@@ -101,13 +124,13 @@ void spawnedFunc(int myId, int n) {
                     writeln("Child process: I am number ", myId, ", le gagnant est le ", precLeaderId);
                 }
                 send(neighbor.tid, precLeaderId, false);
-                algoSentMsgCount++;
+                nbMsg++;
                 loop = false;
             }
         });
     }
 
-    send(ownerTid, CancelMessage(algoSentMsgCount, algoReceivedMsgCount));
+    send(ownerTid, CancelMessage(nbMsg, nbCandidat));
 }
 
 int[] getRandomIds(int n) {
@@ -124,7 +147,7 @@ int[] getRandomIds(int n) {
     return ids;
 }
 
-CancelMessage doExecution(int n) {
+Stats doExecution(int n) {
     // spawn threads (child processes)
     Noeud[] childTid = new Noeud[n];
     int[] ids = getRandomIds(n);
@@ -142,58 +165,74 @@ CancelMessage doExecution(int n) {
         send(childTid[i].tid, itself, neighbor);
     }
 
-    // Élection
-    for (int i = 0; i < n; i++) {
-        send(childTid[i].tid, 1);
-    }
-
     // wait for all completions
     return receiveAllFinalization(childTid);
 }
 
 void main() {
     int sentCount = 0,
-        receivedCount = 0,
         minSent = -1,
-        minReceived = -1,
         maxSent = -1,
-        maxReceived = -1;
+        nbCandidat = 0;
     const int n = 20; // number of child processes
-    const int k = 100; // Nombre de simulations
+    const int k = 500; // Nombre de simulations
+    // const int k = 50; // Nombre de simulations
+
+    int[][int] values;
 
     for (int i = 0; i < k; ++i) {
-        const CancelMessage msg = doExecution(n);
-        sentCount += msg.algoSentMsgCount;
-        receivedCount += msg.algoReceivedMsgCount;
+        const Stats stat = doExecution(n);
+        sentCount += stat.nbMsg;
+        nbCandidat += stat.nbCandidat;
         if (minSent == -1) {
-            minSent = msg.algoSentMsgCount;
-            minReceived = msg.algoReceivedMsgCount;
-            maxSent = msg.algoSentMsgCount;
-            maxReceived = msg.algoReceivedMsgCount;
+            minSent = stat.nbMsg;
+            maxSent = stat.nbMsg;
         }
-        if (msg.algoSentMsgCount < minSent) {
-            minSent = msg.algoSentMsgCount;
+        if (stat.nbMsg < minSent) {
+            minSent = stat.nbMsg;
         }
-        if (msg.algoReceivedMsgCount < minReceived) {
-            minReceived = msg.algoReceivedMsgCount;
+        if (stat.nbMsg > maxSent) {
+            maxSent = stat.nbMsg;
         }
-        if (msg.algoSentMsgCount > maxSent) {
-            maxSent = msg.algoSentMsgCount;
-        }
-        if (msg.algoReceivedMsgCount > maxReceived) {
-            maxReceived = msg.algoReceivedMsgCount;
-        }
+        values[stat.nbCandidat] = values.require(stat.nbCandidat, []) ~ [stat.nbMsg];
     }
-    writeln("Meilleur cas (envoyé) : ", minSent, " messages, ", double(minSent) / double(n) , " message/thread");
-    writeln("Meilleur cas (reçu) : ", minReceived, " messages, ", double(minReceived) / double(n), " message/thread");
-    writeln("Pire cas (envoyé) : ", maxSent, " messages, ", double(maxSent) / double(n), " message/thread");
-    writeln("Pire cas (reçu) : ", maxReceived, " messages, ", double(maxReceived) / double(n) , " message/thread");
+
+    Stats[int] stats;
+    foreach (int valuesKey; values.keys) {
+        stats[valuesKey] = stats.require(valuesKey, Stats(-1, -1, -1, -1, -1));
+        int min = -1,
+            max,
+            sum = 0;
+        foreach (int nbMsg; values[valuesKey]) {
+            if (min == -1) {
+                min = nbMsg;
+                max = nbMsg;
+            }
+            if (nbMsg < min) {
+                min = nbMsg;
+            }
+            if (nbMsg > max) {
+                max = nbMsg;
+            }
+            sum += nbMsg;
+        }
+        stats[valuesKey].min = min;
+        stats[valuesKey].max = max;
+        stats[valuesKey].avg = double(sum) / double(values[valuesKey].length);
+    }
+    writeln("Candid.\tAvg\tMin\tMax");
+    foreach (int statsKey; stats.keys.sort) {
+        writeln(statsKey, "\t", stats[statsKey].avg, "\t", stats[statsKey].min, "\t", stats[statsKey].max);
+    }
+
+    writeln("\nMeilleur cas : ", minSent, " messages, ", double(minSent) / double(n) , " message/thread");
+    writeln("Pire cas : ", maxSent, " messages, ", double(maxSent) / double(n), " message/thread");
     writeln(
-        "Nombre moyen de messages envoyé : ", sentCount / k, ", ",
+        "Nombre moyen de messages : ", sentCount / k, ", ",
         (double(sentCount) / double(k)) / double(n), " messages/thread"
     );
     writeln(
-        "Nombre moyen de messages reçu : ", receivedCount / k, ", ",
-        (double(receivedCount) / double(k)) / double(n), " messages/thread"
+        "Nombre moyen de candidats par tour : ", nbCandidat / k, ", ",
+        double(nbCandidat) / double(k * n) , " candidat/thread"
     );
 }

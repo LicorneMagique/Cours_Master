@@ -160,16 +160,13 @@ La fonction `receiveAllFinalization`
 La fonction `main` se charge du traitement.
 
 ```shell
-filename=ex2; dmd -of=$filename $filename.d; ./$filename
+filename=ex2q1_4; dmd -of=$filename $filename.d; ./$filename
 ```
 
 ```text
-Meilleur cas (envoyé) : 77 messages, 3.85 message/thread
-Meilleur cas (reçu) : 96 messages, 4.8 message/thread
-Pire cas (envoyé) : 127 messages, 6.35 message/thread
-Pire cas (reçu) : 146 messages, 7.3 message/thread
-Nombre moyen de messages envoyé : 92, 4.629 messages/thread
-Nombre moyen de messages reçu : 111, 5.579 messages/thread
+Meilleur cas : 77 messages, 3.85 message/thread
+Pire cas : 127 messages, 6.35 message/thread
+Nombre moyen de messages : 92, 4.629 messages/thread
 ```
 
 ### Question 2.4
@@ -215,3 +212,47 @@ Simulation à l'appui
 2 reçoit la candidature de 3, 3 est leader
 3 reçoit la candidature de 3, 3 est leader
 ```
+
+### Question 2.5
+
+Changements par rapport à la *question 2.4*.
+
+- La fonction `main` ne déclenhe plus les élections.
+- Les threads initialisent un booléen `candidat` aléatoirement.
+- Les threads n'exécutent le code pour se porter candidat que si `candidat` est à `true`.
+
+### Question 2.6
+
+```shell
+filename=ex2q5_6; dmd -of=$filename $filename.d; ./$filename
+```
+
+```text
+Candid. Avg     Min     Max
+2       59      59      59
+4       62      62      62
+5       66.8333 49      76
+6       73.36   55      88
+7       72.8857 61      86
+8       75.0167 60      90
+9       79.0886 58      112
+10      80.7253 65      114
+11      82.5395 67      115
+12      86.6833 68      124
+13      82.4884 71      96
+14      85      74      99
+15      86.875  75      116
+
+Meilleur cas : 49 messages, 2.45 message/thread
+Pire cas : 124 messages, 6.2 message/thread
+Nombre moyen de messages : 79, 3.9993 messages/thread
+Nombre moyen de candidats par tour : 9, 0.4977 candidat/thread
+```
+
+Le nombre moyen de messages échangés semble croitre de façon linéaire en fonction du nombre de nœuds candidats.
+
+### Question 3.2
+
+- On retrouve n comme au TP1
+- On initialise un nouveau tableau d'identifiants aléatoires de taille n nommé `tab`
+- On passe ce tableau à tous les nœuds qui prendront comme nouvel identifiant la valeur `tab[identifiant]`

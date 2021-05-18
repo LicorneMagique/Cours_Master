@@ -1,36 +1,6 @@
 # Compte-rendu de TP
 
-## Consignes
-
-Vous devrez rendre un compte-rendu de TP avant le 28 mai au soir
-
-### Objectifs
-
-Ce compte-rendu porte exclusivement sur les TP1 et TP2 et devra comprendre :
-
-- un mini-rapport qui contiendra
-  - les réponses aux questions des TP1 et TP2
-  - des explications sur les programmes que vous avez réalisés.
-    Ces explications doivent permettre à l’évaluateur de comprendre
-    - comment vous êtes passé de l’algorithme au programme
-    - quels sont les éléments que vous ajoutez à l’algorithme pour le rendre pratiquement fonctionnel ; 
-- les programmes que vous avez réalisés.
-  - Les exercices optionnels (exercice 3 pour le TP1 et exercice 4 pour le TP2) ne sont pas à traiter pour le rendu de TP et ne seront pas évalués.
-  - Chaque programme (ou ensemble de programmes fonctionnant ensemble) devra être dans un fichier séparé afin que les évaluateurs puissent facilement les compiler et les exécuter ;
-
-### Rendu
-
-Ce compte-rendu sera soumis sous Tomuss dans la colonne ‘Rendu-TP’ (merci de ne pas soumettre une archive trop volumineuse)
-
-### Notation
-
-- 2 pts sur le travail réalisé en séance sur le TP1
-- 2 pts sur le travail réalisé en séance sur le TP2
-- 6 pts sur le compte-rendu
-  - 2 pts sur la lisibilité des programmes
-  - 2 pts sur la clarté des idées/réponses
-  - 2 pts sur le fonctionnement des programmes)
-- 10 pts attribuées lors des l’évaluation orale du 7 juin (les questions porteront sur votre rapport et vos programmes)
+Julien GIRAUD (11704709)
 
 ## TP1
 
@@ -66,6 +36,8 @@ La communication mise en place entre ces deux processus est
   - envoie un message au thread parent pour indiquer qu'elle a terminé son traitement.
 
 Les fonctions importantes sont toujours `send` et `receive` ainsi que `receiveAllFinalization` et `cast(T)` qui permet de transmettre tout type d'objet aux threads.
+
+<div style="page-break-after: always;">
 
 ### Question 2.3
 
@@ -110,6 +82,8 @@ for (int i = 0; i < n; i++) {
 }
 vectHorloge[myId] = 1;
 ```
+
+<div style="page-break-after: always;">
 
 L'incrémentation et la mise à jour de l'horloge se font avec le code suivant après chaque receive.
 
@@ -159,11 +133,11 @@ La fonction `receiveAllFinalization`
 
 La fonction `main` se charge du traitement.
 
-```shell
-filename=ex2q1_4; dmd -of=$filename $filename.d; ./$filename
-```
+<div style="page-break-after: always;">
 
-```text
+```shell
+$ filename=ex2q1_4; dmd -of=$filename $filename.d; ./$filename
+
 Meilleur cas : 77 messages, 3.85 message/thread
 Pire cas : 127 messages, 6.35 message/thread
 Nombre moyen de messages : 92, 4.629 messages/thread
@@ -187,7 +161,7 @@ Pour obtenir le pire cas on suppose que
 
 Dans ce cas l'élection de leader nécessite `n²` messages soit `n` messages par thread.
 
-Simulation à l'appui
+Simulation à l'appui :
 
 ```text
 1 → 2 → 3 → 1
@@ -224,33 +198,33 @@ Changements par rapport à la *question 2.4*.
 ### Question 2.6
 
 ```shell
-filename=ex2q5_6; dmd -of=$filename $filename.d; ./$filename
-```
+$ filename=ex2q5_6; dmd -of=$filename $filename.d; ./$filename
 
-```text
 Candid. Avg     Min     Max
-3       54      54      54
-4       62      58      65
-5       71.5714 61      78
-6       72.2667 57      85
-7       74.4595 60      91
-8       78.1077 63      120
-9       78.3125 62      116
-10      79.3043 65      101
-11      82.6533 66      106
-12      86.1892 64      108
-13      85.5385 72      112
-14      86.9048 73      132
-15      83.75   78      94
-17      76      76      76
+4       68.6    56      76
+5       73.5    65      82
+6       73.8636 61      87
+7       74.6829 59      93
+8       76.4906 59      111
+9       78.3699 64      98
+10      80.7283 64      111
+11      80.7692 63      104
+12      84.0833 69      114
+13      86.7273 74      113
+14      85.9231 70      107
+15      87.5    81      95
+16      83.5    82      85
+17      92      92      92
 
-Meilleur cas : 54 messages, 2.7 message/thread
-Pire cas : 132 messages, 6.6 message/thread
-Nombre moyen de messages : 79, 3.9944 messages/thread
-Nombre moyen de candidats par tour : 9, 0.4921 candidat/thread
+Meilleur cas : 49 messages, 2.45 message/thread
+Pire cas : 117 messages, 5.85 message/thread
+Nombre moyen de messages : 80, 4.0165 messages/thread
+Nombre moyen de candidats par tour : 9, 0.496 candidat/thread
 ```
 
-Le nombre moyen de messages échangés semble croitre de façon parabolique en fonction du nombre de nœuds candidats, le sommet de la parabobe est atteint entre 12 et 14 candidats environ.
+![courbe](./courbe.svg)
+
+Le nombre moyen de messages échangés semble croitre de façon linéaire en fonction du nombre de nœuds candidats.
 
 ### Question 3.2
 

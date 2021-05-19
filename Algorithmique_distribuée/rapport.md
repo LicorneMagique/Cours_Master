@@ -226,8 +226,14 @@ Nombre moyen de candidats par tour : 9, 0.496 candidat/thread
 
 Le nombre moyen de messages échangés semble croitre de façon linéaire en fonction du nombre de nœuds candidats.
 
+### Question 3.1
+
+Se référer à la fonction `getRandomIds`.
+
 ### Question 3.2
 
-- On retrouve n comme au TP1
-- On initialise un nouveau tableau d'identifiants aléatoires de taille n nommé `tab`
-- On passe ce tableau à tous les nœuds qui prendront comme nouvel identifiant la valeur `tab[identifiant]`
+1. Élir un leader avec la méthode du TP2.
+
+2. Le leader fait passer un compteur à tous les noeuds de façon à retrouver `n` comme au TP1, chaque noeud mémorise la valeur du compteur au moment où il l'a reçu puis l'incrémente avant de l'envoyer au noeud suivant, cette valeur servira d'index pour récupérer le nouvel identifiant.
+
+3. Le leader initialise un nouveau tableau d'identifiants aléatoires dans `[0, n]`, il l'envoi à tous les noeuds et chaque noeud met à jour son identifiant à l'aide de l'index.

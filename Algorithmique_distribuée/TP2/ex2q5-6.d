@@ -42,7 +42,7 @@ void spawnedFunc(int myId, int n) {
     Noeud myself, neighbor;
     int algoSentMsgCount = 0;
     int algoReceivedMsgCount = 0;
-    bool candidat = getRandomBoolean(); // TODO générer booléen aléatoirement
+    bool candidat = getRandomBoolean();
     writeln(candidat);
 
     // waiting for the reception of information sent by the father

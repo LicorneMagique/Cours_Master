@@ -1,8 +1,23 @@
 # Rapport
 
-## Rappel des projets
+## Contexte des projets
 
-Je participe au développement de trois projets, **Main** notre application principale, **crossroads** notre produit dirrigeant (idéalement l'avenir de Finalgo) et **finsearch** une sorte de Main simplifié dont nous gérons le développement et la maintenance pour l'un de nos clients.
+Finalgo est une startup spécialisée dans
+
+- la recherche de financements,
+- la construction et la gestion de dossiers de financement,
+- la recherche de subvention.
+
+Nous développons des applications web pour répondre à ces besoins en SaaS<sup>1</sup>, nos clients ont donc un abonnement payant pour accéder à ces plateformes.
+
+Cette année j'ai participé au développement des quatre projets principaux de Finalgo,
+
+- **Main** notre application de construction et de gestion de dossiers de financement,
+- **Crossroads Financing** notre application de recherche de financements,
+- **Crossroads Subvention** notre application de recherche de subventions,
+- **Finsearch** une sorte de Main simplifié dont nous gérons le développement et la maintenance pour l'un de nos clients.
+
+1 : *Software as a service*
 
 En terme de code chaque application possède un front Angular et un back Java Spring qui fonctionne sous forme d'une API REST. Le back est le même pour Main et pour Crossroads, puis Finsearch possède un front et un back ce qui nous fait 5 projets.
 

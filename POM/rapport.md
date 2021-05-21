@@ -40,11 +40,17 @@ finsearch : parler de l'écran backoffice + du dev persistance plateforme de con
 - SSO Crossroads Google
 - Refacto : enum générique, getJsonObjectFromPath
 
+On m'a confié toutes les tâches relatives au SSO (Single Sign-On), l'objectif de ces tâches est de permettre aux utilisateurs de se connecter sur nos plateformes à partir de leurs comptes déjà existants sur d'autres plateformes comme Google ou Microsoft.
+
+*Image bouton se connecter avec Google*
+
 #### Cafpi
 
-Début du développement du système de connexion SSO avec Microsoft Azure pour l'un de nos clients (main back)
-Début de l'implémentation de la connexion par SSO Microsoft Azure (main front)
-Mise en place d'un système de connexion SSO / OpenID Connect sur notre application pour que les utilisateurs du client Cafpi puissent se connecter avec leur compte Microsoft Azure
+J'ai commencé par implémenter le SSO pour l'un des clients de Main, leur entreprise utilise la suite Microsoft Azure qui permet la mise en place du SSO pour ses employés.
+
+Dans un premier temps j'ai ajouté la page de connexion spécifique sur le front, Microsoft fournit une librairie qui permet de rediriger les utilisateurs sur leur page de connexion. Pour l'utiliser il suffit de l'ajouter à la page puis de l'appeler avec des identifiants prédéfinis que notre client nous a fournit. Ensuite la librairie nous retourne le JWT de l'utilisateur, que nous devons utiliser afin de valider sa connexion.
+
+Une fois le JWT récupéré, le front le transmet au back qui le vérifie puis connecte l'utilisateur. Pour vérifier ce JWT il faut utiliser sa clé publique de Microsoft accessible sur l'API de Microsoft. J'ai codé une fonction qui se charge de récupérer cette clé. D'abord elle récupère la liste des clés publiques de Microsoft, puis elle utilise le `Key ID` (kid) présent dans l'entête du token afin de trouver la clé correspondante. Une fois récupérée j'ai utilisé la librairie `X.509` de Java Spring pour vérifier la signature du token, puis sa date de validité. Une fois que le token est validé, le back retourne un nouveau JWT au front qui est maintenant connecté.
 
 #### Crossroads
 

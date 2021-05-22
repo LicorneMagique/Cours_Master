@@ -31,37 +31,52 @@ En terme de code chaque application possède un front Angular et un back Java Sp
 
 ### Tâche Finsearch
 
-finsearch : parler de l'écran backoffice + du dev persistance plateforme de connexion des utilisateurs
+Sur le projet Finsearch j'ai réalisé l'écran de gestion des administrateurs. Cet écran n'est accessible pour les utilisateurs normaux. Il affiche un tableau dont chaque ligne récapitule l'avancement d'un utilisateur dans la gestion de son plan de financement. Il est possible de trier le tableau à partir de ses colones et l'administrateur peut se connecter sur le compte d'un utilisateur à partir de sa ligne dans le tableau.
 
 ### Tâche SSO
 
-- SSO Cafpi
-- SSO Crossroads Intuit
-- SSO Crossroads Google
-- Refacto : enum générique, getJsonObjectFromPath
+On m'a confié toutes les tâches relatives au SSO OAUTH2 (Single Sign-On), l'objectif de ces tâches est de permettre aux utilisateurs de se connecter sur nos plateformes à partir de leurs comptes déjà existants sur d'autres plateformes comme Google ou Microsoft.
 
-On m'a confié toutes les tâches relatives au SSO (Single Sign-On), l'objectif de ces tâches est de permettre aux utilisateurs de se connecter sur nos plateformes à partir de leurs comptes déjà existants sur d'autres plateformes comme Google ou Microsoft.
+Personne n'avait développé ce type de fonctionnalité dans les projets de Finalgo, j'ai donc écrit une page sur notre "wiki" interne pour expliquer le fonctionnement du SSO et retrouver facilement les documentations.
 
-*Image bouton se connecter avec Google*
+Il faut savoir que pour être connecté, notre front doit avoir récupérer l'utilisateur ainsi qu'un JWT généré par notre back.
 
-#### Cafpi
+#### Microsoft Azure sur Main
 
-J'ai commencé par implémenter le SSO pour l'un des clients de Main, leur entreprise utilise la suite Microsoft Azure qui permet la mise en place du SSO pour ses employés.
+J'ai commencé par implémenter la connexion SSO pour l'un des clients de Main, leur entreprise utilise la suite Microsoft Azure qui permet la mise en place du SSO pour ses employés. Pour cette tâche tous les comptes existaient déjà sur Main. Dans un premier temps j'ai ajouté leur page de connexion qui se charge de récupérer un JWT (JSON Web Token), ensuite le front transmet ce token au back qui se charge de vérifier sa validité et de connecter l'utilisateur.
 
-Dans un premier temps j'ai ajouté la page de connexion spécifique sur le front, Microsoft fournit une librairie qui permet de rediriger les utilisateurs sur leur page de connexion. Pour l'utiliser il suffit de l'ajouter à la page puis de l'appeler avec des identifiants prédéfinis que notre client nous a fournit. Ensuite la librairie nous retourne le JWT de l'utilisateur, que nous devons utiliser afin de valider sa connexion.
+Pour le front Microsoft fournit une librairie qui permet de gérer la connexion SSO, il suffit de lui fournir divers identifiants. Ensuite la librairie nous retourne un token et on l'envoie au back pour se connecter.
 
-Une fois le JWT récupéré, le front le transmet au back qui le vérifie puis connecte l'utilisateur. Pour vérifier ce JWT il faut utiliser sa clé publique de Microsoft accessible sur l'API de Microsoft. J'ai codé une fonction qui se charge de récupérer cette clé. D'abord elle récupère la liste des clés publiques de Microsoft, puis elle utilise le `Key ID` (kid) présent dans l'entête du token afin de trouver la clé correspondante. Une fois récupérée j'ai utilisé la librairie `X.509` de Java Spring pour vérifier la signature du token, puis sa date de validité. Une fois que le token est validé, le back retourne un nouveau JWT au front qui est maintenant connecté.
+En back il n'était pas possible d'utiliser les librairies de SSO pour des raisons de conflit avec le système de connexion normal. Le plus simple était de vérifier le token manuellement puis de renvoyer un nouveau JWT. Pour ce faire j'ai récupéré l'identifiant du token (`kid`) dans son entête, puis je m'en suis servi pour retrouver sa clé publique au format texte sur l'API de Microsoft. J'ai ensuite converti cette clé en un objet de type `PublicKey` ce qui m'a permi de vérifier la signature du token, puis sa date de validité avec la librairie `JWT`. Une fois que le token est validé, le back retourne un nouveau JWT au front qui l'utilise pour récupérer l'utilisateur courant et se connecter.
 
-#### Crossroads
+#### Google et Quickbooks sur Crossroads
 
-ajout de la connexion sso de Google (back et front)
-Mise en place d'une connexion SSO OAUTH2 avec la plateforme Quickbooks / Intuit
+Sur le projet Crossroads j'ai implémenté la connexion SSO depuis les plateformes Google et Quickbooks. Pour cette tâche il fallait gérer la création de compte en plus de la connexion. J'ai fait en sorte d'utiliser un code très générique pour qu'il soit facile d'ajouter une nouvelle plateforme, cette tâche a nécessité la réécriture de mon code sur le SSO en back.
 
-#### Refacto global à Cafpi et à Crossroads
+Avant d'implémenter le SSO j'ai effectué une manipulation sur les interfaces de Google et de Quickbooks. L'objectif était de configurer une application sur ces plateformes afin d'obtenir divers identifiants nécessaires. J'ai également modifié la page de connexion du front de façon à ce qu'on puisse lui transmettre un JWT en paramètre dans l'URL, et qu'elle s'en serve pour récupérer l'utilisateur courant afin de se connecter.
 
-réécriture du code de sso à l'aide d'un component spécifique (front)
-factorisation des fonctions de vérification des tokens sso de Google Microsoft (back)
-factorisation des fonctions de traitement des connexion sso d'intuit et de Google (back)
+Pour Google j'ai utilisé une librairie en front afin de rediriger les utilisateurs sur leur page de connexion. Une fois connecté j'ai configuré Google pour les rediriger sur une API en back, le JWT est alors dans l'URL. J'ai utilisé un système similaire à Microsoft Azure pour vérifier la validité du token et récupérer les informations qu'il contient. Ensuite j'ai géré l'éventuelle création de compte, puis j'ai redirigé les utilisateurs sur la page de connexion avec un nouveau JWT dans l'URL pour que le front termine sa connexion.
+
+Pour Quickbooks il y a une librairie Java qui permet de simplifier tout le développement. En front j'ai simplement redirigé l'utilisateur sur une API du back. Cette API se charge de rediriger les utilisateurs sur leur page de connexion, ensuite Quickbooks est configuré pour rediriger l'utilisateur sur une deuxième API du back. Cette API se charge de vérifier le token et de récupérer les informations pour la création de compte en utilisant la librairie fournie par Quickbooks. Une fois authentifié, chaque utilisateur est redirigé sur le front avec un nouveau JWT dans l'URL et termine sa connexion.
+
+En terme de généricité du code en back j'ai factorisé le fonctionnement des trois types de SSO en déplaçant toute la partie spécifique dans une classe Enum. Pour chaque type de SSO il y a une URL vers l'API des clés publiques au format JSON, le chemin à utiliser pour trouver la bonne clé dans le JSON à partir du `kid`, les clés à utiliser pour récupérer l'email dans le token, et un booléen pour indiquer si le texte de la clé publique est encodé en Base64 ou non. J'ai crée la fonction qui prend en entrée un objet de type JSON, un chemin similaire à XPath pour le JSON, et qui retourne le sous-élément du JSON correspondant au chemin.  
+Grâce à cet Enum Java j'ai pu réduire le code à seule fonction générique pour récupérer la clé publique d'un token, vérifier sa validité et récupérer les informations d'un utilisateur.
+
+```Java
+AZURE(
+    "https://login.microsoftonline.com/{appId}/discovery/v2.0/keys",
+    "keys/?kid=%s/x5c/0", // Le `%s` est remplacé par la valeur de `kid`
+    true, // Il faut utiliser un décodeur de Base64
+    Arrays.asList("unique_name", "upn", "preferred_username") // Le premier de ces champs à ne pas être vide est l'email
+),
+GOOGLE(
+    "https://www.googleapis.com/oauth2/v1/certs",
+    "%s",
+    false,
+    Arrays.asList("email")
+),
+QUICKBOOKS(); // Géré par la librairie Quickbooks
+```
 
 ### Tâche antivirus
 

@@ -94,32 +94,40 @@ Je me suis plongé dans la documentation de la librairie `IText` que nous utilis
 
 ### Produit subvention
 
-#### Mise en place back
+On m'a chargé de créer un MVP (Produit Viable au Minimum) d'outil de recherche de subventions pour les entreprises, basé sur l'API `aides-entreprises.fr`. J'ai mis environ deux semaines à réaliser ce MVP et par la suite, toute l'équipe s'est mise à travailler sur le produit Subvention. L'objectif était d'améliorer suffisament le produit dans tous ces aspects pour mettre en place des abonnements. J'ai commencé ce projet fin janvier, les abonnements sont en place depuis plusieurs mois et toute l'équite travail encore sur l'amélioration de ce produit.
 
-Mise en place d'un service Java permettant de manipuler l'API REST Open Data du site aides-entreprises.fr
-Mise en place d'une API de recherche des subventions
-Mise en place d'un algorithme de filtre des subventions en fonction des réponses de l'utilisateur
+#### Mise en place du MVP en back
 
-#### Mise en place front
+J'ai commencé par regarder la page swagger de l'API `aides-entreprises.fr`, j'ai testé massivement les différentes ressources (URL) que l'API offre ainsi que quelques paramètres pour certaines d'entre elles. Une fois l'API en main j'ai crée un service qui permet d'appeler chacune des ressources de l'API, avec tous les éventuels paramètres.
 
-##### Refactoring
+Certaines des API permettaient de récupérer les différents critères de recherche comme les départements, les secteurs d'activité ou la taille de l'entrprise. J'ai donc ajouté des API sur notre back pour que le front puisse récupérer ces différents critères. Il était alors possible pour le front d'afficher les *valeurs* possible pour un critère, et de connaître la *clé* `aides-entreprises.fr` associée à chacune de ces valeurs.  
+L'exemple suivant illustre le principe de *valeur* et de *clé* pour le critère *taille de l'entreprise*.
 
-Réécriture du formulaire de recherche de financements dans le but de séparer la partie formulaire générique de la partie recherche de financements
-Réécriture de la page résultats dans le but de séparer la partie page de résultats générique de la partie résultats de financements
+```json
+[
+    { "key": "1", "caption": "Moins de 10 salariés" },
+    { "key": "2", "caption": "Entre 10 et 50 salariés" },
+    { "key": "3", "caption": "Plus de 50 salariés" }
+]
+```
 
-##### Formulaire générique
+Une fois le service et les API opérationnelles j'ai crée une API qui se charge de récupérer les *clés* des réponses d'un utilisateur, d'effectuer une recherche de subvention via le service et de transmettre les résultats au front.
 
-Ajout d'options pour passer certaines questions en choix multiple
-Ajout d'une barre de recherche sur les questions de type dropdown
-Implémentation d'un système de sauvegarde des captions des réponses du formulaire
+#### Mise en place du MVP en front
 
-##### Formulaire spécifique
+Pour le front il nous fallait un système de formulaire avec la possibilité d'avoir plusieurs chemins de questions, une gestion de compte et un moyen d'afficher des résultats. Il s'agissait exactement de ce que faisait Crossroads, qui à ce moment là ne servait qu'à la recherche de financement. Il a donc fallu séparer Crossroads en deux, et surtout réécrire le code du formulaire qui mélangeait des traitements métier avec des traitements de formulaire générique.
 
-Création d'un nouveau formulaire de recherche de suventions pour les entreprises
-Mise en place d'un système de questions dynamiques dont une partie du contenu est récupéré depuis l'API de recherche des subventions
-Création d'une nouvelle page de résultats pour les subventions
-Implémentation d'un mode debug qui affiches des informations spécifiques aux subventions
-Création d'un algorithme de recherche de contact dans les données de l'API (que Bertrand a corrigé)
+##### Séparation des composants
+
+Sur Crossroads tout ce qui est spécifique à un formulaire se trouve dans un fichier JSON. On y trouve l'intitulé de chaque question, les réponses possibles, le type de la question et la condition pour qu'elle apparaîsse.
+
+J'ai séparé en deux le composant qui se chargeait d'afficher dynamiquement chaque question du formulaire et de gérer la partie spécifique aux plans de financement. J'ai utilisé l'héritage entre les classes TypeScript de façon à ce que le composant du formulaire *Financing* hérite du composant de formulaire générique. J'ai donc déplacé chaque fonction dans le bon composant et j'ai réglé toutes les erreurs dues à des fonctionnements asynchrones et à des variables utilisées par les deux composants.
+
+J'ai également réécris le composant de la page des résultats de façon à ce qu'elle encapsule un autre composant qui lui est spécifique à l'affichage du résultat.
+
+##### Formulaire spécifique aux subventions
+
+J'ai crée un composant qui hérite du formulaire générique pour y ajouter le code spécifique aux subventions. J'ai établi la première version du formulaire au format JSON, j'ai fait en sorte que les réponses possibles de certaines questions soit requêtées sur le back et j'ai ajouté des questions dont le contenu provient directement des subventions que nous retourne l'API `aides-entreprise.fr`.
 
 #### Génération des statistiques
 

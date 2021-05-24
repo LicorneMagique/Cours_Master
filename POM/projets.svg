@@ -145,8 +145,8 @@
       </g>
       <g class="com.sun.star.drawing.CustomShape">
        <g id="id9">
-        <rect class="BoundingBox" stroke="none" fill="none" x="7288" y="1020" width="10296" height="11589"/>
-        <path fill="none" stroke="rgb(21,132,102)" stroke-width="81" stroke-linejoin="round" d="M 9410,1574 C 8688,1991 8118,2643 7758,3464 7398,4285 7261,5246 7360,6251 7459,7256 7790,8269 8321,9189 8852,10109 9564,10903 10385,11491 11206,12079 12107,12441 12998,12539 13889,12638 14738,12471 15461,12054 16183,11637 16752,10985 17112,10164 17472,9343 17610,8382 17511,7377 17412,6372 17080,5358 16549,4439 16018,3519 15307,2725 14486,2137 13665,1549 12763,1187 11872,1088 10981,990 10132,1157 9410,1574 L 9410,1574 Z"/>
+        <rect class="BoundingBox" stroke="none" fill="none" x="7286" y="1020" width="10296" height="11589"/>
+        <path fill="none" stroke="rgb(21,132,102)" stroke-width="81" stroke-linejoin="round" d="M 9408,1574 C 8686,1991 8116,2643 7756,3464 7396,4285 7259,5246 7358,6251 7457,7256 7788,8269 8319,9189 8850,10109 9562,10903 10383,11491 11204,12079 12105,12441 12996,12539 13887,12638 14736,12471 15459,12054 16181,11637 16750,10985 17110,10164 17470,9343 17608,8382 17509,7377 17410,6372 17078,5358 16547,4439 16016,3519 15305,2725 14484,2137 13663,1549 12761,1187 11870,1088 10979,990 10130,1157 9408,1574 L 9408,1574 Z"/>
        </g>
       </g>
       <g class="com.sun.star.drawing.TextShape">
@@ -193,14 +193,14 @@
       <g class="Group">
        <g class="com.sun.star.drawing.CustomShape">
         <g id="id16">
-         <rect class="BoundingBox" stroke="none" fill="none" x="9782" y="7432" width="7538" height="3988"/>
-         <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" stroke-linejoin="round" d="M 17301,9426 C 17301,9772 17128,10113 16799,10413 16469,10714 15996,10963 15426,11136 14856,11310 14209,11401 13550,11401 12892,11401 12245,11310 11675,11136 11105,10963 10632,10714 10302,10413 9973,10113 9800,9772 9800,9426 9800,9079 9973,8738 10302,8438 10632,8137 11105,7888 11675,7715 12245,7541 12892,7450 13550,7450 14209,7450 14856,7541 15426,7715 15996,7888 16469,8137 16799,8438 17128,8738 17301,9079 17301,9426 Z"/>
+         <rect class="BoundingBox" stroke="none" fill="none" x="9582" y="7432" width="7538" height="3988"/>
+         <path fill="none" stroke="rgb(0,0,0)" stroke-width="35" stroke-linejoin="round" d="M 17101,9426 C 17101,9772 16928,10113 16599,10413 16269,10714 15796,10963 15226,11136 14656,11310 14009,11401 13351,11401 12692,11401 12045,11310 11475,11136 10905,10963 10432,10714 10102,10413 9773,10113 9600,9772 9600,9426 9600,9079 9773,8738 10102,8438 10432,8137 10905,7888 11475,7715 12045,7541 12692,7450 13350,7450 14009,7450 14656,7541 15226,7715 15796,7888 16269,8137 16599,8438 16928,8738 17101,9079 17101,9426 Z"/>
         </g>
        </g>
        <g class="com.sun.star.drawing.TextShape">
         <g id="id17">
-         <rect class="BoundingBox" stroke="none" fill="none" x="10050" y="7682" width="7001" height="2788"/>
-         <text class="TextShape"><tspan class="TextParagraph" font-family="Ubuntu" font-size="635px" font-weight="400"><tspan class="TextPosition" x="11954" y="8400"><tspan fill="rgb(0,0,0)" stroke="none">Crossroads</tspan></tspan></tspan><tspan class="TextParagraph" font-family="Ubuntu" font-size="635px" font-style="italic" font-weight="400"><tspan class="TextPosition" x="12445" y="9112"><tspan fill="rgb(0,0,0)" stroke="none">Angular</tspan></tspan></tspan><tspan class="TextParagraph" font-family="Ubuntu" font-size="635px" font-weight="400"><tspan class="TextPosition" x="10312" y="10124"><tspan fill="rgb(0,0,0)" stroke="none">Financing | Subvention</tspan></tspan></tspan></text>
+         <rect class="BoundingBox" stroke="none" fill="none" x="9850" y="7682" width="7001" height="2788"/>
+         <text class="TextShape"><tspan class="TextParagraph" font-family="Ubuntu" font-size="635px" font-weight="400"><tspan class="TextPosition" x="11754" y="8400"><tspan fill="rgb(0,0,0)" stroke="none">Crossroads</tspan></tspan></tspan><tspan class="TextParagraph" font-family="Ubuntu" font-size="635px" font-style="italic" font-weight="400"><tspan class="TextPosition" x="12245" y="9112"><tspan fill="rgb(0,0,0)" stroke="none">Angular</tspan></tspan></tspan><tspan class="TextParagraph" font-family="Ubuntu" font-size="635px" font-weight="400"><tspan class="TextPosition" x="10112" y="10124"><tspan fill="rgb(0,0,0)" stroke="none">Financing | Subvention</tspan></tspan></tspan></text>
         </g>
        </g>
       </g>

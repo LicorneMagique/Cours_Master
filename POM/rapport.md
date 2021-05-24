@@ -17,9 +17,11 @@ Cette année j'ai participé au développement des quatre projets principaux de 
 - **Crossroads Subvention** notre application de recherche de subventions,
 - **Finsearch** une sorte de Main simplifié dont nous gérons le développement et la maintenance pour l'un de nos clients.
 
-1 : *Software as a service*
+En terme de code chaque application possède un front<sup>2</sup> Angular et un back<sup>3</sup> Java Spring Boot qui fonctionne sous forme d'une API REST. Le back est le même pour Main et pour Crossroads, puis Finsearch possède un front et un back ce qui nous fait 5 projets informatiques différents.
 
-En terme de code chaque application possède un front Angular et un back Java Spring qui fonctionne sous forme d'une API REST. Le back est le même pour Main et pour Crossroads, puis Finsearch possède un front et un back ce qui nous fait 5 projets.
+1 : *Software as a service*  
+2 : *Client web accessible aux utilisateurs*  
+3 : *Serveur appelé par le client web*
 
 ![.](projets.svg)
 
@@ -37,17 +39,21 @@ Sur le projet Finsearch j'ai réalisé l'écran de gestion des administrateurs. 
 
 On m'a confié toutes les tâches relatives au SSO OAUTH2 (Single Sign-On), l'objectif de ces tâches est de permettre aux utilisateurs de se connecter sur nos plateformes à partir de leurs comptes déjà existants sur d'autres plateformes comme Google ou Microsoft.
 
-Personne n'avait développé ce type de fonctionnalité dans les projets de Finalgo, j'ai donc écrit une page sur notre "wiki" interne pour expliquer le fonctionnement du SSO et retrouver facilement les documentations.
+Personne n'avait développé ce type de fonctionnalité dans les projets de Finalgo, j'ai donc écrit une page sur notre *wiki*<sup>4</sup> interne pour expliquer le fonctionnement du SSO et retrouver facilement les documentations.
 
 Il faut savoir que pour être connecté, notre front doit avoir récupérer l'utilisateur ainsi qu'un JWT généré par notre back.
 
+4 : *Projet Google Sites qui nous sert de documentation interne*
+
 #### SSO Microsoft Azure sur Main
 
-J'ai commencé par implémenter la connexion SSO pour l'un des clients de Main, leur entreprise utilise la suite Microsoft Azure qui permet la mise en place du SSO pour ses employés. Pour cette tâche tous les comptes existaient déjà sur Main. Dans un premier temps j'ai ajouté leur page de connexion qui se charge de récupérer un JWT (JSON Web Token), ensuite le front transmet ce token au back qui se charge de vérifier sa validité et de connecter l'utilisateur.
+J'ai commencé par implémenter une connexion SSO spécifique à l'un des clients<sup>5</sup> de Main, leur entreprise utilise la suite Microsoft Azure qui permet la mise en place du SSO pour ses employés. Pour cette tâche tous les comptes existaient déjà sur Main. Dans un premier temps j'ai ajouté leur page de connexion qui se charge de récupérer un JWT (JSON Web Token), ensuite le front transmet ce token au back qui se charge de vérifier sa validité et de connecter l'utilisateur.
 
 Pour le front Microsoft fournit une librairie qui permet de gérer la connexion SSO, il suffit de lui fournir divers identifiants. Ensuite la librairie nous retourne un token et on l'envoie au back pour se connecter.
 
 En back il n'était pas possible d'utiliser les librairies de SSO pour des raisons de conflit avec le système de connexion normal. Le plus simple était de vérifier le token manuellement puis de renvoyer un nouveau JWT. Pour ce faire j'ai récupéré l'identifiant du token (`kid`) dans son entête, puis je m'en suis servi pour retrouver sa clé publique au format texte sur l'API de Microsoft. J'ai ensuite converti cette clé en un objet de type `PublicKey` ce qui m'a permi de vérifier la signature du token, puis sa date de validité avec la librairie `JWT`. Une fois que le token est validé, le back retourne un nouveau JWT au front qui l'utilise pour récupérer l'utilisateur courant et se connecter.
+
+5 : *Un client est une entreprise, plusieurs utilisateurs y sont associés*
 
 #### SSO Google et Quickbooks sur Crossroads
 
@@ -82,9 +88,9 @@ QUICKBOOKS(); // Géré par la librairie Quickbooks
 
 J'ai mis en place l'antivirus ClamAV sur Main pour vérifier que les pièces administratives déposées par les utilisateurs ne contiennent pas de virus.
 
-Avant de commencer le développement de cette tâche j'ai effectué des recherches pour trouver comment utiliser un antivirus avec Java sur une machine sous Linux, c'est comme ça que j'ai eu connaissance de ClamAV. Ensuite je l'ai installé sur ma machine et sur notre serveur. L'installation de cet antivirus nécessite une vingtaine de commandes qui ne sont pas bien documentés, j'ai donc rajouté une page sur notre "wiki" où j'ai décrit toute la procédure. J'ai également crée un service pour lancer automatiquement ClamAV au démarrage de Linux et pour le mettre à jour automatiquement.
+Avant de commencer le développement de cette tâche j'ai effectué des recherches pour trouver comment utiliser un antivirus avec Java sur une machine sous Linux, c'est comme ça que j'ai eu connaissance de ClamAV. Ensuite je l'ai installé sur ma machine et sur notre serveur. L'installation de cet antivirus nécessite une vingtaine de commandes qui ne sont pas bien documentés, j'ai donc rajouté une page sur notre *wiki* où j'ai décrit toute la procédure. J'ai également crée un service pour lancer automatiquement ClamAV au démarrage de Linux et pour le mettre à jour automatiquement.
 
-Une fois l'antivirus démarré j'ai pu utiliser la librairie Java fournie par ClamAV pour coder une fonction de vérification des fichiers. J'ai ensuite branché cette fonction sur l'API d'upload des pièces administratives et j'ai crée un code d'erreur correspondant à une pièce refusée car infectée. J'ai également déclanché l'envoi d'un message sur le Slack de Finalgo en cas de problème inconnu avec l'antivirus. En front j'ai utilisé le code d'erreur pour afficher un message en cas de menace détectée.
+Une fois l'antivirus démarré j'ai pu utiliser la librairie Java fournie par ClamAV pour coder une fonction de vérification des fichiers. J'ai ensuite branché cette fonction sur l'API d'upload des pièces administratives et j'ai crée un code d'erreur correspondant à une pièce refusée car infectée. J'ai également déclenché l'envoi d'un message sur le Slack de Finalgo en cas de problème inconnu avec l'antivirus. En front j'ai utilisé le code d'erreur pour afficher un message en cas de menace détectée.
 
 ### Personnalisation de la note de synthèse
 
@@ -137,42 +143,57 @@ J'ai également réécris le composant de la page des résultats de façon à ce
 
 J'ai crée un composant qui hérite du formulaire générique pour y ajouter le code spécifique aux subventions. J'ai établi la première version du formulaire au format JSON, j'ai fait en sorte que les réponses possibles de certaines questions soit requêtées sur le back et j'ai ajouté des questions dont le contenu provient directement des subventions que nous retourne l'API `aides-entreprise.fr`.
 
-#### Analyse du comportement de l'API aides-entreprises.fr
+#### Analyse du comportement de l'API `aides-entreprises.fr`
 
-Dans le cadre de l'amélioration du formulaire après la création du MVP j'ai étudié chacun des critère de recherche que l'API `aides-entreprise.fr` nous permet d'utiliser. J'ai simulé le comportement de notre application avec PostMan pour expliquer des résultats incohérents, j'ai écrit un script pour générer des statistiques sur la couverture en subvention des différents critères et j'ai réunis toutes ces données sur une page de notre "wiki". J'ai également utilisé les informations réunies pour améliorer le formulaire et augmenter le nombre de subventions pertinantes.
+Dans le cadre de l'amélioration du formulaire après la création du MVP j'ai étudié chacun des critère de recherche que l'API `aides-entreprise.fr` nous permet d'utiliser. J'ai simulé le comportement de notre application avec PostMan pour expliquer des résultats incohérents, j'ai écrit un script pour générer des statistiques sur la couverture en subvention des différents critères et j'ai réunis toutes ces données sur une page de notre *wiki*. J'ai également utilisé les informations réunies pour améliorer le formulaire et augmenter le nombre de subventions pertinantes.
 
 ### Améliorations du produit Subvention
 
-Présenter l'algo de relachement des contraintes en 20 mots
-
-#### Réduction du nombre de question grâce au siret
-
-Préciser quand même que c'est en pause et planté depuis un moment
-
-Dans le formulaire des subvention, remplissage automatique de certaines questions à partir des informations du code siret qu'on récupère depuis l'API de l'INSEE
-Création de table de convertion code effectif siret -> code effectif aides-entreprises et code postal -> code territoire aides-entreprises
-ajout des informations récupérées par le code siret dans le mode debug du front (front et back)
-récupération automatique du profil aides-entreprises à partir du numéro de siret (back)
+Pour la suite des tâches sur les subventions il faut savoir que nous avons utilisé un algorithme qui relachait certains critères de recherches, dans un ordre déterminé, de façon à trouver des subventions lorsque les critères de recherche étaient trop contraignants.
 
 #### Recherche par mots clés
 
-ajout d'un système de recherche de subvention par mots clés (back)
-ajout de la question pour récupérer les mots clés (front)
-ajout d'un système de niveau de priorité des paramètres aides-entreprises pour améliorer l'algorithme de relachement des contraintes
+J'ai ajouté une question dans le formulaire qui demande aux utilisateurs d'entrer des mots clés en rapport avec leur projet ou leur entreprise. J'ai crée un algorithme pour enlever l'essentiel des mots de liaison inutiles. J'ai utilisé l'algorithme de relachement des contraintes de façon à n'envoyer que les subventions qui contiennent l'un des mots clés de l'utilisateurs dans un premier temps, puis si elles sont toutes refusées nous envoyons les autres subventions car les mots clés des utilisateurs ne sont pas fiables.
 
-#### Indépendance de l'API
+#### Pré-remplissage du formulaire grâce au siret
 
-Ajout système de copie quotidien de la base de données des subventions avec un cron
-Enregistrement de certaines informations des subventions dans notre base de données
-Envoi de ces informations à notre front
-Ajout d'un système de traitement spécifique des subventions pour ajouter de nouveaux critères que l'API aides-entreprises.fr ne prend pas en charge
-
-j'ai repris le dev de nettoyage du texte et je l'ai perfectionné
+Dans le but de pré-remplir les réponses du formulaire j'ai utilisé le numéro de siret des utilisateurs afin de récupérer le nom de leur entreprise, son effectif, son secteur d'activité et le département de son siège social. J'ai utilisé l'API `Sirene` de l'INSEE afin de récupérer les informations sur le code siret, notament le nom, l'effectif, l'adresse et le code NAF. J'ai ensuite utilisé une table de conversion réalisée par un membre de l'équipe afin de récupérer la liste des secteurs d'activité potentiels associés à chaque code NAF.
 
 ### Récupération des mots clés pour l'algorithme d'IA
 
-Création d'un algorithme de nettoyage des caractères spéciaux dans le texte : balises html, escape html, escape unicode
-Récupération de tous les mots distincts utilisés dans la base de données subvention, avec un objectif d'IA sur les mots
+Dans l'optique de générer des mots clés pertinents avec des outils de d'IA<sup>6</sup> (NLP<sup>7</sup>), on m'a chargé de générer la liste de tous les mots utilisés dans les subventions, avec pour chaque mot la liste des subventions dans lesquelles il est présent.
+
+J'ai requêté l'intégralité des subventions de l'API, j'ai élaboré un algorithme de nettoyage des caractères spéciaux pour uniformiser les différents encodages utilisés et enlever ce qui ne compose pas les mots, puis j'ai parcouru les subventions et j'ai construit une Map qui associe à chaque mot la liste des identifiants de subventions où il est présent. Le plus difficile a été l'uniformisation de l'unicode échapé, de l'HTML échapé, des caractères non échapés et le nettoyage des balises HTML, des classes CSS et autres formes de texte parasite.
+
+Cet algorithme de nettoyage a permis de passer d'environ 40 000 à 12 000 mots différents, soit 4 fois moins.
+
+6 : *Artificial Intelligence*  
+7 : *Natural Language Processing, branche de l'IA qui traite le texte*
+
+#### Indépendance de l'API `aides-entreprises.fr`
+
+Nous étions trop dépendants de l'API des aides ce qui était problématique en terme de performances et en terme de résistance aux pannes. Nous effectuions énormément de requêtes à cette API, à la fois pour des recherches mais aussi pour charger des subventions dont nous connaissions déjà les identifiants. Le but de ma tâche était de ne plus avoir besoin de l'API pour charger des subventions, et d'avoir une solution de secours en cas de panne de l'API.
+
+J'ai mis en place une API appelée tous les jours par un cron<sup>8</sup> afin de copier la base de données des subventions sur notre serveur. Cette API se charge de télécharger les fichiers JSON accessibles depuis le site `aides-entreprises.fr` mais aussi de requêter l'intégralité des subventions depuis l'API. Il faut savoir qu'en utilisant l'API il y a du code HTML dans les subventions afin de mettre en forme leur contenu, ce n'est pas le cas avec les fichiers ; les deux sont donc nécessaires pour une copie complète de leur base de données.  
+J'ai également mis en place un traitement pour nettoyer les caractères échapés en unicode ou en HTML sur toutes les données récupérées. Ce traitement résulte de l'amélioration de mon algorithme de nettoyage, utilisé pour récupérer les mots clés.
+
+```json
+// Avant traitement
+{
+    "aid_nom": "\"Zone … \" - Exon\u00e9ration d'imp\u00f4t …",
+    "aid_objet": "<div align=\"justify\"> … d&eacute;veloppement … </div>"
+}
+
+// Après traitement
+{
+    "aid_nom": "\"Zone … \" - Exonération d'impôt …",
+    "aid_objet": "<div align=\"justify\"> … développement … </div>"
+}
+```
+
+Enfin, j'ai fait en sorte que Java charge la copie des subventions avec HTML au démarrage du serveur dans une Map indexé sur les identifiants des subventions. De cette façon j'ai pu remplacer tous les chargements de subvention via l'API par des appels à cette Map. Le temps de chargement de la page d'accueil de notre produit était d'environ une seconde plus 50 ms par subvention à charger, soit entre 1 et 10 secondes. Cette fonctionnalité a divisé ce temps de chargement par environ 30, soit sistématiquement moins d'une seconde.
+
+8 : *Programme qui se déclenche automatiquement de façon prédéfini*
 
 ### Tâches notables diverses
 
@@ -180,11 +201,11 @@ Récupération de tous les mots distincts utilisés dans la base de données sub
 
 Les `Oca` sont des informations sur le type du contenu des OcaVariables, des objets très génériques qui stockent une donnée queconque associé à un objet en base de données. Par exemple "nombre d'employés" et "email du signataire" pouraient être des Oca, respectivement associés à une entreprise et à un projet.
 
-En back j'ai ajouté à certains Oca un champ *unité* qui permet d'indiquer quelle unité est associée à cet Oca. Dans ce champ j'ai renseigné un nouvel énumérateur qui associe pour chaque type d'unité le symbole ou la valeur associée (mois, %, €, année(s)). J'ai ensuite propagé cette unité dans le front où j'ai pu enlever le rajout manuel et souvent ambigue de ces "symboles".
+En back j'ai ajouté à certains Oca un champ *unité* qui permet d'indiquer quelle unité est associée à cet Oca. Dans ce champ j'ai renseigné un nouvel énumérateur qui associe pour chaque type d'unité le symbole ou la valeur associée (mois, %, €, année(s)). J'ai ensuite propagé cette unité dans le front où j'ai pu enlever le rajout manuel et souvent ambigue de ces "symboles". Maintenant l'unité est reliée à la donnée et non au code HTML d'un composant.
 
-#### Conservation du GET sur Crossroads
+#### Conservation des paramètres GET sur Crossroads
 
-Ajout d'un système de conservation des paramètres GET de l'URL
+J'ai modifié tous les liens du projet Crossroads de façon à conserver les paramètres présents dans l'URL, sauf exception. Cette modification a permi de régler divers bugs en rapport avec des traitements asynchrones sur les valeurs de ces paramètres.
 
 #### Génération enum depuis csv d'Araud
 
@@ -208,5 +229,5 @@ Fix du problème de récupération de l'utilisateur connecté en back (bug avec 
 - à lire une doc, genre beaucoup trop de docs, mais aussi à pas trop les lire et surtout à regarder stack overflow
 - à sérieusement mieux utiliser git, au sens commiter les bonnes lignes uniquement, abuser du stash et des branches, abuser du merge --no-commit, globalement abuser de l'interface graphique
 - à never trust the user même si le user c'est moi
-- à documenter mon travail (commentaires mais surtout wiki)
+- à documenter mon travail (commentaires mais surtout *wiki*)
 - à définir un lexique et essayer de le respecter histoire que toute l'équipe comprenne de quoi on parle

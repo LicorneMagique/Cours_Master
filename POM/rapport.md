@@ -191,7 +191,7 @@ J'ai également mis en place un traitement pour nettoyer les caractères échap�
 }
 ```
 
-Enfin, j'ai fait en sorte que Java charge la copie des subventions avec HTML au démarrage du serveur dans une Map indexé sur les identifiants des subventions. De cette façon j'ai pu remplacer tous les chargements de subvention via l'API par des appels à cette Map. Le temps de chargement de la page d'accueil de notre produit était d'environ une seconde plus 50 ms par subvention à charger, soit entre 1 et 10 secondes. Cette fonctionnalité a divisé ce temps de chargement par environ 30, soit sistématiquement moins d'une seconde.
+Enfin, j'ai fait en sorte que Java charge la copie des subventions avec HTML au démarrage du serveur dans une Map indexé sur les identifiants des subventions. De cette façon j'ai pu remplacer tous les chargements de subventions via l'API par des appels à cette Map. Le temps de chargement des subventions sur la page d'accueil de notre produit était de 50 à 100 ms par subvention à charger, soit souvent plusieurs secondes. Cette fonctionnalité a divisé ce temps de chargement par environ 30, soit sistématiquement moins d'une seconde.
 
 8 : *Programme qui se déclenche automatiquement de façon prédéfini*
 
@@ -207,15 +207,17 @@ En back j'ai ajouté à certains Oca un champ *unité* qui permet d'indiquer que
 
 J'ai modifié tous les liens du projet Crossroads de façon à conserver les paramètres présents dans l'URL, sauf exception. Cette modification a permi de régler divers bugs en rapport avec des traitements asynchrones sur les valeurs de ces paramètres.
 
-#### Génération enum depuis csv d'Araud
+#### Génération d'un énumérateur Java à partir d'un CSV
 
-génération d'une class enum java à partir d'un fichier csv et de nodejs
+En back j'ai eu besoin d'utiliser des données statiques sur les codes NAF dont la source était un fichier CSV. À Finalgo dans ce type de situation nous préférons utiliser un énumérateur Java plutôt que de charger des fichiers. Le fichier faisait plusieurs centaines de lignes, j'ai écris un script en *nodejs* pour générer le code Java depuis le CSV.
 
-#### Fix session context -> request context
+#### Résolution d'un bug d'accès simultané au back
 
-Fix du problème de récupération de l'utilisateur connecté en back (bug avec les variables de session partagées)
+Après le lancement du produit subvention, nous avons commencé à observer des bugs très étranges d'utilisateurs associés au mauvais projet ou à la mauvaise entreprise sur Main. Le problème s'est agravé jusqu'à se produire plusieurs fois par jour, ce qui est devenu grave. Nous avons supposé que lors de requêtes simultanées, la récupération de l'utilisateur courant (`getCurrentUser`) ne renvoyait pas forcément le bon utilisateur.
 
----
+J'ai mis en place un scénario de test qui m'a permi de confirmer le non fonctionnement du `getCurrentUser`. J'ai trouvé la source du problème, une variable de session utilisée pour stocker l'utilisateur courant (récupéré avec son JWT), cachée derrière une couches d'abstraction inutiles nommée `RequestUserContext`. La session étant partagée avec les différentes requêtes en cours, le problème venait de là.
+
+J'ai supprimé tout le code relatif à cette abstraction et à cette variable de session pour tout remplacer par des appels directes à la classe `RequestContextHolder` de Spring, qui permet de manipuler des variables de requête. L'utilisation de cette classe a réparé le `getCurrentUser`, a réduit le temps d'exécution de certaines API de notre back et a réglé un problème de dépendance cyclique qui nous poussait à dupliquer certaines fonctions.
 
 ## Retour d'expérience
 

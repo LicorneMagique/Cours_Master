@@ -1,5 +1,7 @@
 # Rapport
 
+Ce document est un brouillon du rapport final.
+
 ## Contexte des projets
 
 Finalgo est une startup spécialisée dans
@@ -29,7 +31,7 @@ En terme de code chaque application possède un front<sup>2</sup> Angular et un 
 
 ---
 
-## Tâches
+## Tâches réalisées
 
 ### Écran d'administration de Finsearch
 
@@ -73,7 +75,7 @@ AZURE(
     "https://login.microsoftonline.com/{appId}/discovery/v2.0/keys",
     "keys/?kid=%s/x5c/0", // Le `%s` est remplacé par la valeur de `kid`
     true, // Il faut utiliser un décodeur de Base64
-    Arrays.asList("unique_name", "upn", "preferred_username") // Le premier de ces champs à ne pas être vide est l'email
+    Arrays.asList("unique_name", "upn", "preferred_username") // Le premier à donner un résultat sera bon
 ),
 GOOGLE(
     "https://www.googleapis.com/oauth2/v1/certs",
@@ -104,7 +106,9 @@ J'ai réécris tout le code concernant les paiements avec Stripe, le paiement fo
 
 En front j'ai enlevé tous les traitements inutiles de façon à n'avoir qu'une liste de produits avec chacun un code "produit prix" unique associé. Stripe utilise ces code pour afficher les pages de paiement.
 
-En back j'ai réécrit la fonction qui traite la confirmation de paiement envoyée par Stripe. J'ai modifié l'énumérateur des produits pour les associer à leur identifiant de produit Stripe, sans rapport avec le code "produit prix". Puis j'ai utilisé ces codes pour repérer quel produit a acheté l'utilisateur concerné et effectuer les traitements qui en découlent. J'ai également utilisé l'API de Stripe pour récupérer le nom associé au paiement et mettre à jour le nom de l'utilisateur s'il ne l'a pas renseigné dans son profil, l'inscription ne nécessite que l'email.
+En back j'ai réécrit la fonction qui traite la confirmation de paiement envoyée par Stripe. J'ai modifié l'enum* des produits pour les associer à leur identifiant de produit Stripe, sans rapport avec le code "produit prix". Puis j'ai utilisé ces codes pour repérer quel produit a acheté l'utilisateur concerné et effectuer les traitements qui en découlent. J'ai également utilisé l'API de Stripe pour récupérer le nom associé au paiement et mettre à jour le nom de l'utilisateur s'il ne l'a pas renseigné dans son profil, l'inscription ne nécessite que l'email.
+
+*la classe de type Enum
 
 ### Création du produit Subvention
 
@@ -221,6 +225,31 @@ J'ai supprimé tout le code relatif à cette abstraction et à cette variable de
 
 ## Retour d'expérience
 
+### Travail en alternance
+
+Je trouve qu'il est très valorisant de travailler sur des projets en entreprise
+
+Montée rapide en compétences techniques
+Développement de la capacité d’analyse et de restitution de problèmes/solutions
+Expérience significative en entreprise
+Temps pour soi le soir
+Temps de réaliser des projets personnels
+Passage progressif dans la vie active
+Salaire et avantages
+Double statut Etudiant/Salarié
+
+Périodes de cours denses
+Voie fatiguante autant physiquement que psychologiquement
+Nécessité d’une bonne hygiène de vie
+Vie sociale avec les étudiants initiaux compliquée de par les disparités des EDT
+Nécessité de s’impliquer à fond dans l’apprentissage afin que l’alternance soit efficace
+
+je vends mon coprs
+
+Pourquoi ce choix ? Quels bénéfices en avez-vous tiré ?
+
+### Montée en compétences
+
 Ça m'a appri
 
 - à coder en PL-SQL sur un serveur MySQL 8
@@ -233,3 +262,5 @@ J'ai supprimé tout le code relatif à cette abstraction et à cette variable de
 - à never trust the user même si le user c'est moi
 - à documenter mon travail (commentaires mais surtout *wiki*)
 - à définir un lexique et essayer de le respecter histoire que toute l'équipe comprenne de quoi on parle
+
+### Conclusion

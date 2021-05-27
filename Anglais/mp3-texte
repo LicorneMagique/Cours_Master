@@ -20,3 +20,20 @@ Enfin j'ai pu donner cette liste à mes collègues qui ont pu continuer le trava
 Aujourd'hui nous travaillons encore à l'amélioration de ce produit et nous cherchons toujours le meilleur moyen de comprendre les textes pour améliorer le produit. Je suis très content que le travail que j'ai commencé tout seul à travailller pendant 2 semaines ait prit autant d'importance dans la société et dès que quelqu'un a des questions sur comment sont les données / qu'est-ce qu'on peut faire avec l'API je suis devenu l'expert de la boite pour répondre à ces questions alors que n'importe quel membre de l'équipe aurait pu le devenir.
 
 
+The question I choose was the number two "What was your biggest achievement this year?".
+
+The situation was as follow.
+It was in february, my manager choose to create a working prototype of a search engine for grants and subsidies.
+He wanted me to create a form with a few questions, send the form anwsers to our server, connect the server to the aides-entreprises.fr API (an open database), make the server send those answers to the API and return all eligible grants and subsidies back to the user.
+So I did this prototype, it was two weeks of working and then I came back to the university for the two next weeks.
+
+When I came back to work, all the team was working on this project, they were using and improving all the bricks I made to make this protoype work.
+I was like "what are you all doing working on this project ? to me It was just a new fonctionnality of the application, not something that important. My managers told we hope that's the future of the company, everyone is working on so we can sell the service as soon as possible.
+
+During the next months we worked hard to iprove the different parts of the product, I mostly worked on improving the questions of the form, find better results and reduce as much as I can the use of the API because more we call the API more the application take time to show the content on the screens.
+- I have found a way to automaticaly copy the database of the API every day on the server. That was extremly useful because after users found the grants and subsidies there were looking for, we save their IDs and we can use this copy to load the data using the IDs. The idea is to use the API only when we have to search something, not when we have to load data.
+- Then, I set up a key word mechanism Intelligence technologies with the texts of the grants in order find much more relevant results using new questions like "describe your company and your project in a few words". We are still working on that, my task was to list all distincts words of the database and to save for every word the list of the grants it appear in.
+That was hard to do because the text was very dirty, they used different ways to write special characters, they were the escape unicode, it's like to write "underslash u 001b" for the the quotation mark or stuff like that, and they were the escape HTML way, it's like "ampersand nbsp quotation mark" to write a space, horible to see. And I had to replace all those strange writen characters by the characters and letters we used to see, before to list the different words otherwise I would count 5 time the same words. So at the beginning I didn't clean the text and I found 40 000 words, and after I cleaned the text the list only contained 12 000 mots, 4 times less!
+So I gave this list to my college and he did the rest.
+
+Today we are still working on improving this product and we are always looking for a better way to understant the content on the grants and improve the relevance of the results. I am realy happy that the symple fonctionnality I worked on alone during two weeks became so much important for the company and I still have an important place in the developpement of this search engine, while I'm only working for the company half of the time.

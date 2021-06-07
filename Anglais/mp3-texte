@@ -23,7 +23,7 @@ Aujourd'hui nous travaillons encore à l'amélioration de ce produit et nous che
 The question I choose was the number two "What was your biggest achievement this year?".
 
 The situation was as follow.
-It was in february, my manager choose to create a working prototype of a search engine for grants and subsidies.
+It was in ffebruary, my manager choose to create a working prototype of a search engine for grants and subsidies.
 He wanted me to create a form with a few questions, send the form anwsers to our server, connect the server to the aides-entreprises.fr API (an open database), make the server send those answers to the API and return all eligible grants and subsidies back to the user.
 So I did this prototype, it was two weeks of working and then I came back to the university for the two next weeks.
 

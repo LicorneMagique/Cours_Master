@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="160"
+   height="220"
+   preserveAspectRatio="none"
+   version="1.1"
+   viewBox="0 0 160 220"
+   id="svg94"
+   sodipodi:docname="sites.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <defs
+     id="defs98">
+    <defs
+       id="defs7">
+      <path
+         d="M 14,1 H 5.5 C 4.7,1 4,1.7 4,2.5 v 19 C 4,22.3 4.7,23 5.5,23 h 13 C 19.3,23 20,22.3 20,21.5 V 7 Z"
+         id="j"
+         inkscape:connector-curvature="0" />
+    </defs>
+    <clipPath
+       id="h">
+      <use
+         id="use9"
+         xlink:href="#j"
+         overflow="visible"
+         height="100%"
+         width="100%"
+         style="overflow:visible"
+         x="0"
+         y="0" />
+    </clipPath>
+    <defs
+       id="defs15">
+      <path
+         d="M 14,1 H 5.5 C 4.7,1 4,1.7 4,2.5 v 19 C 4,22.3 4.7,23 5.5,23 h 13 C 19.3,23 20,22.3 20,21.5 V 7 Z"
+         id="g"
+         inkscape:connector-curvature="0" />
+    </defs>
+    <clipPath
+       id="f">
+      <use
+         id="use17"
+         xlink:href="#g"
+         overflow="visible"
+         height="100%"
+         width="100%"
+         style="overflow:visible"
+         x="0"
+         y="0" />
+    </clipPath>
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.125,0,0,-0.125,-548.62,-851.62)"
+       y2="-6910"
+       y1="-6869.2998"
+       x2="4526.7998"
+       x1="4526.7998"
+       id="e">
+      <stop
+         id="stop20"
+         offset="0"
+         stop-opacity=".2"
+         stop-color="#1A237E" />
+      <stop
+         id="stop22"
+         offset="1"
+         stop-opacity=".02"
+         stop-color="#1A237E" />
+    </linearGradient>
+    <defs
+       id="defs28">
+      <path
+         d="M 14,1 H 5.5 C 4.7,1 4,1.7 4,2.5 v 19 C 4,22.3 4.7,23 5.5,23 h 13 C 19.3,23 20,22.3 20,21.5 V 7 Z"
+         id="d"
+         inkscape:connector-curvature="0" />
+    </defs>
+    <clipPath
+       id="c">
+      <use
+         id="use30"
+         xlink:href="#d"
+         overflow="visible"
+         height="100%"
+         width="100%"
+         style="overflow:visible"
+         x="0"
+         y="0" />
+    </clipPath>
+    <defs
+       id="defs38">
+      <path
+         d="M 14,1 H 5.5 C 4.7,1 4,1.7 4,2.5 v 19 C 4,22.3 4.7,23 5.5,23 h 13 C 19.3,23 20,22.3 20,21.5 V 7 Z"
+         id="b"
+         inkscape:connector-curvature="0" />
+    </defs>
+    <clipPath
+       id="a">
+      <use
+         id="use40"
+         xlink:href="#b"
+         overflow="visible"
+         height="100%"
+         width="100%"
+         style="overflow:visible"
+         x="0"
+         y="0" />
+    </clipPath>
+    <defs
+       id="defs46">
+      <path
+         d="M 14,1 H 5.5 C 4.7,1 4,1.7 4,2.5 v 19 C 4,22.3 4.7,23 5.5,23 h 13 C 19.3,23 20,22.3 20,21.5 V 7 Z"
+         id="t"
+         inkscape:connector-curvature="0" />
+    </defs>
+    <clipPath
+       id="s">
+      <use
+         id="use48"
+         xlink:href="#t"
+         overflow="visible"
+         height="100%"
+         width="100%"
+         style="overflow:visible"
+         x="0"
+         y="0" />
+    </clipPath>
+    <defs
+       id="defs54">
+      <path
+         d="M 14,1 H 5.5 C 4.7,1 4,1.7 4,2.5 v 19 C 4,22.3 4.7,23 5.5,23 h 13 C 19.3,23 20,22.3 20,21.5 V 7 Z"
+         id="r"
+         inkscape:connector-curvature="0" />
+    </defs>
+    <clipPath
+       id="q">
+      <use
+         id="use56"
+         xlink:href="#r"
+         overflow="visible"
+         height="100%"
+         width="100%"
+         style="overflow:visible"
+         x="0"
+         y="0" />
+    </clipPath>
+    <defs
+       id="defs62">
+      <path
+         d="M 14,1 H 5.5 C 4.7,1 4,1.7 4,2.5 v 19 C 4,22.3 4.7,23 5.5,23 h 13 C 19.3,23 20,22.3 20,21.5 V 7 Z"
+         id="p"
+         inkscape:connector-curvature="0" />
+    </defs>
+    <clipPath
+       id="o">
+      <use
+         id="use64"
+         xlink:href="#p"
+         overflow="visible"
+         height="100%"
+         width="100%"
+         style="overflow:visible"
+         x="0"
+         y="0" />
+    </clipPath>
+    <defs
+       id="defs70">
+      <path
+         d="M 14,1 H 5.5 C 4.7,1 4,1.7 4,2.5 v 19 C 4,22.3 4.7,23 5.5,23 h 13 C 19.3,23 20,22.3 20,21.5 V 7 Z"
+         id="n"
+         inkscape:connector-curvature="0" />
+    </defs>
+    <clipPath
+       id="m">
+      <use
+         id="use72"
+         xlink:href="#n"
+         overflow="visible"
+         height="100%"
+         width="100%"
+         style="overflow:visible"
+         x="0"
+         y="0" />
+    </clipPath>
+    <defs
+       id="defs78">
+      <path
+         d="M 14,1 H 5.5 C 4.7,1 4,1.7 4,2.5 v 19 C 4,22.3 4.7,23 5.5,23 h 13 C 19.3,23 20,22.3 20,21.5 V 7 Z"
+         id="l"
+         inkscape:connector-curvature="0" />
+    </defs>
+    <clipPath
+       id="k">
+      <use
+         id="use80"
+         xlink:href="#l"
+         overflow="visible"
+         height="100%"
+         width="100%"
+         style="overflow:visible"
+         x="0"
+         y="0" />
+    </clipPath>
+    <radialGradient
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.25,0,0,-1.25,-5526.2,-8526.2)"
+       r="206.39999"
+       cy="-6825.7998"
+       cx="4425.1001"
+       id="i">
+      <stop
+         id="stop85"
+         offset="0"
+         stop-opacity=".1"
+         stop-color="#fff" />
+      <stop
+         id="stop87"
+         offset="1"
+         stop-opacity="0"
+         stop-color="#fff" />
+    </radialGradient>
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="3696"
+     inkscape:window-height="2050"
+     id="namedview96"
+     showgrid="false"
+     inkscape:zoom="5.5625733"
+     inkscape:cx="-187.9435"
+     inkscape:cy="115.55587"
+     inkscape:window-x="144"
+     inkscape:window-y="54"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg94" />
+  <metadata
+     id="metadata2">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <path
+     style="fill:#3f51b5"
+     inkscape:connector-curvature="0"
+     id="path12"
+     clip-path="url(#h)"
+     d="M 14,1 H 5.5 C 4.7,1 4,1.7 4,2.5 v 19 C 4,22.3 4.7,23 5.5,23 h 13 C 19.3,23 20,22.3 20,21.5 V 7 L 16.5,4.5 Z"
+     transform="matrix(10,0,0,10,-40,-10)" />
+  <polygon
+     style="fill:url(#e)"
+     id="polygon25"
+     clip-path="url(#f)"
+     points="20,12.1 20,7 14.4,6.6 "
+     transform="matrix(10,0,0,10,-40,-10)" />
+  <g
+     id="g35"
+     clip-path="url(#c)"
+     transform="matrix(10,0,0,10,-40,-10)">
+    <path
+       style="fill:#9fa8da"
+       inkscape:connector-curvature="0"
+       id="path33"
+       d="M 14,1 V 5.5 C 14,6.3 14.7,7 15.5,7 H 20 Z" />
+  </g>
+  <path
+     style="fill:#ffffff;fill-opacity:0.2"
+     inkscape:connector-curvature="0"
+     id="path43"
+     clip-path="url(#a)"
+     d="M 5.5,1 C 4.7,1 4,1.7 4,2.5 V 2.6 C 4,1.8 4.7,1.1 5.5,1.1 H 14 V 1 Z"
+     transform="matrix(10,0,0,10,-40,-10)" />
+  <path
+     style="fill:#1a237e;fill-opacity:0.2"
+     inkscape:connector-curvature="0"
+     id="path51"
+     clip-path="url(#s)"
+     d="M 18.5,22.9 H 5.5 C 4.7,22.9 4,22.2 4,21.4 v 0.1 C 4,22.3 4.7,23 5.5,23 h 13 c 0.8,0 1.5,-0.7 1.5,-1.5 v -0.1 c 0,0.8 -0.7,1.5 -1.5,1.5 z"
+     transform="matrix(10,0,0,10,-40,-10)" />
+  <path
+     style="fill:#1a237e;fill-opacity:0.1"
+     inkscape:connector-curvature="0"
+     id="path59"
+     clip-path="url(#q)"
+     d="M 15.5,7 C 14.7,7 14,6.3 14,5.5 v 0.1 c 0,0.8 0.7,1.5 1.5,1.5 H 20 V 7 Z"
+     transform="matrix(10,0,0,10,-40,-10)" />
+  <polyline
+     style="fill:#f1f1f1"
+     id="polyline67"
+     clip-path="url(#o)"
+     points="12.5 15.5 8 15.5 8 19 12.5 19 12.5 15.5"
+     transform="matrix(10,0,0,10,-40,-10)" />
+  <polyline
+     style="fill:#f1f1f1"
+     id="polyline75"
+     clip-path="url(#m)"
+     points="16 15.5 13.5 15.5 13.5 19 16 19 16 15.5"
+     transform="matrix(10,0,0,10,-40,-10)" />
+  <polyline
+     style="fill:#f1f1f1"
+     id="polyline83"
+     clip-path="url(#k)"
+     points="16 12 8 12 8 14.5 16 14.5 16 12"
+     transform="matrix(10,0,0,10,-40,-10)" />
+  <path
+     inkscape:connector-curvature="0"
+     style="fill:url(#i);stroke-width:10"
+     id="path90"
+     d="M 100,0 H 15 C 7,0 0,7 0,15 v 190 c 0,8 7,15 15,15 h 130 c 8,0 15,-7 15,-15 V 60 Z" />
+</svg>

@@ -31,9 +31,12 @@ Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompa
   - [Remerciements](#remerciements)
   - [Table des matières](#table-des-matières)
   - [Introduction](#introduction)
-  - [Description de Finalgo](#description-de-finalgo)
-  - [Environnement de travail](#environnement-de-travail)
+  - [Présentation de Finalgo](#présentation-de-finalgo)
+    - [L'équipe](#léquipe)
+    - [Organisation](#organisation)
+    - [Environnement de travail (dont logiciels et outils)](#environnement-de-travail-dont-logiciels-et-outils)
   - [Missions effectuées](#missions-effectuées)
+    - [Mission 1 : Quoi ? Comment ? Pourquoi ?](#mission-1--quoi--comment--pourquoi-)
   - [Conclusion](#conclusion)
 
 ## Introduction
@@ -48,10 +51,32 @@ Certaines missions ont renforcé mes connaissances, d'autres m'ont permi de comp
 
 Tout au long de l'année j'ai réalisé des missions diverses sur l'ensemble des applications de Finalgo.
 
-## Description de Finalgo
+## Présentation de Finalgo
 
-## Environnement de travail
+Finalgo est une startup spécialisée dans
+
+- la recherche de financements 100 % digitale,
+- la construction et la gestion de dossiers de financement,
+- la recherche de subventions.
+
+Nous proposons à nos clients des outils qui permettent de répondre à ces besoins. Ces outils sont des applications web avec un système d'abonnement payant, il s'agit du modèle d'exploitation commerciale « SaaS » pour « Software as a Service ». Notre objetif est de leur permettre de construire et d’envoyer eux-même leurs dossiers de financements à tous types de partenaires financiers, ou de trouver les aides éligibles pour leur entreprise.
+
+Notre vocation est de faciliter l'accès au financement pour les entrepreneurs, artisans, commerçants et plus généralement aux dirigeants de TPE / PME.
+
+### L'équipe
+
+À Finalgo la hiérarchie est complètement horizontale, pour chaque tâche le référent est la personne qui maîtrise le mieux la partie métier ou technique correspondante. L'organigramme est donc organisé suivant le type du contrat.
+
+![organigramme](./assets/organigramme.svg)
+
+\
+
+### Organisation
+
+### Environnement de travail (dont logiciels et outils)
 
 ## Missions effectuées
+
+### Mission 1 : Quoi ? Comment ? Pourquoi ?
 
 ## Conclusion

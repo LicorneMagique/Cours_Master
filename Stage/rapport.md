@@ -33,8 +33,9 @@ Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompa
   - [Introduction](#introduction)
   - [Présentation de Finalgo](#présentation-de-finalgo)
     - [L'équipe](#léquipe)
-    - [Organisation](#organisation)
-    - [Environnement de travail (dont logiciels et outils)](#environnement-de-travail-dont-logiciels-et-outils)
+    - [Les projets](#les-projets)
+    - [Environnement de travail](#environnement-de-travail)
+    - [Organisation et méthodologie](#organisation-et-méthodologie)
   - [Missions effectuées](#missions-effectuées)
     - [Mission 1 : Quoi ? Comment ? Pourquoi ?](#mission-1--quoi--comment--pourquoi-)
   - [Conclusion](#conclusion)
@@ -69,11 +70,26 @@ Notre vocation est de faciliter l'accès au financement pour les entrepreneurs, 
 
 ![organigramme](./assets/organigramme.svg)
 
-\
+\* Non présents en même temps
 
-### Organisation
+### Les projets
 
-### Environnement de travail (dont logiciels et outils)
+Cette année j'ai participé au développement des quatre projets principaux de Finalgo,
+
+- **Main** notre application de construction et de gestion de dossiers de financement,
+- **Crossroads Financing** notre application de recherche de financements,
+- **Crossroads Subvention** notre application de recherche de subventions,
+- **Finsearch** une sorte de Main simplifié dont nous gérons le développement et la maintenance pour l'un de nos clients.
+
+En terme de projets informatiques, chaque application possède un front\* Angular\* et un back\* Java Spring Boot\* qui fonctionne sous forme d'une API REST\*. Le back est le même pour Main et pour Crossroads, Finsearch possède un front et un back. Il y a également un petit serveur Python\* Flask\* qui communique avec le back de Main, ce qui fait au total 6 projets informatiques différents.
+
+![projets](./assets/projets.svg)
+
+### Environnement de travail
+
+(dont logiciels et outils)
+
+### Organisation et méthodologie
 
 ## Missions effectuées
 

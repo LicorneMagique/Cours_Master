@@ -34,12 +34,16 @@ Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompa
   - [Présentation de Finalgo](#présentation-de-finalgo)
     - [L'équipe](#léquipe)
     - [Les projets](#les-projets)
-    - [Environnement de travail](#environnement-de-travail)
-      - [Matériel et lieu](#matériel-et-lieu)
+  - [Environnement de travail](#environnement-de-travail)
+    - [Matériel et lieu](#matériel-et-lieu)
     - [Outils et logiciels](#outils-et-logiciels)
       - [Slack](#slack)
       - [Asana](#asana)
       - [Google Workspace](#google-workspace)
+  - [Environnement technique](#environnement-technique)
+    - [Côté serveur](#côté-serveur)
+    - [Côté client](#côté-client)
+    - [Outils de développement](#outils-de-développement)
   - [Missions effectuées](#missions-effectuées)
     - [Mission 1 : Quoi ? Comment ? Pourquoi ?](#mission-1--quoi--comment--pourquoi-)
   - [Conclusion](#conclusion)
@@ -89,19 +93,19 @@ En terme de projets informatiques, chaque application possède un front\* Angula
 
 ![projets](./assets/projets.svg)
 
-### Environnement de travail
+## Environnement de travail
 
-#### Matériel et lieu
+### Matériel et lieu
 
 À Finalgo nous travaillons beaucoup en télétravail. Lorsque nous allons dans les locaux, en général une fois par semaine pour les membres de l'équipe qui sont à proximité de Lyon, nous allons au HUB612. Il s'agit d'un incubateur, une sorte d'open space avec une équipe qui accompagne les entreprises. Le HUB612 est spécialisé dans les entreprises qui travaillent sur la finance, les assurances et le marketing à l'aide d'outils numériques modernes. C'est un lieu agréable pour travailler et échanger avec des personnes dans des domaines similaires aux nôtres.
 
 Pour travailler on a mis à ma disposition un ordinateur portable avec une très bonne configuration, ce qui me permet d'utiliser efficacement tous les logiciels dont j'ai besoin. J'utilise généralement un deuxième écran pour des questions de confort, il y en a sur les bureaux du HUB* et j'utilise mon écran personnel en télétravail.
 
-#### Outils et logiciels
+### Outils et logiciels
 
 Depuis le début de la crise sanitaire, toute notre organisation est basée sur du travail en distanciel. Nous sommes donc équipés en outils de communication, visioconférence, gestion des tâches et suite de bureautique.
 
-##### Slack
+#### Slack
 
 <img alt="slack" src="./assets/slack.svg" width="64"> Slack est notre outil de communication n°1 interne comme externe.
 
@@ -118,7 +122,7 @@ Il y a un canal pour
 
 En **externe** nous avons un espace de travail pour chaque client, au sens entreprise qui utilise l'une de nos applications et qui a demandé un développement spécifique.
 
-##### Asana
+#### Asana
 
 <img alt="asana" src="./assets/asana.svg" width="64"> Asana est notre plateforme de gestion des tâches.
 
@@ -127,13 +131,23 @@ Trello. Il est possible d'y créer des colonnes et d'y ajouter des tâches avec 
 
 Nous utilisons ces tableaux pour remplacer le **Scrum Board**, un tableau de post-it utilisé par la méthode SCRUM qui est à l'origine de notre méthode de travail. Grâce à ces tableaux nous pouvons voir qui travail sur une tâche, connaître son avancement, en ajouter nous-même et écrire les spécification. Il y a beaucoup plus de fonctionnalités sur le site mais nous ne les utilisons pas pour le moment.
 
-##### Google Workspace
+#### Google Workspace
 
 <img alt="gmail" src="./assets/gmail.svg" width="64"> | <img alt="drive" src="./assets/drive.svg" width="64"> | <img alt="meet" src="./assets/meet.svg" width="64"> | <img alt="calendar" src="./assets/calendar.svg" width="64"> | <img alt="sites" src="./assets/sites.svg" width="48"> | <img alt="sheets" src="./assets/sheets.svg" width="48"> |
 | ----- | ----- | ---- | -------- | ----- | ------ |
 | Gmail | Drive | Meet | Calendar | Sites | Sheets |
 
-Finalgo utilise un système de comptes Google pour les entreprises. Nos comptes nous permettent d'accéder à la suite de bureautique comme avec un compte Google classique, même s'ils terminent par `@finalgo.fr`. Toutes ces applications sont liées à un espace partagé sur Google Drive, auquel nous avons tous accès avec notre compte.
+Finalgo utilise un système de comptes Google pour les entreprises. Nos comptes nous permettent d'accéder à la suite de bureautique comme avec une adresse **Gmail** classique, même s'ils terminent par `@finalgo.fr`. Toutes ces applications sont liées à un espace partagé sur **Google Drive**, auquel nous avons tous accès avec notre compte.
+
+**Meet** est une plateforme de réunions numériques très simple à utiliser. Il est possible de se connecter à un salon grâce à un lien, on peut ensuite participer avec sa caméra, son micro ou en faisant des partages d'écran. Nous passons beaucoup de temps sur Meet, surtout pour parler avec l'équipe mais aussi pour les réunions clients.
+
+**Calendar** est un agenda, il sert surtout à planifier des rendez-vous clients ou des points d'équipe importants. Un salon meet est associé à chaque événement de l'agenda. Ce système évite de générer un lien et de l'envoyer aux invités, il suffit de les ajouter sur un événement.
+
+**Google Sites** sert exclusivement à voir et alimenter notre wiki interne. Il s'agit d'un site accessible uniquement avec notre compte, sur lequel nous répertorions toutes sortes d'informations utiles pour Finalgo. On y trouve les procédures comme les mises en production, les installations, les plateformes et il y a des explications sur les technologie inhabituelles. C'est un outil que nous utilisons et alimentons beaucoup, il entre dans la philosophie SCRUM en facilitant les formations mutuelles au sein de l'équipe.
+
+**Sheets** est un tableur comme Excel, nous l'utilisons en interne et en externe. Il y a des tableaux administratifs pour gérer des choses comme les congés, certains servent d'outils de maintenance et ticketing, d'autres permettent de synthétiser des informations afin de les exporter dans le code.
+
+## Environnement technique
 
 Meet est une plateforme de réunions numériques très simple à utiliser. Il est possible de se connecter à un salon grâce à un lien, on peut ensuite participer avec sa caméra, son micro ou en faisant des partages d'écran. Nous passons beaucoup de temps sur Meet, surtout pour parler avec l'équipe mais aussi pour les réunions clients.
 

@@ -48,6 +48,13 @@ Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompa
     - [Écran d'administration de Finsearch](#écran-dadministration-de-finsearch)
     - [Ajout de la connexion SSO sur Main et sur Crossroads](#ajout-de-la-connexion-sso-sur-main-et-sur-crossroads)
       - [SSO Microsoft Azure sur Main](#sso-microsoft-azure-sur-main)
+      - [SSO Google et Quickbooks sur Crossroads](#sso-google-et-quickbooks-sur-crossroads)
+        - [Avant de commencer le développement spécifique au SSO](#avant-de-commencer-le-développement-spécifique-au-sso)
+        - [Préparation du front](#préparation-du-front)
+        - [Travail réalisé pour Google](#travail-réalisé-pour-google)
+        - [Travail réalisé pour Quickbooks](#travail-réalisé-pour-quickbooks)
+        - [Généricité du code en back](#généricité-du-code-en-back)
+        - [Retours sur la mission du SSO](#retours-sur-la-mission-du-sso)
   - [Conclusion](#conclusion)
 
 ## Introduction
@@ -250,8 +257,7 @@ Cet écran était la dernière étape pour le projet Finsearch soit utilisable p
 
 ### Ajout de la connexion SSO sur Main et sur Crossroads
 
-Dans le cadre d'un développement spécifique de Main et de l'amélioration des produits Crossroads, je me suis occupé de toutes les tâches relatives au Single Sign-On aussi souvent appelé SSO. Il s'agit de la technologie à l'origine des boutons *Se connecter avec Google ou Facebook*. L'objectif de ces tâches est donc de permettre aux utilisateurs de se connecter sur nos plateformes à partir de leurs comptes déjà existants sur
-d'autres plateformes, en l'occurence Google ou Microsoft.
+Dans le cadre d'un développement spécifique de Main et de l'amélioration des produits Crossroads, je me suis occupé de toutes les tâches relatives au Single Sign-On aussi appelé SSO. Il s'agit de la technologie à l'origine des boutons *Se connecter avec Google ou Facebook*. L'objectif de ces tâches est donc de permettre aux utilisateurs de se connecter sur nos plateformes à partir de leurs comptes déjà existants sur d'autres plateformes, en l'occurence Google, Quickbooks et Microsoft Azure.
 
 Personne n'avait développé ce type de fonctionnalité dans les projets de Finalgo, je me suis donc chargé d'écrire la page SSO sur notre wiki interne pour expliquer son fonctionnement et lister les liens utiles.
 
@@ -267,10 +273,145 @@ Dans le cadre de cette tâche tous les comptes existaient déjà sur Main, autre
 
 Pour le front Microsoft fournit une librairie qui permet de gérer le processus de connexion SSO, c'est à dire la redirection vers le site où se connecte l'utilisateur et la récupération du JWT suite à cette connexion. Il suffit de fournir divers identifiants de configuration à la librairie et elle se charge de nous retourner le JWT.
 
-En back il n'était pas possible d'utiliser les librairies de SSO pour des raisons de conflit avec le système de connexion normal. Le plus simple était de faire une vérification manuelle. Pour ce faire il faut récupérer la clé publique du JWT sur l'API de Microsoft afin de vérifier la signature. Le problème se complique car il y a plusieurs clés sur l'API en question, afin d'identifier la bonne clé il faut utiliser un code appelé identifiant du token ou kid, ce code se trouve à l'intérieur du JWT. Une fois la clé récupérée il faut effectuer divers conversions avant de finalement vérifier la signature du JWT, ce qui équivaut à vérifier sa validité.
+En back il n'était pas possible d'utiliser les librairies de SSO pour des raisons de conflit avec le système de connexion normal. Le plus simple était de faire une vérification manuelle. Pour ce faire il faut récupérer la clé publique du JWT sur l'API de Microsoft afin de vérifier la signature. Le problème se complique car il y a plusieurs clés sur l'API en question, afin d'identifier la bonne clé il faut utiliser un code appelé identifiant du token ou kid, ce code se trouve à l'intérieur du JWT. Une fois la clé récupérée il faut effectuer divers conversions afin de pouvoir vérifier la signature du JWT, ce qui équivaut à vérifier sa validité.
 
 ![jwt](./assets/jwt.png)
 
 > <https://nordicapis.com/why-cant-i-just-send-jwts-without-oauth/>
+
+La figure XXX montre la structure du JWT et explique comment générer la signature à partir du contenu et de l'algorithme utilisé. Pour Microsoft le `kid` se trouve dans le header du JWT et l'algorithme utilisé est RSA qui repose sur un système de clé asymétriques, d'où le besoin de récupérer une clé publique. L'identifiant unique des utilisateur se trouve dans le payload, il s'agit de leur adresse email.
+
+#### SSO Google et Quickbooks sur Crossroads
+
+Dans le cadre de l'amélioration de la plateforme Crossroads nous avions besoin d'ajouter la connexion SSO depuis les plateformes Google et Quickbooks. Pour cette tâche il fallait gérer la création de compte en plus de la connexion. D'un point de vue produit le but était d'augmenter le taux de conversion des utilisateurs sur la page de création de compte. Autrement dit d'augmenter le nombre de création de compte par rapport au nombre de visiteurs de la page. D'un point de vue technique l'idée était de réutiliser le SSO de Cafpi et d'en faire un système générique qui permette d'ajouter facilement une nouvelle plateforme de SSO.
+
+##### Avant de commencer le développement spécifique au SSO
+
+Pour mettre en place une connexion par SSO il faut effectuer une manipulation sur la plateforme de connexion, ici Google et Quickbooks. Les plateformes fournissent une interface qui permet de configurer une application afin d'obtenir divers identifiants. Voir annexes sso_google_interface et sso_quickbooks_interface. La configuration permet à la plateforme d'identifier les serveurs et adresses à informer en cas de connexion, les identifiants nous permettent d'indiquer aux plateformes à quelle application nous souhaitons nous connecter.
+
+![sso_google_interface](assets/sso_google_interface.png) ![sso_quickbooks_interface](./assets/sso_quickbooks_interface.png)
+
+##### Préparation du front
+
+J'ai crée un composant dans le but de réunir tout le code relatif aux connexions SSO.
+
+Dans un premier temps ce composant s'occupe d'afficher les boutons de connexions et relie chaque bouton à une méthode de connexion spécifique à la plateforme. Voir annexe ![sso_code_redirection](./assets/sso_code_redirection.png)
+
+Étant donné que nous avons plusieurs systèmes de connexions différents j'ai eu besoin de modifier le composant afin qu'il détecte les JWT dans l'URL. Le but de cette démarche était de déclencher le processus de connexion de notre front suite à une connexion SSO de l'utilisateur. En effet, après une connexion par SSO l'utilisateur est redirigé sur notre back qui le renvoit sur la page de connexion avec un JWT Finalgo en paramètre de l'URL. Ce processus permet de lancer la récupération de l'utilisateur courant qui permet de connecter l'utilisateur. Voir annexe ![sso_code_token_login](assets/sso_code_token_login.png)
+
+![sso_buttons](assets/sso_buttons.png)
+
+##### Travail réalisé pour Google
+
+En front Google fourni une librairie similaire à celle de Microsoft Azure. Il suffit de lui fournir quelques identifiants et elle se charge de rediriger les utilisateurs sur leur page de connexion. Une fois connectés j'ai configuré Google pour les rediriger sur une API de notre back `/oauth2/redirectGoogle`. À ce moment là, le JWT Google est dans l'URL.
+
+En back j'ai utilisé un système similaire à Microsoft Azure pour vérifier la validité du JWT et récupérer les informations qu'il contient, notament l'email de l'utilisateur qui sert d'identifiant unique. Ensuite j'ai géré l'éventuelle création de compte, qui était normalement sur une autre API. Puis j'ai redirigé les utilisateurs sur la page de connexion avec un nouveau JWT dans l'URL pour que le front termine sa connexion.
+
+##### Travail réalisé pour Quickbooks
+
+Pour Quickbooks il y a une librairie Java qui permet de fortement simplifier l'implémentation du SSO. En front j'ai simplement redirigé l'utilisateur sur une API du back `connectToQuickbooks` qui se charge de faire tout le travail.
+
+En back cette première API se charge de générer un identifiant unique à la connexion et de rediriger les utilisateurs sur leur page de connexion à l'aide de la librairie fournie. Ensuite Quickbooks est configuré pour rediriger les utilisateurs sur une deuxième API du back `redirectQuickbooks` avec le même code unique et un token spécifique à Quickbooks dans l'URL. Ce token est similaire à un JWT, la librairie de Quickbooks permet d'en extraire des informations sur l'utilisateur. Après vérification du code, l'API se charge de l'éventuelle création de compte puis redirige l'utiisateur sur le front avec un nouveau JWT dans l'URL qui permet de terminer la connexion.
+
+##### Généricité du code en back
+
+En terme de généricité j'ai réussi factorisé le fonctionnement des trois types de SSO en déplaçant tout ce qui est spécifique à chaque plateforme dans une sorte de fichier de configuration.
+
+Pour les besoins du fichier de configuration j'ai choise une classe Java de type Enum, comme il est coutume à Finalgo.  
+Cet enum contient pour chaque type de SSO :
+
+- l'URL vers l'API des clés publiques au format JSON,
+- le chemin à utiliser pour trouver la bonne clé dans ce JSON à partir du kid,
+- les clés à utiliser pour récupérer l'email dans le token,
+- un booléen pour indiquer si le texte de la clé publique est encodé en Base64 ou non.
+
+Afin de pouvoir mettre le chemin à utiliser pour récupérer l'information dans le JSON j'ai crée une méthode qui permette d'utiliser ce chemin. Ma méthode prend en entrée un objet de type JSON, un chemin au format texte similaire à XPath et elle retourne en sortie le sous-élément du JSON correspondant au chemin. Voir annexe
+
+annexe
+
+```java
+/**
+  * Retourne une propriété dans un objet JSON à partir de son chemin.
+  *
+  * @param root l'objet JSON qui contient la propriété
+  * @param path le chemin : property1/?property2forArrays=key/property3/index/...
+  * @return la propriété ou null si le chemin est incorrect
+  */
+public static Object getJsonObjectFromPath(JSONObject root, String path) {
+    try {
+        Object node = root;
+        for (String key : path.split("/")) {
+            if (key.matches("[0-9]+")) { // Index de tableau
+                node = ((JSONArray) node).get(Integer.parseInt(key));
+                continue;
+            }
+            if (!key.startsWith("?")) { // Nom de propriété
+                node = ((JSONObject) node).get(key);
+                continue;
+            }
+            // Tableau d'objets avec filtre sur une propriété de ses éléments
+            String subKey = key.split("=")[0].substring(1);
+            String subValue = key.split("=")[1];
+            for (Integer i = 0; i < ((JSONArray) node).length(); i++) {
+                JSONObject child = ((JSONArray) node).getJSONObject(i);
+                if (child.keySet().contains(subKey) && child.get(subKey).equals(subValue)) {
+                    node = child;
+                    break;
+                }
+            }
+        }
+        return node;
+    } catch (Exception e) {
+        return null;
+    }
+}
+```
+
+```json
+Donnée JSON :
+{
+  "keys": [
+    {
+      "kid": "1",
+      "password": "1234"
+    },
+    {
+      "kid": "2",
+      "password": "4321"
+    }
+  ]
+}
+
+Chemin :
+keys/?kid=2/password
+
+Résultat de la méthode appliquée à la donnée et au chemin :
+"4321"
+```
+
+Grâce à cet enum Java, voir annexe, j'ai pu très fortement réduire le code qui permet de récupérer la clé publique d'un token, vérifier sa validité et récupérer les informations d'un utilisateur. L'ajout d'une nouvelle plateforme de SSO nécessitera un minimum de travail.
+
+annexe
+
+```Java
+AZURE(
+    "https://login.microsoftonline.com/{appId}/discovery/v2.0/keys",
+    "keys/?kid=%s/x5c/0", // Le `%s` est remplacé par la valeur de `kid`
+    true, // Il faut utiliser un décodeur de Base64
+    Arrays.asList("unique_name", "upn") // Le premier à donner un résultat sera bon
+),
+GOOGLE(
+    "https://www.googleapis.com/oauth2/v1/certs",
+    "%s",
+    false,
+    Arrays.asList("email")
+)
+```
+
+##### Retours sur la mission du SSO
+
+Avec du recul il n'était pas nécessaire de lancer le processus de récupération de l'utilisateur en front, ce fonctionnement était inspiré du travail sur Cafpi dans lequel la plateforme de SSO redirige l'utilisateur sur la page de connexion avec le JWT dans l'URL. Ici il aurait été plus simple de transmettre l'utilisateur courrant directement en paramètre de l'URL avec le JWT.
+
+Pour la récupération d'une donnée dans un objet JSON à partir d'un chemin j'ai réinventé le JSONPath qui répond déjà au problème de manière plus efficace que ma solution. Je ne savais pas que ce langage existait lorsque j'ai travaillé sur cette tâche, si c'était à refaire j'utiliserais une implémentation Java de JSONPath pour répondre à ce problème.
 
 ## Conclusion

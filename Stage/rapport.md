@@ -55,6 +55,11 @@ Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompa
         - [Travail réalisé pour Quickbooks](#travail-réalisé-pour-quickbooks)
         - [Généricité du code en back](#généricité-du-code-en-back)
         - [Retours sur la mission du SSO](#retours-sur-la-mission-du-sso)
+    - [Améliorations de Main](#améliorations-de-main)
+      - [Ajout d'un antivirus](#ajout-dun-antivirus)
+      - [Personnalisation de la note de synthèse](#personnalisation-de-la-note-de-synthèse)
+      - [Ajout d'un système d'unité sur les Oca](#ajout-dun-système-dunité-sur-les-oca)
+      - [Résolution d'un bug d'accès simultané du back](#résolution-dun-bug-daccès-simultané-du-back)
   - [Conclusion](#conclusion)
 
 ## Introduction
@@ -414,4 +419,49 @@ Avec du recul il n'était pas nécessaire de lancer le processus de récupérati
 
 Pour la récupération d'une donnée dans un objet JSON à partir d'un chemin j'ai réinventé le JSONPath qui répond déjà au problème de manière plus efficace que ma solution. Je ne savais pas que ce langage existait lorsque j'ai travaillé sur cette tâche, si c'était à refaire j'utiliserais une implémentation Java de JSONPath pour répondre à ce problème.
 
+### Améliorations de Main
+
+#### Ajout d'un antivirus
+
+<img alt="clamav logo" src="./assets/clamav_logo.png" width="64">
+
+Dans le cadre d'un développement spécifique de sécurité pour notre client Cafpi, nous avons ajouté un test antivirus pour vérifier que les pièces administratives déposées par les utilisateurs ne contiennent pas de virus.
+
+Avant de commencer le développement de cette tâche j'ai effectué des recherches pour trouver comment utiliser un antivirus avec Java sur une machine sous Linux, c'est de cette façon que j'ai eu connaissance de ClamAV. J'ai installé cet antivirus sur ma machine et sur notre serveur. Son installation nécessite une vingtaine de commandes qui sont dificiles à déduire de la documentation, voir annexe. J'ai rajouté une page sur notre wiki pour décrire la procédure d'installation. J'y ai également ajouté la procédure pour créer un service Linux sur le serveur qui lance ClamAV au démarrage du serveur et le mette à jour automatiquement, voir annexes x et y.
+
+annexes
+
+![clamav_install](./assets/clamav_install.png)
+
+![clamav_update](./assets/clamav_update.png) ![clamav_reboot](./assets/clamav_reboot.png)
+
+Une fois l'antivirus démarré j'ai pu utiliser la librairie Java fournie par ClamAV. La documentation était claire et mon besoin très simple, je n'ai pas eu de dificultés à créer une méthode de vérification des fichiers. J'ai ensuite rajouté cette méthode dans le traitement de l'API d'ajout des pièces administratives. En cas de problème j'ai renvoyé un code d'erreur spécial au front afin d'afficher un message d'erreur correspondant. J'ai également déclenché l'envoi d'un message sur le Slack de Finalgo en cas de problème avec l'antivirus. Lorsque nous recevons ces messages nous redémarrons l'antivirus.
+
+ ![clamav_front](assets/clamav_front.png)  ![clamav_slack](assets/clamav_slack.png)
+
+#### Personnalisation de la note de synthèse
+
+Lorsqu'un dossier de financement est complet nous générons un PDF que les clients transmettent à leur banque, ce document s'appelle la « note de synthèse ». J'ai réalisé une fonctionnalité qui permet d'afficher n'importe quelle information du dossier d'un client à l'endroit souhaité sur sa page de couverture, avec diverses possibilités de formatage du texte.
+
+Je me suis plongé dans la documentation de la librairie IText que nous utilisons pour générer les PDF et j'ai modifié le traitement de la première page de façon à réaliser cette tâche. J'ai crée un système avec des fichier de configuration JSON pour que chaque client puisse avoir le contenu qu'il souhaite sur sa première page. Dans ce fichier nous mettons la liste des éléments qui doivent apparaître, avec pour chaque élément le texte ou le code de l'information à afficher, les coordonnées de l'élément, la police et l'alignement à utiliser.
+
+Ce système a été beaucoup utilisé et amélioré par d'autres membres de l'équipe par la suite. C'est un outil très utile pour la personnalisation des dossiers.
+
+Exemple du résultat avec 2 éléments dans le JSON.
+
+![pdf](./assets/pdf.png)
+
+#### Ajout d'un système d'unité sur les Oca
+
+Les Oca sont des informations sur le type d'un contenu quelconque que nous pourrions avoir en base de données. Par exemple « nombre d'employés » et « email du signataire » pourraient être des Oca, plutôt associés à des contenus de type « entreprise » et « projet ».
+
+En back j'ai ajouté à certains Oca un champ unité qui permet d'indiquer quelle unité est associée à cet Oca. Ce champ permet par exemple d'indiquer que le `chiffre d'affaires` s'exprime en `€`. Dans un soucis de bonnes pratiques j'ai utilisé une classe de type Enum pour représenter les différentes unités de ce champs. Cet enum se charge d'associer pour chaque type d'unité le symbole ou la valeur associée comme `mois`, `%`, `€` ou `année(s)`. J'ai ensuite propagé cette unité dans le front où j'ai pu enlever le rajout manuel et souvent ambiguë de ces « symboles ». Maintenant l'unité est reliée à la donnée et non au code HTML d'un composant.
+
+#### Résolution d'un bug d'accès simultané du back
+
+Après le lancement du produit Subvention, nous avons commencé à observer des bugs très étranges d'utilisateurs associés au mauvais projet ou à la mauvaise entreprise. Le problème s'est aggravé jusqu'à se produire plusieurs fois par jour, le résoudre est devenu est devenu urgent. Nous avons supposé que lors de requêtes simultanées, la récupération de l'utilisateur courant ne renvoyait pas forcément le bon utilisateur. On parlera de la méthode `getCurrentUser`.
+
+À l'aide de CURL* et d'un script j'ai mis en place un scénario de test qui m'a permis de confirmer le non fonctionnement de cette méthode. J'ai également trouvé la source du problème dans une variable de session utilisée pour stocker l'utilisateur courant. Il y avait plusieurs couches d'abstraction qui rendaient le code flou. Cette variable de session était partagée avec les différentes requêtes en cours, d'où les conflits entre utilisateurs.
+
+Après avoir consulté la documentation de Spring Boot j'ai supprimé tout le code relatif à cette abstraction et à cette variable de session. J'ai remplacé tous les appels à `getCurrentUser` par des appels à une fonctionnalité de Spring qui permet de sauvegarder des informations dans le contexte de la requête. L'utilisation de cette fonctionnalité de Spring a résolu le problème et accéléré le temps de traitement de certaines API sans que nous ne puissions l'expliquer.
 ## Conclusion

@@ -63,6 +63,11 @@ Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompa
     - [Développement de Crossroads](#développement-de-crossroads)
       - [Réécriture du système de paiement](#réécriture-du-système-de-paiement)
       - [Conservation des paramètres dans l'URL](#conservation-des-paramètres-dans-lurl)
+      - [Création du produit Subvention](#création-du-produit-subvention)
+        - [Mise en place du MVP en back](#mise-en-place-du-mvp-en-back)
+        - [Mise en place du MVP en front](#mise-en-place-du-mvp-en-front)
+        - [Séparation des composants](#séparation-des-composants)
+        - [Formulaire spécifique aux subventions](#formulaire-spécifique-aux-subventions)
   - [Conclusion](#conclusion)
 
 ## Introduction
@@ -509,4 +514,60 @@ Paramètre 2 :
 ```
 
 Exemple d'URL avec des paramètres
+
+#### Création du produit Subvention
+
+On m'a chargé de créer un prototype fonctionnel pour une nouvelle application, un outil de recherche de subventions pour les entreprises ; basé sur l'API `aides-entreprises.fr`. Nous appelons ce type de prototype un MVP pour Produit Viable au Minimum.
+
+J'ai travaillé plusieurs semaines pour réaliser ce MVP et par la suite, toute l'équipe s'est mise à travailler sur le produit Subvention. L'objectif était d'améliorer suffisamment le produit dans tous ces aspects pour mettre en place des abonnements.
+
+Il nous a fallu environ un mois avant de lancer le produit avec les abonnements de la nouvelle version de Stripe. Ensuite nous avons travaillé environ 5 mois à l'amélioration de cette plateforme.
+
+##### Mise en place du MVP en back
+
+J'ai commencé par regarder la page swagger de l'API `aides-entreprises`, il s'agit d'une page de leur documentation qui regroupe l'ensemble des possibilités de leur API avec le fonctionnement de chaque ressource (URL). J'ai testé massivement les différentes ressources disponibles sur cette API dans le but de comprendre quelles données nous pouvions récupérer et comment ces données sont liées entre elles.
+
+![aides_swagger_1](assets/aides_swagger_1.png) ![aides_swagger_2](assets/aides_swagger_2.png)
+
+Certaines des API permettent de récupérer les différents critères de recherche comme les départements, les secteurs d'activité ou la taille de l’entreprise. J'ai donc ajouté des API sur notre back qui servent d'intermédiaires avec `aides-entreprises.fr` pour que notre front puisse récupérer ces différents critères. Il était alors possible pour le front de récupérer les *valeurs* possible pour un critère, et de connaître la *clé* `aides-entreprises` associée à chacune de ces valeurs.  
+L'exemple suivant illustre le principe de *valeur* et de *clé* pour le critère *taille de l'entreprise*.
+
+```json
+[
+    { "key": "1", "value": "Moins de 10 salariés" },
+    { "key": "2", "value": "Entre 10 et 50 salariés" },
+    { "key": "3", "value": "Plus de 50 salariés" }
+]
+```
+
+Du côté front, détaillé plus loin, j'ai pu récupérer les différents critères de recherche et les afficher dans notre technologie de formulaires. Il est devenu possible pour un utilisateur de répondre à ce formulaire, ce qui a eu pour effet d'enregistrer ses réponses dans notre base de données avec les bonnes *clés*.
+
+J'ai ensuite pu créer une API qui se charge de récupérer les *clés* des réponses d'un utilisateur et qui s'en serve pour effectuer une recherche de subventions. Cette API retourne les résultats au front qui les présente aux utilisateurs.
+
+##### Mise en place du MVP en front
+
+Pour le front il nous fallait un système de formulaire avec la possibilité d'avoir plusieurs chemins de questions, une gestion de compte et un moyen d'afficher des résultats. Il s'agissait exactement de ce que faisait Crossroads. Il a donc fallu séparer Crossroads en deux, et surtout réécrire le code du formulaire qui mélangeait des traitements métier avec des traitements de formulaire générique.
+
+##### Séparation des composants
+
+Sur Crossroads tout ce qui est spécifique aux questions d’un formulaire se trouve dans un fichier au format JSON. On y trouve pour chaque question :
+
+- l'intitulé de la question,
+- les réponses possibles ou éventuellement la méthode à appeler pour les connaître,
+- le type de la question
+- la condition pour qu'elle apparaisse ou la méthode à appeler pour savoir la question doit être posée.
+
+J'ai séparé en deux le composant qui se chargeait d'afficher dynamiquement chaque question du formulaire et de gérer la partie spécifique aux plans de financement. J'ai utilisé l'héritage du langage TypeScript de façon à ce que le composant du formulaire Financing hérite du composant de formulaire générique. Cette réécriture du code a été particulièrement difficile, il y avait beaucoup d'erreurs dues à des fonctionnements asynchrones et à des éléments utilisés par les deux composants.
+
+J'ai également réécris le composant de la page des résultats. Mon but était de retrouver cette généricité avec un composant parent dont héritent les composants spécifiques qui affichent les résultats de chaque formulaire.
+
+![uml_form](assets/uml_form.png)
+
+##### Formulaire spécifique aux subventions
+
+J'ai crée un composant qui hérite du formulaire générique pour y ajouter le code spécifique aux subventions. J'ai établi la première version du formulaire au format JSON, c'est à dire que j'ai crée une liste de questions qui correspondent à différents critères de recherche de l'API des aides. J'ai fait en sorte que les réponses de ces questions récupérees depuis la passerelle que j'ai mis en place sur notre back. De cette façon les réponses sont automatiquement mise à jour si l'API des aides les modifie.
+
+![form_reponses](./assets/form_reponses.png)
+
+Exemple de question dont les réponses sont récupérées dynamiquement depuis l'API des aides
 ## Conclusion

@@ -68,6 +68,10 @@ Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompa
         - [Mise en place du MVP en front](#mise-en-place-du-mvp-en-front)
         - [Séparation des composants](#séparation-des-composants)
         - [Formulaire spécifique aux subventions](#formulaire-spécifique-aux-subventions)
+      - [Améliorations du produit Subvention](#améliorations-du-produit-subvention)
+        - [Analyse des critères de l'API aides-entreprises](#analyse-des-critères-de-lapi-aides-entreprises)
+        - [Recherche par mots clés](#recherche-par-mots-clés)
+        - [Pré-remplissage du formulaire grâce au siret](#pré-remplissage-du-formulaire-grâce-au-siret)
   - [Conclusion](#conclusion)
 
 ## Introduction
@@ -250,9 +254,13 @@ Mettre dans annexe
 ![git_log](./assets/git_log.png)
 ![git_code](./assets/git_code.png)
 
-Enfin pour travailler sur les bases de données nous utilisons DBeaver, un logiciel libre avec une interface plutôt intuitive.
+Pour travailler sur les bases de données nous utilisons DBeaver, un logiciel libre avec une interface plutôt intuitive.
 
 ![dbeaver](./assets/dbeaver.png)
+
+Enfin, pour tester les API j'utilise le logiciel PostMan qui permet d'exécuter des appels HTTP avec une interface graphique intuitive. Il est également possible d'enregistrer des collections de requêtes et de créer des scripts de tests sur les résultats de celles-ci. Voir annexe
+
+![postman](assets/postman.png)
 
 ## Missions effectuées
 
@@ -570,4 +578,57 @@ J'ai crée un composant qui hérite du formulaire générique pour y ajouter le 
 ![form_reponses](./assets/form_reponses.png)
 
 Exemple de question dont les réponses sont récupérées dynamiquement depuis l'API des aides
+
+#### Améliorations du produit Subvention
+
+Pour la suite des tâches sur les subventions il faut savoir que nous avons mis en place un algorithme qui relâchait certains critères de recherche de façon à trouver des subventions lorsqu'il n'y avais pas assez de résultats. Nous avions remarqué que certains critères n'étaient pas très bien renseignés et limitaient trop les résultats. Cet algorithme servait à corriger ce problème.
+
+##### Analyse des critères de l'API aides-entreprises
+
+Dans le but d'améliorer l'algorithme de relachement des contraintes, on m'a demandé d'étudier les critères de recherche et en particulier la pertinence de chacun d'entre eux. L'objectif était de déteriner quels critères peuvent être relaché par notre algorithme, et surtout dans quel ordre.
+
+Il faut distinguer deux types de contraintes à relacher, celles qui sont mal renseignés dans l'API et celles que l'utilisateur sélectionne dans le formulaire. Dans le formulaire les réponses de certaines questions sont ambigues, l'API ne permet pas de récupérer des explications détaillées. Il arrive donc que les utilisateurs répondent mal à ces questions sans le savoir.
+
+J'ai simulé le comportement de notre application avec le logiciel PostMan qui permet de contacter des API. J'ai listé l'ensemble des critères de recherche avec pour chacun d'entre eux les réponses possibles. J'ai ensuite généré des statistiques sur la couverture de chaque critère, c'est à dire sur le nombre de subventions qui renseignent si elles valident ou non ce critère. Toutes ces données sont sur une page de notre wiki dédiée aux subventions.
+
+Cette analyse a permis de montrer que certains critères avaient une couverture de moins de 10 %, ils éliminaient donc plus de 90 % des résultats alors que certains d'entre eux étaient éligibles. Après avoir étudié les données de l'API nous avons pu établir une liste de contraintes à relacher dans un certain ordre. Nous avons utilisé cette information pour adapter notre algorithme, ce qui a en partie amélioré la pertinence des résultats.
+
+##### Recherche par mots clés
+
+Nous avons rajouté une question dans le formulaire pour demander aux utilisateurs d'entrer des mots clés en rapport avec leur projet et leur entreprise. Le but de cette question était de proposer en priorité des aides qui contiennent ces mots clés.
+
+La principale dificulté était d'extraire les mots clés de la réponse du formulaire, c'est à dire enlever les mots de liaisons et les signes de ponctuation avec un traitement simple.
+
+Une fois les mots clés récupérés j'ai ajouté ces mots comme contrainte de notre algorithme. Cette technique a permis à notre algorithme de directement sortir en priorité les aides avec ces mots. Étant donné qu'il s'agit d'une donnée non fiable nous relachons quand même la contrainte pour les aides suivantes. Le but étant simplement d'envoyer les aides au front dans l'ordre le plus pertinent.
+
+##### Pré-remplissage du formulaire grâce au siret
+
+Dans le but de pré-remplir certaines réponses du formulaire on m'a confié la tâche de récupérer les informations liées au code siret des utilisateurs.
+
+J'ai utilisé PostMan pour tester l'API Sirene de l'INSEE (Institut National de la Statistique et des Études Économiques) qui permet de récupérer les informations des codes siret. Avec l'aide de la documentation j'ai trouvé comment récupérer de quoi pré-remplir quatre des questions de notre formulaire. Il s'agit du nom de l'entreprise, de son effectif, de son secteur d'activité et du département de son siège social.
+
+La principale difficulté était de relier les informations de l'API Sirene avec les réponses de l'API des aides. En effet, les codes effectifs utilisaient des tranches différentes, pour le secteur d'activité nous n'avions que le code NAF (un code qui renseigne l'activité principale exercée par une entreprise) et pour les départements les codes sont diffrents.
+
+```json
+Codes effectifs de l'API des aides
+[
+    { "key": "3", "caption": "Moins de 10 salariés" }
+    { "key": "4", "caption": "10 à 49 salariés" }
+]
+
+Codes effectifs de l'API Sirene
+[
+    { "key": "03", "caption": "6 à 9 salariés" },
+    { "key": "11", "caption": "10 à 19 salariés" }
+]
+```
+
+Exemple des différences entre les codes effectif des deux API
+
+![mapping_effectif](assets/mapping_effectif.png) pour l'annexe
+
+Pour résoudre ces problèmes j'ai crée des enum Java qui servent de tables de conversion. Pour le secteur d'activité Arnaud m'a fourni un fichier excel de conversion avec des centaines de lignes, une pour chaque code NAF. J'ai écris un script avec le langage Javascript pour convertir ce fichier en un enum Java. J'avais déjà réalisé des tâches similaires, d'où ce choix. J'ai ensuite pu utiliser ces tables de conversion pour retrouver les réponses correspondantes dans l'API des aides, puis les enoyer au front.
+
+D'après les informations de notre base de données, l'essentiel des utilisateurs gardent les propositions de remplissage automatique sauf pour le secteur d'activité. Le tableau de conversion des codes NAF semble fonctionner une fois sur deux, ce qui est déjà correct étant donné le nombre de secteurs d'activité.
+
 ## Conclusion

@@ -59,7 +59,10 @@ Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompa
       - [Ajout d'un antivirus](#ajout-dun-antivirus)
       - [Personnalisation de la note de synthèse](#personnalisation-de-la-note-de-synthèse)
       - [Ajout d'un système d'unité sur les Oca](#ajout-dun-système-dunité-sur-les-oca)
-      - [Résolution d'un bug d'accès simultané du back](#résolution-dun-bug-daccès-simultané-du-back)
+      - [Résolution d'un bug d'accès simultané au back](#résolution-dun-bug-daccès-simultané-au-back)
+    - [Développement de Crossroads](#développement-de-crossroads)
+      - [Réécriture du système de paiement](#réécriture-du-système-de-paiement)
+      - [Conservation des paramètres dans l'URL](#conservation-des-paramètres-dans-lurl)
   - [Conclusion](#conclusion)
 
 ## Introduction
@@ -457,11 +460,53 @@ Les Oca sont des informations sur le type d'un contenu quelconque que nous pourr
 
 En back j'ai ajouté à certains Oca un champ unité qui permet d'indiquer quelle unité est associée à cet Oca. Ce champ permet par exemple d'indiquer que le `chiffre d'affaires` s'exprime en `€`. Dans un soucis de bonnes pratiques j'ai utilisé une classe de type Enum pour représenter les différentes unités de ce champs. Cet enum se charge d'associer pour chaque type d'unité le symbole ou la valeur associée comme `mois`, `%`, `€` ou `année(s)`. J'ai ensuite propagé cette unité dans le front où j'ai pu enlever le rajout manuel et souvent ambiguë de ces « symboles ». Maintenant l'unité est reliée à la donnée et non au code HTML d'un composant.
 
-#### Résolution d'un bug d'accès simultané du back
+#### Résolution d'un bug d'accès simultané au back
 
-Après le lancement du produit Subvention, nous avons commencé à observer des bugs très étranges d'utilisateurs associés au mauvais projet ou à la mauvaise entreprise. Le problème s'est aggravé jusqu'à se produire plusieurs fois par jour, le résoudre est devenu est devenu urgent. Nous avons supposé que lors de requêtes simultanées, la récupération de l'utilisateur courant ne renvoyait pas forcément le bon utilisateur. On parlera de la méthode `getCurrentUser`.
+Après le lancement du produit Subvention, nous avons commencé à observer des bugs très étranges d'utilisateurs associés au mauvais projet ou à la mauvaise entreprise. Le problème s'est aggravé jusqu'à se produire plusieurs fois par jour, le résoudre est devenu est devenu urgent. Étant donné que la recherche de subventions peut prendre jusqu'à plusieurs secondes de traitement, il arrive souvent que plusieurs requêtes soient traité en même temps par notre back. Nous avons supposé que lors de ces requêtes simultanées, la méthode de récupératin de l'utilisateur courant ne renvoyait pas forcément le bon utilisateur. Cette méthode s'appelle `getCurrentUser`.
 
 À l'aide de CURL* et d'un script j'ai mis en place un scénario de test qui m'a permis de confirmer le non fonctionnement de cette méthode. J'ai également trouvé la source du problème dans une variable de session utilisée pour stocker l'utilisateur courant. Il y avait plusieurs couches d'abstraction qui rendaient le code flou. Cette variable de session était partagée avec les différentes requêtes en cours, d'où les conflits entre utilisateurs.
 
 Après avoir consulté la documentation de Spring Boot j'ai supprimé tout le code relatif à cette abstraction et à cette variable de session. J'ai remplacé tous les appels à `getCurrentUser` par des appels à une fonctionnalité de Spring qui permet de sauvegarder des informations dans le contexte de la requête. L'utilisation de cette fonctionnalité de Spring a résolu le problème et accéléré le temps de traitement de certaines API sans que nous ne puissions l'expliquer.
+
+### Développement de Crossroads
+
+À l'origine Crossroads était un projet dédié au produit Financings. J'ai beaucoup travaillé à l'amélioration de ce projet dans l'objetif de le rendre utilisable pour d'autres produits.
+
+#### Réécriture du système de paiement
+
+J'ai eu pour mission de mettre à jour la version de Stripe utilisé pour le module de paiement, et améliorer le système déjà existant. Les objectifs étaient de pouvoir vendre des abonnements mensuels depuis la plateforme et de pouvoir facilement ajouter d'autres produits à vendre. La version de Stripe utilisée à ce moment là n'était pas compatible avec les abonnements.  
+Après avoir étudié le fonctionnement de Stripe et consulté la documntation j'ai décidé de réécrire l'essentiel du code des paiements qui utilisait des méthodes dépréciées.
+
+![stripe_uml](./assets/stripe_uml.png)
+
+Ce schéma décrit le fonctionnement du paiement par Stripe. En cas de succès, Stripe contacte une API de notre back qui se charge de persiser l'achat de l'utilisateur dans notre base de données. Le front détecte les changements de l'utilisateurs et affiche l'application correspondante à l'achat.
+
+Depuis l'interface de Stripe j'ai crée de nouveaux produits pour remplacer tous les produits de l'ancienne version. Chaque nouveau produit est associé à une liste d'identifiants de prix uniques comme montre la figure X.
+
+![stripe_prix](assets/stripe_prix.png)
+
+En front j'ai enlevé beaucoup de traitements inutiles qui rendaient le système de paiement compliqué. J'ai pu réduire notre système à un seul modèle Angular, similaire à un enum en Java, qui contient la liste de nos produits avec les nouveaux codes Stripe et diverses méthodes à utiliser sur ces produits. Grâce à ce modèle il est possible d'ajouter facilement un nouveau produit et nous pouvons déclencher le module de paiement depuis n'importe où dans l'application.
+
+En back j'ai réécrit le traitement qui fait suite au callback de Stripe. J'ai modifié l’enum des produits de façon à ce qu'il soit similaire à celui du front. Ensuite j'ai utilisé cet enum pour retrouver le produit acheté par l'utilisateur à partir des nouveaux codes, puis j'ai effectué les traitements nécessaires aux achats. J'ai également utilisé l'API de Stripe pour récupérer le nom associé au paiement afin de mettre à jour le nom de l'utilisateur qui n'est pas toujours renseigné.
+
+Suite à cette tâche le système de paiement a très peu changé et nous avons ajouté plusieurs nouveaux produits. J'ai trouvé ce développement très intéressant. Il y avait à la fois de la recherche de documentation en front, en back, une problématique de modélisation et un mécanisme de sécurité avec le callback ainsi que toute une procédure pour le tester en local. La qualité de la documentation de Stripe était aussi très appréciable.
+
+#### Conservation des paramètres dans l'URL
+
+J'ai effectué beaucoup de missions de réécriture de code depuis mon arrivé à Finalgo, cette réécriture est appelée refactoring dans le jargon des développeurs. Cette-ci est représentative de ce type de tâche. Nous avions plusieurs bugs suite à des informations en paramètre des URL qui disparaissaient entre les pages. Le but de cette tâche était de persister sistématiquement tous les paramètres des URL, et ponctuellement d'enlever certains de ces paramètres. Il s'agissait de l'opposé de la logique présente à ce moment là.
+
+J'ai donc modifié tous les liens du projet Crossroads de façon à toujours conserver ces paramètres, sauf lorsqu'ils contiennent des informations qui ne sont plus nécessaires. Cette modification a permis de régler divers bugs en rapport avec des traitements asynchrones sur les valeurs de ces paramètres.
+
+```txt
+URL :
+https://app.finalgo.fr/crossroads/#/authentification-subventions?debug=true&product=connectionSimple
+
+Paramètre 1 :
+"debug" dont la valeur est "true"
+
+Paramètre 2 :
+"product" dont la valeur est "connectionSimple"
+```
+
+Exemple d'URL avec des paramètres
 ## Conclusion

@@ -72,6 +72,8 @@ Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompa
         - [Analyse des critères de l'API aides-entreprises](#analyse-des-critères-de-lapi-aides-entreprises)
         - [Recherche par mots clés](#recherche-par-mots-clés)
         - [Pré-remplissage du formulaire grâce au siret](#pré-remplissage-du-formulaire-grâce-au-siret)
+        - [Récupération des mots clés pour l'algorithme d'IA](#récupération-des-mots-clés-pour-lalgorithme-dia)
+        - [Indépendance de l'API aides-entreprises](#indépendance-de-lapi-aides-entreprises)
   - [Conclusion](#conclusion)
 
 ## Introduction
@@ -630,5 +632,37 @@ Exemple des différences entre les codes effectif des deux API
 Pour résoudre ces problèmes j'ai crée des enum Java qui servent de tables de conversion. Pour le secteur d'activité Arnaud m'a fourni un fichier excel de conversion avec des centaines de lignes, une pour chaque code NAF. J'ai écris un script avec le langage Javascript pour convertir ce fichier en un enum Java. J'avais déjà réalisé des tâches similaires, d'où ce choix. J'ai ensuite pu utiliser ces tables de conversion pour retrouver les réponses correspondantes dans l'API des aides, puis les enoyer au front.
 
 D'après les informations de notre base de données, l'essentiel des utilisateurs gardent les propositions de remplissage automatique sauf pour le secteur d'activité. Le tableau de conversion des codes NAF semble fonctionner une fois sur deux, ce qui est déjà correct étant donné le nombre de secteurs d'activité.
+
+##### Récupération des mots clés pour l'algorithme d'IA
+
+Dans l'optique d'améliorer la pertinence des résultats nous avons mis en place un serveur Python pour utiliser la librairie Spicy. Cette librairie permet de faire du NLP (Natural Language Processing), une branche de l'IA qui traite le texte. On m'a chargé de générer la liste de tous les mots utilisés dans les subventions, avec pour chaque mot la liste des subventions dans lesquelles il est présent. Le but était d'utiliser cette liste pour générer des mots clés pertinents avec Spicy.
+
+J'ai commencé par récupérer l'intégralité des subventions de l'API pour ne plus avoir besoin de les requêter. Puis j'ai parcouru les textes afin de remplir cette liste. J'ai vite rencontré des difficultés à cause des caractères spéciaux. Certains caractères utilisaient le standard UTF-8 échapé, d'autres le standard HTML échapé. Il y avait aussi les caractères de ponctuation qui posaient problème et il arrivait de trouver du code CSS. Je me retrouvais donc avec les mêmes mots écris de façon différente, ou avec des termes de code HTML ou CSS qui n'avaient rien à faire dans ma liste.
+
+J'ai élaboré un algorithme de nettoyage des caractères spéciaux pour uniformiser les différents encodages utilisés et enlever ce qui ne compose pas les mots. Cet algorithme utilise des regex pour remplacer les caractères HTML et Unicode échappé par les bons caractères.
+
+```json
+Avant traitement :
+{ "value": "\"Zone … \" - Exon\u00e9ration d'imp\u00f4t et d&eacute;veloppement …" }
+
+Après traitement :
+{ "value": "\"Zone … \" - Exonération d'impôt et développement …" }
+```
+
+Cet algorithme de nettoyage a permis de passer d'environ 40 000 à 12 000 mots différents, soit 4 fois moins.
+
+Avec l'avancement de l'agorithme d'IA nous avons découvert que Spicy permettait déjà de faire ce nettoyage, cependant mon algorithme est utilisé ailleurs dans le code Java, voir section suivante.
+
+##### Indépendance de l'API aides-entreprises
+
+Nous étions trop dépendants de l'API des aides ce qui était problématique en terme de performances et en terme de résistance aux pannes. Nous effectuions énormément de requêtes à cette API, à la fois pour des recherches mais aussi pour charger des subventions dont nous connaissions déjà les identifiants. Le but de ma tâche était de ne plus avoir besoin de l'API pour charger des subventions, et d'avoir une solution de secours en cas de panne de l'API.
+
+J'ai mis en place une API appelée tous les jours par un cron (Programme qui se déclenche automatiquement de façon prédéfini.) afin de copier la base de données des subventions sur notre serveur. Cette API se charge de télécharger les fichiers JSON accessibles depuis le site des aides mais aussi de requêter l'intégralité des subventions depuis l'API. Il faut savoir qu'en utilisant l'API il y a du code HTML dans les subventions afin de mettre en forme leur contenu, ce n'est pas le cas avec les fichiers ; les deux sont donc nécessaires pour une copie complète de leur base de données.
+
+J'ai également réutilisé et amélioré mon algorithme de nettoyage des caractères sur toutes les données récupérées, cela permet au back de ne pas faire la différence entre les données qui viennent de l'API et celles qui viennent des fichiers de sauvegarde.
+
+Enfin, j'ai fait en sorte que le back charge la copie des subventions avec le code HTML au démarrage du serveur. Pour des raisons de performance j'ai utilisé une structure de données de type Map qui permet d'accéder à chaque subvention en temps constant à partir d'un identifiant. De cette façon j'ai pu remplacer tous les chargements de subventions via l'API par des appels à cette Map.
+
+Avant d'utiliser cette Map, le temps de chargement des subventions sur la page d'accueil de notre produit était de 50 à 100 ms par subvention à charger, soit souvent plusieurs secondes. Cette fonctionnalité a divisé ce temps de chargement par environ 30, soit systématiquement moins d'une seconde.
 
 ## Conclusion

@@ -60,6 +60,7 @@ Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompa
       - [Personnalisation de la note de synthèse](#personnalisation-de-la-note-de-synthèse)
       - [Ajout d'un système d'unité sur les Oca](#ajout-dun-système-dunité-sur-les-oca)
       - [Résolution d'un bug d'accès simultané au back](#résolution-dun-bug-daccès-simultané-au-back)
+      - [Développement de la nouvelle calculatrice financière](#développement-de-la-nouvelle-calculatrice-financière)
     - [Développement de Crossroads](#développement-de-crossroads)
       - [Réécriture du système de paiement](#réécriture-du-système-de-paiement)
       - [Conservation des paramètres dans l'URL](#conservation-des-paramètres-dans-lurl)
@@ -483,6 +484,14 @@ Après le lancement du produit Subvention, nous avons commencé à observer des 
 
 Après avoir consulté la documentation de Spring Boot j'ai supprimé tout le code relatif à cette abstraction et à cette variable de session. J'ai remplacé tous les appels à `getCurrentUser` par des appels à une fonctionnalité de Spring qui permet de sauvegarder des informations dans le contexte de la requête. L'utilisation de cette fonctionnalité de Spring a résolu le problème et accéléré le temps de traitement de certaines API sans que nous ne puissions l'expliquer.
 
+#### Développement de la nouvelle calculatrice financière
+
+On m'a demandé d'ajouter de nouvelles fonctionnalités à la calculatrice financière. J'avais pour modèle un fichier excel avec les entrées et les résultats attendus.
+
+Je me suis basé sur l'existant mais l'ancienne calculatrice était vraiment rudimentaire par rapport à ce que je devais faire. J'ai réécris presque tout le code du composant pour réaliser la nouvelle calculatrice. C'est l'une des rares missions où j'ai dû vraiment gérer le rendu en CSS, généralement je réutilise des composants dont le style est déjà fait.
+
+![calculatrice](assets/calculatrice.png) ![old_calculatrice](assets/old_calculatrice.png)
+
 ### Développement de Crossroads
 
 À l'origine Crossroads était un projet dédié au produit Financings. J'ai beaucoup travaillé à l'amélioration de ce projet dans l'objetif de le rendre utilisable pour d'autres produits.
@@ -665,4 +674,14 @@ Enfin, j'ai fait en sorte que le back charge la copie des subventions avec le co
 
 Avant d'utiliser cette Map, le temps de chargement des subventions sur la page d'accueil de notre produit était de 50 à 100 ms par subvention à charger, soit souvent plusieurs secondes. Cette fonctionnalité a divisé ce temps de chargement par environ 30, soit systématiquement moins d'une seconde.
 
+Annexe page d'accueil subvention
+
+![accueil_subvention](assets/accueil_subvention.png)
+
 ## Conclusion
+
+Mon ressenti sur cette année d'alternance est très positif. J'ai pu approfondir mes connaissances en Java, en algorithmie, en bases de données et en toutes sortes de technologies du web. Les différentes missions que j'ai réalisées m'ont aidé à mieux comprendre le contenu de plusieurs de mes cours, et inversement.
+
+J'ai également appris de nombreuses bonnes pratiques. Au delà des technologies j’ai mis en place une démarche quotidienne de recherches, d’étude des documentations, de tests, de débogage et de travail d'équipe pour avancer dans mes tâches. Mon code est devenu plus facile à lire, mieux organisé et j’ai pris l’habitude de correctement documenter mon travail avec les outils à ma disposition.
+
+Mon travail sur le projet Subvention m'a appris beaucoup sur la mise en place d'un nouveau produit, sur l'importance de la performance d'une application, de la pertinence des logs ou messages d'erreurs et sur ma capacité à réfléchir sur des algorithmes. J'ai plusieurs fois remis mon travail en question et nous avons parfois dû annuler des missions qui n'ont pas eu le résultat prévu. Nous sommes une startup dont les outils évoluent très vite, il ne faut pas se laisser abattre à cause de quelques échecs.

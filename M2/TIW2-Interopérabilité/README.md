@@ -1,5 +1,7 @@
 # Interopérabilité
 
+[Page du cours](https://perso.liris.cnrs.fr/angela.bonifati/teaching/TIW2-2021-2022/)
+
 ## Notes
 
 ### Les flèches

@@ -1,0 +1,237 @@
+"Country";"Country_Name";"Population";"Country_ID";"Continent_ID";"Country_FormerName"
+"AQ";"Antarctica";;11,00;90,00;
+"PR";"Puerto Rico";;72,00;91,00;
+"VI";"Virgin Islands (U.S.)";;78,00;91,00;
+"AW";"Aruba";;100,00;91,00;
+"BS";"Bahamas";;180,00;91,00;
+"BM";"Bermuda";;195,00;91,00;
+"BZ";"Belize";;227,00;91,00;"British Honduras"
+"VG";"British Virgin Islands";;231,00;91,00;
+"CA";"Canada";;260,00;91,00;
+"KY";"Cayman Islands";;268,00;91,00;
+"CR";"Costa Rica";;295,00;91,00;
+"CU";"Cuba";;300,00;91,00;
+"DO";"Dominican Republic";;320,00;91,00;
+"SV";"El Salvador";;330,00;91,00;
+"GT";"Guatemala";;415,00;91,00;
+"HT";"Haiti";;420,00;91,00;
+"HN";"Honduras";;430,00;91,00;
+"JM";"Jamaica";;487,00;91,00;
+"MX";"Mexico";;595,00;91,00;
+"MS";"Montserrat";;609,00;91,00;
+"NI";"Nicaragua";;665,00;91,00;
+"PA";"Panama";;710,00;91,00;
+"KN";"Saint Kitts/Nevis";;763,00;91,00;
+"SH";"St. Helena";;765,00;91,00;
+"PM";"St. Pierre/Miquelon";;773,00;91,00;
+"TC";"Turks/Caicos Islands";;906,00;91,00;
+"US";"United States";280000000,00;926,00;91,00;
+"AI";"Anguilla";;142,00;92,00;
+"AG";"Antigua/Barbuda";;149,00;92,00;
+"AR";"Argentina";;150,00;92,00;
+"BB";"Barbados";;184,00;92,00;
+"BO";"Bolivia";;205,00;92,00;
+"BR";"Brazil";;220,00;92,00;
+"CL";"Chile";;275,00;92,00;
+"CO";"Colombia";;285,00;92,00;
+"DM";"Dominica";;318,00;92,00;
+"EC";"Ecuador";;325,00;92,00;
+"FK";"Falkland Islands";;337,00;92,00;
+"GF";"French Guiana";;355,00;92,00;
+"GD";"Grenada";;406,00;92,00;
+"GP";"Guadeloupe";;407,00;92,00;
+"GY";"Guyana";;418,00;92,00;
+"MQ";"Martinique";;591,00;92,00;
+"AN";"Netherlands Antilles";;640,00;92,00;
+"PY";"Paraguay";;715,00;92,00;
+"PE";"Peru";;720,00;92,00;
+"LC";"St. Lucia";;770,00;92,00;
+"VC";"Saint Vincent/Grenadines";;775,00;92,00;
+"SR";"Suriname";;840,00;92,00;
+"TT";"Trinidad and Tobago";;887,00;92,00;
+"UY";"Uruguay";;930,00;92,00;
+"VE";"Venezuela";;940,00;92,00;
+"AZ";"Azerbaijan";;115,00;93,00;"Soviet Union"
+"AL";"Albania";;120,00;93,00;
+"AM";"Armenia";;135,00;93,00;"Soviet Union"
+"AD";"Andorra";;140,00;93,00;
+"AT";"Austria";7000000,00;165,00;93,00;
+"BA";"Bosnia/Herzegovina";;185,00;93,00;"Yugoslavia"
+"BE";"Belgium";8000000,00;190,00;93,00;
+"BY";"Belarus";;211,00;93,00;"Soviet Union"
+"BG";"Bulgaria";;245,00;93,00;
+"CZ";"Czech Republic";;310,00;93,00;"Czechslovakia"
+"DK";"Denmark";5000000,00;315,00;93,00;
+"EE";"Estonia";3000000,00;331,00;93,00;"Soviet Union"
+"FO";"Faroe Islands";;336,00;93,00;
+"FI";"Finland";5000000,00;340,00;93,00;
+"FR";"France";50000000,00;350,00;93,00;
+"GE";"Georgia";;390,00;93,00;"Soviet Union"
+"DE";"Germany";80000000,00;394,00;93,00;"East/West Germany"
+"GI";"Gibraltar";;397,00;93,00;
+"GR";"Greece";12000000,00;400,00;93,00;
+"GL";"Greenland";;405,00;93,00;
+"HR";"Croatia";;440,00;93,00;"Yugoslavia"
+"HU";"Hungary";10000000,00;445,00;93,00;
+"IS";"Iceland";;450,00;93,00;
+"IE";"Ireland";;470,00;93,00;
+"IT";"Italy";45000000,00;480,00;93,00;
+"LV";"Latvia";;541,00;93,00;"Soviet Union"
+"LT";"Lithuania";;542,00;93,00;"Soviet Union"
+"SK";"Slovakia";;548,00;93,00;"Czechslovakia"
+"LI";"Liechtenstein";;553,00;93,00;
+"LU";"Luxembourg";;570,00;93,00;
+"MK";"Macedonia";;574,00;93,00;"Yugoslavia"
+"MD";"Moldova";;576,00;93,00;"Soviet Union"
+"MT";"Malta";;590,00;93,00;
+"MC";"Monaco";;607,00;93,00;
+"NL";"Netherlands";20000000,00;630,00;93,00;
+"NO";"Norway";4500000,00;685,00;93,00;
+"PL";"Poland";;730,00;93,00;
+"PT";"Portugal";6000000,00;735,00;93,00;
+"RO";"Romania";;755,00;93,00;"Rumania"
+"SM";"San Marino";;782,00;93,00;
+"SI";"Slovenia";2000000,00;789,00;93,00;"Yugoslavia"
+"ES";"Spain";35000000,00;830,00;93,00;
+"SJ";"Svalbard";;845,00;93,00;
+"SE";"Sweden";9000000,00;850,00;93,00;
+"CH";"Switzerland";7000000,00;855,00;93,00;
+"GB";"United Kingdom";50000000,00;925,00;93,00;
+"UA";"Ukraine";;928,00;93,00;"Soviet Union"
+"YU";"Yugoslavia";;970,00;93,00;"Yugoslavia"
+"DZ";"Algeria";;125,00;94,00;
+"AO";"Angola";;141,00;94,00;
+"BW";"Botswana";;210,00;94,00;
+"BI";"Burundi";;252,00;94,00;
+"CM";"Cameroon";;257,00;94,00;
+"CV";"Cape Verde";;264,00;94,00;
+"CF";"Central African Rep.";;269,00;94,00;
+"TD";"Chad";;273,00;94,00;
+"KM";"Comoros";;286,00;94,00;"Comoro Islands"
+"CG";"Congo";;290,00;94,00;
+"XX";"Zaire";;291,00;94,00;
+"BJ";"Benin";;311,00;94,00;"Dahomey"
+"DJ";"Djibouti";;317,00;94,00;"Afars and Issas"
+"ER";"Eritrea";;327,00;94,00;
+"GQ";"Equatorial Guinea";;332,00;94,00;
+"ET";"Ethiopia";;335,00;94,00;
+"GA";"Gabon";;388,00;94,00;
+"GM";"Gambia";;389,00;94,00;
+"GH";"Ghana";;396,00;94,00;
+"GN";"Guinea";;417,00;94,00;
+"CI";"Ivory Coast";;485,00;94,00;
+"KE";"Kenya";;505,00;94,00;
+"LS";"Lesotho";;543,00;94,00;"Basutoland"
+"LR";"Liberia";;545,00;94,00;
+"LY";"Libya";;550,00;94,00;
+"MG";"Madagascar";;575,00;94,00;"Malagasy Republic"
+"MW";"Malawi";;577,00;94,00;
+"ML";"Mali";;585,00;94,00;
+"MR";"Mauritania";;592,00;94,00;
+"MU";"Mauritius";;593,00;94,00;
+"YT";"Mayotte";;594,00;94,00;
+"MA";"Morocco";;610,00;94,00;
+"MZ";"Mozambique";;615,00;94,00;
+"NE";"Niger";;667,00;94,00;
+"NG";"Nigeria";;670,00;94,00;
+"GW";"Guinea-Bissau";;737,00;94,00;"Portuguese Guinea"
+"RE";"Reunion";;750,00;94,00;
+"RW";"Rwanda";;758,00;94,00;
+"ST";"Sao Tome/Principe";;783,00;94,00;
+"SN";"Senegal";;787,00;94,00;
+"SC";"Seychelles";;788,00;94,00;
+"SL";"Sierra Leone";;790,00;94,00;
+"SO";"Somalia";;800,00;94,00;"Somali Republic"
+"ZA";"South Africa";43000000,00;801,00;94,00;
+"ZW";"Zimbabwe";;818,00;94,00;"Zimbabwe Rhodesia"
+"NA";"Namibia";;821,00;94,00;"Southwest Africa"
+"EH";"Western Sahara";;831,00;94,00;"Spanish Sahara"
+"SD";"Sudan";;835,00;94,00;
+"SZ";"Swaziland";;847,00;94,00;
+"TZ";"Tanzania";;865,00;94,00;
+"TG";"Togo";;883,00;94,00;
+"TN";"Tunisia";;890,00;94,00;
+"UG";"Uganda";;910,00;94,00;
+"EG";"Egypt";;922,00;94,00;"United Arab Republic"
+"BF";"Burkina Faso";;927,00;94,00;"Upper Volta"
+"ZM";"Zambia";;990,00;94,00;
+"AF";"Afghanistan";;110,00;95,00;
+"BH";"Bahrain";;181,00;95,00;
+"BD";"Bangladesh";;182,00;95,00;
+"BT";"Bhutan";;200,00;95,00;
+"IO";"British Indian Ocean";;228,00;95,00;
+"MM";"Myanmar";;250,00;95,00;"Burma"
+"KH";"Cambodia";;255,00;95,00;
+"LK";"Sri Lanka";;272,00;95,00;"Ceylon"
+"CN";"China";;280,00;95,00;
+"TW";"Taiwan";;281,00;95,00;
+"CY";"Cyprus";;305,00;95,00;
+"PS";"Gaza Strip";;393,00;95,00;
+"HK";"Hong Kong";;435,00;95,00;
+"IN";"India";;455,00;95,00;
+"IR";"Iran";;460,00;95,00;
+"IQ";"Iraq";;465,00;95,00;
+"IL";"Israel";5000000,00;475,00;95,00;
+"JP";"Japan";;490,00;95,00;
+"JO";"Jordan";;500,00;95,00;
+"KG";"Kyrgyzstan";;510,00;95,00;"Soviet Union"
+"KP";"Korea, North";;514,00;95,00;
+"KR";"Korea, South";;515,00;95,00;
+"KW";"Kuwait";;520,00;95,00;
+"KZ";"Kazakhstan";;525,00;95,00;"Soviet Union"
+"LA";"Laos";;530,00;95,00;
+"LB";"Lebanon";;540,00;95,00;
+"MO";"Macau";;573,00;95,00;"Macao"
+"MY";"Malaysia";;580,00;95,00;
+"MV";"Maldives";;583,00;95,00;
+"MN";"Mongolia";;608,00;95,00;
+"OM";"Oman";;616,00;95,00;"Muscat and Oman"
+"NP";"Nepal";;625,00;95,00;
+"PK";"Pakistan";;700,00;95,00;
+"QA";"Qatar";;747,00;95,00;
+"TJ";"Tajikistan";;784,00;95,00;"Soviet Union"
+"SA";"Saudi Arabia";;785,00;95,00;
+"SG";"Singapore";;795,00;95,00;
+"RU";"Russia";;825,00;95,00;"Soviet Union"
+"SY";"Syria";;858,00;95,00;
+"TH";"Thailand";;875,00;95,00;
+"AE";"United Arab Emirates";;888,00;95,00;
+"TR";"Turkey";70000000,00;905,00;95,00;
+"TM";"Turkmenistan";;909,00;95,00;"Soviet Union"
+"UZ";"Uzbekistan";;931,00;95,00;"Soviet Union"
+"VN";"Vietnam";;945,00;95,00;"North and South Vietnam"
+"YE";"Yemen";;965,00;95,00;
+"AS";"American Samoa";;60,00;96,00;
+"FM";"Micronesia";;63,00;96,00;
+"GU";"Guam";;66,00;96,00;
+"MP";"Northern Mariana Islands";;69,00;96,00;
+"MH";"Marshall Islands";;73,00;96,00;
+"PW";"Palau";;75,00;96,00;"Trust Terr of Pacific"
+"AU";"Australia";20000000,00;160,00;96,00;
+"BV";"Bouvet Island";;212,00;96,00;
+"SB";"Solomon Islands";;229,00;96,00;
+"BN";"Brunei";;232,00;96,00;
+"CC";"Cocos Islands";;284,00;96,00;
+"CK";"Cook Islands";;293,00;96,00;
+"FJ";"Fiji";;338,00;96,00;
+"PF";"French Polynesia";;367,00;96,00;
+"TF";"French Southern Terr.";;369,00;96,00;
+"KI";"Kiribati";;398,00;96,00;"Gilbert Isls"
+"HM";"Heard/Mcdonald";;424,00;96,00;
+"ID";"Indonesia";;458,00;96,00;
+"TP";"East Timor";;459,00;96,00;
+"CX";"Christmas Island";;516,00;96,00;
+"NR";"Nauru";;621,00;96,00;
+"NC";"New Caledonia";;645,00;96,00;
+"VU";"Vanuatu";;651,00;96,00;"New Hebrides"
+"NZ";"New Zealand";3000000,00;660,00;96,00;
+"NU";"Niue";;672,00;96,00;
+"NF";"Norfolk Island";;683,00;96,00;
+"PG";"Papua New Guinea";;712,00;96,00;
+"PH";"Philippines";;725,00;96,00;
+"PN";"Pitcairn Islands";;727,00;96,00;
+"TK";"Tokelau";;884,00;96,00;
+"TO";"Tonga";;886,00;96,00;
+"TV";"Tuvalu";;908,00;96,00;
+"WF";"Wallis/Futuna Islands";;950,00;96,00;
+"WS";"Samoa";;963,00;96,00;

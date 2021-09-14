@@ -1,0 +1,8 @@
+"Continent_ID";"Continent_Name"
+90,00;"Antarctica"
+91,00;"North America"
+92,00;"South America"
+93,00;"Europe"
+94,00;"Africa"
+95,00;"Asia"
+96,00;"Australia/Pacific"

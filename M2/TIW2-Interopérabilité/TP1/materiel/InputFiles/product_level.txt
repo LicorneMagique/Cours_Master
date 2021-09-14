@@ -1,0 +1,5 @@
+"Product_Level";"Product_Level_Name"
+1,00;"Product"
+2,00;"Product Group"
+3,00;"Product Category"
+4,00;"Product Line"

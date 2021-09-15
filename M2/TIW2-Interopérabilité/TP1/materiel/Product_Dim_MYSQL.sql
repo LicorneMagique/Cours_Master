@@ -12,6 +12,6 @@ CREATE TABLE Product_Dim(
 	Supplier_Country nvarchar(2) NULL,
 	Supplier_Name nvarchar (30) NULL,
 	Supplier_ID int NULL
-)
+);
 
 

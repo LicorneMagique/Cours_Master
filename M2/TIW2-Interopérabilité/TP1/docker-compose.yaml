@@ -1,15 +1,17 @@
 version: "3.4"
+volumes:
+  data:
 services:
-  mysql:
-    image: "mysql"
+  db:
+    image: mysql:8.0
     ports:
-      - "3306:3306"
+      - 3306:3306
     volumes:
       - ./data:/var/lib/mysql
-    network_mode: host
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_ROOT_HOST: localhost
-      MYSQL_DATABASE: interop
+      MYSQL_DATABASE: tiw2
       MYSQL_USER: admin
-      MYSQL_PASSWORD: password
+      MYSQL_PASSWORD: admin

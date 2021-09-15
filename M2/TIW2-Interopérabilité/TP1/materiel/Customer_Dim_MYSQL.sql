@@ -16,6 +16,6 @@ CREATE TABLE Customer_Dim(
 	Customer_Fisrtname nvarchar(20) NULL,
 	Customer_Lastname nvarchar(30) NULL,
 	Customer_Birth_Date date NULL
-) 
+); 
 
 

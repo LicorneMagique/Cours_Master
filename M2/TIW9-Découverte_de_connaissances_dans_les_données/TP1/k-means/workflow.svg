@@ -96,7 +96,7 @@
                 <path d="M399 61 L449 61 L449 72 L399 72 L399 61 Z"/>
             </clipPath>
             <clipPath clipPathUnits="userSpaceOnUse" id="clipPath28">
-                <path d="M-1 -1 L802 -1 L802 795 L-1 795 L-1 -1 Z"/>
+                <path d="M-1 -1 L962 -1 L962 780 L-1 780 L-1 -1 Z"/>
             </clipPath>
         </defs>
         <g stroke-miterlimit="0" stroke-width="0" font-size="14"

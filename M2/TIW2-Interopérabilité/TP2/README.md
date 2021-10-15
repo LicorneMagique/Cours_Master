@@ -25,22 +25,22 @@ Le problème … :
 #### N.2 Requête(s) SQL pour détecter
 
  ```sql
-  SELECT * FROM projet WHERE "SIREN" NOT SIMILAR TO '(0|1|2|3|4|5|6|7|8|9){9}';
+  SELECT * FROM projet WHERE "SIREN" NOT SIMILAR TO '(0|1|2|3|4|5|6|7|8|9){9}' AND "SIREN" IS NOT NULL;
   ```
 
 #### N.3 Requête(s) SQL pour corriger
 
   ```sql
-  ALTER TABLE projet SET "SIREN" = NULL WHERE "SIREN" NOT SIMILAR TO '(0|1|2|3|4|5|6|7|8|9){9}';
+  ALTER TABLE projet SET "SIREN" = NULL WHERE "SIREN" NOT SIMILAR TO '(0|1|2|3|4|5|6|7|8|9){9}' AND "SIREN" IS NOT NULL;
   ```
 
 ## Erreurs
 
-### 1. La valeur du code siret
+### 1. La valeur du code siren
 
 #### 1.1 Explication du problème
 
-Le code siret doit être composé de 9 chiffres :
+Le code siren doit être composé de 9 chiffres :
 
 - il s'agit d'une erreur de type *Violations de dépendances fonctionnelles*,
 - on peut la détecter avec un regex, par exemple `^[0-9]{9}$`,

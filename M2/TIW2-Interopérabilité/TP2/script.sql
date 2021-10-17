@@ -25,18 +25,18 @@ copy projet from '/home/data/projet-de-loi-de-finances-pour-2018-plf-2018-donnee
 
 -- Correctif 1.3
 -- Updated Rows: 320
-update projet set "SIREN" = null where "SIREN" not similar to '(0|1|2|3|4|5|6|7|8|9){9}';
+update projet set "SIREN" = null where "SIREN" not similar to '[0-9]{9}' or "SIREN" = '000000000';
 
 -- Correctif 2.3
--- Updated Rows: 6
-update projet set "NIC" = null where "SIREN" is not null and "NIC" not similar to '(0|1|2|3|4|5|6|7|8|9){5}';
+-- Updated Rows: 12
+update projet set "NIC" = null where "SIREN" is not null and ("NIC" not similar to '[0-9]{5}' or "NIC" = '00000');
 
 -- Correctif 3.3
--- Updated Rows: 10
+-- Updated Rows: 16
 delete from projet where "SIREN" is not null and "NIC" is null;
 
 -- Correctif 4.3
--- Updated Rows: 5767
+-- Updated Rows: 5761
 update projet set "Situation SIRENE" = null where "Situation SIRENE" is not null and "NIC" is not null;
 
 -- Correctif 5.3
@@ -57,7 +57,7 @@ from projet;
 alter table projet add column lieu_id integer;
 alter table projet add constraint fk_lieu foreign key (lieu_id) references lieu(id);
 -- Remplissage du lieu dans projet
--- Updated Rows: 56487
+-- Updated Rows: 56481
 update projet set lieu_id = (
     select id from lieu
     where

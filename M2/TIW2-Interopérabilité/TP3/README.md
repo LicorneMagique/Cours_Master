@@ -33,24 +33,140 @@ CREATE (u1)-[:FRIEND_OF]->(u2);
 ## Requêtes
 
 1. Lister les 200 premières données de la base (nœuds et leur relations)
+
+    ```cypher
+    match (n)
+    return n
+    limit 200
+    ```
+
 2. Lister tous les users
+
+    ```cypher
+    match (n:User)
+    return n
+    ```
+
 3. Donner L’âge de l’utilisateur dont l’id est 5
+
+    ```cypher
+    match (n:User)
+    where n.id = 5
+    return n.age
+    ```
+
 4. Afficher les 20 premiers films
+
+    ```cypher
+    match (n:Movie)
+    return n
+    limit 20
+    ```
+
 5. Afficher les films qui ont été notés par l’utilisateur dont l’id est 1
+
+    ```cypher
+    MATCH (:User {id: 5})-[:RATED]->(m:Movie)
+    return m
+
+    ou bien
+
+    match (u:User)-[:RATED]->(m:Movie)
+    where u.id = 5
+    return m
+
+    ```
+
 6. Afficher les films qui ont été notés par l’utilisateur dont l’id est 1 ainsi que leur genres (limiter l'affichage à 10)
+
+    ```cypher
+    match (u:User)-[:RATED]->(m:Movie), (m)-[:CATEGORIZED_AS]->(g:Genre)
+    where u.id = 1
+    return m, g
+    limit 10
+    ```
+
 7. Afficher les notes des films de genre « Drama »
+
+    ```cypher
+    match (m:Movie)-[:CATEGORIZED_AS]->(Genre {name: 'Drama'}), ()-[r:RATED]->(m)
+    return r
+    ```
+
 8. Lister les utilisateurs de sexe féminin qui sont soit écrivaines soit artistes
+
+    ```cypher
+    match (u:User {sex: "F"})
+    where u.occupation in ["artist", "writer"]
+    return u
+    ```
+
 9. Quel est l’âge moyen des étudiants ? (voir la notion d’agrégation <https://neo4j.com/docs/developer-manual/current/cypher/functions/aggregating/>)
+
+    ```cypher
+    match (u:User {sex: "F", occupation: "student"})
+    return avg(u.age)
+    ```
+
 10. Quel est l’âge moyen par occupation ?
+
+    ```cypher
+    match (u:User)
+    return u.occupation, avg(u.age)
+    ```
+
 11. Quelles sont les 3 « occupations » les plus populaires ? <https://neo4j.com/docs/developer-manual/current/cypher/clauses/order-by/>
+
+    ```cypher
+    match (u:User)
+    return u.occupation, count(*)
+    order by count(*) desc
+    limit 3
+    ```
+
 12. Combien de valeurs différentes existent-ils pour l’attribut occupation ?
+
+    ```cypher
+    match (u:User)
+    return count(distinct u.occupation)
+    ```
+
 13. Quels sont les films produits en 1995 ? (la date de production est contenue dans le titre du film)
-14. Lister les associations avec leur nombres d’occurrences (TYPE(r) retourne le type
-d’une association r ).
+
+    ```cypher
+    match (m:Movie)
+    where m.title contains "(1995)"
+    return m
+    ```
+
+14. Lister les associations avec leur nombres d’occurrences (TYPE(r) retourne le type d’une association r ).
+
+    ```cypher
+    ```
+
 15. Combien de notations y-a-t-il (i.e., combien d’occurrences de l’association RATED)
+
+    ```cypher
+    ```
+
 16. Quels sont les 5 films les plus notés
+
+    ```cypher
+    ```
+
 17. Combien de films ont reçu au moins une fois la note 1
-18. Donner la liste des films qui ont reçu au moins une fois la note 1 en donnant le nombre de fois où ils ont reçu cette note et qui a donné la note (utiliser la fonction agrégative collect <https://neo4j.com/docs/developer-manual/current/cypher/functions/aggregating/> #functions-collect).
+
+    ```cypher
+    ```
+
+18. Donner la liste des films qui ont reçu au moins une fois la note 1 en donnant le nombre de fois où ils ont reçu cette note et qui a donné la note (utiliser la fonction agrégative collect <https://neo4j.com/docs/developer-manual/current/cypher/functions/aggregating/#functions-collect>).
+
+    ```cypher
+    match (u:User)-[r:RATED]->(m:Movie)
+    where r.note = 1
+    return m, collect(u), count(r)
+    ```
+
 19. Quels sont les films qui ont une note moyenne >4(Pour filtrer un agrégat, vous pouvez utiliser la clause WITH <http://neo4j.com/docs/developer-manual/current/cypher/clauses/with/> )
 20. Quels sont les films regardés par le user 13
 21. Quels sont les films non regardés par le user 13 ? (les comparaisons et négations sont similaires au SQL, utiliser NOT)

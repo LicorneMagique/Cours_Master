@@ -1,0 +1,14 @@
+Étudiant1 -> Nom : MOLINARES VALENCIA Prénom : Diogenes Numéro : p2019196
+Étudiant2 -> Nom : BUNEL Prénom : Maxime Numéro : p1914012
+Étudiant3 -> Nom : GIRAUD Prénom : Julien Numéro : p1704709
+
+L = π * R * a / 180
+
+- "L" la distance de l'arc de cercle entre deux points (en Km),
+- "R" le rayon du cercle (en Km),
+- "a" l'angle (en degrées).
+
+Avec R = 6378.1 km
+
+L * 180 / π * R  = a
+6378.1 * 180 / (π * 50) = 0.449 °

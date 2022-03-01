@@ -4,7 +4,7 @@
 
 En fait le docker-compose est pas pratique, utiliser l'exécutable
 
-```
+```cypher
 LOAD CSV WITH HEADERS FROM 'file:///users.csv' AS users
 CREATE (u:User {id : toInteger(users.id), sex : users.sex, age : toInteger(users.age), occupation : users.occupation, zip_code : users.zip_code});
 
@@ -142,21 +142,34 @@ CREATE (u1)-[:FRIEND_OF]->(u2);
 14. Lister les associations avec leur nombres d’occurrences (TYPE(r) retourne le type d’une association r ).
 
     ```cypher
+    match ()-[r]->()
+    return distinct TYPE(r), count(r)
     ```
 
 15. Combien de notations y-a-t-il (i.e., combien d’occurrences de l’association RATED)
 
     ```cypher
+    match ()-[r:RATED]->()
+    return count(r)
     ```
 
 16. Quels sont les 5 films les plus notés
 
     ```cypher
+    Bon en vrai c'est pas très rigoureu, si on a trop de fois la même note ça marche plus je pense
+
+    match (u:User)-[r:RATED]->(m:Movie)
+    return m, avg(r.note)
+    order by avg(r.note) desc
+    limit 5
     ```
 
 17. Combien de films ont reçu au moins une fois la note 1
 
     ```cypher
+    match ()-[r:RATED]->(m:Movie)
+    where r.note = 1
+    return count(m)
     ```
 
 18. Donner la liste des films qui ont reçu au moins une fois la note 1 en donnant le nombre de fois où ils ont reçu cette note et qui a donné la note (utiliser la fonction agrégative collect <https://neo4j.com/docs/developer-manual/current/cypher/functions/aggregating/#functions-collect>).
@@ -168,12 +181,56 @@ CREATE (u1)-[:FRIEND_OF]->(u2);
     ```
 
 19. Quels sont les films qui ont une note moyenne >4(Pour filtrer un agrégat, vous pouvez utiliser la clause WITH <http://neo4j.com/docs/developer-manual/current/cypher/clauses/with/> )
+
+    ```cypher
+    match (u:User)-[r:RATED]->(m:Movie)
+    with avg(r.note) as moyenne, m as m
+    where moyenne > 4
+    return m, moyenne as note
+    ```
+
 20. Quels sont les films regardés par le user 13
+
+    ```cypher
+    regardés ??? (pas trouvé la relation)
+    ```
+
 21. Quels sont les films non regardés par le user 13 ? (les comparaisons et négations sont similaires au SQL, utiliser NOT)
+
+    ```cypher
+    ```
+
 22. Lister le nombre d’associations par type de nœud (labels(x) retourne le type du nœud x)
+
+    ```cypher
+    ```
+
 23. Lister les amis et les amis des amis du user 1 (Attention user 1 ne doit pas être ami de lui-même)
+
+    ```cypher
+    ```
+
 24. (vous pouvez utiliser un pattern de chemin de longueur 2 : voir cours ou <http://neo4j.com/docs/developer-manual/current/cypher/syntax/patterns/>)
+
+    ```cypher
+    ```
+
 25. Lister les amis et les amis des amis du user 1 en donnant leur distance du user 1 (cette distance est 1 lorsque c’est un ami direct et est 2 lorsque c’est un ami d’un ami).
+
+    ```cypher
+    ```
+
 26. Vous pouvez utiliser une Union <https://neo4j.com/blog/cypher-union-query-using-collect-clause/>
+
+    ```cypher
+    ```
+
 27. Quel est l’utilisateur qui a le plus d’amis en communs avec l’utilisateur 41.
+
+    ```cypher
+    ```
+
 28. Quel utilisateur a noté le plus grand nombre de films que l’utilisateur 1 a également notés et quel est ce nombre ?
+
+    ```cypher
+    ```

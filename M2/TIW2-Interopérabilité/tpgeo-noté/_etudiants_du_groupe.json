@@ -1,0 +1,14 @@
+{
+	"indications": [
+		"Modifiez la liste ci-après avec vos nom, prénom et numéro d'étudiant de votre binôme ou trinôme.",
+		"Si vous êtes moins de 3 personnes,",
+		"pas la peine de supprimer les lignes en trop, vous pouvez les laisser comme elles sont.",
+		"Modifiez juste les valeurs des noms, prénoms, numéros des premières lignes.",
+		""
+	],
+	"etudiants_du_groupe": [
+		{"nom": "Nom étudiant", "prenom": "Prénom étudiant", "numero_etudiant": "12345678"},
+		{"nom": "Nom étudiant", "prenom": "Prénom étudiant", "numero_etudiant": "12345678"},
+		{"nom": "Nom étudiant", "prenom": "Prénom étudiant", "numero_etudiant": "12345678"}
+	]
+}

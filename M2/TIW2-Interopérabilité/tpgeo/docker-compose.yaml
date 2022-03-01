@@ -1,0 +1,15 @@
+version: "3.4"
+volumes:
+  data:
+services:
+  postgres:
+    image: "postgis/postgis"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: tiw2
+    volumes:
+      - ./data:/var/lib/postgresql/data
+

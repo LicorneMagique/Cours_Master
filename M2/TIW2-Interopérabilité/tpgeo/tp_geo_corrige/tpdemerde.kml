@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+    <Document id="1">
+        <Style id="4">
+            <IconStyle id="5">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="6">
+                    <href>http://franck.favetta.free.fr/cours/lyon1/tiwsig/exercices/meteo/images/icones/soleil.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Style id="9">
+            <IconStyle id="10">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="11">
+                    <href>http://franck.favetta.free.fr/cours/lyon1/tiwsig/exercices/meteo/images/icones/soleil.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Style id="14">
+            <IconStyle id="15">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="16">
+                    <href>http://franck.favetta.free.fr/cours/lyon1/tiwsig/exercices/meteo/images/icones/soleil.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Style id="19">
+            <IconStyle id="20">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="21">
+                    <href>http://franck.favetta.free.fr/cours/lyon1/tiwsig/exercices/meteo/images/icones/soleil.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Style id="24">
+            <IconStyle id="25">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="26">
+                    <href>http://franck.favetta.free.fr/cours/lyon1/tiwsig/exercices/meteo/images/icones/soleil.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Style id="29">
+            <IconStyle id="30">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="31">
+                    <href>http://franck.favetta.free.fr/cours/lyon1/tiwsig/exercices/meteo/images/icones/soleil.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Style id="34">
+            <IconStyle id="35">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="36">
+                    <href>http://franck.favetta.free.fr/cours/lyon1/tiwsig/exercices/meteo/images/icones/soleil.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Style id="39">
+            <IconStyle id="40">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="41">
+                    <href>http://franck.favetta.free.fr/cours/lyon1/tiwsig/exercices/meteo/images/icones/soleil.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Style id="44">
+            <IconStyle id="45">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="46">
+                    <href>http://franck.favetta.free.fr/cours/lyon1/tiwsig/exercices/meteo/images/icones/soleil.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Style id="49">
+            <IconStyle id="50">
+                <colorMode>normal</colorMode>
+                <scale>1</scale>
+                <heading>0</heading>
+                <Icon id="51">
+                    <href>http://franck.favetta.free.fr/cours/lyon1/tiwsig/exercices/meteo/images/icones/soleil.png</href>
+                </Icon>
+            </IconStyle>
+        </Style>
+        <Placemark id="3">
+            <name>Paris</name>
+            <styleUrl>#4</styleUrl>
+            <Point id="2">
+                <coordinates>2.3488,48.85341,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="8">
+            <name>Marseille</name>
+            <styleUrl>#9</styleUrl>
+            <Point id="7">
+                <coordinates>5.38107,43.29695,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="13">
+            <name>Lyon</name>
+            <styleUrl>#14</styleUrl>
+            <Point id="12">
+                <coordinates>4.84671,45.74846,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="18">
+            <name>Toulouse</name>
+            <styleUrl>#19</styleUrl>
+            <Point id="17">
+                <coordinates>1.44367,43.60426,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="23">
+            <name>Nice</name>
+            <styleUrl>#24</styleUrl>
+            <Point id="22">
+                <coordinates>7.26608,43.70313,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="28">
+            <name>Nantes</name>
+            <styleUrl>#29</styleUrl>
+            <Point id="27">
+                <coordinates>-1.55336,47.21725,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="33">
+            <name>Strasbourg</name>
+            <styleUrl>#34</styleUrl>
+            <Point id="32">
+                <coordinates>7.74553,48.58392,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="38">
+            <name>Montpellier</name>
+            <styleUrl>#39</styleUrl>
+            <Point id="37">
+                <coordinates>3.87635,43.61093,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="43">
+            <name>Bordeaux</name>
+            <styleUrl>#44</styleUrl>
+            <Point id="42">
+                <coordinates>-0.5805,44.84044,0.0</coordinates>
+            </Point>
+        </Placemark>
+        <Placemark id="48">
+            <name>Lille</name>
+            <styleUrl>#49</styleUrl>
+            <Point id="47">
+                <coordinates>3.05858,50.63297,0.0</coordinates>
+            </Point>
+        </Placemark>
+    </Document>
+</kml>

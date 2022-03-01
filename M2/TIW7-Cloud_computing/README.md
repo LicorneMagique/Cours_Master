@@ -1,6 +1,6 @@
 # Cloud computing
 
-[Cours officieux](http://perso.univ-lyon1.fr/fabien.rico/site/cloud:2019:start)
+[Cours officieux](http://perso.univ-lyon1.fr/fabien.rico/site/cloud:2020:start)
 [Cours officiel](http://perso.univ-lyon1.fr/jean-patrick.gelas/UE_Cloud_CCI/)
 
 ## Notes

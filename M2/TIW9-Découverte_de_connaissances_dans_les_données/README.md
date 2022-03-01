@@ -38,3 +38,11 @@ Cet algo fonctionne beaucoup mieux que k-means en utilisant des probabilités au
 Fonctionne avec une matrice de similarité, on groupe les objets/clusters deux à deux jusqu'à n'avoir qu'un seul cluster parent
 
 Relou si les données sont modifiées (il faut tout relancer), et complexité quadratique O(n²)
+
+### Interactive pattern mining
+
+> Apprendre en temps réel les préférence de l'utilisateur pour lui proposer des données qui correspondent à sa recherche (en gros)
+
+#### Concept de l'anti-monotonie
+
+Soit une combinaison de caractères type `[A-Z]+` dans un graphe avec la ralation de parent `parent(X, XY)`, `P(X)` ≥ `P(XY)`. Donc si on cherche `AQF`, inutile d'explorer les enfants de `B`…

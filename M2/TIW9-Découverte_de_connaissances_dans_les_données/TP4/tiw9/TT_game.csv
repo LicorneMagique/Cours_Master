@@ -1,0 +1,523 @@
+﻿Nom;Position;Durée;Genre;Latéralité;Set;Système;Coup;Nbre de coups par point;Durée du point;Score;Points F;Points B;Type de service;Type Coup TK;Zone de jeu
+SET (1);0:00:00.000;0:00:00.000;Garçons;Droitier/gaucher;1;Att/att;;;;;;;;;
+F.T. (1);0:00:00.000;0:00:00.000;Garçons;Coup droit;SET;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (1);0:00:00.266;0:00:00.417;Garçons;Revers;SET;Att/att;B.T.;;;;;;;Controle / Résistance;M2
+F.T. (2);0:00:00.684;0:00:00.350;Garçons;Revers;SET;Att/att;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (2);0:00:01.034;0:00:00.333;Garçons;Revers;SET;Att/att;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (3);0:00:01.368;0:00:00.417;Garçons;Revers;SET;Att/att;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (3);0:00:01.785;0:00:00.350;Garçons;Coup droit;SET;Att/att;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (4);0:00:02.135;0:00:00.450;Garçons;Revers;SET;Att/att;Serveur Point -;;;Serveur Point - 0-1;0;1;;Controle / Résistance;G3
+F.T. (5);0:00:05.872;0:00:00.000;Garçons;Coup droit;SET;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (4);0:00:08.375;0:00:00.667;Garçons;Coup droit;SET;Att/att;B.T.;;;;;;;Poussette;M2
+F.T. (6);0:00:09.042;0:00:00.500;Garçons;Coup droit;SET;Att/att;F.T.;;;;;;;Controle / Résistance;D3
+B.T. (5);0:00:09.542;0:00:00.617;Garçons;Coup droit;SET;Att/att;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (7);0:00:10.160;0:00:00.667;Garçons;Revers;SET;Att/att;Serveur Point -;;;Serveur Point - 0-2;0;2;;Attaque / Offensif;G3
+B.T. (6);0:00:14.497;0:00:00.917;Garçons;Coup droit;;Att/att;B.T.;;;;;;Latéral gauche;;
+F.T. (8);0:00:15.815;0:00:00.950;Garçons;Revers;;Att/att;F.T.;;;;;;;Poussette;G21
+B.T. (7);0:00:16.766;0:00:00.250;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Attaque / Offensif;M2
+F.T. (9);0:00:17.017;0:00:00.417;Garçons;Revers;;Att/att;F.T.;;;;;;;Attaque / Offensif;G3
+B.T. (8);0:00:17.434;0:00:00.500;Garçons;Coup droit;;Att/att;Serveur Point -;;;Serveur Point - 1-2;1;2;;Controle / Résistance;G3
+B.T. (9);0:00:22.105;0:00:00.700;Garçons;Coup droit;;Att/att;B.T.;;;;;;Latéral droit;;
+F.T. (10);0:00:23.456;0:00:00.834;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Poussette;M1
+B.T. (10);0:00:24.290;0:00:00.767;Garçons;Revers;;Att/att;Serveur Point -;;;Serveur Point - 2-2;2;2;;Controle / Résistance;D2
+F.T. (11);0:00:27.544;0:00:00.000;Garçons;Coup droit;;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (11);0:00:30.563;0:00:00.316;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Attaque / Offensif;M2
+F.T. (12);0:00:30.880;0:00:00.500;Garçons;Revers;;Att/att;Serveur Point -;;;Serveur Point - 2-3;2;3;;Controle / Résistance;G3
+F.T. (13);0:00:33.733;0:00:00.000;Garçons;Coup droit;;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (12);0:00:36.569;0:00:00.417;Garçons;Revers;;Att/att;B.T.;;;;;;;Controle / Résistance;M2
+F.T. (14);0:00:36.986;0:00:00.417;Garçons;Revers;;Att/att;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (13);0:00:37.404;0:00:00.567;Garçons;Revers;;Att/att;Serveur Point +;;;Serveur Point + 3-3;3;3;;Controle / Résistance;D3
+B.T. (14);0:00:42.275;0:00:00.550;Garçons;Coup droit;;Att/att;B.T.;;;;;;Latéral gauche;;
+F.T. (15);0:00:43.259;0:00:00.700;Garçons;Revers;;Att/att;Serveur Point +;;;Serveur Point + 3-4;3;4;;Attaque / Offensif;M1
+B.T. (15);0:00:47.947;0:00:00.633;Garçons;Coup droit;;Att/att;B.T.;;;;;;Latéral droit;;
+F.T. (16);0:00:49.332;0:00:00.383;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Attaque / Offensif;D2
+B.T. (16);0:00:49.716;0:00:00.383;Garçons;Revers;;Att/att;Serveur Point -;;;Serveur Point - 4-4;4;4;;Controle / Résistance;D3
+F.T. (17);0:00:52.852;0:00:00.000;Garçons;Coup droit;;Att/att;F.T.;;;;;;Latéral droit;;
+F.T. (18);0:01:02.245;0:00:00.000;Garçons;Coup droit;;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (17);0:01:05.248;0:00:00.500;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Poussette;G1
+F.T. (19);0:01:05.749;0:00:00.433;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Attaque / Offensif;G3
+B.T. (18);0:01:06.182;0:00:00.367;Garçons;Coup droit;;Att/att;Serveur Point +;;;Serveur Point + 5-4;5;4;;Controle / Résistance;D3
+F.T. (20);0:01:09.102;0:00:00.000;Garçons;Coup droit;;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (19);0:01:12.205;0:00:00.367;Garçons;Coup droit;;Att/att;Serveur Point +;;;Serveur Point + 6-4;6;4;;Controle / Résistance;G21
+B.T. (20);0:01:17.444;0:00:01.351;Garçons;Coup droit;;Att/att;B.T.;;;;;;;;
+F.T. (21);0:01:18.795;0:00:00.950;Garçons;Revers;;Att/att;F.T.;;;;;;;Poussette;G3
+B.T. (21);0:01:19.746;0:00:00.784;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Attaque / Offensif;M3
+F.T. (22);0:01:20.530;0:00:00.750;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Controle / Résistance;D3
+B.T. (22);0:01:21.281;0:00:00.650;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Attaque / Offensif;M3
+F.T. (23);0:01:21.931;0:00:00.900;Garçons;Revers;;Att/att;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (23);0:01:22.832;0:00:00.734;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Attaque / Offensif;M3
+F.T. (24);0:01:23.566;0:00:00.850;Garçons;Revers;;Att/att;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (24);0:01:24.417;0:00:00.700;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Attaque / Offensif;M3
+F.T. (25);0:01:25.118;0:00:00.900;Garçons;Revers;;Att/att;F.T.;;;;;;;Controle / Résistance;G3
+B.T. (25);0:01:26.019;0:00:00.684;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Attaque / Offensif;M3
+F.T. (26);0:01:26.703;0:00:00.433;Garçons;Coup droit;;Att/att;Serveur Point +;;;Serveur Point + 6-5;6;5;;Controle / Résistance;D3
+B.T. (26);0:01:31.191;0:00:00.667;Garçons;Coup droit;;Att/att;B.T.;;;;;;Latéral gauche;;
+F.T. (27);0:01:32.375;0:00:00.500;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Attaque / Offensif;M2
+B.T. (27);0:01:32.876;0:00:00.283;Garçons;Revers;;Att/att;Serveur Point -;;;Serveur Point - 7-5;7;5;;Controle / Résistance;D3
+F.T. (28);0:01:35.912;0:00:00.000;Garçons;Coup droit;;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (28);0:01:38.798;0:00:00.433;Garçons;Coup droit;;Att/att;Serveur Point +;;;Serveur Point + 8-5;8;5;;Poussette;M1
+F.T. (29);0:01:41.835;0:00:00.000;Garçons;Coup droit;;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (29);0:01:44.704;0:00:00.550;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Poussette;M1
+F.T. (30);0:01:45.255;0:00:00.517;Garçons;Revers;;Att/att;F.T.;;;;;;;Attaque / Offensif;M2
+B.T. (30);0:01:45.738;0:00:00.967;Garçons;Revers;;Att/att;Serveur Point +;;;Serveur Point + 9-5;9;5;;Controle / Résistance;D3
+B.T. (31);0:01:49.125;0:00:01.184;Garçons;Coup droit;;Att/att;B.T.;;;;;;Latéral droit;;
+F.T. (31);0:01:51.027;0:00:00.667;Garçons;Revers;;Att/att;F.T.;;;;;;;Attaque / Offensif;M2
+B.T. (32);0:01:51.694;0:00:00.817;Garçons;Revers;;Att/att;B.T.;;;;;;;Controle / Résistance;D3
+F.T. (32);0:01:52.512;0:00:00.700;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (33);0:01:53.213;0:00:00.417;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Attaque / Offensif;M3
+F.T. (33);0:01:53.630;0:00:00.767;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Controle / Résistance;D3
+B.T. (34);0:01:54.397;0:00:00.433;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Attaque / Offensif;D3
+F.T. (34);0:01:54.831;0:00:01.017;Garçons;Revers;;Att/att;F.T.;;;;;;;Controle / Résistance;G3
+B.T. (35);0:01:55.849;0:00:00.617;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (35);0:01:56.466;0:00:00.867;Garçons;Coup droit;;Att/att;Serveur Point +;;;Serveur Point + 9-6;9;6;;Controle / Résistance;M3
+B.T. (36);0:01:58.952;0:00:00.650;Garçons;Coup droit;;Att/att;B.T.;;;;;;Latéral droit;;
+F.T. (36);0:02:00.403;0:00:00.567;Garçons;Revers;;Att/att;F.T.;;;;;;;Attaque / Offensif;M2
+B.T. (37);0:02:00.970;0:00:00.417;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (37);0:02:01.387;0:00:00.617;Garçons;Coup droit;;Att/att;Serveur Point +;;;Serveur Point + 9-7;9;7;;Controle / Résistance;M3
+F.T. (38);0:02:04.574;0:00:00.000;Garçons;Coup droit;;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (38);0:02:07.544;0:00:00.517;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Controle / Résistance;M2
+F.T. (39);0:02:08.061;0:00:00.767;Garçons;Revers;;Att/att;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (39);0:02:08.828;0:00:00.633;Garçons;Revers;;Att/att;B.T.;;;;;;;Attaque / Offensif;D3
+F.T. (40);0:02:09.462;0:00:00.667;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (40);0:02:10.130;0:00:00.350;Garçons;Coup droit;;Att/att;Serveur Point +;;;Serveur Point + 10-7;10;7;;Attaque / Offensif;D3
+F.T. (41);0:02:12.665;0:00:00.000;Garçons;Coup droit;;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (41);0:02:15.535;0:00:00.450;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Poussette;M1
+F.T. (42);0:02:15.985;0:00:00.533;Garçons;Revers;;Att/att;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (42);0:02:16.519;0:00:00.450;Garçons;Revers;;Att/att;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (43);0:02:16.970;0:00:00.500;Garçons;Revers;;Att/att;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (43);0:02:17.470;0:00:00.500;Garçons;Revers;;Att/att;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (44);0:02:17.971;0:00:00.817;Garçons;Revers;;Att/att;Serveur Point -;;;Serveur Point - 10-8;10;8;;Controle / Résistance;G3
+B.T. (44);0:02:22.509;0:00:00.517;Garçons;Coup droit;;Att/att;B.T.;;;;;;Latéral droit;;
+F.T. (45);0:02:23.793;0:00:00.717;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Poussette;D1
+B.T. (45);0:02:24.511;0:00:00.450;Garçons;Revers;;Att/att;B.T.;;;;;;;Controle / Résistance;M2
+F.T. (46);0:02:24.961;0:00:00.834;Garçons;Revers;;Att/att;Serveur Point +;;;Serveur Point + 10-9;10;9;;Controle / Résistance;G3
+B.T. (46);0:02:29.015;0:00:01.334;Garçons;Coup droit;;Att/att;B.T.;;;;;;Latéral gauche;;
+F.T. (47);0:02:30.350;0:00:00.617;Garçons;Revers;;Att/att;Serveur Point +;;;Serveur Point + 10-10;10;10;;Attaque / Offensif;G21
+F.T. (48);0:02:33.453;0:00:00.000;Garçons;Coup droit;;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (47);0:02:36.322;0:00:00.550;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Poussette;M1
+F.T. (49);0:02:36.873;0:00:00.517;Garçons;Coup droit;;Att/att;Serveur Point -;;;Serveur Point - 10-11;10;11;;Attaque / Offensif;D2
+B.T. (48);0:02:41.511;0:00:00.717;Garçons;Coup droit;;Att/att;B.T.;;;;;;Latéral droit;;
+F.T. (50);0:02:42.962;0:00:00.817;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Poussette;D1
+B.T. (49);0:02:43.780;0:00:00.700;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Controle / Résistance;M2
+F.T. (51);0:02:44.480;0:00:00.283;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (50);0:02:44.764;0:00:00.600;Garçons;Revers;;Att/att;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (52);0:02:45.365;0:00:00.517;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (51);0:02:45.882;0:00:00.183;Garçons;Droitier/gaucher;;Att/att;Serveur Point -;;;Serveur Point - 11-11;11;11;;;G3
+F.T. (53);0:02:48.034;0:00:00.000;Garçons;Coup droit;;Att/att;F.T.;;;;;;Latéral droit;Poussette;M1
+F.T. (54);0:02:50.086;0:00:01.768;Garçons;Revers;;Att/att;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (52);0:02:51.855;0:00:00.483;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (55);0:02:52.338;0:00:00.734;Garçons;Coup droit;;Att/att;Serveur Point -;;;Serveur Point - 11-12;11;12;;Attaque / Offensif;G3
+B.T. (53);0:02:57.093;0:00:01.451;Garçons;Coup droit;;Att/att;B.T.;;;;;;;;
+F.T. (56);0:02:58.545;0:00:00.383;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (54);0:02:58.928;0:00:00.400;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Controle / Résistance;D3
+F.T. (57);0:02:59.329;0:00:01.017;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Controle / Résistance;G3
+B.T. (55);0:03:00.346;0:00:00.817;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Controle / Résistance;D3
+F.T. (58);0:03:01.164;0:00:01.418;Garçons;Revers;;Att/att;Serveur Point -;;;Serveur Point - 12-12;12;12;;Attaque / Offensif;M3
+F.T. (59);0:03:05.018;0:00:00.000;Garçons;Coup droit;;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (56);0:03:08.104;0:00:00.600;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Controle / Résistance;D2
+F.T. (60);0:03:08.705;0:00:00.650;Garçons;Coup droit;;Att/att;Serveur Point -;;;Serveur Point - 12-13;12;13;;Attaque / Offensif;D3
+B.T. (57);0:03:13.960;0:00:00.750;Garçons;Coup droit;;Att/att;B.T.;;;;;;Latéral droit;;
+F.T. (61);0:03:15.645;0:00:00.467;Garçons;Revers;;Att/att;F.T.;;;;;;;Attaque / Offensif;D2
+B.T. (58);0:03:16.112;0:00:00.750;Garçons;Revers;;Att/att;B.T.;;;;;;;Controle / Résistance;D3
+F.T. (62);0:03:16.863;0:00:00.700;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (59);0:03:17.564;0:00:00.333;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Attaque / Offensif;D3
+F.T. (63);0:03:17.897;0:00:00.967;Garçons;Revers;;Att/att;Serveur Point -;;;Serveur Point - 13-13;13;13;;Controle / Résistance;G3
+F.T. (64);0:03:21.267;0:00:00.000;Garçons;Coup droit;;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (60);0:03:24.087;0:00:00.583;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Poussette;M1
+F.T. (65);0:03:24.671;0:00:00.417;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Attaque / Offensif;G21
+B.T. (61);0:03:25.088;0:00:01.368;Garçons;Revers;;Att/att;Serveur Point +;;;Serveur Point + 14-13;14;13;;Controle / Résistance;D3
+B.T. (62);0:03:29.425;0:00:01.368;Garçons;Coup droit;;Att/att;B.T.;;;;;;;;
+F.T. (66);0:03:30.793;0:00:02.836;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Controle / Résistance;D3
+B.T. (63);0:03:33.630;0:00:00.400;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Attaque / Offensif;D3
+F.T. (67);0:03:34.030;0:00:01.685;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (64);0:03:35.715;0:00:00.767;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Attaque / Offensif;M3
+F.T. (68);0:03:36.482;0:00:01.868;Garçons;Revers;;Att/att;Serveur Point +;;;Serveur Point + 14-14;14;14;;Controle / Résistance;G3
+F.T. (69);0:03:40.703;0:00:00.000;Garçons;Coup droit;;Att/att;F.T.;;;;;;Latéral droit;;
+F.T. (70);0:03:56.869;0:00:00.000;Garçons;Coup droit;;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (65);0:03:59.722;0:00:00.717;Garçons;Coup droit;;Att/att;Serveur Point +;;;Serveur Point + 15-14;15;14;;Poussette;M1
+B.T. (66);0:04:03.676;0:00:01.001;Garçons;Coup droit;;Att/att;B.T.;;;;;;Latéral droit;;
+F.T. (71);0:04:05.245;0:00:00.500;Garçons;Revers;;Att/att;F.T.;;;;;;;Controle / Résistance;G21
+B.T. (67);0:04:05.745;0:00:00.767;Garçons;Revers;;Att/att;Serveur Point -;;;Serveur Point - 16-14;16;14;;Controle / Résistance;D3
+SET (2);0:04:08.197;0:00:00.000;Garçons;Droitier/gaucher;2;Att/att;;;;;;;;;
+B.T. (68);0:04:11.234;0:00:00.917;Garçons;Coup droit;SET;Att/att;B.T.;;;;;;Latéral gauche;;
+F.T. (72);0:04:12.702;0:00:00.433;Garçons;Revers;SET;Att/att;F.T.;;;;;;;Poussette;M1
+B.T. (69);0:04:13.136;0:00:00.633;Garçons;Coup droit;SET;Att/att;B.T.;;;;;;;Poussette;G21
+F.T. (73);0:04:13.770;0:00:00.517;Garçons;Revers;SET;Att/att;F.T.;;;;;;;Attaque / Offensif;M2
+B.T. (70);0:04:14.287;0:00:00.383;Garçons;Coup droit;SET;Att/att;B.T.;;;;;;;Attaque / Offensif;G21
+F.T. (74);0:04:14.671;0:00:00.583;Garçons;Revers;SET;Att/att;F.T.;;;;;;;Controle / Résistance;G3
+B.T. (71);0:04:15.255;0:00:00.550;Garçons;Coup droit;SET;Att/att;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (75);0:04:15.805;0:00:00.250;Garçons;Coup droit;SET;Att/att;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (72);0:04:16.055;0:00:00.817;Garçons;Revers;SET;Att/att;Serveur Point -;;;Serveur Point - 1-0;1;0;;Controle / Résistance;D3
+B.T. (73);0:04:19.425;0:00:01.368;Garçons;Coup droit;SET;Att/att;B.T.;;;;;;Latéral droit;;
+F.T. (76);0:04:20.977;0:00:00.650;Garçons;Coup droit;SET;Att/att;F.T.;;;;;;;Poussette;D1
+B.T. (74);0:04:21.628;0:00:00.333;Garçons;Revers;SET;Att/att;B.T.;;;;;;;Attaque / Offensif;M1
+F.T. (77);0:04:21.961;0:00:00.884;Garçons;Revers;SET;Att/att;F.T.;;;;;;;Controle / Résistance;G3
+B.T. (75);0:04:22.845;0:00:00.884;Garçons;Coup droit;SET;Att/att;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (78);0:04:23.730;0:00:00.884;Garçons;Revers;SET;Att/att;F.T.;;;;;;;Controle / Résistance;G3
+B.T. (76);0:04:24.614;0:00:00.750;Garçons;Coup droit;SET;Att/att;Serveur Point -;;;Serveur Point - 2-0;2;0;;Controle / Résistance;M3
+F.T. (79);0:04:27.934;0:00:00.000;Garçons;Coup droit;SET;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (77);0:04:30.470;0:00:00.517;Garçons;Revers;SET;Att/att;B.T.;;;;;;;Attaque / Offensif;M2
+F.T. (80);0:04:30.987;0:00:00.383;Garçons;Revers;SET;Att/att;F.T.;;;;;;;Controle / Résistance;G3
+B.T. (78);0:04:31.371;0:00:00.800;Garçons;Revers;SET;Att/att;B.T.;;;;;;;Attaque / Offensif;D3
+F.T. (81);0:04:32.171;0:00:01.184;Garçons;Coup droit;SET;Att/att;Serveur Point -;;;Serveur Point - 2-1;2;1;;Controle / Résistance;D2
+F.T. (82);0:04:36.009;0:00:00.000;Garçons;Coup droit;SET;Att/att;F.T.;;;;;;Latéral droit;;
+B.T. (79);0:04:38.194;0:00:00.500;Garçons;Revers;SET;Att/att;Serveur Point +;;;Serveur Point + 3-1;3;1;;Controle / Résistance;D3
+B.T. (80);0:04:42.649;0:00:00.000;Garçons;Coup droit;SET;Att/att;B.T.;;;;;;;;
+F.T. (83);0:04:43.925;0:00:00.600;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Poussette;D1
+B.T. (81);0:04:44.525;0:00:00.692;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Poussette;M1
+F.T. (84);0:04:45.218;0:00:00.558;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Controle / Résistance;M2
+B.T. (82);0:04:45.777;0:00:00.792;Garçons;Revers;;Att/att;B.T.;;;;;;;Attaque / Offensif;D3
+F.T. (85);0:04:46.569;0:00:00.959;Garçons;Coup droit;;Att/att;F.T.;;;;;;;Controle / Résistance;G3
+B.T. (83);0:04:47.528;0:00:00.917;Garçons;Coup droit;;Att/att;B.T.;;;;;;;Attaque / Offensif;M3
+F.T. (86);0:04:48.446;0:00:01.076;Garçons;Coup droit;;Att/att;Serveur Point +;;;Serveur Point + 3-2;3;2;;Controle / Résistance;D3
+B.T. (84);0:04:52.475;0:00:00.000;;Coup droit;;;SERVICE;;;;;;Latéral droit;;
+B.T. (85);0:05:00.633;0:00:01.735;;Coup droit;;;SERVICE;;;;;;Latéral gauche;;G1
+F.T. (87);0:05:02.368;0:00:00.834;;Revers;;;F.T.;;;;;;;Poussette;G1
+B.T. (86);0:05:03.202;0:00:00.000;;Coup droit;;;B.T.;;;;;;;Controle / Résistance;D3
+F.T. (88);0:05:03.920;0:00:01.234;;Coup droit;;;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (87);0:05:05.154;0:00:00.650;;Coup droit;;;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (89);0:05:05.805;0:00:01.201;;Revers;;;Serveur Point +;;;Serveur Point + 3-3;3;3;;Controle / Résistance;
+F.T. (90);0:05:09.392;0:00:02.602;;Coup droit;;;F.T.;;;;;;Latéral droit;;M2
+B.T. (88);0:05:12.028;0:00:00.800;;Coup droit;;;B.T.;;;;;;;Poussette;D3
+F.T. (91);0:05:12.829;0:00:00.417;;Coup droit;;;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (89);0:05:13.246;0:00:00.600;;Coup droit;;;B.T.;;;;;;;Controle / Résistance;D3
+F.T. (92);0:05:13.846;0:00:00.316;;Coup droit;;;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (90);0:05:14.163;0:00:08.408;;Revers;;;B.T.;;;;;;;Controle / Résistance;D3
+F.T. (93);0:05:14.881;0:00:00.383;;Coup droit;;;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (91);0:05:15.264;0:00:00.500;;Coup droit;;;Serveur Point +;;;Serveur Point + 4-3;4;3;;Controle / Résistance;
+F.T. (94);0:05:18.134;0:00:02.352;;Coup droit;;;F.T.;;;;;;Latéral droit;;D2
+B.T. (92);0:05:20.737;0:00:00.784;;Coup droit;;;B.T.;;;;;;;Poussette;D2
+F.T. (95);0:05:21.521;0:00:00.367;;Coup droit;;;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (93);0:05:21.888;0:00:00.700;;Revers;;;B.T.;;;;;;;Controle / Résistance;D3
+F.T. (96);0:05:22.588;0:00:00.367;;Coup droit;;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (94);0:05:22.955;0:00:00.934;;Revers;;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (97);0:05:23.890;0:00:00.350;;Coup droit;;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (95);0:05:24.240;0:00:00.583;;Revers;;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (98);0:05:24.824;0:00:01.701;;Coup droit;;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (96);0:05:26.526;0:00:00.567;;Revers;;;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (99);0:05:27.093;0:00:00.734;;Revers;;;F.T.;;;;;;;Controle / Résistance;D3
+B.T. (97);0:05:27.827;0:00:00.483;;Revers;;;Serveur Point +;;;Serveur Point + 5-3;5;3;;Attaque / Offensif;
+B.T. (98);0:05:31.030;0:00:01.568;;Coup droit;;;B.T.;;;;;;Latéral droit;;M1
+F.T. (100);0:05:32.782;0:00:00.650;;Coup droit;;;F.T.;;;;;;;Poussette;M1
+B.T. (99);0:05:33.433;0:00:00.517;;Revers;;;Serveur Point -;;;Serveur Point - 6-3;6;3;;Poussette;
+B.T. (100);0:05:35.101;0:00:00.667;;Coup droit;;;B.T.;;;;;;Latéral gauche;;D2
+F.T. (101);0:05:36.436;0:00:00.667;;Coup droit;;;F.T.;;;;;;;Poussette;D3
+B.T. (101);0:05:37.103;0:00:00.483;;Revers;;;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (102);0:05:37.587;0:00:00.667;;Revers;;;F.T.;;;;;;;Controle / Résistance;G3
+B.T. (102);0:05:38.254;0:00:00.667;;Coup droit;;;Serveur Point -;;;Serveur Point - 7-3;7;3;;Controle / Résistance;
+F.T. (103);0:05:41.741;0:00:02.469;;Coup droit;;;F.T.;;;;;;Latéral droit;;M1
+B.T. (103);0:05:44.410;0:00:00.550;;Coup droit;;;B.T.;;;;;;;Poussette;D3
+F.T. (104);0:05:44.961;0:00:00.583;;Coup droit;;;Serveur Point +;;;Serveur Point + 8-3;8;3;;Attaque / Offensif;M3
+F.T. (105);0:05:48.715;0:00:02.702;;Coup droit;;;F.T.;;;;;;;;M1
+B.T. (104);0:05:51.417;0:00:10.093;;Revers;;;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (106);0:06:01.511;0:00:02.102;;Coup droit;;;F.T.;;;;;;Latéral droit;;M1
+B.T. (105);0:06:03.930;0:00:00.817;;Coup droit;;;B.T.;;;;;;;Poussette;M3
+F.T. (107);0:06:04.747;0:00:01.668;;Coup droit;;;Serveur Point -;;;Serveur Point - 8-4;8;4;;Controle / Résistance;D3
+B.T. (106);0:06:08.167;0:00:01.101;;Coup droit;;;B.T.;;;;;;Latéral gauche;;G1
+F.T. (108);0:06:09.669;0:00:00.533;;Coup droit;;;F.T.;;;;;;;Poussette;M1
+B.T. (107);0:06:10.203;0:00:00.583;;Coup droit;;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (109);0:06:10.787;0:00:00.533;;Revers;;;F.T.;;;;;;Serveur Point - 8-4+I216:I223;Controle / Résistance;M3
+B.T. (108);0:06:11.320;0:00:00.400;;Coup droit;;;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (110);0:06:11.721;0:00:00.850;;Revers;;;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (109);0:06:12.572;0:00:00.700;;Coup droit;;;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (111);0:06:13.272;0:00:00.650;;Revers;;;F.T.;;;;;;;Attaque / Offensif;G3
+B.T. (110);0:06:13.923;0:00:00.600;;Coup droit;;;B.T.;;;;;;;Attaque / Offensif;M3
+F.T. (112);0:06:14.524;0:00:00.517;;Coup droit;;;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (111);0:06:15.041;0:00:00.700;;Coup droit;;;Serveur Point -;;;Serveur Point - 9-4;9;4;;Attaque / Offensif;
+B.T. (112);0:06:18.361;0:00:00.817;;Coup droit;;;B.T.;;;;;;Latéral droit;;D2
+F.T. (113);0:06:19.896;0:00:00.550;;Coup droit;;;F.T.;;;;;;;Poussette;D3
+B.T. (113);0:06:20.446;0:00:00.700;;Revers;;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (114);0:06:21.147;0:00:00.784;;Coup droit;;;F.T.;;;;;;;Controle / Résistance;D3
+B.T. (114);0:06:21.931;0:00:00.550;;Revers;;;B.T.;;;;;;;Attaque / Offensif;D3
+F.T. (115);0:06:22.482;0:00:00.417;;Coup droit;;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (115);0:06:22.899;0:00:00.717;;Revers;;;Serveur Point -;;;Serveur Point - 10-4;10;4;;Attaque / Offensif;
+F.T. (116);0:06:25.852;0:00:02.102;;Coup droit;;;F.T.;;;;;;Latéral droit;;M1
+B.T. (116);0:06:28.454;0:00:00.600;;Coup droit;;;B.T.;;;;;;;Poussette;M1
+F.T. (117);0:06:29.055;0:00:00.600;;Revers;;;F.T.;;;;;;;Controle / Résistance;D3
+B.T. (117);0:06:29.655;0:00:00.717;;Revers;;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (118);0:06:30.373;0:00:00.483;;Coup droit;;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (118);0:06:30.857;0:00:00.567;;Revers;;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (119);0:06:31.424;0:00:00.467;;Coup droit;;;F.T.;;;;;;;Attaque / Offensif;G3
+B.T. (119);0:06:31.891;0:00:02.202;;Coup droit;3;;Serveur Point +;;;Serveur Point + 11-4;11;4;;Controle / Résistance;
+SET (3);0:06:34.093;0:00:00.000;;;SET;;;;;;;;;;
+F.T. (120);0:06:37.346;0:00:02.118;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M2
+B.T. (120);0:06:40.083;0:00:00.450;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (121);0:06:40.533;0:00:00.684;;Revers;SET;;F.T.;;;;;;;Controle / Résistance;G3
+B.T. (121);0:06:41.217;0:00:00.650;;Coup droit;SET;;Serveur Point +;;;Serveur Point + 1-0;1;0;;Attaque / Offensif;
+F.T. (122);0:06:44.237;0:00:02.902;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;G1
+B.T. (122);0:06:47.156;0:00:00.250;;Revers;SET;;Serveur Point +;;;Serveur Point + 2-0;2;0;;Attaque / Offensif;
+B.T. (123);0:06:51.194;0:00:00.934;;Coup droit;SET;;B.T.;;;;;;Latéral gauche;;D1
+F.T. (123);0:06:52.795;0:00:00.734;;Coup droit;SET;;F.T.;;;;;;;Poussette;M1
+B.T. (124);0:06:53.529;0:00:00.600;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (124);0:06:54.130;0:00:00.917;;Revers;SET;;F.T.;;;;;;;Controle / Résistance;G3
+B.T. (125);0:06:55.047;0:00:00.800;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (125);0:06:55.848;0:00:00.950;;Revers;SET;;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (126);0:06:56.799;0:00:00.734;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (126);0:06:57.533;0:00:00.767;;Revers;SET;;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (127);0:06:58.301;0:00:01.117;;Coup droit;SET;;Serveur Point -;;;Serveur Point - 3-0;3;0;;Attaque / Offensif;
+B.T. (128);0:07:01.471;0:00:00.850;;Coup droit;SET;;B.T.;;;;;;Latéral droit;;M1
+B.T. (129);0:07:09.479;0:00:00.784;;Coup droit;SET;;B.T.;;;;;;Latéral droit;;D2
+F.T. (127);0:07:10.897;0:00:00.567;;Coup droit;SET;;F.T.;;;;;;;Poussette;D3
+B.T. (130);0:07:11.464;0:00:00.467;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (128);0:07:11.931;0:00:01.067;;Revers;SET;;F.T.;;;;;;;Controle / Résistance;M2
+B.T. (131);0:07:12.999;0:00:00.266;;Coup droit;SET;;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (129);0:07:13.266;0:00:00.000;;Revers;SET;;Serveur Point +;;;Serveur Point + 3-1;3;1;;Controle / Résistance;
+F.T. (130);0:07:16.402;0:00:00.000;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;G21
+B.T. (132);0:07:19.555;0:00:00.684;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (131);0:07:20.239;0:00:00.367;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;G3
+B.T. (133);0:07:20.606;0:00:00.600;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (132);0:07:21.207;0:00:00.600;;Coup droit;SET;;F.T.;;;;;;;Controle / Résistance;D3
+B.T. (134);0:07:21.808;0:00:00.800;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (133);0:07:22.608;0:00:00.700;;Coup droit;SET;;F.T.;;;;;;;Controle / Résistance;D3
+B.T. (135);0:07:23.309;0:00:00.800;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (134);0:07:24.110;0:00:01.368;;Revers;SET;;Serveur Point -;;;Serveur Point - 3-2;3;2;;Attaque / Offensif;
+F.T. (135);0:07:26.913;0:00:02.652;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M2
+B.T. (136);0:07:30.032;0:00:00.684;;Revers;SET;;Serveur Point +;;;Serveur Point + 4-2;4;2;;Controle / Résistance;
+B.T. (137);0:07:33.636;0:00:00.750;;Coup droit;SET;;B.T.;;;;;;Latéral gauche;;M1
+F.T. (136);0:07:34.887;0:00:00.517;;Revers;SET;;F.T.;;;;;;;Poussette;G1
+B.T. (138);0:07:35.404;0:00:00.583;;Coup droit;SET;;B.T.;;;;;;;Poussette;M2
+F.T. (137);0:07:35.988;0:00:00.550;;Revers;SET;;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (139);0:07:36.539;0:00:00.433;;Coup droit;SET;;B.T.;;;;;;;Attaque / Offensif;M3
+F.T. (138);0:07:36.973;0:00:00.834;;Coup droit;SET;;Serveur Point +;;;Serveur Point + 4-3;4;3;;Controle / Résistance;
+B.T. (140);0:07:40.426;0:00:00.784;;Coup droit;SET;;B.T.;;;;;;Latéral gauche;;G3
+F.T. (139);0:07:41.928;0:00:01.167;;Revers;SET;;Serveur Point +;;;Serveur Point + 4-4;4;4;;Controle / Résistance;
+F.T. (140);0:07:45.631;0:00:02.652;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M1
+B.T. (141);0:07:48.284;0:00:00.433;;Revers;SET;;Serveur Point +;;;Serveur Point + 5-4;5;4;;Controle / Résistance;
+F.T. (141);0:07:50.536;0:00:02.218;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;G21
+B.T. (142);0:07:53.489;0:00:00.700;;Coup droit;SET;;Serveur Point +;;;Serveur Point + 6-4;6;4;;Poussette;
+B.T. (143);0:07:57.643;0:00:00.917;;Coup droit;SET;;B.T.;;;;;;Latéral gauche;;M2
+F.T. (142);0:07:58.995;0:00:00.533;;Coup droit;SET;;F.T.;;;;;;;Poussette;M1
+B.T. (144);0:07:59.529;0:00:00.667;;Coup droit;SET;;B.T.;;;;;;;Poussette;M2
+F.T. (143);0:08:00.196;0:00:01.368;;Coup droit;SET;;Serveur Point -;;;Serveur Point - 7-4;7;4;;Attaque / Offensif;M3
+B.T. (145);0:08:04.033;0:00:00.784;;Coup droit;SET;;B.T.;;;;;;Latéral droit;;D1
+F.T. (144);0:08:05.551;0:00:00.650;;Coup droit;SET;;F.T.;;;;;;;Poussette;M2
+B.T. (146);0:08:06.202;0:00:00.467;;Revers;SET;;B.T.;;;;;;;Attaque / Offensif;D3
+F.T. (145);0:08:06.669;0:00:00.483;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (147);0:08:07.153;0:00:00.717;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;D3
+F.T. (146);0:08:07.870;0:00:00.700;;Coup droit;SET;;F.T.;;;;;;;Controle / Résistance;D3
+B.T. (148);0:08:08.571;0:00:00.450;;Coup droit;SET;;B.T.;;;;;;;Attaque / Offensif;D3
+F.T. (147);0:08:09.021;0:00:00.583;;Coup droit;SET;;Serveur Point +;;;Serveur Point + 7-5;7;5;;Controle / Résistance;
+F.T. (148);0:08:11.407;0:00:02.102;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M1
+B.T. (149);0:08:14.260;0:00:00.350;;Coup droit;SET;;Serveur Point +;;;Serveur Point + 8-5;8;5;;Poussette;
+F.T. (149);0:08:17.530;0:00:01.801;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;G21
+B.T. (150);0:08:20.049;0:00:00.650;;Coup droit;SET;;B.T.;;;;;;;Poussette;G3
+F.T. (150);0:08:20.700;0:00:00.750;;Revers;SET;;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (151);0:08:21.450;0:00:00.633;;Coup droit;SET;;Serveur Point +;;;Serveur Point + 9-5;9;5;;Attaque / Offensif;
+B.T. (152);0:08:24.787;0:00:00.750;;Coup droit;SET;;B.T.;;;;;;Latéral gauche;;M1
+F.T. (151);0:08:26.155;0:00:00.600;;Coup droit;SET;;F.T.;;;;;;;Poussette;M2
+B.T. (153);0:08:26.756;0:00:00.300;;Coup droit;SET;;B.T.;;;;;;;Attaque / Offensif;D3
+F.T. (152);0:08:27.056;0:00:00.650;;Coup droit;SET;;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (154);0:08:27.707;0:00:00.350;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (153);0:08:28.241;0:00:00.650;;Revers;SET;;Serveur Point +;;;Serveur Point + 9-6;9;6;;Attaque / Offensif;
+B.T. (155);0:08:30.243;0:00:00.684;;Coup droit;SET;;B.T.;;;;;;Latéral gauche;;G1
+F.T. (154);0:08:31.627;0:00:00.550;;Revers;SET;;Serveur Point +;;;Serveur Point + 9-7;9;7;;Attaque / Offensif;
+F.T. (155);0:08:34.764;0:00:02.352;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;G1
+B.T. (156);0:08:37.733;0:00:00.400;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (156);0:08:38.134;0:00:00.800;;Revers;SET;;Serveur Point -;;;Serveur Point - 9-8;9;8;;Controle / Résistance;
+F.T. (157);0:08:47.210;0:00:02.369;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M2
+B.T. (157);0:08:50.213;0:00:00.433;;Coup droit;SET;;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (158);0:08:50.646;0:00:00.600;;Coup droit;SET;;Serveur Point -;;;Serveur Point - 9-9;9;9;;Controle / Résistance;
+B.T. (158);0:08:54.967;0:00:00.684;;Coup droit;SET;;B.T.;;;;;;Latéral gauche;;G1
+F.T. (159);0:08:56.152;0:00:00.850;;Coup droit;SET;;F.T.;;;;;;;Poussette;M2
+B.T. (159);0:08:57.003;0:00:00.667;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (160);0:08:57.670;0:00:00.750;;Revers;SET;;F.T.;;;;;;;Controle / Résistance;D3
+B.T. (160);0:08:58.421;0:00:00.483;;Revers;SET;;B.T.;;;;;;;Attaque / Offensif;D3
+F.T. (161);0:08:58.905;0:00:00.734;;Coup droit;SET;;Serveur Point +;;;Serveur Point + 9-10;9;10;;Controle / Résistance;
+B.T. (161);0:09:03.042;0:00:00.717;;Coup droit;;;B.T.;;;;;;Latéral droit;;D2
+F.T. (162);0:09:04.527;0:00:00.467;;Coup droit;;;F.T.;;;;;;;Controle / Résistance;D3
+B.T. (162);0:09:04.994;0:00:00.667;;Revers;;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (163);0:09:05.661;0:00:00.700;;;;;Serveur Point -;;;Serveur Point - 10-10;10;10;;;M3
+F.T. (164);0:09:09.031;0:00:02.285;;Coup droit;;;F.T.;;;;;;Latéral droit;;M1
+B.T. (163);0:09:12.001;0:00:00.767;;Revers;;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (165);0:09:12.768;0:00:00.000;;Revers;;;Serveur Point -;;;Serveur Point - 10-11;10;11;;Attaque / Offensif;
+B.T. (164);0:09:16.205;0:00:00.684;;Coup droit;;;B.T.;;;;;;Latéral gauche;;G3
+F.T. (166);0:09:17.523;0:00:00.567;;Revers;;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (165);0:09:18.090;0:00:00.867;;Revers;;;B.T.;;;;;;;Controle / Résistance;D3
+F.T. (167);0:09:18.958;0:00:00.950;;Coup droit;;;Serveur Point +;;;Serveur Point + 10-12;10;12;;Controle / Résistance;
+SET (4);0:09:20.643;0:03:18.581;;;SET;;;;;;;;;;
+B.T. (166);0:09:20.643;0:00:03.553;;Coup droit;SET;;B.T.;;;;;;Latéral droit;;M2
+F.T. (168);0:09:25.014;0:00:00.300;;Revers;SET;;Serveur Point +;;;Serveur Point + 0-1;0;1;;Attaque / Offensif;
+B.T. (167);0:09:28.067;0:00:00.667;;Coup droit;SET;;B.T.;;;;;;Latéral gauche;;M2
+F.T. (169);0:09:29.418;0:00:00.000;;Revers;SET;;Serveur Point +;;;Serveur Point + 0-2;0;2;;Attaque / Offensif;
+F.T. (170);0:09:32.138;0:00:02.035;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;D2
+B.T. (168);0:09:34.657;0:00:00.567;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (171);0:09:35.224;0:00:00.283;;Revers;SET;;F.T.;;;;;;;Attaque / Offensif;G3
+B.T. (169);0:09:35.508;0:00:00.450;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (172);0:09:35.958;0:00:00.383;;Revers;SET;;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (170);0:09:36.342;0:00:00.433;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (173);0:09:36.776;0:00:00.367;;Coup droit;SET;;Serveur Point -;;;Serveur Point - 0-3;0;3;;Attaque / Offensif;
+F.T. (174);0:09:39.178;0:00:02.002;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M1
+B.T. (171);0:09:41.781;0:00:00.467;;Coup droit;SET;;B.T.;;;;;;;Poussette;M2
+F.T. (175);0:09:42.248;0:00:00.517;;Coup droit;SET;;Serveur Point +;;;1;1;3;;Attaque / Offensif;D3
+B.T. (172);0:09:46.269;0:00:00.650;;Coup droit;SET;;B.T.;;;;;;Latéral droit;;D1
+F.T. (176);0:09:47.470;0:00:00.633;;Coup droit;SET;;F.T.;;;;;;;Poussette;M1
+B.T. (173);0:09:48.104;0:00:00.834;;Revers;SET;;B.T.;;;;;;;Poussette;M3
+F.T. (177);0:09:48.938;0:00:00.383;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;G3
+B.T. (174);0:09:49.322;0:00:00.550;;Coup droit;SET;;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (178);0:09:49.872;0:00:00.500;;Coup droit;SET;;Serveur Point +;;;1;1;4;;Attaque / Offensif;
+B.T. (175);0:09:53.526;0:00:00.700;;Coup droit;SET;;B.T.;;;;;;Latéral droit;;G1
+F.T. (179);0:09:54.760;0:00:00.734;;Revers;SET;;F.T.;;;;;;;Poussette;M1
+B.T. (176);0:09:55.494;0:00:00.467;;Coup droit;SET;;B.T.;;;;;;;Poussette;M1
+F.T. (180);0:09:55.962;0:00:00.684;;Coup droit;SET;;F.T.;;;;;;;Poussette;M1
+B.T. (177);0:09:56.646;0:00:00.550;;Revers;SET;;B.T.;;;;;;;Poussette;G3
+F.T. (181);0:09:57.196;0:00:00.400;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;G3
+B.T. (178);0:09:57.597;0:00:00.734;;Coup droit;SET;;Serveur Point -;;;Serveur Point - 2-4;2;4;;Controle / Résistance;
+F.T. (182);0:10:00.099;0:00:00.784;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M2
+B.T. (179);0:10:01.467;0:00:00.850;;Revers;SET;;Serveur Point -;;;Serveur Point - 2-5;2;5;;Poussette;M1
+F.T. (183);0:10:05.688;0:00:01.918;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M2
+B.T. (180);0:10:08.024;0:00:00.517;;Coup droit;SET;;B.T.;;;;;;;Poussette;D2
+F.T. (184);0:10:08.541;0:00:00.600;;Coup droit;SET;;Serveur Point -;;;Serveur Point - 2-6;2;6;;Controle / Résistance;
+B.T. (181);0:10:12.545;0:00:00.550;;Coup droit;SET;;B.T.;;;;;;Latéral droit;;M1
+F.T. (185);0:10:13.763;0:00:00.550;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (182);0:10:14.313;0:00:00.533;;Revers;SET;;Serveur Point -;;;Serveur Point - 3-6;3;6;;Attaque / Offensif;
+B.T. (183);0:10:18.234;0:00:00.000;;Coup droit;SET;;B.T.;;;;;;;;G1
+F.T. (186);0:10:19.502;0:00:00.550;;Revers;SET;;F.T.;;;;;;;Poussette;D3
+B.T. (184);0:10:20.052;0:00:00.650;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;D3
+F.T. (187);0:10:20.703;0:00:00.400;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (185);0:10:21.103;0:00:00.583;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (188);0:10:21.687;0:00:00.600;;Coup droit;SET;;Serveur Point +;;;Serveur Point + 3-7;3;7;;Attaque / Offensif;
+F.T. (189);0:10:24.340;0:00:01.051;;Coup droit;SET;;F.T.;;;;;;Latéral gauche;;G2
+B.T. (186);0:10:25.641;0:00:00.984;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (190);0:10:26.626;0:00:00.684;;Coup droit;SET;;Serveur Point -;;;Serveur Point - 3-8;3;8;;Attaque / Offensif;
+F.T. (191);0:10:29.145;0:00:01.051;;Coup droit;SET;;F.T.;;;;;;Latéral gauche;;
+F.T. (192);0:10:39.705;0:00:01.084;;Coup droit;SET;;F.T.;;;;;;Latéral gauche;;G2
+B.T. (187);0:10:41.357;0:00:00.450;;Coup droit;SET;;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (193);0:10:41.807;0:00:00.450;;Revers;SET;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (188);0:10:42.258;0:00:00.316;;Revers;SET;;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (194);0:10:42.575;0:00:00.467;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (189);0:10:43.042;0:00:00.300;;Revers;SET;;Serveur Point +;;;Serveur Point + 4-8;4;8;;Attaque / Offensif;
+B.T. (190);0:10:46.746;0:00:00.617;;Coup droit;SET;;B.T.;;;;;;Latéral droit;;M1
+F.T. (195);0:10:48.014;0:00:00.617;;Coup droit;SET;;F.T.;;;;;;;Poussette;D2
+B.T. (191);0:10:48.631;0:00:00.316;;;SET;;Serveur Point -;;;Serveur Point - 5-8;5;8;;;
+B.T. (192);0:10:52.201;0:00:00.867;;Coup droit;SET;;B.T.;;;;;;Latéral gauche;;M1
+F.T. (196);0:10:53.753;0:00:00.467;;Coup droit;SET;;F.T.;;;;;;;Poussette;M1
+B.T. (193);0:10:54.220;0:00:01.001;;Revers;SET;;Serveur Point -;;;Serveur Point - 6-8;6;8;;Controle / Résistance;
+F.T. (197);0:10:57.390;0:00:02.535;;Coup droit;SET;;F.T.;;;;;;Latéral gauche;;D1
+B.T. (194);0:11:00.376;0:00:07.073;;;SET;;B.T.;;;;;;;;
+F.T. (198);0:11:07.450;0:00:02.152;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;D3
+B.T. (195);0:11:09.919;0:00:00.000;;Revers;SET;;Serveur Point +;;;Serveur Point + 7-8;7;8;;Controle / Résistance;
+F.T. (199);0:11:16.525;0:00:02.068;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M1
+B.T. (196);0:11:19.045;0:00:00.700;;Coup droit;SET;;Serveur Point +;;;Serveur Point + 8-8;8;8;;Poussette;
+B.T. (197);0:11:28.571;0:00:00.550;;Coup droit;SET;;B.T.;;;;;;Latéral gauche;;G1
+F.T. (200);0:11:29.805;0:00:00.767;;Revers;SET;;F.T.;;;;;;;Poussette;M1
+B.T. (198);0:11:30.573;0:00:00.400;;Coup droit;SET;;B.T.;;;;;;;Poussette;G21
+F.T. (201);0:11:30.973;0:00:00.550;;Revers;SET;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (199);0:11:31.524;0:00:00.967;;Revers;SET;;Serveur Point -;;;Serveur Point - 9-8;9;8;;Controle / Résistance;
+B.T. (200);0:11:35.928;0:00:00.700;;Coup droit;SET;;B.T.;;;;;;Latéral gauche;;G3
+F.T. (202);0:11:37.046;0:00:00.900;;Revers;SET;;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (201);0:11:37.947;0:00:00.533;;Coup droit;SET;;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (203);0:11:38.481;0:00:01.001;;Revers;SET;;F.T.;;;;;;;Controle / Résistance;G3
+B.T. (202);0:11:39.482;0:00:00.734;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;D3
+F.T. (204);0:11:40.216;0:00:01.067;;;SET;;Serveur Point +;;;Serveur Point + 9-9;9;9;;;
+F.T. (205);0:11:43.302;0:00:02.035;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M1
+B.T. (203);0:11:45.671;0:00:00.000;;Coup droit;SET;;B.T.;;;;;;;Poussette;D3
+F.T. (206);0:11:46.522;0:00:01.434;;Coup droit;SET;;F.T.;;;;;;;Controle / Résistance;D3
+B.T. (204);0:11:47.957;0:00:01.234;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;D2
+F.T. (207);0:11:49.191;0:00:00.750;;Coup droit;SET;;F.T.;;;;;;;Controle / Résistance;D3
+B.T. (205);0:11:49.942;0:00:01.151;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (208);0:11:51.093;0:00:01.234;;Revers;SET;;F.T.;;;;;;;Controle / Résistance;M2
+B.T. (206);0:11:52.328;0:00:00.316;;;SET;;B.T.;;;;;;;;G3
+F.T. (209);0:11:52.645;0:00:00.734;;Revers;SET;;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (207);0:11:53.379;0:00:01.184;;Coup droit;SET;;Serveur Point +;;;Serveur Point + 10-9;10;9;;Controle / Résistance;
+F.T. (210);0:11:57.917;0:00:02.018;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M1
+F.T. (211);0:12:12.865;0:00:02.018;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;D1
+B.T. (208);0:12:15.501;0:00:00.917;;Coup droit;SET;;B.T.;;;;;;;Poussette;D3
+F.T. (212);0:12:16.419;0:00:00.050;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (209);0:12:16.469;0:00:00.500;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (213);0:12:16.969;0:00:00.684;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (210);0:12:17.653;0:00:00.633;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (214);0:12:18.287;0:00:00.533;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;G3
+B.T. (211);0:12:18.821;0:00:01.067;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;D3
+F.T. (215);0:12:19.889;0:00:00.850;;Coup droit;SET;;Serveur Point -;;;Serveur Point - 10-10;10;10;;Attaque / Offensif;
+B.T. (212);0:12:25.144;0:00:00.533;;Coup droit;SET;;B.T.;;;;;;Latéral droit;;D1
+F.T. (216);0:12:26.445;0:00:00.650;;Revers;SET;;F.T.;;;;;;;Poussette;M1
+B.T. (213);0:12:27.096;0:00:00.617;;Coup droit;SET;;B.T.;;;;;;;Poussette;M3
+F.T. (217);0:12:27.713;0:00:00.617;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (214);0:12:28.330;0:00:00.567;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (218);0:12:28.898;0:00:00.417;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (215);0:12:29.315;0:00:00.800;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (219);0:12:30.116;0:00:00.417;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (216);0:12:30.533;0:00:01.084;;Revers;SET;;Serveur Point -;;;Serveur Point - 11-10;11;10;;Controle / Résistance;
+F.T. (220);0:12:34.036;0:00:02.068;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M1
+B.T. (217);0:12:36.572;0:00:01.701;;Coup droit;SET;;Serveur Point +;;;Serveur Point + 12-10;12;10;;Poussette;
+SET (5);0:12:39.225;0:00:00.000;;;Set décisif;;;;;;;;;;
+F.T. (221);0:12:41.110;0:00:02.135;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M2
+B.T. (218);0:12:44.013;0:00:00.400;;Coup droit;SET;;B.T.;;;;;;;Attaque / Offensif;M3
+F.T. (222);0:12:44.413;0:00:00.800;;Revers;SET;;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (219);0:12:45.214;0:00:00.567;;Coup droit;SET;;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (223);0:12:45.781;0:00:02.185;;Revers;SET;;Serveur Point -;;;Serveur Point - 0-1;0;1;;Controle / Résistance;
+F.T. (224);0:12:49.769;0:00:02.185;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M1
+B.T. (220);0:12:52.655;0:00:00.533;;Coup droit;SET;;B.T.;;;;;;;Poussette;G3
+F.T. (225);0:12:53.189;0:00:00.550;;Coup droit;SET;;Serveur Point +;;;Serveur Point + 1-1;1;1;;Attaque / Offensif;D3
+B.T. (221);0:12:56.075;0:00:00.900;;Coup droit;SET;;B.T.;;;;;;Latéral gauche;;G1
+F.T. (226);0:12:57.543;0:00:00.550;;Revers;SET;;F.T.;;;;;;;Poussette;M1
+B.T. (222);0:12:58.093;0:00:00.583;;Coup droit;SET;;B.T.;;;;;;;Poussette;M3
+F.T. (227);0:12:58.677;0:00:00.433;;Revers;SET;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (223);0:12:59.111;0:00:01.651;;Revers;SET;;Serveur Point -;;;Serveur Point - 2-1;2;1;;Attaque / Offensif;
+B.T. (224);0:13:01.914;0:00:00.717;;Coup droit;SET;;B.T.;;;;;;Latéral droit;;D3
+F.T. (228);0:13:03.265;0:00:00.417;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (225);0:13:03.682;0:00:00.750;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (229);0:13:04.433;0:00:00.750;;Coup droit;SET;;F.T.;;;;;;;Controle / Résistance;
+B.T. (226);0:13:05.184;0:00:00.517;;Coup droit;SET;;Serveur Point -;;;Serveur Point - 3-1;3;1;;Attaque / Offensif;
+F.T. (230);0:13:07.620;0:00:02.235;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;G1
+B.T. (227);0:13:10.539;0:00:00.967;;Coup droit;SET;;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (231);0:13:11.507;0:00:00.467;;Coup droit;SET;;Serveur Point -;;;Serveur Point - 3-2;3;2;;Attaque / Offensif;
+F.T. (232);0:13:14.577;0:00:02.252;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M1
+B.T. (228);0:13:17.429;0:00:00.433;;Coup droit;SET;;B.T.;;;;;;;Poussette;D3
+F.T. (233);0:13:17.863;0:00:00.567;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (229);0:13:18.430;0:00:00.550;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;D3
+F.T. (234);0:13:18.981;0:00:00.450;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (230);0:13:19.431;0:00:00.550;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;M3
+F.T. (235);0:13:19.982;0:00:00.600;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (231);0:13:20.583;0:00:00.600;;Revers;SET;;Serveur Point +;;;Serveur Point + 4-2;4;2;;Controle / Résistance;
+B.T. (232);0:13:24.487;0:00:00.567;;Coup droit;SET;;B.T.;;;;;;Latéral droit;;D1
+F.T. (236);0:13:25.638;0:00:00.467;;Coup droit;SET;;F.T.;;;;;;;Poussette;M1
+B.T. (233);0:13:26.105;0:00:00.050;;Revers;SET;;Serveur Point -;;;Serveur Point - 5-2;5;2;;Attaque / Offensif;
+B.T. (234);0:13:29.892;0:00:00.750;;Coup droit;SET;;B.T.;;;;;;Latéral gauche;;M1
+F.T. (237);0:13:31.093;0:00:00.483;;Revers;SET;;F.T.;;;;;;;Poussette;M1
+B.T. (235);0:13:31.577;0:00:00.583;;Coup droit;SET;;B.T.;;;;;;;Poussette;G3
+F.T. (238);0:13:32.161;0:00:00.467;;Revers;SET;;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (236);0:13:32.628;0:00:00.667;;Revers;SET;;Serveur Point -;;;Serveur Point - 6-2;6;2;;Controle / Résistance;
+F.T. (239);0:13:35.764;0:00:02.018;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M1
+B.T. (237);0:13:38.400;0:00:00.984;;Revers;SET;;Serveur Point +;;;Serveur Point + 7-2;7;2;;Attaque / Offensif;
+F.T. (240);0:13:41.520;0:00:02.202;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M1
+B.T. (238);0:13:44.406;0:00:00.450;;Coup droit;SET;;B.T.;;;;;;;Poussette;D1
+F.T. (241);0:13:44.857;0:00:00.650;;Coup droit;SET;;F.T.;;;;;;;Poussette;M1
+B.T. (239);0:13:45.508;0:00:00.684;;Revers;SET;;B.T.;;;;;;;Controle / Résistance;G3
+F.T. (242);0:13:46.192;0:00:01.017;;Revers;SET;;F.T.;;;;;;;Controle / Résistance;M2
+B.T. (240);0:13:47.209;0:00:00.417;;Coup droit;SET;;B.T.;;;;;;;Attaque / Offensif;D3
+F.T. (243);0:13:47.626;0:00:00.700;;Coup droit;SET;;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (241);0:13:48.327;0:00:00.400;;Coup droit;SET;;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (244);0:13:48.727;0:00:00.000;;Revers;SET;;Serveur Point +;;;Serveur Point + 8-2;8;2;;Controle / Résistance;G3
+B.T. (242);0:13:52.097;0:00:00.834;;Coup droit;SET;;B.T.;;;;;;Latéral gauche;;G3
+F.T. (245);0:13:53.315;0:00:00.700;;Revers;SET;;F.T.;;;;;;;Poussette;M2
+B.T. (243);0:13:54.016;0:00:00.350;;Coup droit;SET;;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (246);0:13:54.366;0:00:00.500;;Revers;SET;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (244);0:13:54.867;0:00:02.018;;Revers;SET;;Serveur Point +;;;Serveur Point + 8-3;8;3;;Attaque / Offensif;D3
+B.T. (245);0:13:58.053;0:00:00.984;;Coup droit;SET;;B.T.;;;;;;Latéral droit;;D3
+F.T. (247);0:13:59.405;0:00:00.350;;Coup droit;SET;;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (246);0:13:59.755;0:00:00.133;;Coup droit;SET;;Serveur Point -;;;Serveur Point - 9-3;9;3;;Attaque / Offensif;
+F.T. (248);0:14:02.608;0:00:02.452;;;SET;;F.T.;;;;;;Latéral droit;;M1
+B.T. (247);0:14:05.644;0:00:00.550;;Coup droit;SET;;B.T.;;;;;;;Poussette;D3
+F.T. (249);0:14:06.195;0:00:01.134;;Coup droit;SET;;Serveur Point -;;;Serveur Point - 9-4;9;4;;Attaque / Offensif;
+F.T. (250);0:14:09.448;0:00:03.053;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;G1
+B.T. (248);0:14:12.501;0:00:00.467;;Revers;SET;;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (251);0:14:12.968;0:00:00.300;;Revers;SET;;F.T.;;;;;;;Attaque / Offensif;D3
+B.T. (249);0:14:13.269;0:00:00.533;;Revers;SET;;Serveur Point +;;;Serveur Point + 10-4;10;4;;Attaque / Offensif;
+B.T. (250);0:14:17.089;0:00:01.084;;Coup droit;SET;;B.T.;;;;;;Latéral droit;;D1
+F.T. (252);0:14:18.674;0:00:00.600;;Coup droit;SET;;F.T.;;;;;;;Poussette;M2
+B.T. (251);0:14:19.275;0:00:00.500;;Revers;SET;;B.T.;;;;;;;Attaque / Offensif;D3
+F.T. (253);0:14:19.775;0:00:00.417;;Coup droit;SET;;Serveur Point +;;;Serveur Point + 10-5;10;5;;Attaque / Offensif;
+B.T. (252);0:14:23.379;0:00:00.734;;Coup droit;SET;;B.T.;;;;;;Latéral droit;;D2
+B.T. (253);0:14:31.837;0:00:00.500;;Coup droit;SET;;B.T.;;;;;;Latéral droit;;G21
+F.T. (254);0:14:33.155;0:00:00.583;;Revers;SET;;F.T.;;;;;;;Attaque / Offensif;M3
+B.T. (254);0:14:33.739;0:00:00.517;;Coup droit;SET;;B.T.;;;;;;;Attaque / Offensif;M3
+F.T. (255);0:14:34.256;0:00:00.700;;Coup droit;SET;;Serveur Point +;;;Serveur Point + 10-6;10;6;;Attaque / Offensif;
+F.T. (256);0:14:37.209;0:00:02.352;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;
+F.T. (257);0:14:47.636;0:00:02.369;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M2
+B.T. (255);0:14:50.606;0:00:00.333;;Coup droit;SET;;B.T.;;;;;;;Attaque / Offensif;G3
+F.T. (258);0:14:50.940;0:00:00.300;;Revers;SET;;Serveur Point -;;;Serveur Point - 10-7;10;7;;Controle / Résistance;
+F.T. (259);0:14:54.793;0:00:02.168;;Coup droit;SET;;F.T.;;;;;;Latéral droit;;M1
+B.T. (256);0:14:57.546;0:00:00.633;;Coup droit;SET;;B.T.;;;;;;;Poussette;D3
+F.T. (260);0:14:58.180;0:00:00.533;;Coup droit;SET;;F.T.;;;;;;;Controle / Résistance;M3
+B.T. (257);0:14:58.714;0:00:01.217;;Revers;SET;;Serveur Point +;;;Serveur Point + 11-7;11;7;;Controle / Résistance;

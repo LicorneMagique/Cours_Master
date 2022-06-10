@@ -182,7 +182,7 @@ with recursive included_employees(id, first_name, last_name, reports_to) as (
 )
 select *
 from included_employees
-where first_name <> 'Andrew' and last_name <> 'Adams';
+where not (first_name = 'Andrew' and last_name = 'Adams');
 ```
 
 ```txt

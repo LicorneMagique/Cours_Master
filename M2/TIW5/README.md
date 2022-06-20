@@ -7,7 +7,33 @@ Le rapport contient une synthèse de chacun des thèmes présentés (y compris l
 
 ## 1. Prise de décisions, arbitrage, gestion des conflits
 
-blablabla
+### Qu'est-ce que la prise de décisions ?
+
+La prise de décision a pour objectif de répondre à une question décisionnelle en se basant sur un ensemble de contraintes liées au problème. On distingue en particulier trois types de problèmes en entreprise, techniques, humains et stratégiques.
+
+Les **problèmes techniques** sont liés à des contraintes pragmatiques comme le temps disponible, le coût, l'architecture ou les implémentations. Il faut prendre en compte des notions comme l'intéropérabilité', le passage à l'échelle ou les qualifications des équipes. On résout généralement ce type de problème par le biais de recherches, d'expérimentations et d'outils de monitoring.
+
+Les **problèmes humains** sont axés sur la gestion du personnel, du point de vue du recrutement ou des équipes. L'objectif est d'obtenir une meilleure productivité. Les méthodes de doivent être adaptées en fonction des besoins et des effectifs, avec des méthodes agiles ou plus classiques comme les cycles en V. Les formations internes permettent également de résoudre des problèmes au niveau des individus.
+
+Les **problèmes stratégiques** sont plus généraux, ils aussi pour but d'augmenter la productivité et la réactivité mais peuvent s'appliquer à d'autres domaines. On les traite surtout via des réunions et des méthodes de réflexion comme le brainstorming.
+
+### Les contraintes
+
+La prise de décision est fortement influencée par des contraintes. Il existe des contraintes internes sur lesquelles nous pouvons potentiellement agir, et des contraintes externes que nous sommes généralement obligé de subir. Dans tous les cas, ces contraintes ont un impact sur la prise de décision.
+
+En contrainte interne il y a par exemple le temps de développement d'une fonctionnalité qui dépend des équipes, de leur répartition des tâches et des compétences des individus au sein de ces équipes. Il y a également les choix d'architecture qui dépendent des objectifs et de l'ampleur du projet.
+
+Pour les contraintes externes on peut noter la difficulté à recruter des personnes qualifiées, les deadlines liées aux clients et à leurs contraintes, ou encore les changements d'avis des clients qui peuvent avoir un fort impact avec l'utilisation des méthodes agiles.
+
+### Les méthodes d'arbitrage
+
+Il y a troix axes principaux en ce qui concerne les méthodes d'arbitrage, les statistiques, les recherches et l'expérimentation.
+
+Les statistiques passent généralement par le monitoring ou les indicateurs clés de performance appelés KPI, la recherche utilise plutôt les études ou l'expérience des individus et l'expérimentation se base sur les tests internes ou externes en prenant en compte l'expérience des individus.
+
+### Conclusion
+
+Il existe différents types de prise de décision avec des méthodes qui leurs sont propres ou qui peuvent être transversales. Les décisions ont des impacts importants sur les équipes ainsi que sur l'entreprise et elles sont fortement influencées par les contraintes.
 
 <div style="clear:both;page-break-after:always;"></div>
 

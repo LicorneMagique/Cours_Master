@@ -39,7 +39,37 @@ Il existe différents types de prise de décision avec des méthodes qui leurs s
 
 ## 2. Gestion de la dette technique
 
-blablabla
+### Qu’est-ce que la dette technique ?
+
+La dette technique est le nom donné aux défauts du code qui compliquent l'ajout d'une fonctionnalité ou la maintenance. Elle doit être remboursée ce qui implique des coûts, du temps et des bugs.
+
+#### Sources de la dette
+
+Une conception logicielle négligée, le manque de temps, de connaîssance ou une mauvaise priorisation des tâches sont des sources importantes de dette. L'utilisation d'éléments externes comme des API ou des librairies qui évoluent en parallèle et impliquent aussi l'obsolescence de certaines parties du code.
+
+### Pourquoi s'en soucier
+
+La dette technique a des impacts à plusieurs échelles et peut avoir de graves conséquences, c'est pourquoi il est important de la réduire au maximum.
+
+#### Impacts sur les développeurs
+
+Du point de vue du code la dette implique des difficultés de lecture. Il est alors plus difficile de développer des fonctionnalités, plus facile d'introduire ou de corriger des bugs et cela a un impact sur le moral des développeurs. Il devient plus difficile de se motiver à travailler et changer de poste peut devenir attraillant.
+
+#### Impacts sur les équipes
+
+La dette pousse à augmenter les écarts entre les membres des équipes ce qui rend plus difficile l'attribution des tâches car seuls certaines personnes connaissent les spécificités du code liées à certaines parties de la dette. Des tensions peuvent apparaître entre certains membres et globalement le moral a tendence à baisser, et avec lui la productivité. Dans certains cas la réorganisation des équipes peut être envisagée pour limiter les effets de la dette.
+
+#### Impacts sur l'entreprise
+
+Dans le cas des projets internes, la dette implique un ralentissement du développement des applications et la présence de plus de bugs qui se traduit par une perte de croissance et une perte d'argent. L'élaboration des plannings de développement et la réalisation des devis deviennent aussi plus difficile. Pour les projets externes les coûts augmentent pour les clients et les relations peuvent se dégrader.
+
+### Remboursement de la dette
+
+Le remboursement de la dette passe par du refactoring voire par la réécriture de toute l'application. Il faut se baser sur ces expériences précédentes, passer du temps lors de la conception et ne pas choisir la facilité si elle n'est pas bénéfique au long terme.
+
+### Conclusion
+
+La dette technique est néfaste à différentes échelles et il est important de tout faire pour la réduire au maximum via des méthodes de conception et du remboursement.
 
 <div style="clear:both;page-break-after:always;"></div>
 

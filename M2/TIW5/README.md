@@ -75,53 +75,33 @@ La dette technique est néfaste à différentes échelles et il est important de
 
 ## 3. Qualité, adéquation du produit avec la demande
 
-### Analyse fonctionnelle
+En informatique, la qualité logicielle est une appréciation qui se base sur des indicateurs permettants de mesurer des éléments comme la performance, la fiabilité ou la tolérence aux pannes. Les deux principaux facteurs qui influent sur la qualité sont les coût et les délais.
 
-Analyse du besoin : cadre
-le cadre a un impact important sur la qualité produit
+### Analyse du besoin
 
-Adéquation du produit : validation
-il faut répondre aux besoins du client : il doit valider
+Il est important de savoir à qui s'adresse un logiciel pour comprendre les besoins et définir les critères de qualité. Les besoins sont exprimés par les clients ou les utilisateurs finaux. On peut les retrouvé dans le cahier des charges et ils obéissent à des normes comme l'accessibilité, la sécurité ou la confidentialité.
+
+### Adéquation du produit
+
+Afin de valider le produit, le client doit fourni un cahier des charges qui détaille ses attentes.
 
 ### Qualité fonctionnelle
 
-faire des diagrammes pour exprimer le besoin et aiguiller les développeurs : doivent être compréhensibles par le client, pouvoir garder du recul
+La qualité fonctionnelle a pour but de répondre aux besoins du client. Afin de réaliser un produit conforme, on sépare le produit en fonctionnalités afin de les traiter séparément. L'utilisation de diagrammes comme UML est préconisée afin d'exprimer un besoin technique tout en étant compréhensible par le client.
 
-Organisation du travail
-le client est très présent -> méthodes agiles qui maximise le ciblage des besoins clients
-le client est peu présent ou la documentation est vraiment très précise -> cycle en V
+La méthode de gestion dépend du client. S'il est présent et réactif, les méthodes agiles peuvent maximiser le ciblage de ces besoins. S'il est peu présent, une méthode comme le cycle en V sera plus adaptée. Mettre en place un système de tickets est aussi un moyen efficace afin de suivre l'évolution des fonctionnalités, faire remonter des sisfonctionnements, définir les priorités et gérer les échéances.
 
-Suivi de qualité
-système de "tickets" qui permet de suivre chaque fonctionnalité, avoir un historique, définir les priorités, gérer les échéances
-
-Processus de qualité
-env de dev, preprod, prod
-
-Tests
-méthodes, procédures auto ou manu
-par les développeurs ou les utilisateurs
-
-Risques
-on sous-estime le temps des tests, les impacts du passage de dev à preprod
-
-Facteurs extérieurs
-erreur sur la source de données de tests
+L'utilisation d'environnements différents de la production, ainsi que la mise en place d'intégration continue et de tests automatisés permet d'assurer plusieurs critères de qualité en amont comme la fiabilité, la tolérence aux pannes et l'idempotence des systèmes.
 
 ### Qualité technique
 
-Minimisation de la dette technique
+Un code de faible qualité possède une forte dette technique. Elle rend difficile l'ajout de nouvelles fonctionnalités et facilite l'ajout de bugs, c'est pourquoi il est important d'en créer le moins possible.
 
-versionning, réutilisabilité des composants, commentaires dans le code
+Dans un premier temps les outils de versionning comme GIT, la réutilisabilité des composants, les commentaires dans le code ou encore les revues de code sont des moyens efficaces pour luter contre cette dette. Ensuite de nombreux problèmes en informatiques sont connus et peuvent être résolus efficacement par les design patterns. Enfin il est possible d'utiliser des outils d'analyse de code qui couplés avec les tests unitaires qui permettent de mesurer la couverture en tests du projet. Ce type d'outil peut être utilisé pour empêcher des mises en production si l'application ne respecte pas suffisament les critères de qualité.
 
-Design patterns
+### Conclusion
 
-Tests unitaires, analyse du code, couverture, ça met du temps à faire, donne retour/estimation qualité du code
-l'intégration continue est un bon moyen d'automatiser ça, ça demande beaucoup de temps de configuration -> donc on fait pas sur petits projets, bloquer mise en prod si couverture de tests < pourcentage
-
-Revue de code par exemple dans les méthodes agiles
-
-Performances
-il faut vérifier que ça ne baisse pas, il faut utiliser les outils chez soit et aussi chez la concurence pour comparer
+Afin de garantir la qualité d'un produit il faut comprendre les besoins du client et définir les indicateurs à utiliser. La qualité du code ne doit pas être négligée et de nombreux outils permettent de l'améliorer. Enfin la mise en place de tests est incontournable afin d'assurer la conformité avec les indicateurs définis.
 
 <div style="clear:both;page-break-after:always;"></div>
 

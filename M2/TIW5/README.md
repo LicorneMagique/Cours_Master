@@ -107,17 +107,25 @@ Afin de garantir la qualité d'un produit il faut comprendre les besoins du clie
 
 ## 4. Conception, propositions commerciales, chiffrage
 
-Les dev s'en rendent pas compte, les commerciaux survendent les trucs, chaque entreprise a ± sa méthode mais 
+Les développeurs n'ont pas forcément conscience de l'avant projet et du travail des commerciaux mais il s'agit des premières étapes qui mène au développement d'un produit. 
 
-Proposition commerciale : le commercial fait comprendre au client qu'il a compris son besoin, liste les services proposés, discute -> c'est mieux qu'un simple devis qui est similaire à une grille tarrifaire, c'est personnalisé, sur les salons commerciaux
+### Proposition commerciale
 
-Étapes exemple : appel téléphonique du commercial au client pour demander les besoins (procreption???), ça marche beaucoup mieux quand les entreprises sont dans le même secteur d'activité, les premières secondes de l'appel sont les plus importantes, taux d'acceptation, filtre des prestataires pour choisir lequel fera la prestation
+Dans un premier temps un commercial prend contact avec un potentiel client, par exemple rencontré lors d'un salon commercial ou grâce à des prospects. Le but de cet échange est de comprendre les besoins et discuter des possibilités de produit que l'entreprise peut produire. L'objectif du commercial est de se démarquer des entreprises qui ne proposent qu'un devis basé sur une grille tarrifaire, il personnalse l'offre selon les besoins et le budget du client. Cette démarche favorise les relations, en particulier lorsque les entreprises sont dans le même secteur d'activité.
 
-Chiffrage : estimation datée du coup humain et matériel (information la plus importante des propositions commerciales), un chiffrage juste permet d'augmenter la crédibilité de l'entreprise
-Astuce : tout prendre en compte chez le client (ses besoins), être ± honnête (mentir = pour gagner un gros client), dire ce qu'on fait et ce qu'on ne fait pas, parler de son expérience car c'est elle qui donne les meilleurs estimations, sinon la méthode de PERT qui prend en compte l'estimation optimiste, la probable pondérée à 4 et la pessimiste -> c'est assez efficace, il faut toujours utiliser la même méthode de chiffrage pour rester cohérent, il peut y avoir plusieurs chiffrage parfois tout au long d'un projet pour estimer le besoin, il faut identifier les différents corps de métier car non facturés pareil, toute l'équipe du projet peut y participer + les commerciaux, dans certains cas les tarifs sont fixes, le chiffrage est aussi adapté au budget du client
-chiffrage en jour homme, en fonctionnalité
+### Chiffrage
 
-Conception : première phase dans le cycle de vie d'une initiative, définir les objectifs, l'organisation, identifier les risques et les contraintes pour ne pas tomber dans des cas irréversibles, bien identifier qui doit faire quoi, mettre en place un système de suivie (Gant, PERT, Organigramme) et avoir des solutions de repli en cas de problème (retard livraison, prestateur annulé) on peut le voir comme des panneaux sur une route, on peut se déplacer sur place et discuter avec les employés pour comprendre les attentes, retour sprint -> évolution du cahier des charges : on a une vision globale mais il y a toujours des évolution sur ce qui est fait
+Le montant de la proposition est l'information la plus importante de la proposition commerciale. Il s'agit d'une estimation datée du coup humain et matériel permettant de réaliser un produit. Ce chiffrage prend en compte un maximum d'informations sur le client ce qui permet d'augmenter la crédibilité de l'entreprise. Il est important d'être relativement honnête, d'indiquer ce que l'entreprise est capable de produire et de toujours utiliser la même méthode de chiffrage pour rester cohérent.
+
+Plus l'entreprise a d'expérience plus ses estimations seront correctes. Il est possible d'effectuer des chiffrages tout au long du projet que ce soit en jour-homme ou en fonctionnalité et toute l'équipe peut y participer. Il est important de bien identifier les différents corps de métier qui entrent en jeu et il existe des méthodes qui permettent d'obtenir une estimation du chiffrage. Par exemple la méthode PERT qui est assez efficace se base sur l'estimation optimiste, la probable pondérée et la pessimiste.
+
+### Conception
+
+La conception est la première phase dans le cycle de vie d'une initiative. Son but est de définir les objectifs et l'organisation. Il faut dentifier les risques et les contraintes pour éviter les erreurs de conception irréversibles, bien organiser la répartition des tâches, mettre en place un système de suivie comme GANT et prévoir des solutions en cas de problème. C'est lors de cette conception qu'on identifie les priorités et les modalités de retard de livraison. Dans le cas des méthodes agiles il y a une nouvelle phase de conception après chaque sprint ce qui peut mener à l'évolution du cahier des charges.
+
+### Conclusion
+
+La proposition commercial et la phase de conception sont des étapes incontournables dans la réalisation d'un produit même si elles peuvent être invisibles aux yeux des développeurs. Ces étapes ont pour but d'exprimer les besoins du client et de s'adapter à lui avant de commencer un projet.
 
 <div style="clear:both;page-break-after:always;"></div>
 

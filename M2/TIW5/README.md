@@ -107,7 +107,7 @@ Afin de garantir la qualité d'un produit il faut comprendre les besoins du clie
 
 ## 4. Conception, propositions commerciales, chiffrage
 
-Les développeurs n'ont pas forcément conscience de l'avant projet et du travail des commerciaux mais il s'agit des premières étapes qui mène au développement d'un produit. 
+Les développeurs n'ont pas forcément conscience de l'avant projet et du travail des commerciaux mais il s'agit des premières étapes qui mène au développement d'un produit.
 
 ### Proposition commerciale
 
@@ -131,20 +131,23 @@ La proposition commercial et la phase de conception sont des étapes incontourna
 
 ## 5. Gestion des coûts et des délais pendant la durée de vie du projet
 
-Évaluer le cout des technologies, des personnels, des sous-traitants
+L'objectif de la gestion des coûts et des délais est d'évaluer le coût des technologies, des personnels, des sous-traitants et organiser la répartition du travail en fonction des tâches et des compétences du personnel en ce qui concerne les outils et technologies.
 
-Annalyse personnelle : il faut répartir le travail, les tâches, idéalement plusieurs personnes maitrisent les outils/technos
+### Gestion des coûts
 
-Coûts et délais : Sommes engagées pour le projet -> budget global, ensuite il faut savoir que tous les fonds ne sont pas dispo dès le début donc prévoir le système de paiement à certaines dates, selon le temps on va faire l'impasse ou non sur la qualité (triangle de d'or), minimiser les risques par l'analyse
+Les coûts sont les sommes engagées pour le projet, un budget global est défini mais tous les fonds ne sont généralement pas disponibles dès le début du projet. Il faut donc prévoir le système de paiement en plusieurs fois afin d'assurer la rémunération du service sans trop pénaliser la gestion du budget du client.
 
-Cycle de gestion des couts et delais : on réitere les étapes jusqu'à ce que le projet soit terminé
+Le calcul du coût prend en compte le prix de chaque coeur de métier, ce qui a été déjà été payé ou qui va l'être prochainement et doit être ajusté au budget du client. Des systèmes de suivi de paiement existent afin de répartir au mieux le budget sur les périodes de développement. Dans le cas des méthodes agiles il est facile d'effectuer cette répartition en définissant une somme à verser pour chaque phases de développement, ainsi on paye pour chaque sprint jusqu'à ce que le produit soit terminé.
 
-Gestion des couts : prendre en compte le prix de chaque coeur de métier, ajuster au budget, considérer ce qui a été payé ou qui va l'etre rapidement
+### Gestion des délais
 
-Gestion des délais : on commence par une part de planification, il y a des outils dédiés comme msproject pour les diagrammes de Gantt, il faut pouvoir estimer qui fait quoi pendant combien de temps et dans quel ordre faire les choses pour bien estimer l'orga et minimiser l'impact des imprévus qui arriveront quoiqu'il arrive, les délais sont extrêmement importants surtout en cas de besoin éphémère, il faut avoir des méthodes de travail pour améliorer les connaissances des employés pour limiter l'impact des départs imprévus
-Mise en place de systèmes de tickets avec estimation du temps, voir selon l'importance des livraisons ce qu'on peut changer pour respecter les déais avec les imprévus
+La gestion des délais commence par une phase de planification. Il existe des outils qui facilitent cette phase comme Microsoft Project qui permet de réaliser des diagrammes de GANTT facilement. Il est important de savoir estimer le temps des différentes tâches, leur importance ainsi que l'ordre dans lequel elles doivent être réalisées. De cette façon il est plus facile d'anticiper la répartition des tâches en fonction des compétences du personnel et une bonne visibilité de la disponibilité des équipes permet d'être plus réactif en cas d'imprévus. Ainsi, un bonne analyse permet de minimiser les risques liés aux délais.
 
-Analyse : personne fait pareil, la théorie n'est pas appliquée en pratique même si on la connais, pas forcément le temps d'améliorer les processus, les clients ont des préférences sur les méthodes (agile, V) ou logiciels de monitoring, les clients n'ont pas de recul et concrètement ne savent pas ce qu'ils veulent (c'est flou) donc on doit passer plus de temps avec le client. Les différences de méthode n'impactent pas forcément la performance de l'entreprise à les appliquer efficacement pour le même résultat, c'est un grans système cout délai qualité, le processus d'amélioration de la gestion doit plutôt se faire en amont, l'agilité c'est bien avec les clients qui savent ce qu'ils veulent sinon le V c'est mieux
+Les délais peuvent être plus ou moins souples en fonction des contraintes du projet mais il s'agit généralement de la plus forte contrainte une fois le budget défini. La mise en place de systèmes de tickets avec priorité et estimation du temps est un bon moyen pour gérer les tâches imprévus tout en respectant les délais.
+
+### Conclusion
+
+Il existe de nombreuses façon de calculer les coûts et planifier un projet, certaines se démarquent mais chaque entreprise à tendance à utiliser sa méthode personnelle. Il est bénéfique de passer du temps avec le client sur l'analyse et réfléchir à des points d'améliorations de ses méthodes mais les délais ne le permettent pas forcément. Différents outils existent pour faciliter ces étapes avec du monitoring et il est conseillé de les utiliser. Enfin la gestion des coûts et des délais évolue tout au long du projet et il est préférable d'itérer ce processus plusieurs fois au fur et à mesure de l'évolution du produit.
 
 <div style="clear:both;page-break-after:always;"></div>
 

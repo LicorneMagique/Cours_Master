@@ -153,32 +153,26 @@ Il existe de nombreuses façon de calculer les coûts et planifier un projet, ce
 
 ## 6. Agilité
 
-Un CRM sert à gérer et optimiser les relations clients : gestion contact (fiches clients avec les données), gestion commerciale, automatisation de tâches type mail, module projet, dashboard personnalisés
+Les méthodes agiles sont tirés du manifeste agile de 2001 qui estime que les méthodes traditionnelles ne répondent plus aux besoins actuels qui évoluent en permanence. Ce type de méthodes s'adaptent plus aux individus qu'aux contrats.
 
-Les méthodes agiles sont tirés du manifeste agile de 2001 qui ont estimé que les méthodes traditionnelles ne répondaient plus au besoin actuel qui évolue en permanence, ça s'adapte plus aux individus plutôt qu'aux contrats
+SCRUM est une implémentation de ce manifeste avec un système d'itérations de 2 à 4 semaines appelées Sprint où le client final, le Product Owner, est en étroite collaboration avec l'équipe de développement.
 
-SCRUM est une implémentation de ça avec un système d'itérations de 2 à 4 semaines où le product owner est en étroite collaboration avec l'équipe
+### Analyse des besoins et planifications
 
-Pilotage : analysse des besoins et planifications
-En V tout sera planifié en amont alors qu'en agile la planification n'est que sur la prochaine itération, on liste ± toutes les user stories et établi les étapes de développement, toutes les parties participent aux itérations, le PO va attribuer les user stories du sprint
+Dans le cadre des cycles en V tout est planifié en amont, à l'inverse en méthode agile la planification n'est effectuée que pour la prochaine itération. Les fonctionnalités sont listées sous forme de parcours client appelés User Stories et les étapes de développement sont définies en fonction ce celles-ci. Tous les partis participent aux itérations, y compris le Product Owner qui attribue les User Stories à réaliser pour le prochain Sprint.
 
-Dans l'exemple du bureau d'étude on retrouve des aspects de la méthode agile
+Il est possible d'effectuer des micro cycles en V de quelques mois pour se rapprocher des méthodes agiles tout en restant sur une méthode de gestion traditionnelle.
 
-On peut avoir des micro cycles en V de quelques mois
+### Déroulement d'un Sprint
 
-Sprint planning, sprint poker
-Les user stories, plus le projet avance plus elles deviennent précises ex. mot de passe oublié. Les US se voient affecter des tâches
+Les User Stories deviennent de plus en plus précises avec l'avancement du projet et elles se voient affecter des tâches. Tous les jours les membres de l'équipe se réunissent pour expliquer ce qu'ils ont fait la veille, ce qu'ils vont faire le jour même et parler des difficultés qu'ils ont rencontré. Lors de ce moment les membres de l'équipe peuvent partager leur expérience et réfléchir ensemble à des solutions pour surmonter les difficultés.
 
-Déroulement d'un sprint : on commence par une réunion quotidienne où on dit ce qu'on a fait la veille, ce qu'on va faire le jour et les difficultés qu'on a rencontré. ça permet à l'équipe de se synchoniser
+En théorie l'équipe doit quotidiennement mettre à jour le Sprint Burndown, un outil de visualisation qui permet de connaître l'avancement de chacun par rapport au planning. Cet outil permet de voir si l'équipe est en avance ou en retard par rapport aux prévisions. En pratique il n'est pas souvent utilisé.
 
-Sprint burndown : outil de visualisation qui doit être mis à jour après chaque daily pour voir où en est l'avancement par rapport à la prévision (30 points / semaine par exemple)
+### Fin de Sprint
 
-Démonstration client : cycle en v rien, méthodes agiles on montre ce qui a été fait lors de la dernière itération
+À la fin de chaque Sprint l'équipe met en production l'application et fait une réunion avec le Product Owner. Cette réunion permet d'indiquer ce qui n'a pas eu le temps d'être développé et de faire la démonstration de ce qui a été réalisé lors de la dernière itération. Ensuite l'équipe se réunie pour faire un point sur le dernier Sprint. Dans le cadre de cette réunion elle liste ce qui s'est bien passé, ce qui s'est mal passé et ce qui peut être amélioré. Le but est de faire une synthèse de ce qu'il faut continuer et de ce qu'il ne faut plus faire.
 
-Revue de sprint : cycle en v rien, chacun présente ce qu'il a fait et tout le monde peut faire des retours
+### Conclusion
 
-Rétrospective scrum : réunion qui permet de lister ce qui s'est bien passé, mal passé et ce qui peut être amélioré. Le but est de faire une synthèse de ce qu'il faut continuer et de ce qu'il ne faut plus faire
-
-Livraison produit : agile factionné, mep après chaque fonctionnalité, test du système en continue, en v on attend la toute fin pour mep et tester
-
-bilan les méthodes agiles sont plus réactives pour s'adapter aux changements nécessaires
+Les méthodes agiles ont émergé pour combler les lacunes des méthodes traditionnelles qui ne répondent plus aux besoins actuels. Ces méthodes sont faites pour s'adapter à l'évolution permanente des besoins et impliquent beaucoup plus le client au sein des projets.

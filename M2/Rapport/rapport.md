@@ -22,7 +22,7 @@ Bloc "réalisé par / tuteurs"
 
 ## Remerciements
 
-Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompagné au cours des deux dernières années. Je remercie Lionel Médini d'avoir été mon tuteur cette année. Je remercie également toute l'équipe Finalgo ainsi que les dernières générations de stagiaires et alternants pour les nombreux moments passés ensemble.
+Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompagné au cours des deux dernières années. Je remercie Lionel Médini d'avoir été mon tuteur cette année. Je remercie également toute l'équipe Finalgo ainsi que les dernières générations de stagiaires et alternants pour moments passés ensemble.
 
 ## Table des matières
 
@@ -87,23 +87,19 @@ Les notions vues en cours lors de mon DUT, de ma Licence 3 et tout au long du Ma
 
 Certaines missions ont renforcé mes connaissances, d'autres m'ont permi de comprendre des éléments abordés au cours de l'année dans un cadre professionnel.
 
-Tout au long de l'année j'ai réalisé des missions diverses au sein de Finalgo, principalement dans le but de réduire la dette technique et amélioration les performances de nos applications.
+Tout au long de l'année j'ai réalisé des missions diverses au sein de Finalgo, principalement dans le but de réduire la dette technique et améliorer les performances de nos applications.
 
 ## Présentation de Finalgo
 
-Finalgo est une startup familiale de 6 collaborateurs spécialisée dans
-
-- la recherche de financements 100 % digitale,
-- la construction et la gestion de dossiers de financement,
-- la recherche de subventions.
-
-Nous proposons à nos clients des outils qui permettent de répondre à ces besoins. Ces outils sont des applications web avec un système d'abonnement payant, il s'agit du modèle d'exploitation commerciale « SaaS » pour « Software as a Service ». Notre objetif est de leur permettre de construire et d’envoyer eux-même leurs dossiers de financements à tous types de partenaires financiers, ou de trouver les aides éligibles pour leur entreprise.
+Finalgo est une startup familiale de 8 collaborateurs spécialisée dans la recherche de financements 100 % digitale et la construction et la gestion de dossiers de financement.
 
 Notre vocation est de faciliter l'accès au financement pour les entrepreneurs, artisans, commerçants et plus généralement aux dirigeants de TPE / PME.
 
+Nous proposons à nos clients trois plateformes web en SaaS\* qui répondent à ces besoins. La première est un outil de gestion pour les professionnels de la finance, elle permet de construire et gérer des dossiers de financement et fonctionne sous forme d'abonnements payants. La deuxième est à destination des dirigeants de PME, elle permet de rechercher gratuitement des financements alternatifs\* sur lesquels nous prenons une comission lorsqu'un partenaire finance le projet. La dernière permet de remplir et de suivre les demandes de financements, elle sert d'intermédiaire entre les dirigeants et nos partenaires financiers.
+
 ### L'équipe
 
-À Finalgo la hiérarchie est complètement horizontale, pour chaque tâche le référent est la personne qui maîtrise le mieux la partie métier ou technique correspondante. L'organigramme est donc organisé suivant le type du contrat.
+À Finalgo la hiérarchie est très horizontale, pour chaque tâche le référent est la personne qui maîtrise le mieux la partie métier ou technique correspondante. L'organigramme est donc organisé suivant le type du contrat.
 
 ![organigramme](./assets/organigramme.svg)
 
@@ -117,7 +113,7 @@ Cette année mes missions ont porté sur les trois principaux projets de Finalgo
 - **Automate** notre application de recherche de financements alternatifs,
 - **Advisor** notre application de gestion, de suivi et d'envoi de demandes de financement alternatifs pour les dirigeants de PME.
 
-En terme de projets informatiques, toutes les plateformes possèdent un front Angular et elles communiquent avec un unique backend.
+En terme de projets informatiques, toutes les plateformes possèdent un front Angular et elles communiquent toutes avec le même backend.
 
 ![projets](./assets/projets.svg)
 

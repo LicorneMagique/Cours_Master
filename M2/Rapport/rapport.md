@@ -40,6 +40,7 @@ Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompa
       - [Slack](#slack)
       - [Asana](#asana)
       - [Google Workspace](#google-workspace)
+      - [Gather](#gather)
   - [Environnement technique](#environnement-technique)
     - [Côté serveur](#côté-serveur)
     - [Côté client](#côté-client)
@@ -99,7 +100,7 @@ Nous proposons à nos clients trois plateformes web en SaaS\* qui répondent à 
 
 ### L'équipe
 
-À Finalgo la hiérarchie est très horizontale, pour chaque tâche le référent est la personne qui maîtrise le mieux la partie métier ou technique correspondante. L'organigramme est donc organisé suivant le type du contrat.
+À Finalgo la hiérarchie est très horizontale, pour chaque tâche le référent est la personne qui maîtrise le mieux la partie métier ou technique correspondante. L'organigramme suivant est organisé selon le type du contrat.
 
 ![organigramme](./assets/organigramme.svg)
 
@@ -121,7 +122,7 @@ En terme de projets informatiques, toutes les plateformes possèdent un front An
 
 ### Matériel et lieu
 
-À Finalgo nous travaillons beaucoup en télétravail. Lorsque nous allons dans les locaux, en général une fois par semaine pour les membres de l'équipe qui sont à proximité de Lyon, nous allons au HUB612. Il s'agit d'un incubateur, une sorte d'open space avec une équipe qui accompagne les entreprises. Le HUB612 est spécialisé dans les entreprises qui travaillent sur la finance, les assurances et le marketing à l'aide d'outils numériques modernes. C'est un lieu agréable pour travailler et échanger avec des personnes dans des domaines similaires aux nôtres.
+À Finalgo nous travaillons beaucoup en télétravail. Lorsque nous allons dans les locaux, deux à trois fois par semaine pour les membres de l'équipe qui sont à proximité de Lyon, nous allons au HUB612. Il s'agit d'un incubateur, une sorte d'open space avec une équipe qui accompagne les entreprises. Le HUB612 est spécialisé dans les entreprises qui travaillent sur la finance, les assurances et le marketing à l'aide d'outils numériques modernes. C'est un lieu agréable pour travailler et échanger avec des personnes dans des domaines similaires aux nôtres.
 
 Pour travailler on a mis à ma disposition un ordinateur portable avec une très bonne configuration, ce qui me permet d'utiliser efficacement tous les logiciels dont j'ai besoin. J'utilise généralement un deuxième écran pour des questions de confort, il y en a sur les bureaux du HUB* et j'utilise mon écran personnel en télétravail.
 
@@ -131,20 +132,18 @@ Depuis le début de la crise sanitaire, toute notre organisation est basée sur 
 
 #### Slack
 
-<img alt="slack" src="./assets/slack.svg" width="64"> Slack est notre outil de communication n°1 interne comme externe.
+<img alt="slack" src="./assets/slack.svg" width="64"> Slack est notre outil de messagerie interne.
 
 <img alt="slack" src="./assets/channels.png" width="90" style="float: left; margin-right: 3em">
 
-En **interne** nous avons un espace de travail "Finalgo" avec des **canaux de discussion** pour tous les sujets, ce qui permet de configurer les notifications qu'on souhaite recevoir pour chaque type d'information.
+Nous avons un espace de travail "Finalgo" avec des **canaux de discussion** pour tous les sujets, ce qui permet de configurer les notifications qu'on souhaite recevoir pour chaque type d'information.
 
 Il y a un canal pour
 
-- chaque **projet** : Main, Crossroads
+- chaque **projet** : Backend, Automate, Advisor
 - chaque **domaine** : informatique, marketing, communication, design, recrutement, teambuilding…
 - chaque **type de logs** : bugs utilisateurs, boutons "demander de l'aide", actions utilisateurs, actions nécesitant une intervention de notre part, traces des différents serveurs de production et de développement…
 - la **détente** : on y trouve des blagues ou liens en tout genre pour partager de la bonne humeur avec l'équipe.
-
-En **externe** nous avons un espace de travail pour chaque client, au sens entreprise qui utilise l'une de nos applications et qui a demandé un développement spécifique.
 
 #### Asana
 
@@ -153,7 +152,7 @@ En **externe** nous avons un espace de travail pour chaque client, au sens entre
 La plateforme permet de créer des projets qui fonctionnent comme les tableaux sur
 Trello. Il est possible d'y créer des colonnes et d'y ajouter des tâches avec des attributions, des images, des sous-tâches.
 
-Nous utilisons ces tableaux pour remplacer le **Scrum Board**, un tableau de post-it utilisé par la méthode SCRUM qui est à l'origine de notre méthode de travail. Grâce à ces tableaux nous pouvons voir qui travail sur une tâche, connaître son avancement, en ajouter nous-même et écrire les spécification. Il y a beaucoup plus de fonctionnalités sur le site mais nous ne les utilisons pas pour le moment.
+Nous utilisons ces tableaux pour remplacer le **Scrum Board**, un tableau de post-it utilisé par la méthode SCRUM qui est à l'origine de notre méthode de travail. Grâce à ces tableaux nous pouvons voir qui travail sur une tâche, connaître son avancement, en ajouter nous-même et écrire les spécification. Il y a beaucoup plus de fonctionnalités sur le site mais nous n'en avons pas encore l'utilité.
 
 #### Google Workspace
 
@@ -163,13 +162,22 @@ Nous utilisons ces tableaux pour remplacer le **Scrum Board**, un tableau de pos
 
 Finalgo utilise un système de comptes Google pour les entreprises. Nos comptes nous permettent d'accéder à la suite de bureautique comme avec une adresse **Gmail** classique, même s'ils terminent par `@finalgo.fr`. Toutes ces applications sont liées à un espace partagé sur **Google Drive**, auquel nous avons tous accès avec notre compte.
 
-**Meet** est une plateforme de réunions numériques très simple à utiliser. Il est possible de se connecter à un salon grâce à un lien, on peut ensuite participer avec sa caméra, son micro ou en faisant des partages d'écran. Nous passons beaucoup de temps sur Meet, surtout pour parler avec l'équipe mais aussi pour les réunions clients.
+**Meet** est une plateforme de réunions numériques très simple à utiliser. Il est possible de se connecter à un salon grâce à un lien, on peut ensuite participer avec sa caméra, son micro ou en faisant des partages d'écran. Nous utilisons Meet pour les réunions clients.
 
 **Calendar** est un agenda, il sert surtout à planifier des rendez-vous clients ou des points d'équipe importants. Un salon meet est associé à chaque événement de l'agenda. Ce système évite de générer un lien et de l'envoyer aux invités, il suffit de les ajouter sur un événement.
 
 **Google Sites** sert exclusivement à voir et alimenter notre wiki interne. Il s'agit d'un site accessible uniquement avec notre compte, sur lequel nous répertorions toutes sortes d'informations utiles pour Finalgo. On y trouve les procédures comme les mises en production, les installations, les plateformes et il y a des explications sur les technologie inhabituelles. C'est un outil que nous utilisons et alimentons beaucoup, il entre dans la philosophie SCRUM en facilitant les formations mutuelles au sein de l'équipe.
 
 **Sheets** est un tableur comme Excel, nous l'utilisons en interne et en externe. Il y a des tableaux administratifs pour gérer des choses comme les congés, certains servent d'outils de maintenance et ticketing, d'autres permettent de synthétiser des informations afin de les exporter dans le code.
+
+#### Gather
+
+![gmail](./assets/gather.png)
+
+Gather est notre outil de communication interne n°1. Comme Slack, nous sommes connecté toute la journée sur cette plateforme de communication qui permet de se déplacer dans un monde virtuel 2D et d'effectuer des visioconférences.
+Etant donné que tous les membres de l’équipe ne résident pas à Lyon, cet outil permet de rester en constante communication avec eux malgré la distance.
+Chaque personne a son propre bureau virtuel et des pièces spécifiques ont été
+créées pour remplir différentes fonctions : cafétéria pour discuter en arrivant au travail, salle de réunion, jardin pour jouer à des mini-jeux, ect.
 
 ## Environnement technique
 

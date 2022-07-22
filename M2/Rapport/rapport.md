@@ -174,10 +174,9 @@ Finalgo utilise un système de comptes Google pour les entreprises. Nos comptes 
 
 ![gmail](./assets/gather.png)
 
-Gather est notre outil de communication interne n°1. Comme Slack, nous sommes connecté toute la journée sur cette plateforme de communication qui permet de se déplacer dans un monde virtuel 2D et d'effectuer des visioconférences.
-Etant donné que tous les membres de l’équipe ne résident pas à Lyon, cet outil permet de rester en constante communication avec eux malgré la distance.
-Chaque personne a son propre bureau virtuel et des pièces spécifiques ont été
-créées pour remplir différentes fonctions : cafétéria pour discuter en arrivant au travail, salle de réunion, jardin pour jouer à des mini-jeux, ect.
+Gather est notre outil de communication interne n°1. Comme Slack, nous sommes connecté toute la journée sur cette plateforme qui permet de se déplacer dans un monde virtuel 2D et d'effectuer des visioconférences.
+Etant donné que tous les membres de l’équipe ne résident pas à Lyon, cet outil permet de rester en constante communication avec eux malgré la distance.  
+Chaque personne a son propre bureau virtuel et des pièces spécifiques ont été créées pour remplir différentes fonctions : cafétéria pour discuter en arrivant au travail, salle de réunion, jardin pour jouer à des mini-jeux, ect.
 
 ## Environnement technique
 
@@ -187,27 +186,18 @@ Pour les serveurs nous avons un compte sur la plateforme OVH avec une dizaine de
 
 Sur ces VPS nous avons un serveur Apache pour servir le front compilé par Angular et un serveur Tomcat pour le back Java Spring Boot.
 
-Dans le cadre de Main il y a aussi un serveur Flask sur Python 3.8.
-
 Nos projets Spring Boot utilisent Java version 11 avec divers dépendances. Voici un résumé des plus utilisées et de celles que j'ai utilisées.
 
 | Dépendance | Description |
 | ---------- | ----------- |
 | Auth0 | Librairie qui permet de manipuler les JWT. |
-| ClamAV | Librairie qui permet de communiquer avec le logiciel ClamAV installé sur la machine. |
 | Hibernate / HQL | Framework qui permet de manipuler la base de données à travers des interfaces. Il implémente le HQL, un langage de requête de base de données relationnelles similaire à SQL avec une approche orientée objet. |
-| Itextpdf | Librairie payante qui permet de manipuler les PDF et d'en générer à partir de code HTML. |
-| Sendinblue | Librairie qui permet de communiquer avec l'API de Sendinblue, un service web d'envoi d'email orienté marketing. |
-| Stripe | Librairie qui permet de communiquer avec l'API de Stripe, un service web de paiement en ligne. |
 | Swagger | Une interface qui permet de visualiser l'architectures d'une API et d'y envoyer des requêtes. |
+| JSONObject | Une librairie qui permet de manipuler facilement des objets JSON |
 
 Il y a d'autres programmes installés sur les serveurs, les plus importants sont les suivants.
 
-ClamAV : logiciel antivirus open source compatible Linux et MacOS.
-
-Mysql : système de gestion de bases de données relationnelles.
-
-Python : langage de programmation orienté objet de haut niveau.
+MySQL : système de gestion de bases de données relationnelles.
 
 Cron : programme qui permet de programmer l'exécution de scripts ou de logiciels sur Linux.
 

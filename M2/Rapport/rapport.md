@@ -22,6 +22,12 @@ Bloc "réalisé par / tuteurs"
 
 ## Remerciements
 
+> Pour commencer, je souhaite adresser mes remerciements les plus sincères à toute l’équipe de Finalgo pour m’avoir accompagné tout au long de ce semestre. Ils ont rendu cette période très agréable grâce à leur accueil chaleureux, leur esprit de famille et leur bonne humeur au quotidien.
+> Plus particulièrement, j’aimerais témoigner toute ma gratitude envers mes deux tuteurs entreprise, Bertrand Hellion et Jade Aberbour, pour m’avoir donné l’opportunité de réaliser ce stage tout en m’accordant leur confiance. La formation proposée et leur encadrement a largement dépassé mes attentes. Je ne me suis jamais senti à l’abandon et j’ai énormément appris à leurs côtés.
+> Ensuite, je tiens à remercier Julien Giraud et Valentin Mereau pour m’avoir aidé et conseillé durant mon passage à Finalgo. Ils ont toujours fait preuve de disponibilité et m’ont ouvert les yeux sur l’importance de plusieurs concepts informatiques.
+
+
+
 Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompagné au cours des deux dernières années. Je remercie Lionel Médini d'avoir été mon tuteur cette année. Je remercie également toute l'équipe Finalgo ainsi que les dernières générations de stagiaires et alternants pour moments passés ensemble.
 
 ## Table des matières
@@ -30,6 +36,7 @@ Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompa
   - [Page de garde](#page-de-garde)
   - [Remerciements](#remerciements)
   - [Table des matières](#table-des-matières)
+  - [Glossaire](#glossaire)
   - [Introduction](#introduction)
   - [Présentation de Finalgo](#présentation-de-finalgo)
     - [L'équipe](#léquipe)
@@ -46,7 +53,28 @@ Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompa
     - [Côté client](#côté-client)
     - [Outils de développement](#outils-de-développement)
   - [Missions effectuées](#missions-effectuées)
+    - [Migration du modèle de données](#migration-du-modèle-de-données)
+      - [Description des OCA variables](#description-des-oca-variables)
+    - [Problème](#problème)
+    - [Objectifs](#objectifs)
+    - [Avantages](#avantages)
   - [Conclusion](#conclusion)
+
+## Glossaire
+
+| Terme | Définition |
+| ----- | ---------- |
+| Angular | Angular est un framework MVC basé sur TypeScript, développé par Google et utilisé pour la création d’applications web. Parmi ses nombreuses qualités, il possède la particularité de mettre à jour le visuel d’un site internet sans recharger la page : c’est le concept de « *Single Page Application* ». |
+| API | Une API (Application Programming Interface) est un programme qui permet à des applications différentes de communiquer ensemble afin d’échanger des données. Le terme se traduit par « interface de programmation » en français. |
+| Composant | Dans Angular, un composant est un ensemble formé d’une page HTML, d’un fichier CSS et d’une classe TypeScript. Plus précisément, il s’agit d’une entité réutilisable et les pages sont des composants, eux-mêmes formés de plusieurs composants. |
+| Enum | Un enum est un type de donnée contenant un nombre fixe de valeurs constantes. |
+| FinTech | Une FinTech est un mot formé par les termes « finance » et « technologie ». Il désigne des entreprises innovantes qui proposent des services financiers à l’aide des nouvelles technologies. |
+| Framework | Un Framework est un ensemble d’outils à la base d’une application qui simplifie le travail des développeurs informatiques. |
+| Map | Une map est un type de données qui relie un ensemble de clés à un ensemble de valeurs. |
+| Mise en production | Une mise en production est un procédé permettant de déployer une nouvelle version d’une application. |
+| SaaS | Le SaaS « software as a service » est un logiciel hébergé par un tiers et accessible à distance. Généralement, cette solution est facturée sous la forme d’un abonnement mensuel. |
+| Service | Un service est une instance d’une classe TypeScript injectable dans tous les composants d’une application pour les aider à communiquer entre eux. Cette classe centralise les données et facilite la réutilisation de code. |
+| TypeScript | TypeScript est un langage de programmation développé par Microsoft. C’est un sur-ensemble de JavaScript qui introduit de nouvelles fonctionnalités comme le typage ou la programmation orientée objet. Le code est transcompilé en JavaScript et donc interprétable avec n’importe quel navigateur web ou moteur JavaScript. |
 
 ## Introduction
 
@@ -67,6 +95,12 @@ Finalgo est une startup familiale de 8 collaborateurs spécialisée dans la rech
 Notre vocation est de faciliter l'accès au financement pour les entrepreneurs, artisans, commerçants et plus généralement aux dirigeants de TPE / PME.
 
 Nous proposons à nos clients trois plateformes web en SaaS\* qui répondent à ces besoins. La première est un outil de gestion pour les professionnels de la finance, elle permet de construire et gérer des dossiers de financement et fonctionne sous forme d'abonnements payants. La deuxième est à destination des dirigeants de PME, elle permet de rechercher gratuitement des financements alternatifs\* sur lesquels nous prenons une comission lorsqu'un partenaire finance le projet. La dernière permet de remplir et de suivre les demandes de financements, elle sert d'intermédiaire entre les dirigeants et nos partenaires financiers.
+
+Notre expertise du financement professionnel
+
+- TODO nombre d'utilisateurs pro de main
+- TODO montant financé depuis le début
+- TODO nombre de solutions de financements et de partenaires
 
 ### L'équipe
 
@@ -225,6 +259,43 @@ Enfin, pour travailler sur les bases de données nous utilisons DBeaver, un logi
 ![dbeaver](./assets/dbeaver.png)
 
 ## Missions effectuées
+
+### Migration du modèle de données
+
+#### Description des OCA variables
+
+Nous avons plusieurs objets métier (projet, partenaire, utilisateur, entreprise) ayant les mêmes caractéristiques (id, caption, deleted) et une liste de propriétés associées par des clés, il s'agit des OCA. Dans le code tous les types d'OCA sont interfacés par les mêmes méthodes (map<propriété, map<clé, valeur>>).
+
+```text
+partenaire(id, caption, deleted, autres_propriétés...)
+oca_partenaire(id, partenaire_id, code_propriété, clé_propriété, valuer)
+```
+
+Ce modèle permet de stocker des liste de données typées comme le chiffre d'affaires d'un partenaire pour chaque année, ou juste une donnée typée comme le télépone du partenaire.
+
+### Problème
+
+Nous avons des centaines de proprités différentes et elles changent régulièrement ce qui rend difficile l'utilisation de colones supplémentaires dans la table partenaire.
+
+### Objectifs
+
+- en base de données
+  - migrer toutes les propriétés secondaires dans les OCA
+    - dans la bd les objets sont souvent en relation avec plusieurs autres objets donc nous avons des tables de jointure
+    - ainsi sauf quelques exceptions qui ont été refactorées, il était trivial de déplacer les données et idem dans le code
+    - dans l'autre cas
+  - fusionner toutes les tables d'objet métier dans une seule avec la colone type en plus
+  - fusionner tous les OCA en une seule table, aucun autre changement à faire
+- dans le code
+  - créer un type générique object avec un oca generic object dont étendent tous les objets métier
+  - créer le generic object service avec toutes les méthodes communes des objets métier avec oca, une partie du code était dédoublée avec des erreurs de copier-coller donc erreurs en moins
+  - mapper les classes avec Hibernate, discriminator value, sauvegarde oca cascade
+- dans le front : rien, c'est tout l'idée
+  - mais évolution du dev : écran générique de création / édition de tout et n'importe quoi
+
+### Avantages
+
+Dans les URL nous utilisons souvent les identifiants d'objet métier, avec le nouveau sysyèmes ils sont tous uniques et il est posible de retrouver le type d'un objet à partir de son identifiant, ça répond à un besoin que nous avons
 
 ## Conclusion
 

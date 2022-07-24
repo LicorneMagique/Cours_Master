@@ -10,25 +10,21 @@ Titre :
 > développeur full stack  
 > chez Finalgo
 
-Petit encadré sur les deux dernières lignes du titre ?
-
 Bloc "réalisé par / tuteurs"
 
 > Réalisé par : Julien Giraud  
 > Diplôme préparé : Master 2 Informatique  
 > Tuteur entreprise : Bertrand Héllion  
-> Tuteur pédagogique : Marc Plantevit  
-> Durée : du 06/09/2021 au 31/08/2022 (1 an)
+> Tuteur pédagogique : Lionel Médini  
+> Durée : du 06/09/2021 au 31/08/2022 (2 an)
 
 ## Remerciements
 
-> Pour commencer, je souhaite adresser mes remerciements les plus sincères à toute l’équipe de Finalgo pour m’avoir accompagné tout au long de ce semestre. Ils ont rendu cette période très agréable grâce à leur accueil chaleureux, leur esprit de famille et leur bonne humeur au quotidien.
-> Plus particulièrement, j’aimerais témoigner toute ma gratitude envers mes deux tuteurs entreprise, Bertrand Hellion et Jade Aberbour, pour m’avoir donné l’opportunité de réaliser ce stage tout en m’accordant leur confiance. La formation proposée et leur encadrement a largement dépassé mes attentes. Je ne me suis jamais senti à l’abandon et j’ai énormément appris à leurs côtés.
-> Ensuite, je tiens à remercier Julien Giraud et Valentin Mereau pour m’avoir aidé et conseillé durant mon passage à Finalgo. Ils ont toujours fait preuve de disponibilité et m’ont ouvert les yeux sur l’importance de plusieurs concepts informatiques.
+Pour commencer je tiens à remercier toute l'équipe de Finalgo ainsi que les dernières générations de stagiaires et alternants pour m'avoir intégré, accompagné et partagé leur bonne humeur au cours de ces deux dernières années.
 
+En particulier je remercie Bertrand Hellion de m'avoir accepté à Finalgo et encadré tout au long de mon alternance. À ses côtés j'ai acquis de nombreuses compétences comme écrire du code robuste, utiliser le plus possible la généricité et avoir un esprit critique sur les missions à réaliser.
 
-
-Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompagné au cours des deux dernières années. Je remercie Lionel Médini d'avoir été mon tuteur cette année. Je remercie également toute l'équipe Finalgo ainsi que les dernières générations de stagiaires et alternants pour moments passés ensemble.
+Enfin, je remercie Lionel Médini d'avoir été mon tuteur cette année et de m'avoir aidé à la rédaction de ce rapport.
 
 ## Table des matières
 
@@ -52,7 +48,7 @@ Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompa
     - [Côté serveur](#côté-serveur)
     - [Côté client](#côté-client)
     - [Outils de développement](#outils-de-développement)
-  - [Missions effectuées](#missions-effectuées)
+  - [Travail réalisé](#travail-réalisé)
     - [Migration du modèle de données](#migration-du-modèle-de-données)
       - [Description des OCA variables](#description-des-oca-variables)
     - [Problème](#problème)
@@ -68,6 +64,7 @@ Je tiens à remercier Bertrand Hellion de m'avoir accepté à Finalgo et accompa
 | API | Une API (Application Programming Interface) est un programme qui permet à des applications différentes de communiquer ensemble afin d’échanger des données. Le terme se traduit par « interface de programmation » en français. |
 | Composant | Dans Angular, un composant est un ensemble formé d’une page HTML, d’un fichier CSS et d’une classe TypeScript. Plus précisément, il s’agit d’une entité réutilisable et les pages sont des composants, eux-mêmes formés de plusieurs composants. |
 | Enum | Un enum est un type de donnée contenant un nombre fixe de valeurs constantes. |
+| Financement alternatif | Système de financement qui ne repose pas sur les systèmes financiers traditionnels comme les banques réglementées et les marchés de capitaux. Par exemple les prêts à la consommation en ligne, les fonds de prêt aux entreprises en ligne et affacturage ou le financement participatif (crowdfunding). |
 | FinTech | Une FinTech est un mot formé par les termes « finance » et « technologie ». Il désigne des entreprises innovantes qui proposent des services financiers à l’aide des nouvelles technologies. |
 | Framework | Un Framework est un ensemble d’outils à la base d’une application qui simplifie le travail des développeurs informatiques. |
 | Map | Une map est un type de données qui relie un ensemble de clés à un ensemble de valeurs. |
@@ -94,13 +91,9 @@ Finalgo est une startup familiale de 8 collaborateurs spécialisée dans la rech
 
 Notre vocation est de faciliter l'accès au financement pour les entrepreneurs, artisans, commerçants et plus généralement aux dirigeants de TPE / PME.
 
-Nous proposons à nos clients trois plateformes web en SaaS\* qui répondent à ces besoins. La première est un outil de gestion pour les professionnels de la finance, elle permet de construire et gérer des dossiers de financement et fonctionne sous forme d'abonnements payants. La deuxième est à destination des dirigeants de PME, elle permet de rechercher gratuitement des financements alternatifs\* sur lesquels nous prenons une comission lorsqu'un partenaire finance le projet. La dernière permet de remplir et de suivre les demandes de financements, elle sert d'intermédiaire entre les dirigeants et nos partenaires financiers.
+Nous proposons à nos clients trois plateformes web en SaaS qui répondent à ces besoins. La première est un outil de gestion pour les professionnels de la finance, elle permet de construire et gérer des dossiers de financement et fonctionne sous forme d'abonnements payants. La deuxième est à destination des dirigeants de PME, elle permet de rechercher gratuitement des financements alternatifs sur lesquels nous prenons une comission lorsqu'un partenaire finance le projet. La dernière permet de remplir et de suivre les demandes de financements, elle sert d'intermédiaire entre les dirigeants et nos partenaires financiers.
 
-Notre expertise du financement professionnel
-
-- TODO nombre d'utilisateurs pro de main
-- TODO montant financé depuis le début
-- TODO nombre de solutions de financements et de partenaires
+![Expertise financement](assets/expertise-financement.png)
 
 ### L'équipe
 
@@ -118,9 +111,7 @@ Cette année mes missions ont porté sur les trois principaux projets de Finalgo
 - **Automate** notre application de recherche de financements alternatifs,
 - **Advisor** notre application de gestion, de suivi et d'envoi de demandes de financement alternatifs pour les dirigeants de PME.
 
-En terme de projets informatiques, toutes les plateformes possèdent un front Angular et elles communiquent avec le même backend.
-
-![projets](./assets/projets.svg)
+En terme de projets informatiques, toutes les plateformes possèdent un Front-End Angular et elles communiquent avec le même Back-End. La description détaillée de l'architecture se trouve dans la partie [Environnement technique](#environnement-technique).
 
 ## Environnement de travail
 
@@ -146,7 +137,7 @@ Nous avons un espace de travail "Finalgo" avec des **canaux de discussion** pour
 
 Il y a un canal pour
 
-- chaque **projet** : Backend, Automate, Advisor
+- chaque **projet** : Back-End, Automate, Advisor
 - chaque **domaine** : informatique, marketing, communication, design, recrutement, teambuilding…
 - chaque **type de logs** : bugs utilisateurs, boutons "demander de l'aide", actions utilisateurs, actions nécesitant une intervention de notre part, traces des différents serveurs de production et de développement…
 - la **détente** : on y trouve des blagues ou liens en tout genre pour partager de la bonne humeur avec l'équipe.
@@ -190,7 +181,7 @@ Chaque personne a son propre bureau virtuel et des pièces spécifiques ont ét�
 
 Pour les serveurs nous avons un compte sur la plateforme OVH avec une dizaine de VPS (virtual private server) sous Debian.
 
-Sur ces VPS nous avons un serveur Apache pour servir le front compilé par Angular et un serveur Tomcat pour le back Java Spring Boot.
+Sur ces VPS nous avons un serveur Apache pour servir le Front-End compilé par Angular et un serveur Tomcat pour le Back-End Java Spring Boot.
 
 Nos projets Spring Boot utilisent Java version 11 avec divers dépendances. Voici un résumé des plus utilisées et de celles que j'ai utilisées.
 
@@ -207,15 +198,17 @@ MySQL : système de gestion de bases de données relationnelles.
 
 Cron : programme qui permet de programmer l'exécution de scripts ou de logiciels sur Linux.
 
-// TODO SCHÉMA DES SERVEURS :
-- mainfront -> apache main, crossroads, advisor
-- mainback -> tomcat backend, mysql
-- cafpifront -> apache main
-- cafpiback -> tomcat backend, mysql
+![serveurs](assets/serveurs.svg)
+
+Il existe une réplication de cette architecture avec uniquement la plateforme Main en Front-End pour l'un de nos clients, nous utilisons un profil Spring pour effectuer la distinction dans le Back-End.
+
+![picto gris](./assets/picto-gris.png) Échanges internes au serveur.  
+![picto bleu](assets/picto-bleu.png) Échanges HTTP entre la SPA de la plateforme et le Back-End.  
+![picto rouge](./assets/picto-rouge.png) Point d'entrée du serveur via les requêtes HTTP.
 
 ### Côté client
 
-En front nous utilisons Angular 11, un framework open source de Google basé sur le langage TypeScript. Le code HTML Angular utilise une syntaxe enrichie par rapport au HTML5, il est possible d'y insérer des éléments de code. Il y a également une prise en charge du langage Saas qui permet de simplifier la syntaxe du CSS. Nous utilisons la version SCSS de Saas car sa syntaxe inclue celle du CSS, ainsi il est possible d'écrire du SCSS ou du CSS dans les fichiers de style.
+En Front-End nous utilisons Angular 11, un framework open source de Google basé sur le langage TypeScript. Le code HTML Angular utilise une syntaxe enrichie par rapport au HTML5, il est possible d'y insérer des éléments de code. Il y a également une prise en charge du langage Saas qui permet de simplifier la syntaxe du CSS. Nous utilisons la version SCSS de Saas car sa syntaxe inclue celle du CSS, ainsi il est possible d'écrire du SCSS ou du CSS dans les fichiers de style.
 
 TypeScript est un langage de programmation libre et open source de Microsoft. Ce langage est basé sur JavaScript avec un système de typage, de classes et d'éritage similaire à celui de Java. Il est possible de convertir du code TypeScript en code JavaScript.
 
@@ -237,16 +230,20 @@ De façon générale il y a beaucoup d'informations utiles pour le développemen
 - la procédure d'installation d'un serveur
 - la procédure de renouvellement des certificats
 - les commandes à utiliser pour installer MySQL sur notre machine et y charger des données de test,
-- la procédure à suivre pour mettre en production le back ou le front,
+- la procédure à suivre pour mettre en production le Back-End ou le Front-End,
 - la procédure à suivre pour accéder aux logs des applications de production,
 - des explications sur nos modèles de données.
 
-Pour développer en front j'utilise Visual Studio Code comme IDE. Il s'agit d'un éditeur de code sur lequel on peut ajouter divers extensions pour simplifier le développement, notamment sur Angular. J'utilise également beaucoup les outils de développement de Google Chrome, dont le débugger permet de suivre l'éxécution du code TypeScript.
+Pour développer en Front-End j'utilise Visual Studio Code comme IDE. Il s'agit d'un éditeur de code sur lequel on peut ajouter divers extensions pour simplifier le développement, notamment sur Angular. J'utilise également beaucoup les outils de développement de Google Chrome, dont le débugger permet de suivre l'éxécution du code TypeScript.
 
-Pour le back j'utilise l'IDE IntelliJ qui est très efficace pour le Java. J'utilise beaucoup le débugger de cet IDE, à la fois pour visualiser l'exécution du code ligne par ligne mais aussi pour tester en direct du code Java.
+Pour le Back-End j'utilise l'IDE IntelliJ qui est très efficace pour le Java. J'utilise beaucoup le débugger de cet IDE, à la fois pour visualiser l'exécution du code ligne par ligne mais aussi pour tester en direct du code Java.
 
 Nous utilisons un système de logs interne appelé "user actions". Ce système associe les données des logs à des "actions" réparties en catégories d'importance. De nombreux comportements de nos applications sont branchés sur ces actions qui sont enregistrées en base de données et envoyées sur les canaux Slack correspondants via leur API. De cette façon nous avons un accès rapide à l'activité des utilisateurs et aux comportements anormaux, ce qui facilite de débug.  
 Il y a un canal par type d'importance et par serveur.
+
+![logs](assets/logs.png)
+
+*Apperçu des canaux de "user acion" sur Slack.*
 
 Pour tous nos projets nous utilisons GIT comme gestionnaire de version et le code est sauvegardé en ligne sur GitHub. Nous avons tous un compte sur cette plateforme et nous avons les droits d'accès sur les différents projets, par défaut ils sont inaccessibles.  
 Pour gérer les commits et les branches j'utilise une extension de Visual Studio Code qui propose une interface graphique. Elle permet d'effectuer toute sorte d'opération très facilement, en particulier de ne commiter que certaines lignes de code dans un fichier ou de visualiser les différences entre les commits.
@@ -258,7 +255,9 @@ Enfin, pour travailler sur les bases de données nous utilisons DBeaver, un logi
 
 ![dbeaver](./assets/dbeaver.png)
 
-## Missions effectuées
+## Travail réalisé
+
+Cette année j'ai surtout travaillé sur l'amélioration de notre système de données, en plus de diverses missions d'ajout ou d'évolution des fonctionnalités sur nos applications.
 
 ### Migration du modèle de données
 
@@ -290,7 +289,8 @@ Nous avons des centaines de proprités différentes et elles changent régulièr
   - créer un type générique object avec un oca generic object dont étendent tous les objets métier
   - créer le generic object service avec toutes les méthodes communes des objets métier avec oca, une partie du code était dédoublée avec des erreurs de copier-coller donc erreurs en moins
   - mapper les classes avec Hibernate, discriminator value, sauvegarde oca cascade
-- dans le front : rien, c'est tout l'idée
+  - minimisation des appels à la base de données
+- dans le Front-End : rien, c'est tout l'idée
   - mais évolution du dev : écran générique de création / édition de tout et n'importe quoi
 
 ### Avantages

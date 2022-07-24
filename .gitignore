@@ -1,3 +1,4 @@
 *.code-workspace
 __pycache__*
 README.pdf
+*.tar.gz

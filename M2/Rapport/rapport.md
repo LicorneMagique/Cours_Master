@@ -49,11 +49,11 @@ Enfin, je remercie Lionel Médini d'avoir été mon tuteur cette année et de m'
     - [Côté client](#côté-client)
     - [Outils de développement](#outils-de-développement)
   - [Travail réalisé](#travail-réalisé)
-    - [Migration du modèle de données](#migration-du-modèle-de-données)
-      - [Description des OCA variables](#description-des-oca-variables)
-    - [Problème](#problème)
-    - [Objectifs](#objectifs)
-    - [Avantages](#avantages)
+    - [Le modèle de données](#le-modèle-de-données)
+    - [Problèmes de l'ancienne implémentation](#problèmes-de-lancienne-implémentation)
+    - [Objectifs de la nouvelle implémentation](#objectifs-de-la-nouvelle-implémentation)
+    - [Procédure de refactoring / migration](#procédure-de-refactoring--migration)
+    - [Retours sur cette mission](#retours-sur-cette-mission)
   - [Conclusion](#conclusion)
 
 ## Glossaire
@@ -259,24 +259,45 @@ Enfin, pour travailler sur les bases de données nous utilisons DBeaver, un logi
 
 Cette année j'ai surtout travaillé sur l'amélioration de notre système de données, en plus de diverses missions d'ajout ou d'évolution des fonctionnalités sur nos applications.
 
-### Migration du modèle de données
+### Le modèle de données
 
-#### Description des OCA variables
-
-Nous avons plusieurs objets métier (projet, partenaire, utilisateur, entreprise) ayant les mêmes caractéristiques (id, caption, deleted) et une liste de propriétés associées par des clés, il s'agit des OCA. Dans le code tous les types d'OCA sont interfacés par les mêmes méthodes (map<propriété, map<clé, valeur>>).
+La plupart de nos objets métier ont les mêmes caractéristiques. Que ce soit un projet, un utilisateur ou une entreprise ; ils ont un identifiant, un nom, un état de suppression, divers autres champs et une map de données pour chaque propriétés. Nous appelons ces propriétés les "OCA variables". Elles sont utilisées partout dans nos applications à travers plusieurs classes abstraites.
 
 ```text
-partenaire(id, caption, deleted, autres_propriétés...)
-oca_partenaire(id, partenaire_id, code_propriété, clé_propriété, valuer)
+objet_métier_x(id, caption, deleted, autres_propriétés...)
+oca_variable_x(id, partenaire_id, code_propriété, clé_propriété, valeur)
 ```
 
-Ce modèle permet de stocker des liste de données typées comme le chiffre d'affaires d'un partenaire pour chaque année, ou juste une donnée typée comme le télépone du partenaire.
+*Implémentation du modèle dans le SGBD*
 
-### Problème
+```ts
+const ocaVariables: Map<propriété, Map<clé, valeur>>
+```
 
-Nous avons des centaines de proprités différentes et elles changent régulièrement ce qui rend difficile l'utilisation de colones supplémentaires dans la table partenaire.
+*Description du typage des OcaVariables*
 
-### Objectifs
+Dans le code, les propriétés sont dans un Enum qui renseigne le type de la valeur associée, le typage est géré par une classe abstraite. Cela permet par exemple de stocker le chiffre d'affaires d'un partenaire pour chaque année, ou le code NAF d'une entreprise.
+
+Ce modèle est très utile dans la mesure où nous avons des centaines de propriétés, dont de nombreuses communes à différents objets métier. Son implémentation possède cependant une forte dette technique. Pendant plusieurs mois, mon travail a concisté à la rembourser.
+
+### Problèmes de l'ancienne implémentation
+
+En base de données, pour chaque objet métier il y avait une table pour l'objet et une table pour ses OCA variables. Il y avait une douzaine de tables avec divers problèmes au niveau SGBD. Certaines n'avaient pas de clés étrangères et les indexes n'étaient que sur les clés primaires, ce qui causait une latence sur de nombreuses requêtes. Aussi, certaines entités avaient des clés étrangères dans leur table qui étaient en doublon avec nos tables de jointure.
+
+Dans les méthodes de service, tous les mécanismes des OCA variables n'étaient pas réalisés par la classe abstraite, ce qui était compensé par de la duplication de code avec des erreurs de mise à jour.
+Ensuite la création, la modification et la suppression des OCA variables était géré par un service qui effectuait des appels en boucle à MySQL pour chaque clé de chaque propriété. Beaucoup d'autres services effectuaient également ce type d'appels en boucle pour toute sorte de traitements. Ce type de comportement menait à des centaines voire des milliers d'échanges entre Spring et MySQL sur beaucoup de nos API, ce qui pernait parfois plusieurs secondes.
+
+Enfin, les clés étrangères doublons étaient mappées avec Hibernate et toutes utilisées dans le code, ce qui posait parfois des erreurs de cohérence.
+
+### Objectifs de la nouvelle implémentation
+
+### Procédure de refactoring / migration
+
+-> Dire que pendant le refactoring j'ai recherché les fonctions qui faisaient des appels en boucle à la base de données
+
+### Retours sur cette mission
+
+**Objectifs**
 
 - en base de données
   - migrer toutes les propriétés secondaires dans les OCA
@@ -293,7 +314,7 @@ Nous avons des centaines de proprités différentes et elles changent régulièr
 - dans le Front-End : rien, c'est tout l'idée
   - mais évolution du dev : écran générique de création / édition de tout et n'importe quoi
 
-### Avantages
+**Avantages**
 
 Dans les URL nous utilisons souvent les identifiants d'objet métier, avec le nouveau sysyèmes ils sont tous uniques et il est posible de retrouver le type d'un objet à partir de son identifiant, ça répond à un besoin que nous avons
 

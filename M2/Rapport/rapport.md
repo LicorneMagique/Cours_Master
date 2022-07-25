@@ -51,8 +51,8 @@ Enfin, je remercie Lionel Médini d'avoir été mon tuteur cette année et de m'
   - [Travail réalisé](#travail-réalisé)
     - [Notre modèle de données](#notre-modèle-de-données)
     - [Problèmes de l'ancienne implémentation](#problèmes-de-lancienne-implémentation)
-    - [Objectifs de la nouvelle implémentation](#objectifs-de-la-nouvelle-implémentation)
-    - [Procédure de refactoring / migration](#procédure-de-refactoring--migration)
+    - [Travail réalisé](#travail-réalisé-1)
+    - [Procédure de refactoring et migration](#procédure-de-refactoring-et-migration)
     - [Retours sur cette mission](#retours-sur-cette-mission)
   - [Conclusion](#conclusion)
   - [Annexes](#annexes)
@@ -61,13 +61,15 @@ Enfin, je remercie Lionel Médini d'avoir été mon tuteur cette année et de m'
 
 | Terme | Définition |
 | ----- | ---------- |
-| Angular | Angular est un framework MVC basé sur TypeScript, développé par Google et utilisé pour la création d’applications web. Parmi ses nombreuses qualités, il possède la particularité de mettre à jour le visuel d’un site internet sans recharger la page : c’est le concept de « *Single Page Application* ». |
-| API | Une API (Application Programming Interface) est un programme qui permet à des applications différentes de communiquer ensemble afin d’échanger des données. Le terme se traduit par « interface de programmation » en français. |
+| Angular | Angular est un framework MVC basé sur TypeScript, développé par Google et utilisé pour la création d’applications web. Ce type d'application possède la particularité de mettre à jour le visuel d’un site internet sans recharger la page. C'est ce qu'on appel une Single Page Application (SPA). |
+| API | Une API (Application Programming Interface) est un programme qui permet à des applications différentes de communiquer ensemble afin d’échanger des données. |
+| Back-End | Désigne l'ensemble des traitements effectués côté serveur afin de permettre le bon fonctionnement d'une application. |
 | Composant | Dans Angular, un composant est un ensemble formé d’une page HTML, d’un fichier CSS et d’une classe TypeScript. Plus précisément, il s’agit d’une entité réutilisable et les pages sont des composants, eux-mêmes formés de plusieurs composants. |
 | Enum | Un enum est un type de donnée contenant un nombre fixe de valeurs constantes. |
 | Financement alternatif | Système de financement qui ne repose pas sur les systèmes financiers traditionnels comme les banques réglementées et les marchés de capitaux. Par exemple les prêts à la consommation en ligne, les fonds de prêt aux entreprises en ligne et affacturage ou le financement participatif (crowdfunding). |
 | FinTech | Une FinTech est un mot formé par les termes « finance » et « technologie ». Il désigne des entreprises innovantes qui proposent des services financiers à l’aide des nouvelles technologies. |
 | Framework | Un Framework est un ensemble d’outils à la base d’une application qui simplifie le travail des développeurs informatiques. |
+| Front-End | Désigne le visuel et l'ensemble des traitements réalisés par une application web côté client, c'est à dire depuis un navigateur web. |
 | Map | Une map est un type de données qui relie un ensemble de clés à un ensemble de valeurs. |
 | Mise en production | Une mise en production est un procédé permettant de déployer une nouvelle version d’une application. |
 | SaaS | Le SaaS « software as a service » est un logiciel hébergé par un tiers et accessible à distance. Généralement, cette solution est facturée sous la forme d’un abonnement mensuel. |
@@ -88,17 +90,17 @@ Tout au long de l'année j'ai réalisé des missions diverses au sein de Finalgo
 
 ## Présentation de Finalgo
 
-Finalgo est une startup familiale de 8 collaborateurs spécialisée dans la recherche de financements 100 % digitale et la construction et la gestion de dossiers de financement.
+Finalgo est une FinTech familiale de 8 collaborateurs spécialisée dans la recherche de financements 100 % digitale ainsi que la construction et la gestion de dossiers de financement.
 
 Notre vocation est de faciliter l'accès au financement pour les entrepreneurs, artisans, commerçants et plus généralement aux dirigeants de TPE / PME.
 
-Nous proposons à nos clients trois plateformes web en SaaS qui répondent à ces besoins. La première est un outil de gestion pour les professionnels de la finance, elle permet de construire et gérer des dossiers de financement et fonctionne sous forme d'abonnements payants. La deuxième est à destination des dirigeants de PME, elle permet de rechercher gratuitement des financements alternatifs sur lesquels nous prenons une comission lorsqu'un partenaire finance le projet. La dernière permet de remplir et de suivre les demandes de financements, elle sert d'intermédiaire entre les dirigeants et nos partenaires financiers.
+Nous proposons à nos clients trois plateformes web en SaaS qui répondent à ces besoins. La première est un outil de gestion pour les professionnels de la finance, elle permet de construire et gérer des dossiers de financement et fonctionne sous forme d'abonnements payants. La deuxième est à destination des dirigeants de TPE / PME, elle permet de rechercher gratuitement des financements alternatifs sur lesquels nous prenons une comission lorsqu'un partenaire finance le projet. La dernière permet de remplir et de suivre les demandes de financements, elle sert d'intermédiaire entre les dirigeants et nos partenaires financiers qui accordent les financements.
 
 ![Expertise financement](assets/expertise-financement.png)
 
 ### L'équipe
 
-À Finalgo la hiérarchie est très horizontale, pour chaque tâche le référent est la personne qui maîtrise le mieux la partie métier ou technique correspondante.
+À Finalgo la hiérarchie est très horizontale. Les cofondateurs font partie intégrante des équipes en plus d'avoir un rôle de manager, et tout le mode a la possibilité d'exprimer ses idées.
 
 ![organigramme](./assets/organigramme.svg)
 
@@ -110,7 +112,7 @@ Cette année mes missions ont porté sur les trois principaux projets de Finalgo
 
 - **Main** notre application de construction et de gestion de dossiers de financement pour les professionnels de la finance,
 - **Automate** notre application de recherche de financements alternatifs,
-- **Advisor** notre application de gestion, de suivi et d'envoi de demandes de financement alternatifs pour les dirigeants de PME.
+- **Advisor** notre application de gestion, de suivi et d'envoi de demandes de financement alternatifs pour les dirigeants de TPE / PME.
 
 En terme de projets informatiques, toutes les plateformes possèdent un Front-End Angular et elles communiquent avec le même Back-End. La description détaillée de l'architecture se trouve dans la partie [Environnement technique](#environnement-technique).
 
@@ -249,7 +251,6 @@ Pour tous nos projets nous utilisons GIT comme gestionnaire de version et le cod
 Pour gérer les commits et les branches j'utilise une extension de Visual Studio Code qui propose une interface graphique. Elle permet d'effectuer toute sorte d'opération très facilement, en particulier de ne commiter que certaines lignes de code dans un fichier ou de visualiser les différences entre les commits.
 
 ![git_log](./assets/git_log.png)
-![git_code](./assets/git_code.png)
 
 Enfin, pour travailler sur les bases de données nous utilisons DBeaver, un logiciel libre avec une interface plutôt intuitive.
 
@@ -288,14 +289,38 @@ Ce modèle est efficace pour stocker nos centaines de propriétés sans rendre l
 
 En base de données, pour chaque objet métier il y avait une table pour l'objet et une table pour ses OCA variables soit une douzaine de tables. Plusieurs tables d'OCA n'avaient pas de clé étrangère et il n'y avait aucun index, ce qui causait une latence sur de nombreuses requêtes. Aussi, certains objets avaient des clés étrangères dans leur table qui étaient en doublon avec nos tables de jointure.
 
-Dans les méthodes de service, tous les mécanismes des OCA variables n'étaient pas réalisés par la classe abstraite, ce qui était compensé par de la duplication de code avec des erreurs de mise à jour.
-Ensuite la création, la modification et la suppression des OCA variables était gérée par un service qui effectuait des appels en boucle à MySQL pour chaque clé de chaque propriété. Plusieurs services effectuaient également ce type d'appels en boucle pour divers traitements sur des collections d'objets métier. Ce type de comportement menait à des centaines voire des milliers d'échanges entre Spring et MySQL sur beaucoup de nos API, ce qui pernait parfois plusieurs secondes voire minutes.
+Dans les méthodes de service, tous les mécanismes des OCA variables n'étaient pas réalisés par la classe abstraite, ce qui était compensé par de la duplication de code avec des erreurs de mise à jour lors des évolutions.  
+Ensuite la création, la modification et la suppression des OCA variables étaintt gérées par un service qui effectuait un appel à MySQL pour chaque clé de chaque propriété au lieu de tout envoyer d'un coup. Plusieurs services effectuaient également ce type d'appels en boucle pour divers traitements sur des collections d'objets métier. Ce type de comportement menait à des centaines voire des milliers d'échanges entre Spring et MySQL sur beaucoup de nos API, ce qui pernait parfois plusieurs dizaines de secondes voire quelques minutes.
 
-Enfin, les clés étrangères en doublon étaient utilisées dans le code, ce qui portait à confusion.
+Enfin, les clés étrangères en doublon étaient aléatoirement utilisées dans le code, ce qui portait à confusion.
 
-### Objectifs de la nouvelle implémentation
+### Travail réalisé
 
-### Procédure de refactoring / migration
+- Mettre en place une base propre
+  - En base de données
+    - Créer les table GENERIC_OBJECT et OCA_GENERIC_OBJECT
+      - GENERIC_OBJECT(**id**, nom, type, état_suppression, ancien_id)
+      - OCA_GENERIC_OBJECT(**id**, #generic_object_id, code_propriété, clé_propriété, valeur)
+    - Ajouter les indexes pour toutes les combinaisons de colones
+  - Dans le code Java
+    - Créer les classes GenericObject, OcaGenericObject, GenericObjectService et GenericObjectDAO
+    - Effectuer le mapping sur Hibernate pour GenericObject et OcaGenericObject
+    - Identifier toutes les méthodes communes aux différents objets métiers ou à leurs services et les ajouter judicieusement dans les nouvelles classes 
+- Préparer la migration de chaque objet métier
+  - En base de données
+    - Migrer les éventuelles clés étrangères vers les tables de jointure, ou les supprimer en cas de doublon
+    - Migrer les autres colones vers la table d'OCA variables de l'objet
+    - Supprimer les colones obsolètes
+  - Dans le code Java
+    - Utiliser les bonnes tables de jointure
+    - Supprimer les "autres attributs" de classe et remplacer leur utilisation par celle des OCA variables, parfois tout est faisable à partir des getter/setter, parfois il faut modifier des méthodes de service
+- Migrer les objets sur la nouvelle base
+  - En base de données
+    - Effectuer la migration...
+    - 
+- Mettre à jour le mapping des objets métiers pour qu'ils étendent la classe GenericObject et utilisent la nouvelle table d'OCA variables
+
+### Procédure de refactoring et migration
 
 -> Dire que pendant le refactoring j'ai recherché les fonctions qui faisaient des appels en boucle à la base de données
 

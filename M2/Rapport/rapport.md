@@ -51,8 +51,17 @@ Enfin, je remercie Lionel Médini d'avoir été mon tuteur cette année et de m'
   - [Travail réalisé](#travail-réalisé)
     - [Notre modèle de données](#notre-modèle-de-données)
     - [Problèmes de l'ancienne implémentation](#problèmes-de-lancienne-implémentation)
-    - [Travail réalisé](#travail-réalisé-1)
-    - [Procédure de refactoring et migration](#procédure-de-refactoring-et-migration)
+    - [Procédure de refactoring et migration des données](#procédure-de-refactoring-et-migration-des-données)
+      - [Mettre en place une base propre](#mettre-en-place-une-base-propre)
+        - [Créer les tables en base de données](#créer-les-tables-en-base-de-données)
+        - [Créer les classes dans le code Java](#créer-les-classes-dans-le-code-java)
+      - [Préparer la migration des objets](#préparer-la-migration-des-objets)
+        - [Uniformiser les tables](#uniformiser-les-tables)
+        - [Uniformiser les classes](#uniformiser-les-classes)
+      - [Migrer les objets sur la nouvelle base](#migrer-les-objets-sur-la-nouvelle-base)
+        - [Migrer les données](#migrer-les-données)
+        - [Mettre à jour le système de fichiers](#mettre-à-jour-le-système-de-fichiers)
+        - [Brancher les classes sur la nouvelle implémentation](#brancher-les-classes-sur-la-nouvelle-implémentation)
     - [Retours sur cette mission](#retours-sur-cette-mission)
   - [Conclusion](#conclusion)
   - [Annexes](#annexes)
@@ -294,58 +303,67 @@ Ensuite la création, la modification et la suppression des OCA variables étain
 
 Enfin, les clés étrangères en doublon étaient aléatoirement utilisées dans le code, ce qui portait à confusion.
 
-### Travail réalisé
+### Procédure de refactoring et migration des données
 
-- Mettre en place une base propre
-  - En base de données
-    - Créer les table GENERIC_OBJECT et OCA_GENERIC_OBJECT
-      - GENERIC_OBJECT(**id**, nom, type, état_suppression, ancien_id)
-      - OCA_GENERIC_OBJECT(**id**, #generic_object_id, code_propriété, clé_propriété, valeur)
-    - Ajouter les indexes pour toutes les combinaisons de colones
-  - Dans le code Java
-    - Créer les classes GenericObject, OcaGenericObject, GenericObjectService et GenericObjectDAO
-    - Effectuer le mapping sur Hibernate pour GenericObject et OcaGenericObject
-    - Identifier toutes les méthodes communes aux différents objets métiers ou à leurs services et les ajouter judicieusement dans les nouvelles classes 
-- Préparer la migration de chaque objet métier
-  - En base de données
-    - Migrer les éventuelles clés étrangères vers les tables de jointure, ou les supprimer en cas de doublon
-    - Migrer les autres colones vers la table d'OCA variables de l'objet
-    - Supprimer les colones obsolètes
-  - Dans le code Java
-    - Utiliser les bonnes tables de jointure
-    - Supprimer les "autres attributs" de classe et remplacer leur utilisation par celle des OCA variables, parfois tout est faisable à partir des getter/setter, parfois il faut modifier des méthodes de service
-- Migrer les objets sur la nouvelle base
-  - En base de données
-    - Effectuer la migration...
-    - 
-- Mettre à jour le mapping des objets métiers pour qu'ils étendent la classe GenericObject et utilisent la nouvelle table d'OCA variables
+#### Mettre en place une base propre
 
-### Procédure de refactoring et migration
+##### Créer les tables en base de données
 
--> Dire que pendant le refactoring j'ai recherché les fonctions qui faisaient des appels en boucle à la base de données
+- Créer les table GENERIC_OBJECT et OCA_GENERIC_OBJECT
+  - GENERIC_OBJECT(**id**, nom, type, état_suppression, ancien_id)
+  - OCA_GENERIC_OBJECT(**id**, #generic_object_id, code_propriété, clé_propriété, valeur)
+- Ajouter les indexes pour toutes les combinaisons de colones
+
+##### Créer les classes dans le code Java
+
+- Créer les classes GenericObject, OcaGenericObject, GenericObjectService et GenericObjectDAO
+- Effectuer le mapping sur Hibernate pour GenericObject et OcaGenericObject
+- Identifier toutes les méthodes communes aux différents objets métiers ou à leurs services et les ajouter judicieusement dans les nouvelles classes
+
+#### Préparer la migration des objets
+
+##### Uniformiser les tables
+
+- Migrer les éventuelles clés étrangères vers les tables de jointure, ou les supprimer en cas de doublon
+- Migrer les autres colones vers la table d'OCA variables de l'objet
+- Supprimer les colones obsolètes
+
+##### Uniformiser les classes
+
+- Utiliser les bonnes tables de jointure
+- Supprimer les "autres attributs" de classe et remplacer leur utilisation par celle des OCA variables, parfois tout est faisable à partir des getter/setter, parfois il faut modifier des méthodes de service
+
+#### Migrer les objets sur la nouvelle base
+
+##### Migrer les données
+
+- Effectuer la migration de chaque objet vers la table GENERIC_OBJECT
+- Effectuer la migration des OCA variables vers la table OCA_GENERIC_OBJECT avec les nouveaux id
+- Supprimer les anciennes clés étrangères de ces objets dans toutes les autres tables et repérer les colones où il manquait la clé étrangère
+- Remplacer tous les anciens identifiants par les nouveaux
+- Ajouter toutes les contraintes de clé étrangère dans ces colones
+- Supprimer les anciennes tables d'objet et d'OCA variables
+
+##### Mettre à jour le système de fichiers
+
+- Dans le système de fichier (dont l'arborescence repose sur type_objet_metier/id_objet/documents)
+  - Mettre à jour tous les identifiants qui servent de nom de dossier avec les nouvelles valeurs
+
+##### Brancher les classes sur la nouvelle implémentation
+
+- Changer les déclarations de classe des objets métier pour étendre GenericObject
+- Supprimer tous les attributs et méthodes redondantes avec GenericObject, c'est à dire les champs id, caption, deleted, ocaVariables et toutes les méthodes en doublon avec celles de GenericObject
+- Mettre à jour tous les appels à OcaService (création, édition, suppression) pour passer par les DAO des objets (car sur la base propre ça fonctionne)
+- Refactorer toutes les méthodes de service qui faisaient des appels en boucle à MySQL pour qu'elles ne fassent plus qu'une requête qui effectue le traitement pour plusieurs objets (**minimisation des appels à la base de données**)
+- Supprimer les classes spécifiques à l'ancienne implémentation, comme OcaService ou toutes les classes d'OCA spécifiques à un seul objet métier ainsi que leur DAO qui ne sont plus nécessaire
 
 ### Retours sur cette mission
 
-**Objectifs**
-
-- en base de données
-  - migrer toutes les propriétés secondaires dans les OCA
-    - dans la bd les objets sont souvent en relation avec plusieurs autres objets donc nous avons des tables de jointure
-    - ainsi sauf quelques exceptions qui ont été refactorées, il était trivial de déplacer les données et idem dans le code
-    - dans l'autre cas
-  - fusionner toutes les tables d'objet métier dans une seule avec la colone type en plus
-  - fusionner tous les OCA en une seule table, aucun autre changement à faire
-- dans le code
-  - créer un type générique object avec un oca generic object dont étendent tous les objets métier
-  - créer le generic object service avec toutes les méthodes communes des objets métier avec oca, une partie du code était dédoublée avec des erreurs de copier-coller donc erreurs en moins
-  - mapper les classes avec Hibernate, discriminator value, sauvegarde oca cascade
-  - minimisation des appels à la base de données
-- dans le Front-End : rien, c'est tout l'idée
-  - mais évolution du dev : écran générique de création / édition de tout et n'importe quoi
-
 **Avantages**
 
-Dans les URL nous utilisons souvent les identifiants d'objet métier, avec le nouveau sysyèmes ils sont tous uniques et il est posible de retrouver le type d'un objet à partir de son identifiant, ça répond à un besoin que nous avons
+Dans les URL nous utilisons souvent les identifiants d'objet métier, avec le nouveau sysyèmes ils sont tous uniques et il est posible de retrouver le type d'un objet à partir de son identifiant, c'est plus pratique en cas de debug
+
+Des temps de chargement passés de plusieurs secondes à quelques dizièmes voire centièmes
 
 ## Conclusion
 

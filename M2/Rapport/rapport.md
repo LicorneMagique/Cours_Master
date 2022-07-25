@@ -49,12 +49,13 @@ Enfin, je remercie Lionel Médini d'avoir été mon tuteur cette année et de m'
     - [Côté client](#côté-client)
     - [Outils de développement](#outils-de-développement)
   - [Travail réalisé](#travail-réalisé)
-    - [Le modèle de données](#le-modèle-de-données)
+    - [Notre modèle de données](#notre-modèle-de-données)
     - [Problèmes de l'ancienne implémentation](#problèmes-de-lancienne-implémentation)
     - [Objectifs de la nouvelle implémentation](#objectifs-de-la-nouvelle-implémentation)
     - [Procédure de refactoring / migration](#procédure-de-refactoring--migration)
     - [Retours sur cette mission](#retours-sur-cette-mission)
   - [Conclusion](#conclusion)
+  - [Annexes](#annexes)
 
 ## Glossaire
 
@@ -83,7 +84,7 @@ Les notions vues en cours lors de mon DUT, de ma Licence 3 et tout au long du Ma
 
 Certaines missions ont renforcé mes connaissances, d'autres m'ont permi de comprendre des éléments abordés au cours de l'année dans un cadre professionnel.
 
-Tout au long de l'année j'ai réalisé des missions diverses au sein de Finalgo, principalement dans le but de réduire la dette technique et améliorer les performances de nos applications.
+Tout au long de l'année j'ai réalisé des missions diverses au sein de Finalgo, principalement dans le but de **réduire la dette technique et améliorer les performances de nos applications**.
 
 ## Présentation de Finalgo
 
@@ -146,8 +147,7 @@ Il y a un canal pour
 
 <img alt="asana" src="./assets/asana.svg" width="64"> Asana est notre plateforme de gestion des tâches.
 
-La plateforme permet de créer des projets qui fonctionnent comme les tableaux sur
-Trello. Il est possible d'y créer des colonnes et d'y ajouter des tâches avec des attributions, des images, des sous-tâches.
+La plateforme permet de créer des projets qui fonctionnent comme les tableaux sur Trello. Il est possible d'y créer des colonnes et d'y ajouter des tâches avec des attributions, des images, des sous-tâches.
 
 Nous utilisons ces tableaux pour remplacer le **Scrum Board**, un tableau de post-it utilisé par la méthode SCRUM qui est à l'origine de notre méthode de travail. Grâce à ces tableaux nous pouvons voir qui travail sur une tâche, connaître son avancement, en ajouter nous-même et écrire les spécification. Il y a beaucoup plus de fonctionnalités sur le site mais nous n'en avons pas encore l'utilité.
 
@@ -259,35 +259,39 @@ Enfin, pour travailler sur les bases de données nous utilisons DBeaver, un logi
 
 Cette année j'ai surtout travaillé sur l'amélioration de notre système de données, en plus de diverses missions d'ajout ou d'évolution des fonctionnalités sur nos applications.
 
-### Le modèle de données
+### Notre modèle de données
 
-La plupart de nos objets métier ont les mêmes caractéristiques. Que ce soit un projet, un utilisateur ou une entreprise ; ils ont un identifiant, un nom, un état de suppression, divers autres champs et une map de données pour chaque propriétés. Nous appelons ces propriétés les "OCA variables". Elles sont utilisées partout dans nos applications à travers plusieurs classes abstraites.
+La plupart de nos objets métier ont les mêmes caractéristiques. Que ce soit un projet, un utilisateur ou une entreprise ; ils ont un identifiant, un nom, un état de suppression, divers autres champs et **une map de données associée à des propriétés**. Nous appelons ces propriétés les "OCA variables", il en existe des centaines pour toute sorte d'information et en théorie elles ne sont pas associées à un seul type d'objet métier. Elles permettent de stocker des propriétés comme le chiffre d'affaires d'un partenaire avec une clé pour chaque année connue, ou le code NAF d'une entreprise avec une seule clé.
 
 ```text
-objet_métier_x(id, caption, deleted, autres_propriétés...)
-oca_variable_x(id, partenaire_id, code_propriété, clé_propriété, valeur)
+objet_métier_x(__id__, caption, deleted, autres_propriétés...)
+oca_variable_x(__id__, #objet_métier_x_id, code_propriété, clé_propriété, valeur)
 ```
 
-*Implémentation du modèle dans le SGBD*
+*Modèle relationnel utilisé*
 
 ```ts
-const ocaVariables: Map<propriété, Map<clé, valeur>>
+var ocaVariables: Map<propriété, Map<clé, valeur>>
 ```
 
 *Description du typage des OcaVariables*
 
-Dans le code, les propriétés sont dans un Enum qui renseigne le type de la valeur associée, le typage est géré par une classe abstraite. Cela permet par exemple de stocker le chiffre d'affaires d'un partenaire pour chaque année, ou le code NAF d'une entreprise.
+Dans le code il existe un Enum qui renseigne les propriétés ainsi que le type des valeurs associées. Une classe abstraite se charge de manipuler la structure ce qui rend son utilisation très facile.
 
-Ce modèle est très utile dans la mesure où nous avons des centaines de propriétés, dont de nombreuses communes à différents objets métier. Son implémentation possède cependant une forte dette technique. Pendant plusieurs mois, mon travail a concisté à la rembourser.
+```java
+person.getOcaVariables().addValue(Oca.object_creation_date, new Date());
+```
+
+Ce modèle est efficace pour stocker nos centaines de propriétés sans rendre les tables ou les requêtes illisibles du côté de la base de données. Son implémentation possède cependant une forte dette technique que j'ai remboursé pendant plusieurs mois.
 
 ### Problèmes de l'ancienne implémentation
 
-En base de données, pour chaque objet métier il y avait une table pour l'objet et une table pour ses OCA variables. Il y avait une douzaine de tables avec divers problèmes au niveau SGBD. Certaines n'avaient pas de clés étrangères et les indexes n'étaient que sur les clés primaires, ce qui causait une latence sur de nombreuses requêtes. Aussi, certaines entités avaient des clés étrangères dans leur table qui étaient en doublon avec nos tables de jointure.
+En base de données, pour chaque objet métier il y avait une table pour l'objet et une table pour ses OCA variables soit une douzaine de tables. Plusieurs tables d'OCA n'avaient pas de clé étrangère et il n'y avait aucun index, ce qui causait une latence sur de nombreuses requêtes. Aussi, certains objets avaient des clés étrangères dans leur table qui étaient en doublon avec nos tables de jointure.
 
 Dans les méthodes de service, tous les mécanismes des OCA variables n'étaient pas réalisés par la classe abstraite, ce qui était compensé par de la duplication de code avec des erreurs de mise à jour.
-Ensuite la création, la modification et la suppression des OCA variables était géré par un service qui effectuait des appels en boucle à MySQL pour chaque clé de chaque propriété. Beaucoup d'autres services effectuaient également ce type d'appels en boucle pour toute sorte de traitements. Ce type de comportement menait à des centaines voire des milliers d'échanges entre Spring et MySQL sur beaucoup de nos API, ce qui pernait parfois plusieurs secondes.
+Ensuite la création, la modification et la suppression des OCA variables était gérée par un service qui effectuait des appels en boucle à MySQL pour chaque clé de chaque propriété. Plusieurs services effectuaient également ce type d'appels en boucle pour divers traitements sur des collections d'objets métier. Ce type de comportement menait à des centaines voire des milliers d'échanges entre Spring et MySQL sur beaucoup de nos API, ce qui pernait parfois plusieurs secondes voire minutes.
 
-Enfin, les clés étrangères doublons étaient mappées avec Hibernate et toutes utilisées dans le code, ce qui posait parfois des erreurs de cohérence.
+Enfin, les clés étrangères en doublon étaient utilisées dans le code, ce qui portait à confusion.
 
 ### Objectifs de la nouvelle implémentation
 
@@ -327,3 +331,16 @@ J'ai également appris de nombreuses bonnes pratiques. Au delà des technologies
 Mon travail sur le projet Subvention m'a appris beaucoup sur la mise en place d'un nouveau produit, sur l'importance de la performance d'une application, de la pertinence des logs ou messages d'erreurs et sur ma capacité à réfléchir sur des algorithmes. J'ai plusieurs fois remis mon travail en question et nous avons parfois dû annuler des missions qui n'ont pas eu le résultat prévu. Nous sommes une startup dont les outils évoluent très vite, il ne faut pas se laisser abattre à cause de quelques échecs.
 
 Prochainement je vais commencer à travailler sur un nouveau produit de recherche de financements. Ce projet devrait être au moins aussi intéressant que le projet Subvention. Je vais donc continuer à travailler sur la création et l'amélioration des applications de Finalgo.
+
+---
+
+## Annexes
+
+```sql
+insert into OCA_PROJECT (id, object_attribute, 
+object_id, object_key, object_value)
+    select null, 'project_selected_company_id', id, -1,
+   selected_company_id from PROJET;
+```
+
+*Migration vers les OCA*

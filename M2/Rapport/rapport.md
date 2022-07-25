@@ -53,7 +53,7 @@ Enfin, je remercie Lionel Médini d'avoir été mon tuteur cette année et de m'
     - [Problèmes de l'ancienne implémentation](#problèmes-de-lancienne-implémentation)
     - [Procédure de refactoring et migration des données](#procédure-de-refactoring-et-migration-des-données)
       - [Mettre en place une base propre](#mettre-en-place-une-base-propre)
-        - [Créer les tables en base de données](#créer-les-tables-en-base-de-données)
+        - [Création des tables](#création-des-tables)
         - [Créer les classes dans le code Java](#créer-les-classes-dans-le-code-java)
       - [Préparer la migration des objets](#préparer-la-migration-des-objets)
         - [Uniformiser les tables](#uniformiser-les-tables)
@@ -280,13 +280,13 @@ oca_variable_x(__id__, #objet_métier_x_id, code_propriété, clé_propriété, 
 
 *Modèle relationnel utilisé*
 
-```ts
-var ocaVariables: Map<propriété, Map<clé, valeur>>
+```java
+public class OcaVariables<T> extends LinkedHashMap<Oca, LinkedHashMap<String, OcaVariable<T>>>
 ```
 
-*Description du typage des OcaVariables*
+*Typage des OcaVariables*
 
-Dans le code il existe un Enum qui renseigne les propriétés ainsi que le type des valeurs associées. Une classe abstraite se charge de manipuler la structure ce qui rend son utilisation très facile.
+Dans le code il existe un Enum qui renseigne les propriétés ainsi que le type des valeurs associées. Une classe abstraite se charge de manipuler la structure ce qui rend son utilisation plus facile.
 
 ```java
 person.getOcaVariables().addValue(Oca.object_creation_date, new Date());
@@ -307,12 +307,18 @@ Enfin, les clés étrangères en doublon étaient aléatoirement utilisées dans
 
 #### Mettre en place une base propre
 
-##### Créer les tables en base de données
+L'un des objectifs de ma mission était de rassembler les différents objets métier dans une même table, ainsi que les différentes OCA variables dans une autre table. Dans un premier temps j'ai crée ces tables et ajouté le code permettant de les manipuler.
 
-- Créer les table GENERIC_OBJECT et OCA_GENERIC_OBJECT
-  - GENERIC_OBJECT(**id**, nom, type, état_suppression, ancien_id)
-  - OCA_GENERIC_OBJECT(**id**, #generic_object_id, code_propriété, clé_propriété, valeur)
-- Ajouter les indexes pour toutes les combinaisons de colones
+##### Création des tables
+
+Pour la création des tables je me suis basé sur les tables existantes en ajoutant un champ pour la suppression, un pour l'ancien identifiant et un pour le type afin de différencier les différents objets.
+
+J'ai également ajouté différents indexes sur les champs utilisés lors des requêtes pour améliorer les performances de celles-ci, en plus d'une contrainte d'unicité afin de garantir que les couples propriété-clé des OCA variables sont uniques pour un objet donné.
+
+| | |
+| - | - |
+| ![table generic object](assets/table-generic_object.png) | ![table oca generic object](assets/table_oca_generic_object.png) |
+| ![indexes generic object](assets/indexes_generic_object.png) | ![indexes oca generic object](assets/indexes_oca_generic_object.png) |
 
 ##### Créer les classes dans le code Java
 

@@ -54,7 +54,7 @@ Enfin, je remercie Lionel Médini d'avoir été mon tuteur cette année et de m'
     - [Procédure de refactoring et migration des données](#procédure-de-refactoring-et-migration-des-données)
       - [Mettre en place une base propre](#mettre-en-place-une-base-propre)
         - [Création des tables](#création-des-tables)
-        - [Créer les classes dans le code Java](#créer-les-classes-dans-le-code-java)
+        - [Création des classes](#création-des-classes)
       - [Préparer la migration des objets](#préparer-la-migration-des-objets)
         - [Uniformiser les tables](#uniformiser-les-tables)
         - [Uniformiser les classes](#uniformiser-les-classes)
@@ -64,7 +64,6 @@ Enfin, je remercie Lionel Médini d'avoir été mon tuteur cette année et de m'
         - [Brancher les classes sur la nouvelle implémentation](#brancher-les-classes-sur-la-nouvelle-implémentation)
     - [Retours sur cette mission](#retours-sur-cette-mission)
   - [Conclusion](#conclusion)
-  - [Annexes](#annexes)
 
 ## Glossaire
 
@@ -223,7 +222,7 @@ En Front-End nous utilisons Angular 11, un framework open source de Google basé
 
 TypeScript est un langage de programmation libre et open source de Microsoft. Ce langage est basé sur JavaScript avec un système de typage, de classes et d'éritage similaire à celui de Java. Il est possible de convertir du code TypeScript en code JavaScript.
 
-Notre projet Angular utilise divers dépendances. Voici un résumé des plus utilisées.
+Notre projet Angular utilise divers dépendances. Voici un résumé de celles que j'ai le plus utilisées.
 
 | Dépendance | Description |
 | ---------- | ----------- |
@@ -271,39 +270,58 @@ Cette année j'ai surtout travaillé sur l'amélioration de notre système de do
 
 ### Notre modèle de données
 
-La plupart de nos objets métier ont les mêmes caractéristiques. Que ce soit un projet, un utilisateur ou une entreprise ; ils ont un identifiant, un nom, un état de suppression, divers autres champs et **une map de données associée à des propriétés**. Nous appelons ces propriétés les "OCA variables", il en existe des centaines pour toute sorte d'information et en théorie elles ne sont pas associées à un seul type d'objet métier. Elles permettent de stocker des propriétés comme le chiffre d'affaires d'un partenaire avec une clé pour chaque année connue, ou le code NAF d'une entreprise avec une seule clé.
+La plupart de nos objets métier ont les mêmes caractéristiques. Que ce soit un projet, un utilisateur ou une entreprise ; ils ont normalement un identifiant, un nom, un état de suppression, divers autres champs et une collection de propriétés sous une forme de clé-valeurs à deux niveaux. Nous appelons ces propriétés les "OCA variables", il en existe des centaines pour toute sorte d'informations communes à plusieurs objets.
+
+Cette structure permet de stocker des propriétés comme le chiffre d'affaires d'une entreprise pour chaque année, ou son code NAF.
 
 ```text
-objet_métier_x(__id__, caption, deleted, autres_propriétés...)
-oca_variable_x(__id__, #objet_métier_x_id, code_propriété, clé_propriété, valeur)
+oca_variable_entreprise
+id, #entreprise_id,     code_propriété, clé_propriété,   valeur
+ 1,              1,         "code_NAF",            -1, "96.04Z"
+ 2,              1, "chiffre_affaires",          2018, "427456"
+ 3,              1, "chiffre_affaires",          2019, "541471"
 ```
 
 *Modèle relationnel utilisé*
 
-```java
-public class OcaVariables<T> extends LinkedHashMap<Oca, LinkedHashMap<String, OcaVariable<T>>>
-```
-
-*Typage des OcaVariables*
-
-Dans le code il existe un Enum qui renseigne les propriétés ainsi que le type des valeurs associées. Une classe abstraite se charge de manipuler la structure ce qui rend son utilisation plus facile.
+Du point de vue des développeurs, cette structure se manipule comme une Map de propriété de Map de clé-valeur, ou bien simplement comme une Map de propriété-valeur pour les propriétés uniques. Il existe un Enum qui renseigne les propriétés, ce qui permet de manipuler simplement cette structure à travers une classe abstraite.
 
 ```java
-person.getOcaVariables().addValue(Oca.object_creation_date, new Date());
+ocaVariablesEntreprise.addValue(Oca.code_NAF, "96.04Z");
+                            ...(Oca.chiffre_affaires, "2018", 427456);
+                            ...(Oca.chiffre_affaires, "2019", 541471);
 ```
 
-Ce modèle est efficace pour stocker nos centaines de propriétés sans rendre les tables ou les requêtes illisibles du côté de la base de données. Son implémentation possède cependant une forte dette technique que j'ai remboursé pendant plusieurs mois.
+*Exemple de manipulation à travers la classe abstraite*
+
+```json
+{
+    "code_NAF": {
+        "-1": "96.04Z"
+    },
+    "chiffre_affaires": {
+        "2018": 427456,
+        "2019": 541471
+    }
+}
+```
+
+*Structure de données correspondante en syntaxe JSON*
+
+Ce modèle est efficace pour stocker nos centaines de propriétés sans rendre les tables ou les requêtes illisibles du côté de la base de données. Son implémentation possède cependant une forte dette technique que j'ai passé plusieurs mois à rembourser.
 
 ### Problèmes de l'ancienne implémentation
 
-En base de données, pour chaque objet métier il y avait une table pour l'objet et une table pour ses OCA variables soit une douzaine de tables. Plusieurs tables d'OCA n'avaient pas de clé étrangère et il n'y avait aucun index, ce qui causait une latence sur de nombreuses requêtes. Aussi, certains objets avaient des clés étrangères dans leur table qui étaient en doublon avec nos tables de jointure.
+En base de données, pour chaque objet métier il y avait une table pour l'objet et une table pour ses OCA variables soit une quinzaine de tables pour quelques centaines de milliers de lignes. Plusieurs tables d'OCA n'avaient pas de clé étrangère et il n'y avait aucun index, ce qui causait une latence sur de nombreuses requêtes. Aussi, certains objets avaient des clés étrangères dans leur table qui étaient en doublon avec nos tables de jointure.
 
 Dans les méthodes de service, tous les mécanismes des OCA variables n'étaient pas réalisés par la classe abstraite, ce qui était compensé par de la duplication de code avec des erreurs de mise à jour lors des évolutions.  
-Ensuite la création, la modification et la suppression des OCA variables étaintt gérées par un service qui effectuait un appel à MySQL pour chaque clé de chaque propriété au lieu de tout envoyer d'un coup. Plusieurs services effectuaient également ce type d'appels en boucle pour divers traitements sur des collections d'objets métier. Ce type de comportement menait à des centaines voire des milliers d'échanges entre Spring et MySQL sur beaucoup de nos API, ce qui pernait parfois plusieurs dizaines de secondes voire quelques minutes.
+Ensuite la création, la modification et la suppression des OCA variables étaient gérées par un service qui effectuait un appel à la base de données pour chaque valeur à modifier au lieu de tout envoyer d'un coup. Plusieurs services effectuaient également ce type d'appels en boucle pour divers traitements sur des collections d'objets métier. Ce comportement menait à des centaines voire des milliers d'échanges entre Spring et MySQL sur beaucoup de nos API, ce qui pernait souvent plusieurs secondes voire quelques minutes sur nos API les plus lourdes.
 
-Enfin, les clés étrangères en doublon étaient aléatoirement utilisées dans le code, ce qui portait à confusion.
+Enfin, les clés étrangères en doublon étaient aléatoirement utilisées dans le code, ce qui portait à confusion sur la source des liens entre les objets.
 
 ### Procédure de refactoring et migration des données
+
+Pendant plusieurs mois j'ai mis en place un nouveau système de gestion de ces propriétés et j'ai passé les objets métier uns à uns sur ce nouveau système. Nous avons mis les applications en production après chaque nouvelle migration d'objet.
 
 #### Mettre en place une base propre
 
@@ -313,18 +331,28 @@ L'un des objectifs de ma mission était de rassembler les différents objets mé
 
 Pour la création des tables je me suis basé sur les tables existantes en ajoutant un champ pour la suppression, un pour l'ancien identifiant et un pour le type afin de différencier les différents objets.
 
-J'ai également ajouté différents indexes sur les champs utilisés lors des requêtes pour améliorer les performances de celles-ci, en plus d'une contrainte d'unicité afin de garantir que les couples propriété-clé des OCA variables sont uniques pour un objet donné.
+J'ai également ajouté différents indexes sur les champs utilisés lors des requêtes pour améliorer les performances de celles-ci, en plus d'une contrainte d'unicité afin de garantir que les couples propriété-clé des OCA variables sont uniques pour un objet donné. Ce modèle ne respecte pas le concepte de forme normale mais il a l'avantage d'être très facile à manipuler en SQL et lorsque nous effectuons la jointure sur les OCA variables nous avons systématiquement besoin de récupérer toutes les valeurs associées. C'est pourquoi nous avons décidé de garder ce modèle.
 
 | | |
 | - | - |
 | ![table generic object](assets/table-generic_object.png) | ![table oca generic object](assets/table_oca_generic_object.png) |
 | ![indexes generic object](assets/indexes_generic_object.png) | ![indexes oca generic object](assets/indexes_oca_generic_object.png) |
 
-##### Créer les classes dans le code Java
+##### Création des classes
 
-- Créer les classes GenericObject, OcaGenericObject, GenericObjectService et GenericObjectDAO
-- Effectuer le mapping sur Hibernate pour GenericObject et OcaGenericObject
-- Identifier toutes les méthodes communes aux différents objets métiers ou à leurs services et les ajouter judicieusement dans les nouvelles classes
+Pour manupiler ces tables j'ai ajouté leur équivalent dans le code que j'ai lié à la base de données grace aux annotations Spring / Hibernate. En particulier j'ai décrit que plusieurs objets sont stockés dans la table GENERIC_OBJECT via `@Inheritance` et que la colone `objectClass` permet de les distinguer via `@DiscriminatorColumn`.
+
+![mapping go](assets/mapping-class-generic_object.png)
+
+*Mapping Hibernate*
+
+J'ai également précisé que la mise à jour d'un objet devait mettre à jour les données liées par une clé étrangère via `cascade` ce qui permet d'automatiser la propagation de la mise à jour des OCA variables.
+
+![cascade](assets/cascade.png)
+
+*Propagation des mises à jour sur la clé étrangère*
+
+Enfin j'ai ajouté des DAO et Services liés aux nouvelles tables. Dans une optique de généricité, j'ai répertorié toutes les méthodes communes aux différents objets métiers ou à leurs services et je les ai ajouté judicieusement dans les nouvelles classes.
 
 #### Préparer la migration des objets
 
@@ -371,6 +399,8 @@ Dans les URL nous utilisons souvent les identifiants d'objet métier, avec le no
 
 Des temps de chargement passés de plusieurs secondes à quelques dizièmes voire centièmes
 
+Nous avons ajouté plusieurs autres objets comme les JWT, ou les messages de mise à jour à afficher aux utilisateurs.
+
 ## Conclusion
 
 Mon ressenti sur cette année d'alternance est très positif. J'ai pu approfondir mes connaissances en Java, en algorithmie, en bases de données et en toutes sortes de technologies du web. Les différentes missions que j'ai réalisées m'ont aidé à mieux comprendre le contenu de plusieurs de mes cours, et inversement.
@@ -381,15 +411,3 @@ Mon travail sur le projet Subvention m'a appris beaucoup sur la mise en place d'
 
 Prochainement je vais commencer à travailler sur un nouveau produit de recherche de financements. Ce projet devrait être au moins aussi intéressant que le projet Subvention. Je vais donc continuer à travailler sur la création et l'amélioration des applications de Finalgo.
 
----
-
-## Annexes
-
-```sql
-insert into OCA_PROJECT (id, object_attribute, 
-object_id, object_key, object_value)
-    select null, 'project_selected_company_id', id, -1,
-   selected_company_id from PROJET;
-```
-
-*Migration vers les OCA*

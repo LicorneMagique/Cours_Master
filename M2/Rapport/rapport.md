@@ -55,15 +55,15 @@ Enfin, je remercie Lionel Médini d'avoir été mon tuteur cette année et de m'
       - [Mettre en place une base propre](#mettre-en-place-une-base-propre)
         - [Création des tables](#création-des-tables)
         - [Création des classes](#création-des-classes)
-      - [Préparer la migration des objets](#préparer-la-migration-des-objets)
-        - [Uniformiser les tables](#uniformiser-les-tables)
-        - [Uniformiser les classes](#uniformiser-les-classes)
+      - [Préparation de la migration des objets](#préparation-de-la-migration-des-objets)
       - [Migrer les objets sur la nouvelle base](#migrer-les-objets-sur-la-nouvelle-base)
         - [Migrer les données](#migrer-les-données)
         - [Mettre à jour le système de fichiers](#mettre-à-jour-le-système-de-fichiers)
         - [Brancher les classes sur la nouvelle implémentation](#brancher-les-classes-sur-la-nouvelle-implémentation)
     - [Retours sur cette mission](#retours-sur-cette-mission)
   - [Conclusion](#conclusion)
+  - [Annexes](#annexes)
+    - [Annexe SQL nettoyage](#annexe-sql-nettoyage)
 
 ## Glossaire
 
@@ -346,26 +346,23 @@ Pour manupiler ces tables j'ai ajouté leur équivalent dans le code que j'ai li
 
 *Mapping Hibernate*
 
-J'ai également précisé que la mise à jour d'un objet devait mettre à jour les données liées par une clé étrangère via `cascade` ce qui permet d'automatiser la propagation de la mise à jour des OCA variables.
+J'ai également précisé que la mise à jour d'un objet devait mettre à jour les données liées par une clé étrangère via `cascade` ce qui permet d'automatiser la propagation de la mise à jour vers les OCA variables.
 
 ![cascade](assets/cascade.png)
 
 *Propagation des mises à jour sur la clé étrangère*
 
-Enfin j'ai ajouté des DAO et Services liés aux nouvelles tables. Dans une optique de généricité, j'ai répertorié toutes les méthodes communes aux différents objets métiers ou à leurs services et je les ai ajouté judicieusement dans les nouvelles classes.
+Enfin j'ai ajouté les DAO et Services liés aux nouvelles tables. Dans une optique de généricité, j'ai répertorié toutes les méthodes communes aux différents objets métiers ou à leurs services et je les ai ajouté judicieusement dans les nouvelles classes.
 
-#### Préparer la migration des objets
+#### Préparation de la migration des objets
 
-##### Uniformiser les tables
+Afin d'effectuer la migration des données, il fallait d'abord uniformiser les objets de façon à ce qu'ils ne contiennent que les champs de la table GENERIC_OBJECT, c'est à dire un identifiant `id`, un nom `caption` et un état de suppression `deleted`. Les autres informations doivent être dans les OCA variables s'il s'agit de propriétés ou dans les tables de jointure s'il s'agit de clés étrangères.
 
-- Migrer les éventuelles clés étrangères vers les tables de jointure, ou les supprimer en cas de doublon
-- Migrer les autres colones vers la table d'OCA variables de l'objet
-- Supprimer les colones obsolètes
+En **base de données** j'ai déplacé plusieurs propriétés des tables d'objet métier vers leur table d'OCA variables, puis j'ai supprimé les colones devenues obsolètes ainsi que les colones de clés étrangères en doublons avec les tables de jointure.
 
-##### Uniformiser les classes
+Voir [annexe sql nettoyage](#annexe-sql-nettoyage).
 
-- Utiliser les bonnes tables de jointure
-- Supprimer les "autres attributs" de classe et remplacer leur utilisation par celle des OCA variables, parfois tout est faisable à partir des getter/setter, parfois il faut modifier des méthodes de service
+Dans le **code Java** j'ai supprimé les mêmes attributs que dans la base de données, j'ai mis à jour les getters et les setters de ces attributs pour qu'ils atteignent la donnée depuis les OCA variables et j'ai mis à jour les requêtes nécessaires dans les DAO ainsi que les traitements de certains services suite au nettoyage des clés étrangères en doublon.
 
 #### Migrer les objets sur la nouvelle base
 
@@ -411,3 +408,8 @@ Mon travail sur le projet Subvention m'a appris beaucoup sur la mise en place d'
 
 Prochainement je vais commencer à travailler sur un nouveau produit de recherche de financements. Ce projet devrait être au moins aussi intéressant que le projet Subvention. Je vais donc continuer à travailler sur la création et l'amélioration des applications de Finalgo.
 
+## Annexes
+
+### Annexe SQL nettoyage
+
+![sql nettoyage](assets/sql-nettoyage.png)

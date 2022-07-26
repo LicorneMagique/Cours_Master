@@ -56,14 +56,17 @@ Enfin, je remercie Lionel Médini d'avoir été mon tuteur cette année et de m'
         - [Création des tables](#création-des-tables)
         - [Création des classes](#création-des-classes)
       - [Préparation de la migration des objets](#préparation-de-la-migration-des-objets)
-      - [Migrer les objets sur la nouvelle base](#migrer-les-objets-sur-la-nouvelle-base)
-        - [Migrer les données](#migrer-les-données)
-        - [Mettre à jour le système de fichiers](#mettre-à-jour-le-système-de-fichiers)
-        - [Brancher les classes sur la nouvelle implémentation](#brancher-les-classes-sur-la-nouvelle-implémentation)
+      - [Miration des objets sur le nouveau système de données](#miration-des-objets-sur-le-nouveau-système-de-données)
+        - [Migration des données](#migration-des-données)
+        - [Mise à jour du système de fichiers](#mise-à-jour-du-système-de-fichiers)
+        - [Branchement des classes sur le nouveau système de données](#branchement-des-classes-sur-le-nouveau-système-de-données)
     - [Retours sur cette mission](#retours-sur-cette-mission)
   - [Conclusion](#conclusion)
   - [Annexes](#annexes)
     - [Annexe SQL nettoyage](#annexe-sql-nettoyage)
+    - [Annexe Java mise à jour des getters et setters](#annexe-java-mise-à-jour-des-getters-et-setters)
+    - [Annexe script migration](#annexe-script-migration)
+    - [Annexe refacto perf](#annexe-refacto-perf)
 
 ## Glossaire
 
@@ -364,29 +367,48 @@ Voir [annexe sql nettoyage](#annexe-sql-nettoyage).
 
 Dans le **code Java** j'ai supprimé les mêmes attributs que dans la base de données, j'ai mis à jour les getters et les setters de ces attributs pour qu'ils atteignent la donnée depuis les OCA variables et j'ai mis à jour les requêtes nécessaires dans les DAO ainsi que les traitements de certains services suite au nettoyage des clés étrangères en doublon.
 
-#### Migrer les objets sur la nouvelle base
+Voir [annexe Java mise à jour des getters et setters](#annexe-java-mise-à-jour-des-getters-et-setters)
 
-##### Migrer les données
+#### Miration des objets sur le nouveau système de données
 
-- Effectuer la migration de chaque objet vers la table GENERIC_OBJECT
-- Effectuer la migration des OCA variables vers la table OCA_GENERIC_OBJECT avec les nouveaux id
-- Supprimer les anciennes clés étrangères de ces objets dans toutes les autres tables et repérer les colones où il manquait la clé étrangère
-- Remplacer tous les anciens identifiants par les nouveaux
-- Ajouter toutes les contraintes de clé étrangère dans ces colones
-- Supprimer les anciennes tables d'objet et d'OCA variables
+Cette étape était la plus sensible car elle a provoqué le changement de la plupart des identifiants des objets métiers dont beaucoup étaient stockés en dur dans différents systèmes.
 
-##### Mettre à jour le système de fichiers
+##### Migration des données
 
-- Dans le système de fichier (dont l'arborescence repose sur type_objet_metier/id_objet/documents)
-  - Mettre à jour tous les identifiants qui servent de nom de dossier avec les nouvelles valeurs
+En **base de données** j'ai déplacé les données de chaque objet métier dans la nouvelle table ainsi que les OCA variables associées. J'ai ensuite procédé à la mise à jour de tous les identifiants de façon à rétablir les contraintes de clés étrangères avec les nouveaux identifiants. Enfin j'ai supprimé les anciennes tables d'objet métier et d'OCA variables.
 
-##### Brancher les classes sur la nouvelle implémentation
+##### Mise à jour du système de fichiers
 
-- Changer les déclarations de classe des objets métier pour étendre GenericObject
-- Supprimer tous les attributs et méthodes redondantes avec GenericObject, c'est à dire les champs id, caption, deleted, ocaVariables et toutes les méthodes en doublon avec celles de GenericObject
-- Mettre à jour tous les appels à OcaService (création, édition, suppression) pour passer par les DAO des objets (car sur la base propre ça fonctionne)
-- Refactorer toutes les méthodes de service qui faisaient des appels en boucle à MySQL pour qu'elles ne fassent plus qu'une requête qui effectue le traitement pour plusieurs objets (**minimisation des appels à la base de données**)
-- Supprimer les classes spécifiques à l'ancienne implémentation, comme OcaService ou toutes les classes d'OCA spécifiques à un seul objet métier ainsi que leur DAO qui ne sont plus nécessaire
+Lorsque des utilisateurs envoient des documents sur nos plateformes, nous les stockons dans le système de fichiers du serveur en utilisant les identifiants des objets associés dans les noms des dossiers.
+
+```text
+dossier_principal/entreprise/42/liasse_fiscale/liasse-2019.pdf
+```
+
+*Exemple du stockage d'une liasse fiscale pour l'entreprise d'identifiant 42*
+
+Étant donné qu'il n'est pas possible de prévoir les nouveaux identifiants avant la migration des données, j'ai écris des programmes en langage bash pour récupérer automatiquement les nouveaux identifiants et renomer les dossiers concernés. Lors des mises en production nous avons exécuté ces programmes après avoir effectué la migration des données en SQL.
+
+Voir [annexe script migration](#annexe-script-migration)
+
+##### Branchement des classes sur le nouveau système de données
+
+Afin d'utiliser la nouvelle implémentation pour les objets métier j'ai dû effectuer de nombreuses opérations de rafactoring.
+
+Dans un premier temps j'ai supprimé la référence à l'ancienne table en base de données, j'ai modifié les déclarations des classes d'objet pour qu'elles étendent le nouveau type *GenericObject* et j'ai précisé la valeur à utiliser pour déterminer le type de l'objet depuis la table, celle du champ `objectClass`.
+
+![disriminaor value](assets/discriminator.png)
+
+*Nouvelle déclaration de classe pour l'objet métier d'un Cabinet*
+
+Toujours dans les objets métier, j'ai supprimé les liens restants avec les anciennes tables et tout le code devenu redondant avec l'héritage de *GenericObject*, c'est à dire les champs id, caption, deleted, ocaVariables ainsi que leurs accesseurs et diverses méthodes.
+
+Ensuite j'ai modifié de nombreuses méthodes de service pour utiliser les DAO traditionnelles des objets métier lors de la persistance. À ce moment là, la sauvegarde des OCA variables était gérée manuellement par un autre service qui effectuait divers traitements lors de la sauvegarde de certaines propriétés. J'ai dû déplacer ces traitements dans d'autres services ou certaines DAO.  
+Durant cette étape j'ai réécris beaucoup de méthodes de façon à minimiser les appels à la base de données, c'est à dire utiliser des requêtes pour traiter des groupes d'objets au lieu de boucler sur des traitements qui effectue des requêtes pour un seul objet. Ce type de refactoring a parfois nécessité la réécriture de blocs de traitement entiers et l'ajout de requêtes spécifiques dans les DAO.
+
+Voir annexe [refacto perf](#annexe-refacto-perf).
+
+Suite à ces opérations l'ancien service des OCA variables diverses classes liées à l'ancienne implémentation sont devenues obsolètes, j'ai pu les supprimer.
 
 ### Retours sur cette mission
 
@@ -397,6 +419,8 @@ Dans les URL nous utilisons souvent les identifiants d'objet métier, avec le no
 Des temps de chargement passés de plusieurs secondes à quelques dizièmes voire centièmes
 
 Nous avons ajouté plusieurs autres objets comme les JWT, ou les messages de mise à jour à afficher aux utilisateurs.
+
+Souligner l'importance d'avoir une unique source de données #lesIds
 
 ## Conclusion
 
@@ -413,3 +437,17 @@ Prochainement je vais commencer à travailler sur un nouveau produit de recherch
 ### Annexe SQL nettoyage
 
 ![sql nettoyage](assets/sql-nettoyage.png)
+
+### Annexe Java mise à jour des getters et setters
+
+![java get set](assets/java-get-set-mapping.png)
+
+### Annexe script migration
+
+![script migration](assets/script-migration.png)
+
+### Annexe refacto perf
+
+![refacto perf](assets/refacto-perf.png)
+
+*Exemple de refactoring trivial pour minimiser les appels à la base de données*

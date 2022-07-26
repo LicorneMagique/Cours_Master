@@ -52,7 +52,7 @@ Enfin, je remercie Lionel Médini d'avoir été mon tuteur cette année et de m'
     - [Notre modèle de données](#notre-modèle-de-données)
     - [Problèmes de l'ancienne implémentation](#problèmes-de-lancienne-implémentation)
     - [Procédure de refactoring et migration des données](#procédure-de-refactoring-et-migration-des-données)
-      - [Mettre en place une base propre](#mettre-en-place-une-base-propre)
+      - [Mise en place une base propre](#mise-en-place-une-base-propre)
         - [Création des tables](#création-des-tables)
         - [Création des classes](#création-des-classes)
       - [Préparation de la migration des objets](#préparation-de-la-migration-des-objets)
@@ -64,6 +64,8 @@ Enfin, je remercie Lionel Médini d'avoir été mon tuteur cette année et de m'
   - [Conclusion](#conclusion)
   - [Annexes](#annexes)
     - [Annexe SQL nettoyage](#annexe-sql-nettoyage)
+    - [Annexe migration données](#annexe-migration-données)
+    - [Annexe mise à jour ids](#annexe-mise-à-jour-ids)
     - [Annexe Java mise à jour des getters et setters](#annexe-java-mise-à-jour-des-getters-et-setters)
     - [Annexe script migration](#annexe-script-migration)
     - [Annexe refacto perf](#annexe-refacto-perf)
@@ -81,6 +83,7 @@ Enfin, je remercie Lionel Médini d'avoir été mon tuteur cette année et de m'
 | FinTech | Une FinTech est un mot formé par les termes « finance » et « technologie ». Il désigne des entreprises innovantes qui proposent des services financiers à l’aide des nouvelles technologies. |
 | Framework | Un Framework est un ensemble d’outils à la base d’une application qui simplifie le travail des développeurs informatiques. |
 | Front-End | Désigne le visuel et l'ensemble des traitements réalisés par une application web côté client, c'est à dire depuis un navigateur web. |
+| Hotfix | Correction de bug mise en production sans forcément suivre la procédure habituelle par soucis de rapidité |
 | Map | Une map est un type de données qui relie un ensemble de clés à un ensemble de valeurs. |
 | Mise en production | Une mise en production est un procédé permettant de déployer une nouvelle version d’une application. |
 | SaaS | Le SaaS « software as a service » est un logiciel hébergé par un tiers et accessible à distance. Généralement, cette solution est facturée sous la forme d’un abonnement mensuel. |
@@ -326,9 +329,11 @@ Enfin, les clés étrangères en doublon étaient aléatoirement utilisées dans
 
 Pendant plusieurs mois j'ai mis en place un nouveau système de gestion de ces propriétés et j'ai passé les objets métier uns à uns sur ce nouveau système. Nous avons mis les applications en production après chaque nouvelle migration d'objet.
 
-#### Mettre en place une base propre
+#### Mise en place une base propre
 
-L'un des objectifs de ma mission était de rassembler les différents objets métier dans une même table, ainsi que les différentes OCA variables dans une autre table. Dans un premier temps j'ai crée ces tables et ajouté le code permettant de les manipuler.
+L'un des objectifs de ma mission était de rassembler les différents objets métier dans une même table, ainsi que les différentes OCA variables dans une autre table. Cette nouvelle base a aussi la propriété de rentre l'identifiant de chaque objet unique, peu importe son type.
+
+Dans un premier temps j'ai crée ces tables et ajouté le code permettant de les manipuler.
 
 ##### Création des tables
 
@@ -349,7 +354,7 @@ Pour manupiler ces tables j'ai ajouté leur équivalent dans le code que j'ai li
 
 *Mapping Hibernate*
 
-J'ai également précisé que la mise à jour d'un objet devait mettre à jour les données liées par une clé étrangère via `cascade` ce qui permet d'automatiser la propagation de la mise à jour vers les OCA variables.
+J'ai également précisé que la mise à jour d'un objet devait être propagée les données liées par la clé étrangère via `cascade` ce qui permet d'automatiser la mise à jour des OCA variables.
 
 ![cascade](assets/cascade.png)
 
@@ -375,7 +380,9 @@ Cette étape était la plus sensible car elle a provoqué le changement de la pl
 
 ##### Migration des données
 
-En **base de données** j'ai déplacé les données de chaque objet métier dans la nouvelle table ainsi que les OCA variables associées. J'ai ensuite procédé à la mise à jour de tous les identifiants de façon à rétablir les contraintes de clés étrangères avec les nouveaux identifiants. Enfin j'ai supprimé les anciennes tables d'objet métier et d'OCA variables.
+En **base de données** j'ai déplacé les données de chaque objet métier dans la nouvelle table ainsi que les OCA variables associées. J'ai ensuite procédé à la mise à jour de tous les identifiants et à rétablir les contraintes de clés étrangères avec les nouveaux identifiants. Enfin j'ai supprimé les anciennes tables d'objet métier et d'OCA variables.
+
+Voir [annexe migration objets](#annexe-migration-données) et [annexe mise à jour ids + clés étrangères](#annexe-mise-à-jour-ids)
 
 ##### Mise à jour du système de fichiers
 
@@ -385,9 +392,9 @@ Lorsque des utilisateurs envoient des documents sur nos plateformes, nous les st
 dossier_principal/entreprise/42/liasse_fiscale/liasse-2019.pdf
 ```
 
-*Exemple du stockage d'une liasse fiscale pour l'entreprise d'identifiant 42*
+*Exemple de l'adresse d'une liasse fiscale pour l'entreprise d'identifiant 42*
 
-Étant donné qu'il n'est pas possible de prévoir les nouveaux identifiants avant la migration des données, j'ai écris des programmes en langage bash pour récupérer automatiquement les nouveaux identifiants et renomer les dossiers concernés. Lors des mises en production nous avons exécuté ces programmes après avoir effectué la migration des données en SQL.
+Étant donné qu'il n'est pas possible de prévoir les nouveaux identifiants avant la migration des données, pour chaque objet j'ai écris un programmes en langage bash pour récupérer automatiquement les nouveaux identifiants et renomer les dossiers concernés. À chaque mise en production nous avons exécuté ce programme après avoir effectué les migrations de données en SQL.
 
 Voir [annexe script migration](#annexe-script-migration)
 
@@ -411,6 +418,14 @@ Voir annexe [refacto perf](#annexe-refacto-perf).
 Suite à ces opérations l'ancien service des OCA variables diverses classes liées à l'ancienne implémentation sont devenues obsolètes, j'ai pu les supprimer.
 
 ### Retours sur cette mission
+
+Cette mission était la plus complexe que j'ai jamais réalisé pour Finalgo et je suis fier de l'avoir réussi malgré quelques accidents.
+
+Je suis très satisfait du résultat. Nos applications sont beaucoup plus performantes depuis le refactoring, certains bugs difficiles à comprendre ont disparus et l'utilisation des tables uniques aux objets sont très pratiques. En particulier nous pouvons facilement effectuer des requêtes sur les données des OCA variables dont différents objets sont concernés, et nous pouvons retrouver le type des objets dans les résultats. Ce type de requête est particulièrement utile en cas de débug
+
+Notre phase de conception nous a permi d'avoir une vision claire de la modélisation à obtenir ainsi que les grandes étapes à suivre. Ces étapes m'ont beaucoup guidé mais nous n'avons pas poussé la réflexion assez loin en ce qui concerne les changements d'identifiants. Lors des premières mises en production nous avions oublié divers mécanismes qui utilisaient des identifiants non récupérés depuis la base de données, ce qui a nécessité quelques hotfix d'urgence. Une procédure de tests automatisés m'aurait permi d'éviter ce type de problèmes, il s'agit d'une tâche qui devrait être réalisée au cours des prochains mois.
+
+
 
 **Avantages**
 
@@ -437,6 +452,14 @@ Prochainement je vais commencer à travailler sur un nouveau produit de recherch
 ### Annexe SQL nettoyage
 
 ![sql nettoyage](assets/sql-nettoyage.png)
+
+### Annexe migration données
+
+![sql migration](assets/sql-migration.png)
+
+### Annexe mise à jour ids
+
+![sql update](assets/sql-update-id.png)
 
 ### Annexe Java mise à jour des getters et setters
 

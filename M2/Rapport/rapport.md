@@ -432,13 +432,14 @@ La plupart des difficultés que j'ai rencontré étaient liées à une mauvaise 
 
 ## Conclusion
 
-Mon ressenti sur l'alternance est très positif. J'ai pu approfondir mes connaissances en Java, en algorithmique, en bases de données et en toutes sortes de technologies du web. Les différentes missions que j'ai réalisées m'ont aidé à mieux comprendre le contenu de plusieurs de mes cours, et inversement.
+Mon ressenti sur l'alternance est très positif. J'ai pu approfondir mes connaissances en Java, en algorithmique, en bases de données et en toutes sortes de technologies du web liées à mes autres missions. Les différentes missions que j'ai réalisées m'ont aidé à mieux comprendre le contenu de plusieurs de mes cours, et inversement.
 
 J'ai également appris de nombreuses bonnes pratiques. Au delà des technologies j’ai mis en place une démarche quotidienne de recherches, d’étude des documentations, de tests, de débogage et de travail d'équipe pour avancer dans mes tâches. Mon code est devenu plus facile à lire, mieux organisé et j’ai pris l’habitude de correctement documenter mon travail avec les outils à ma disposition.
 
-Mon travail sur le projet Subvention m'a appris beaucoup sur la mise en place d'un nouveau produit, sur l'importance de la performance d'une application, de la pertinence des logs ou messages d'erreurs et sur ma capacité à réfléchir sur des algorithmes. J'ai plusieurs fois remis mon travail en question et nous avons parfois dû annuler des missions qui n'ont pas eu le résultat prévu. Nous sommes une startup dont les outils évoluent très vite, il ne faut pas se laisser abattre à cause de quelques échecs.
+Mon travail de refactoring m'a appris beaucoup sur les possibilités de connexions entre la base de données et les objets dans Spring, sur l'importance de la phase de conception, sur la pertinence des logs ou messages d'erreurs et sur ma capacité à réfléchir sur des algorithmes. Suite à cette mission nous allons réaliser d'autres étapes de refactoring dans le but de réduire notre dette tout en continuant le développement de nos applications.
 
-Prochainement je vais commencer à travailler sur un nouveau produit de recherche de financements. Ce projet devrait être au moins aussi intéressant que le projet Subvention. Je vais donc continuer à travailler sur la création et l'amélioration des applications de Finalgo.
+Au cours des prochains mois je vais travailler sur une mission dont le but est de mettre en place Redux sur nos plateformes. Il s'agit d'une librairie de stockage de données basée sur le design pattern Observer, elle permettra d'alléger fortement la solicitation de notre back-end et de corriger divers problèmes de cohérence des données en front-end. Je vais également travailler sur l'ajout de tests automatisés dans notre procédure d'intégration continue, ce qui permettre d'économiser du temps et de limiter fortement les régressions.  
+Enfin, avec l'accord de Finalgo je vais réaliser des vacations en tant que professeur d'algorithmique et de Java à l'IUT informatique de la Doua. Il s'agit d'un projet de longue date que je vais commencer à réaliser à partir de septembre 2022.
 
 ## Annexes
 

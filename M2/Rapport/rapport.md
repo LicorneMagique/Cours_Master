@@ -290,7 +290,7 @@ id, #entreprise_id,     code_propriété, clé_propriété,   valeur
 
 *Modèle relationnel utilisé*
 
-Du point de vue des développeurs, cette structure se manipule comme une Map de propriété de Map de clé-valeur, ou bien simplement comme une Map de propriété-valeur pour les propriétés uniques. Il existe un Enum qui renseigne les propriétés, ce qui permet de manipuler simplement cette structure à travers une classe abstraite.
+Du point de vue des développeurs, cette structure se manipule comme une Map de propriété de Map de clé-valeur, ou bien simplement comme une Map de propriété-valeur pour les propriétés uniques. Il existe un Enum qui renseigne les propriétés et une classe abstraite permet simplifier les opérations, il s'agit du design pattern *Façade*.
 
 ```java
 ocaVariablesEntreprise.addValue(Oca.code_NAF, "96.04Z");
@@ -320,8 +320,9 @@ Ce modèle est efficace pour stocker nos centaines de propriétés sans rendre l
 
 En base de données, pour chaque objet métier il y avait une table pour l'objet et une table pour ses OCA variables soit une quinzaine de tables pour quelques centaines de milliers de lignes. Plusieurs tables d'OCA n'avaient pas de clé étrangère et il n'y avait aucun index, ce qui causait une latence sur de nombreuses requêtes. Aussi, certains objets avaient des clés étrangères dans leur table qui étaient en doublon avec nos tables de jointure.
 
-Dans les méthodes de service, tous les mécanismes des OCA variables n'étaient pas réalisés par la classe abstraite, ce qui était compensé par de la duplication de code avec des erreurs de mise à jour lors des évolutions.  
-Ensuite la création, la modification et la suppression des OCA variables étaient gérées par un service qui effectuait un appel à la base de données pour chaque valeur à modifier au lieu de tout envoyer d'un coup. Plusieurs services effectuaient également ce type d'appels en boucle pour divers traitements sur des collections d'objets métier. Ce comportement menait à des centaines voire des milliers d'échanges entre Spring et MySQL sur beaucoup de nos API, ce qui pernait souvent plusieurs secondes voire quelques minutes sur nos API les plus lourdes.
+Dans les méthodes de service, tous les mécanismes liés aux OCA variables n'étaient pas gérés par une façade ce qui était compensé par de la duplication de code avec des erreurs de mise à jour lors des évolutions.  
+Ensuite la création, la modification et la suppression des OCA variables étaient gérées par un service qui effectuait **un appel** à la base de données pour **chaque valeur** à modifier, en plus d'appeler des traitements spécifiques lors de l'enregistrement de certaines valeurs, ce qui brisait la chaîne de responsabilité.  
+Plusieurs services effectuaient également ce type d'appels **en boucle** pour divers traitements sur des collections d'objets. Cette erreur est liée à un manque de connaissance sur le fonctionnement des services en jeu et menait à des centaines voire des milliers d'échanges entre Spring et MySQL. Avec ces appels, nos API prenaient quelques secondes voire quelques minutes dans les pires cas.
 
 Enfin, les clés étrangères en doublon étaient aléatoirement utilisées dans le code, ce qui portait à confusion sur la source des liens entre les objets.
 
@@ -410,36 +411,28 @@ Dans un premier temps j'ai supprimé la référence à l'ancienne table en base 
 
 Toujours dans les objets métier, j'ai supprimé les liens restants avec les anciennes tables et tout le code devenu redondant avec l'héritage de *GenericObject*, c'est à dire les champs id, caption, deleted, ocaVariables ainsi que leurs accesseurs et diverses méthodes.
 
-Ensuite j'ai modifié de nombreuses méthodes de service pour utiliser les DAO traditionnelles des objets métier lors de la persistance. À ce moment là, la sauvegarde des OCA variables était gérée manuellement par un autre service qui effectuait divers traitements lors de la sauvegarde de certaines propriétés. J'ai dû déplacer ces traitements dans d'autres services ou certaines DAO.  
-Durant cette étape j'ai réécris beaucoup de méthodes de façon à minimiser les appels à la base de données, c'est à dire utiliser des requêtes pour traiter des groupes d'objets au lieu de boucler sur des traitements qui effectue des requêtes pour un seul objet. Ce type de refactoring a parfois nécessité la réécriture de blocs de traitement entiers et l'ajout de requêtes spécifiques dans les DAO.
+Ensuite j'ai modifié de nombreuses méthodes de service pour utiliser les DAO traditionnelles des objets métier lors de la persistance. À ce moment là, la sauvegarde des OCA variables était gérée manuellement par un autre service qui effectuait divers traitements lors de la sauvegarde de certaines propriétés. J'ai dû déplacer ces traitements dans les services ou DAO appropriés de la chaîne de responsabilité.  
+
+Durant cette étape j'ai réécris beaucoup de méthodes de façon à minimiser les appels à la base de données, c'est à dire utiliser des requêtes pour traiter des groupes d'objets au lieu de boucler sur des traitements qui effectue des requêtes pour un seul objet. Le nombre d'appels de ces méthodes à la base de données était généralement de l'ordre de `k*n` avec `k` le nombre de requêtes différentes utilisées par la méthode et `n` le nombre d'objets dans la collection, entre 1 et plusieurs milliers. À chaque fois il était possible de faire le même traitement avec seulement `k` appels.  
+Ce type de refactoring a parfois nécessité la réécriture de blocs de traitement entiers et l'ajout de requêtes spécifiques dans les DAO. Le temps de réponse des API concernées a diminué d'un facteur de plusieurs dizaines, ce qui permet un temps de réponse compris entre quelques dizièmes et maximum quelques secondes pour les API lourdes.
 
 Voir annexe [refacto perf](#annexe-refacto-perf).
 
-Suite à ces opérations l'ancien service des OCA variables diverses classes liées à l'ancienne implémentation sont devenues obsolètes, j'ai pu les supprimer.
+Suite à ces opérations l'ancien service des OCA variables et diverses classes liées à l'ancienne implémentation sont devenues obsolètes, j'ai pu les supprimer.
 
 ### Retours sur cette mission
 
-Cette mission était la plus complexe que j'ai jamais réalisé pour Finalgo et je suis fier de l'avoir réussi malgré quelques accidents.
+Cette mission était la plus complexe que j'ai réalisé à Finalgo et je suis fier de l'avoir réussi malgré quelques accidents.
 
-Je suis très satisfait du résultat. Nos applications sont beaucoup plus performantes depuis le refactoring, certains bugs difficiles à comprendre ont disparus et l'utilisation des tables uniques aux objets sont très pratiques. En particulier nous pouvons facilement effectuer des requêtes sur les données des OCA variables dont différents objets sont concernés, et nous pouvons retrouver le type des objets dans les résultats. Ce type de requête est particulièrement utile en cas de débug
+Je suis satisfait du résultat. Nos applications sont beaucoup plus performantes depuis le refactoring, certains bugs étranges ont disparus et les deux nouvelles tables sont très pratiques. En particulier nous pouvons facilement effectuer des requêtes sur les données des OCA variables dont différents objets sont concernés, et nous pouvons retrouver le type des objets dans les résultats. Ces requêtes sont particulièrement utiles lors des débugs.
 
-Notre phase de conception nous a permi d'avoir une vision claire de la modélisation à obtenir ainsi que les grandes étapes à suivre. Ces étapes m'ont beaucoup guidé mais nous n'avons pas poussé la réflexion assez loin en ce qui concerne les changements d'identifiants. Lors des premières mises en production nous avions oublié divers mécanismes qui utilisaient des identifiants non récupérés depuis la base de données, ce qui a nécessité quelques hotfix d'urgence. Une procédure de tests automatisés m'aurait permi d'éviter ce type de problèmes, il s'agit d'une tâche qui devrait être réalisée au cours des prochains mois.
+Notre phase de conception nous a permi d'avoir une vision claire de la modélisation à obtenir ainsi que des grandes étapes à suivre. Ces étapes m'ont beaucoup guidé mais nous n'avons pas poussé la réflexion suffisament loin en ce qui concerne les changements d'identifiants. Lors des premières mises en production nous avions oublié divers mécanismes qui utilisaient des identifiants non récupérés depuis la base de données, ce qui a nécessité plusieurs hotfix. Une procédure de tests automatisés aurait permi d'éviter ce type de problèmes, il s'agit d'une tâche qui sera réalisée au cours des prochains mois.
 
-
-
-**Avantages**
-
-Dans les URL nous utilisons souvent les identifiants d'objet métier, avec le nouveau sysyèmes ils sont tous uniques et il est posible de retrouver le type d'un objet à partir de son identifiant, c'est plus pratique en cas de debug
-
-Des temps de chargement passés de plusieurs secondes à quelques dizièmes voire centièmes
-
-Nous avons ajouté plusieurs autres objets comme les JWT, ou les messages de mise à jour à afficher aux utilisateurs.
-
-Souligner l'importance d'avoir une unique source de données #lesIds
+La plupart des difficultés que j'ai rencontré étaient liées à une mauvaise implémentation des design patterns en jeu. Les responsabilités n'étaient pas réparties correctement au sein des différents services, plusieurs traitements manquaient dans la façade et il existait une forte cohésion entre des services et des objets voire d'autres services non concernés.
 
 ## Conclusion
 
-Mon ressenti sur cette année d'alternance est très positif. J'ai pu approfondir mes connaissances en Java, en algorithmie, en bases de données et en toutes sortes de technologies du web. Les différentes missions que j'ai réalisées m'ont aidé à mieux comprendre le contenu de plusieurs de mes cours, et inversement.
+Mon ressenti sur l'alternance est très positif. J'ai pu approfondir mes connaissances en Java, en algorithmique, en bases de données et en toutes sortes de technologies du web. Les différentes missions que j'ai réalisées m'ont aidé à mieux comprendre le contenu de plusieurs de mes cours, et inversement.
 
 J'ai également appris de nombreuses bonnes pratiques. Au delà des technologies j’ai mis en place une démarche quotidienne de recherches, d’étude des documentations, de tests, de débogage et de travail d'équipe pour avancer dans mes tâches. Mon code est devenu plus facile à lire, mieux organisé et j’ai pris l’habitude de correctement documenter mon travail avec les outils à ma disposition.
 
@@ -458,6 +451,8 @@ Prochainement je vais commencer à travailler sur un nouveau produit de recherch
 ![sql migration](assets/sql-migration.png)
 
 ### Annexe mise à jour ids
+
+\+ update clés étrangères / nettoyage
 
 ![sql update](assets/sql-update-id.png)
 

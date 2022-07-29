@@ -281,7 +281,6 @@ La plupart de nos objets métier ont les mêmes caractéristiques. Que ce soit u
 Cette structure permet de stocker des propriétés comme le chiffre d'affaires d'une entreprise pour chaque année, ou son code NAF.
 
 ```text
-oca_variable_entreprise
 id, #entreprise_id,     code_propriété, clé_propriété,   valeur
  1,              1,         "code_NAF",            -1, "96.04Z"
  2,              1, "chiffre_affaires",          2018, "427456"
@@ -388,6 +387,8 @@ Voir [annexe migration objets](#annexe-migration-données) et [annexe mise à jo
 ##### Mise à jour du système de fichiers
 
 Lorsque des utilisateurs envoient des documents sur nos plateformes, nous les stockons dans le système de fichiers du serveur en utilisant les identifiants des objets associés dans les noms des dossiers.
+
+breakpage
 
 ```text
 dossier_principal/entreprise/42/liasse_fiscale/liasse-2019.pdf

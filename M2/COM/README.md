@@ -26,6 +26,8 @@ Réalisé par Julien Giraud 11704709.
   - [Actualité](#actualité)
   - [Conclusion](#conclusion)
   - [Références](#références)
+  - [Annexe](#annexe)
+    - [Plaquette de prévention diffusée au Centre Ministériel de Gestion de Lyon](#plaquette-de-prévention-diffusée-au-centre-ministériel-de-gestion-de-lyon)
 
 <div style="page-break-after:always;"></div>
 
@@ -77,14 +79,11 @@ Malheureusement parfois (voire souvent) la seule solution est de démissionner a
 
 ### Point de vue du chargé de prévention
 
-*todo*
-- Lorsque l'information est connue elle doit être communiquée au chef du salarié ainsi qu'au chargé de prévention
-- Ils ont une obligation de faire remonter l'information ce qui peut être particulièrement délicat
-- On peut trouver des cellules d'écoute anonymes
-- Pour faire parler les salariés il faut créer un lien avec eux, pour ça il faut leur parler, essayer de poser des questions discrètement
-- Pour la prévention il est possible de faire évoluer la fiche de poste ou de donner des missions qui permettent à la victime d'être moins en contact avec le harceleur
-- L'entreprise peut ouvrir un groupe de parole
-- Il est compliqué de communiquer
+L'un des rôles du chargé de prévention est de prévenir les salariés. Cette étape passe généralement par une campagne de sensibilisation (voir annexe [Plaquette de prévention diffusée au Centre Ministériel de Gestion de Lyon](#plaquette-de-prévention-diffusée-au-centre-ministériel-de-gestion-de-lyon)). Ensuite il doit communiquer avec eux afin de vérifier s'ils vont bien. Cette étape est compliquée car généralement ils ne le disent pas. Pour obtenir ce type d'information il faut créer un lien avec eux, ce qui passe par des échanges réguliers lors desquels le chargé de prévention pose discrètement quelques questions. Il est aussi possible de mettre en place des cellules d'écoute anonymes ou d'ouvrir des groupes de parole.
+
+Lorsque qu'il est au courant d'un problème de harcèlement, il doit en discuter avec la victime et il a l'obligation de faire remonter l'information sans quoi il s'expose à des poursuites judiciaires. Faire parler la victime est souvent compliqué et faire remonter l'information est délicat car beaucoup de victimes ne souhaite pas qu'elle soit divulguée.
+
+Dans certains cas le fait de demander au harceleur de cesser ses agissements est suffisant pour résoudre le problème. Il peut s'agir de remarques déplacées ou d'un manager qui exige qu'un alternant réalise la même quantité de travail qu'un salarié avec 10 années d'expérience. Il est aussi possible de faire évoluer la fiche de poste pour réduire la charge de travail, travailler sur d'autres problématiques ou pour minimiser les contacts avec un harceleur et éventuellement des collègues qui ont assisté aux actes de harcèlement sans réagir.
 
 ### Point de vue de la victime
 
@@ -110,15 +109,16 @@ La victime :
 
 Au niveau du code pénal, le premier type de harcèlement en entreprise considéré comme une infraction est le harcèlement sexuel, article 222-33 du 1er mars 1994. Dans ses premières versions, la définition du harcèlement n'était pas clairement donnée et la peine était d'un an d'emprisonnement ainsi que de 100 000 F d'amende, soit 1 500 €. Ce n'est qu'à partir de 2012 que la définition du harcèlement sexuel devient explicite. La peine est doublée, voire triplée dans certains cas définis par les dernières versions de l'article. Enfin, à partir de 2018 le sexisme est clairement rajouté dans les comportements qui caractérisent le harcèlement (voir définition du [Harcèlement sexuel](#harcèlement-sexuel)).  
 Dans le droit du travail, la protection commence à partir de 2008 pour le harcèlement moral et sexuel. On observe le même phénomène, plus la version de l'article est récente plus la définition du harcèlement est précise (voir article L1153-1 du Code du travail, version 2008, 2012 et 2022). Il en est de même pour le DUERP qui considère le harcèlement comme un risque pour la santé à partir de 2014.
-*todo rajouter un extrait du pdf de Nelly sur l'identité de genre*
 
-Ces évolutions permettent de penser que la lutte contre le harcèlement est de plus en plus prioritaire et évolue avec les nouveaux besoins de protection comme pour l'identité de genre qui sera peut-être dans la définition du harcèlement d'ici quelques années.
+On observe une évolution positive des textes de loi qui protègent les travailleurs du harcèlement, à la fois par l'arrivée de nouveaux textes, par la précision des textes existants qui leur permet de protéger plus de situations et par l'alourdissement des peines. Ces évolutions montrent que la lutte contre le harcèlement est devenu de plus en plus prioritaire au cours des dernières années.
 
 ## Actualité
 
+Entre 2008 et 2009 les syndicats et la direction de France Telecom, Orange depuis 2013, recense 35 suicides parmi les salariés. Une tragédie qui a été causée par le harcèlement moral des salariés dans le cadre d'une suppression massive de postes sans licenciements. France Telecom a été condamné pour harcèlement moral en décembre 2019.
+
 En mars 2022 un salarié de Pôle emploi obtient gain de cause au Prod'homme après avoir été harcelé moralement pendant 5 ans par sa supérieur hiérarchique. Le salarié a été volontairement isolé et surveillé à son insu de nombreuses fois. Il a informé sa hiérarchie du problème à de multiples reprises sans réaction de la part de celle-ci. Plusieurs de ses collègues ont témoigné en sa faveur ce qui a permis d'appuyer sa plainte.
 
-Ce type d'affaire n'est pas un cas isolé mais il est rare qu'une victime obtienne gain de cause. Des études réalisées en 2019 par l'Institut national d'études démographiques (Ined) et l'Institut d'études opinion et marketing en France et à l'international (Ifop) ont révélé que 15 à 30 % des travailleurs français sont victimes de harcèlement ou de violences avec une proportion élevée de femmes. Seulement 30 % des victimes ont communiqué l'information à leur employeur et parmi elles 40 % estiment que le problème n'a pas été réglé en leur faveur (voir article sur les violences et le harcèlement dans le monde du travail). Ces données montrent qu'en 2019, moins de 20 % des victimes de violences ou de harcèlement au travail ont pu favorablement résoudre leur problème.
+Ce type d'affaires ne sont pas des cas isolés mais il est rare qu'une victime obtienne gain de cause. Des études réalisées en 2019 par l'Institut national d'études démographiques (Ined) et l'Institut d'études opinion et marketing en France et à l'international (Ifop) ont révélé que 15 à 30 % des travailleurs français sont victimes de harcèlement ou de violences avec une proportion élevée de femmes. Seulement 30 % des victimes ont communiqué l'information à leur employeur et parmi elles 40 % estiment que le problème n'a pas été réglé en leur faveur (voir article sur les violences et le harcèlement dans le monde du travail). Ces données montrent qu'en 2019, moins de 20 % des victimes de violences ou de harcèlement au travail ont pu favorablement résoudre leur problème.
 
 ## Conclusion
 
@@ -150,4 +150,14 @@ Le harcèlement en entreprise est un problème d'actualité. Qu'il s'agisse de h
 
 - [Article sur la condamnation de Pôle emploi](https://www.capital.fr/entreprises-marches/surveille-isole-un-employe-fait-condamner-pole-emploi-pour-harcelement-moral-aux-prudhommes-1436463).
 
+- [Page Wikipedia sur l'affaire France Telecom](https://fr.wikipedia.org/wiki/Affaire_France_T%C3%A9l%C3%A9com).
+
 - [Article sur les violences et le harcèlement dans le monde du travail en France suite à la convention n° 190 de l'Organisation internationale du travail](https://www.editions-tissot.fr/actualite/sante-securite/violence-et-harcelement-dans-le-monde-du-travail-la-convention-ndeg-190-de-l-oit-a-t-elle-un-impact-en-entreprise).
+
+<div style="page-break-after:always;"></div>
+
+## Annexe
+
+### Plaquette de prévention diffusée au Centre Ministériel de Gestion de Lyon
+
+![Plaquette de prévention](plaquette-prevention.png)

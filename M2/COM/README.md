@@ -1,6 +1,6 @@
 <br><br><br><br><br><br><br><br><br><br>
 
-# Rapport de connaissances métier sur le harcèlement en entreprise
+# Rapport de connaissances métiers sur le harcèlement en entreprise
 
 Réalisé par Julien Giraud 11704709.
 
@@ -8,32 +8,32 @@ Réalisé par Julien Giraud 11704709.
 
 ## Sommaire
 
-- [Rapport de connaissances métier sur le harcèlement en entreprise](#rapport-de-connaissances-métier-sur-le-harcèlement-en-entreprise)
-  - [Sommaire](#sommaire)
-  - [Remerciements](#remerciements)
-  - [Origines](#origines)
-  - [Définitions](#définitions)
-    - [Harcèlement moral](#harcèlement-moral)
-    - [Harcèlement sexuel](#harcèlement-sexuel)
-  - [Protection des salariés](#protection-des-salariés)
-    - [Document Unique d'Évaluation des Risques Professionnels (DUERP)](#document-unique-dévaluation-des-risques-professionnels-duerp)
-    - [Recours possibles pour la victime](#recours-possibles-pour-la-victime)
-  - [Différents points de vue](#différents-points-de-vue)
-    - [Point de vue du chargé de prévention](#point-de-vue-du-chargé-de-prévention)
-    - [Point de vue de la victime](#point-de-vue-de-la-victime)
-    - [Point de vue du harceleur](#point-de-vue-du-harceleur)
-  - [Évolution des points de vue](#évolution-des-points-de-vue)
-  - [Actualité](#actualité)
-  - [Conclusion](#conclusion)
-  - [Références](#références)
-  - [Annexe](#annexe)
-    - [Plaquette de prévention diffusée au Centre Ministériel de Gestion de Lyon](#plaquette-de-prévention-diffusée-au-centre-ministériel-de-gestion-de-lyon)
+- [Remerciements](#remerciements)
+- [Origines](#origines)
+- [Définitions](#définitions)
+  - [Harcèlement moral](#harcèlement-moral)
+  - [Harcèlement sexuel](#harcèlement-sexuel)
+- [Protection des salariés](#protection-des-salariés)
+  - [Document Unique d'Évaluation des Risques Professionnels (DUERP)](#document-unique-dévaluation-des-risques-professionnels-duerp)
+  - [Recours possibles pour la victime](#recours-possibles-pour-la-victime)
+- [Différents points de vue](#différents-points-de-vue)
+  - [Point de vue du chargé de prévention](#point-de-vue-du-chargé-de-prévention)
+  - [Point de vue de la victime](#point-de-vue-de-la-victime)
+  - [Point de vue du harceleur](#point-de-vue-du-harceleur)
+- [Évolution des points de vue](#évolution-des-points-de-vue)
+- [Actualité](#actualité)
+- [Conclusion](#conclusion)
+- [Références](#références)
+- [Annexe](#annexe)
+  - [Plaquette de prévention diffusée au Centre Ministériel de Gestion de Lyon](#plaquette-de-prévention-diffusée-au-centre-ministériel-de-gestion-de-lyon)
 
 <div style="page-break-after:always;"></div>
 
 ## Remerciements
 
-Je tiens à remercier Nelly Windisch, Chargée de missions RH et SST au Centre Ministériel de Gestion de Lyon ; pour le temps qu'elle m'a consacré dans le but de parler du harcèlement en entreprise du point de vue prévention. Son témoignage m'a donné beaucoup de pistes à explorer pour la réalisation de ce rapport à la fois sur ce qui caractérise le harcèlement et sur les moyens existants pour le combattre.
+Je tiens à remercier Nelly Windisch, Chargée de missions RH et SST au Centre Ministériel de Gestion de Lyon, pour le temps qu'elle m'a consacré dans le but de parler du harcèlement en entreprise du point de vue prévention. Son témoignage m'a donné beaucoup de pistes à explorer pour la réalisation de ce rapport à la fois sur ce qui caractérise le harcèlement et sur les moyens existants pour le combattre.
+
+Je tiens aussi à remercier très fortement Marine Lasalle, étudiante en 6<sup>ième</sup> année de pharmacie à Lyon, qui a été victime de harcèlement moral durant son stage de fin de cursus et m'a partagé son histoire. Son point de vue m'a aidé à comprendre ce que peut vivre une personne victime de harcèlement, l'impact que ce type d'agissement peut avoir sur la santé et à mieux comprendre le point de vue d'un harceleur.
 
 <div style="page-break-after:always;"></div>
 
@@ -43,11 +43,11 @@ Que ce soit au travail ou dans la vie quotidienne, le harcèlement tel qu'on le 
 
 ## Définitions
 
-Aux yeux de la loi on distingue deux types de harcèlement, le harcèlement moral et le harcèlement sexuel. Dans les deux cas il en résulte une dégradation des conditions de travail du salarié.
+Aux yeux de la loi on distingue deux types de harcèlement, le harcèlement moral et le harcèlement sexuel. Dans les deux cas il en résulte une dégradation des conditions de travail du salarié, sa confiance en soi est mis à mal, il peut être touché sur le plan émotionnel, des problèmes de santé peuvent survenir et cela peut avoir un impact sur sa vie personnelle.
 
 ### Harcèlement moral
 
-En entreprise le harcèlement moral d'un salarié est définit par des « agissements répétés [...] qui ont pour objet ou pour effet une dégradation de ses conditions de travail susceptible de porter atteinte à ses droits et à sa dignité, d'altérer sa santé physique ou mentale ou de compromettre son avenir professionnel » (article L1152-1 du Code du travail, version en vigueur depuis le 1er mai 2008).
+En entreprise le harcèlement moral d'un salarié est défini par des « agissements répétés [...] qui ont pour objet ou pour effet une dégradation de ses conditions de travail susceptible de porter atteinte à ses droits et à sa dignité, d'altérer sa santé physique ou mentale ou de compromettre son avenir professionnel » (article L1152-1 du Code du travail, version en vigueur depuis le 1er mai 2008).
 
 Une charge de travail ou une pression trop importante qui se traduit par un environnement de travail malsain est également considéré comme une forme de harcèlement.
 
@@ -63,15 +63,15 @@ Aujourd'hui il existe différents systèmes permettant de protéger les salarié
 
 ### Document Unique d'Évaluation des Risques Professionnels (DUERP)
 
-Il est de la responsabilité de l'employeur de veiller à la sécurité et à la santé des salariés. Dans cette optique, depuis novembre 2001 le droit du travail exige aux entreprises de réaliser un DUERP dès l'embauche du premier salarié. Il s'agit d'un document qui référence le résultat de l'évaluation des risques pour la santé et la sécurité auxquels peuvent être exposés les salariés, ce qui inclut le harcèlement sexuel depuis 2014 dans le cadre de la loi pour l’Égalité réelle, du 4 août 2014. Ce document est consultable par tous les salariés de l'entreprise.
+Il est de la responsabilité de l'employeur de veiller à la sécurité et à la santé des salariés. Dans cette optique, depuis novembre 2001 le droit du travail impose aux entreprises de réaliser un DUERP dès l'embauche du premier salarié. Il s'agit d'un document qui référence le résultat de l'évaluation des risques pour la santé et la sécurité auxquels peuvent être exposés les salariés, ce qui inclut le harcèlement sexuel depuis 2014 dans le cadre de la loi pour l’Égalité réelle, du 4 août 2014. Ce document est consultable par tous les salariés de l'entreprise.
 
-Pour la réalisation de ce document, l'employeur doit effectuer des entretiens avec les salariés afin d'analyser leurs conditions de travail. Les conditions d'emploi, les conditions liées à l'organisation du travail et les conditions liées au dialogue avec les autres salariés doivent aussi être prises en compte. Les résultats de cette analyse doivent être accompagnés de proposition d'actions de prévention qui sont transmises à la Médecine du travail, à la Caisse d'assurance retraite et de la santé au travail (Carsat) et à l'Inspection du travail.
+Pour la réalisation de ce document, l'employeur doit effectuer des entretiens avec les salariés afin d'analyser leurs conditions de travail. Les conditions d'emploi, les conditions liées à l'organisation du travail et les conditions liées au dialogue avec les autres salariés doivent aussi être prises en compte. Les résultats de cette analyse doivent être accompagnés de propositions d'actions de prévention qui sont transmises à la Médecine du travail, à la Caisse d'assurance retraite et de la santé au travail (Carsat) et à l'Inspection du travail.
 
 ### Recours possibles pour la victime
 
 En interne il faut dans la mesure du possible en parler avec son supérieur ou avec le chargé de prévention s'il y en a un. En cas de problème avec la hiérarchie il faut essayer de s'adresser à des personnes de confiance et aux autres chefs. Les représentants du personnel peuvent aussi aider à réaliser des démarches et s'il y a un Comité Social et Économique (CSE), il dispose d'un droit d'alerte pour prévenir l'employeur du problème.
 
-Lorsque l'employeur ne vient pas en aide au salarié ou que la situation est trop compliquée il est possible de porter plainte, dans ce cas il faut constituer un ensemble de preuves afin obtenir gain de cause. Pour obtenir un soutien au pénal il est possible de contacter le syndicat de l'entreprise syndicat ou celui du corps de métier s'il n'y en a pas. Il ne faut pas hésiter à alerter la Médecine du travail pour obtenir un certificat médical qui atteste des conséquences du harcèlement sur la santé du salarié, il s'agit d'une preuve recevable. Les témoignages des collègues, les mails, les messages ou les enregistrements permettent également de compléter l'ensemble de preuves.
+Lorsque l'employeur ne vient pas en aide au salarié ou que la situation est trop compliquée il est possible de porter plainte, dans ce cas il faut constituer un ensemble de preuves afin obtenir gain de cause. Pour obtenir un soutien au pénal il est possible de contacter le syndicat de l'entreprise ou celui du corps de métier s'il n'y en a pas. Il ne faut pas hésiter à alerter la Médecine du travail pour obtenir un certificat médical qui atteste des conséquences du harcèlement sur la santé du salarié, il s'agit d'une preuve recevable. Les témoignages des collègues, les mails, les messages ou les enregistrements permettent également de compléter l'ensemble de preuves.
 
 Malheureusement parfois (voire souvent) la seule solution est de démissionner afin de ne plus travailler dans une atmosphère néfaste.
 
@@ -87,23 +87,13 @@ Dans certains cas le fait de demander au harceleur de cesser ses agissements est
 
 ### Point de vue de la victime
 
-*todo*
-La victime :
-- a du mal à communiquer
-- peut ne pas avoir conscience d'être harcelée
-- peut être amenée à penser que le problème vient d'elle
-- se sent rabaissée, humiliée
-- n'ose pas en parler
-- a peur
-- ne sait pas à qui elle peut se confier
-- a l'impression que personne ne souhaite l'aider
-- ne veut pas que ça se sache
-- espère que c'est temporaire et que la situation va redevenir normale
+Au début, la victime n'a pas forcément l'impression d'être harcelée ou elle peut rester dans le déni, en particulier en cas de harcèlement moral. Elle peut se sentir rabaissée, humiliée, et être amenée à penser que le problème vient d'elle. Elle peut aussi penser que la situation est temporaire et espérer que les agissements vont cesser d'un jour à l'autre, raison de plus pour ne pas en parler. Cette période est particulièrement néfaste pour sa santé mentale car elle est propice au développement de la dépression et des envies suicidaires. Une aide extérieure comme des collègues ou des proches peuvent aider la victime à comprendre ce qui lui arrive.
+
+Lorsqu'elle a pris conscience d'être victime de harcèlement elle ne veut généralement pas en parler. Elle ne veut pas que cela se sache, elle a peur des répercutions que cela peut avoir ou elle a l'impression que personne ne souhaite l'aider et elle ne sait pas à qui se confier. Cependant, cette prise de conscience est la première étape qui peut lui permettre de lutter contre son harceleur, ou au moins de comprendre que le problème ne vient pas d'elle.
 
 ### Point de vue du harceleur
 
-*todo*
-- Le harceleur n'a pas forcément l'impression de nuire, de son point de vue il peut avoir un comportement tout à fait normal. Les problèmes de perceptions différentes sont l'une des raisons pour lesquels il est difficile de prouver un cas de harcèlement.
+Dans de nombreux cas le harceleur n'a pas l'intention de nuire, de son point de vue il peut avoir un comportement tout à fait normal et il est parfois possible de lui faire comprendre le caractère déplacé de son comportement. Il peut aussi faire des remarques réalistes ou non sur la victime ou son comportement sans l'aider à s'améliorer par manque de pédagogie. Dans d'autres cas, sa forte estime de soi et son manque d'empathie lui donne une impression de supériorité qu'il n'hésite pas à utiliser, éventuellement à des fins malveillantes. Il peut aussi agir de la sorte afin d'obtenir quelque chose en échange. La cessation hypothétique de ses agissements peut ainsi devenir une sorte de monnaie d'échange pour arriver à ses fins.
 
 ## Évolution des points de vue
 
@@ -112,11 +102,13 @@ Dans le droit du travail, la protection commence à partir de 2008 pour le harc�
 
 On observe une évolution positive des textes de loi qui protègent les travailleurs du harcèlement, à la fois par l'arrivée de nouveaux textes, par la précision des textes existants qui leur permet de protéger plus de situations et par l'alourdissement des peines. Ces évolutions montrent que la lutte contre le harcèlement est devenu de plus en plus prioritaire au cours des dernières années.
 
+<div style="page-break-after:always;"></div>
+
 ## Actualité
 
 Entre 2008 et 2009 les syndicats et la direction de France Telecom, Orange depuis 2013, recense 35 suicides parmi les salariés. Une tragédie qui a été causée par le harcèlement moral des salariés dans le cadre d'une suppression massive de postes sans licenciements. France Telecom a été condamné pour harcèlement moral en décembre 2019.
 
-En mars 2022 un salarié de Pôle emploi obtient gain de cause au Prod'homme après avoir été harcelé moralement pendant 5 ans par sa supérieur hiérarchique. Le salarié a été volontairement isolé et surveillé à son insu de nombreuses fois. Il a informé sa hiérarchie du problème à de multiples reprises sans réaction de la part de celle-ci. Plusieurs de ses collègues ont témoigné en sa faveur ce qui a permis d'appuyer sa plainte.
+En mars 2022 un salarié de Pôle emploi obtient gain de cause aux prud'hommes après avoir été harcelé moralement pendant 5 ans par sa supérieur hiérarchique. Le salarié a été volontairement isolé et surveillé à son insu de nombreuses fois. Il a informé sa hiérarchie du problème à de multiples reprises sans réaction de la part de celle-ci. Plusieurs de ses collègues ont témoigné en sa faveur ce qui a permis d'appuyer sa plainte.
 
 Ce type d'affaires ne sont pas des cas isolés mais il est rare qu'une victime obtienne gain de cause. Des études réalisées en 2019 par l'Institut national d'études démographiques (Ined) et l'Institut d'études opinion et marketing en France et à l'international (Ifop) ont révélé que 15 à 30 % des travailleurs français sont victimes de harcèlement ou de violences avec une proportion élevée de femmes. Seulement 30 % des victimes ont communiqué l'information à leur employeur et parmi elles 40 % estiment que le problème n'a pas été réglé en leur faveur (voir article sur les violences et le harcèlement dans le monde du travail). Ces données montrent qu'en 2019, moins de 20 % des victimes de violences ou de harcèlement au travail ont pu favorablement résoudre leur problème.
 
@@ -161,3 +153,4 @@ Le harcèlement en entreprise est un problème d'actualité. Qu'il s'agisse de h
 ### Plaquette de prévention diffusée au Centre Ministériel de Gestion de Lyon
 
 ![Plaquette de prévention](plaquette-prevention.png)
+
